@@ -22,10 +22,12 @@
         .fa, .fas, .far, .fal, .fad, .fab, .fa-solid, .fa-regular, .fa-light, .fa-brands {
             font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
         }
-        /* Giữ 4 khối Metric cố định, bỏ hiệu ứng trượt */
+        /* Ép cố định 4 khối Metric luôn hiện, không bị ảnh hưởng bởi hiệu ứng ẩn/trượt khi chuyển tab */
+        .metrics-grid,
         .metrics-grid .metric-card {
             opacity: 1 !important;
             transform: none !important;
+            visibility: visible !important;
             transition: box-shadow 0.3s ease !important;
         }
     </style>
@@ -112,9 +114,9 @@
             </div>
         </section>
 
-        <!-- METRICS RIBBON -->
+        <!-- METRICS RIBBON (LUÔN HIỆN CỐ ĐỊNH) -->
         <div class="container metrics-container">
-            <div class="metrics-grid">
+            <div class="metrics-grid active">
                 <div class="metric-card">
                     <div class="metric-icon"><i class="fa-solid fa-coins"></i></div>
                     <div class="metric-value">9 Tỷ VNĐ</div>
@@ -553,6 +555,12 @@
     <script>
         // HÀM KHỞI TẠO CÁC HIỆU ỨNG RIÊNG CHO TRANG GIỚI THIỆU
         window.initAboutPage = function() {
+            // Đảm bảo khối metrics luôn kích hoạt active
+            const metricsGrid = document.querySelector('.metrics-grid');
+            if (metricsGrid) {
+                metricsGrid.classList.add('active');
+            }
+
             // Căn giữa Sơ đồ tổ chức
             const wrapper = document.querySelector('.org-chart-wrapper');
             if (wrapper) {

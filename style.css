@@ -28,6 +28,7 @@
 
     /* Biến khoảng cách trượt cho animation */
     --slide-y: 22px;
+    --slide-x: 100px;
 }
 
 /* 2. HIỆU ỨNG CHUYỂN TRANG MƯỢT MÀ (VIEW TRANSITIONS & SPA) */
@@ -145,12 +146,10 @@ main {
     opacity: 0;
     animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
-
 /* Chỉnh cỡ chữ riêng cho tiêu đề Trang Giới Thiệu */
 .about-title {
     font-size: clamp(1.1rem, 2vw + 0.8rem, 2.2rem) !important;
 }
-
 .hero-title {
     font-family: 'Oswald', sans-serif !important;
     letter-spacing: 0.03em;
@@ -358,7 +357,7 @@ main {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 7. METRICS GRID & RIBBON COMPONENT (CỐ ĐỊNH, KHÔNG ANIMATION) */
+/* 7. METRICS GRID & RIBBON COMPONENT */
 .metrics-container {
     margin-top: -50px;
     position: relative;
@@ -379,14 +378,35 @@ main {
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     text-align: center;
-    opacity: 1;
-    transform: none;
-    transition: box-shadow 0.3s ease;
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s ease;
 }
 
 .metrics-grid .metric-card:hover {
     box-shadow: var(--shadow-lg);
 }
+
+.metrics-grid .metric-card:nth-child(1),
+.metrics-grid .metric-card:nth-child(2) {
+    transform: translateX(calc(-1 * var(--slide-x)));
+}
+
+.metrics-grid .metric-card:nth-child(3),
+.metrics-grid .metric-card:nth-child(4) {
+    transform: translateX(var(--slide-x));
+}
+
+.metrics-grid.active .metric-card {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.metrics-grid.active .metric-card:nth-child(1) { transition-delay: 0.4s; }
+.metrics-grid.active .metric-card:nth-child(2) { transition-delay: 0.2s; }
+.metrics-grid.active .metric-card:nth-child(3) { transition-delay: 0.2s; }
+.metrics-grid.active .metric-card:nth-child(4) { transition-delay: 0.4s; }
 
 .metric-icon {
     width: 48px;
@@ -892,6 +912,7 @@ main {
 @media (max-width: 768px) {
     :root {
         --slide-y: 14px;
+        --slide-x: 0px;
     }
 
     .hero {
@@ -909,6 +930,13 @@ main {
 
     .leadership-card {
         padding-top: 1.0rem !important;
+    }
+
+    .metrics-grid .metric-card:nth-child(1),
+    .metrics-grid .metric-card:nth-child(2),
+    .metrics-grid .metric-card:nth-child(3),
+    .metrics-grid .metric-card:nth-child(4) {
+        transform: translateY(20px);
     }
 
     ::-webkit-scrollbar {
