@@ -119,37 +119,17 @@ main {
     background: radial-gradient(circle at 85% 30%, #1e68a8 0%, #0d3d6b 55%, #071728 100%);
 }
 
-/* Lớp ảnh nền chuyển động nhẹ (nếu dùng) */
-.hero-bg {
+/* Lớp ảnh công trình cao tầng ẩn mờ phía sau */
+.hero::before {
+   content: '';
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('assets/images/banner-bg.jpg');
+    background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070');
     background-size: cover;
     background-position: center;
-    z-index: 1;
-    will-change: transform;
-    animation: subtleZoom 16s ease-in-out infinite alternate;
-}
-
-/* Lớp phủ tối giúp nổi bật chữ */
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(7, 23, 40, 0.75) 0%, rgba(30, 104, 168, 0.6) 100%);
-    z-index: 2;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(232, 126, 35, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-    pointer-events: none;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    pointer-events: none;   
     z-index: 3;
 }
 
