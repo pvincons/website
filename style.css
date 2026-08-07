@@ -1,6 +1,6 @@
-/* ==========================================================================
+/* ==========================================
    PV INCONS - GLOBAL STYLESHEET (style.css)
-   ========================================================================== */
+   ========================================== */
 
 /* 1. THƯƠNG HIỆU & BIẾN MÀU TOÀN CỤC (ĐỒNG BỘ VỚI TAILWIND CONFIG) */
 :root {
@@ -11,7 +11,7 @@
     --brand-gold: #8c6239;
 
     /* Theme & System Colors */
-    --primary-dark: #0a192f;
+    --primary-dark: #071728;
     --primary-blue: #1e68a8;
     --accent-orange: #e87e23;
     --accent-gold: #8c6239;
@@ -110,13 +110,35 @@ main {
     font-weight: 700;
 }
 
-/* 5. HIỆU ỨNG HERO TITLE & CHUYỂN ĐỘNG CHỮ (QUẢN LÝ TẬP TRUNG) */
+/* 5. HIỆU ỨNG HERO TITLE & BACKGROUND BANNER ANIMATION */
 .hero {
-    background: linear-gradient(135deg, #071325 0%, #1e68a8 100%);
-    color: var(--surface-white);
-    padding: 80px 0 100px;
     position: relative;
     overflow: hidden;
+    color: var(--surface-white);
+    padding: 80px 0 100px;
+    background: radial-gradient(circle at 85% 30%, #1e68a8 0%, #0d3d6b 55%, #071728 100%);
+}
+
+/* Lớp ảnh nền chuyển động nhẹ (nếu dùng) */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/images/banner-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    will-change: transform;
+    animation: subtleZoom 16s ease-in-out infinite alternate;
+}
+
+/* Lớp phủ tối giúp nổi bật chữ */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(7, 23, 40, 0.75) 0%, rgba(30, 104, 168, 0.6) 100%);
+    z-index: 2;
 }
 
 .hero::before {
@@ -128,6 +150,7 @@ main {
     height: 500px;
     background: radial-gradient(circle, rgba(232, 126, 35, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
     pointer-events: none;
+    z-index: 3;
 }
 
 .hero-grid {
@@ -135,6 +158,8 @@ main {
     grid-template-columns: 1.2fr 0.8fr;
     gap: 48px;
     align-items: center;
+    position: relative;
+    z-index: 4;
 }
 
 .hero-tag {
@@ -146,10 +171,11 @@ main {
     opacity: 0;
     animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
-/* Chỉnh cỡ chữ riêng cho tiêu đề Trang Giới Thiệu */
+
 .about-title {
     font-size: clamp(1.1rem, 2vw + 0.8rem, 2.2rem) !important;
 }
+
 .hero-title {
     font-family: 'Oswald', sans-serif !important;
     letter-spacing: 0.03em;
@@ -175,7 +201,7 @@ main {
     -webkit-text-fill-color: transparent;
     opacity: 0;
     animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards,
-    shimmerText 5s linear infinite;
+               shimmerText 5s linear infinite;
 }
 
 .animate-slide-up {
@@ -188,6 +214,11 @@ main {
 .delay-3 { animation-delay: 0.4s; }
 
 /* Keyframe animations */
+@keyframes subtleZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+}
+
 @keyframes heroFadeDown {
     from {
         opacity: 0;
@@ -222,9 +253,7 @@ main {
 }
 
 @keyframes shimmerText {
-    to {
-        background-position: 200% center;
-    }
+    to { background-position: 200% center; }
 }
 
 /* 6. LEADERSHIP SPOTLIGHT CARD COMPONENT */
@@ -379,34 +408,51 @@ main {
     border: 1px solid var(--border-color);
     text-align: center;
     opacity: 0;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.3s ease;
+    will-change: transform, opacity;
+    transition-property: opacity, transform, box-shadow;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), ease;
+}
+
+/* Khối 1: Trượt từ trái qua - Thời gian lướt 4s */
+.metrics-grid .metric-card:nth-child(1) {
+    transform: translateX(-80px);
+    transition-duration: 3s, 3s, 0.3s;
+}
+
+/* Khối 2: Trượt từ trái qua - Thời gian lướt 2s */
+.metrics-grid .metric-card:nth-child(2) {
+    transform: translateX(-80px);
+    transition-duration: 1s, 1s, 0.3s;
+}
+
+/* Khối 3: Trượt từ phải qua - Thời gian lướt 2s */
+.metrics-grid .metric-card:nth-child(3) {
+    transform: translateX(80px);
+    transition-duration: 1s, 1s, 0.3s;
+}
+
+/* Khối 4: Trượt từ phải qua - Thời gian lướt 4s */
+.metrics-grid .metric-card:nth-child(4) {
+    transform: translateX(80px);
+    transition-duration: 3s, 3s, 0.3s;
+}
+
+/* Trạng thái sau khi kích hoạt animation lướt vào */
+.metrics-grid .metric-card.animate-in,
+.metrics-grid.active .metric-card {
+    opacity: 1 !important;
+    transform: translateX(0) scale(1) !important;
 }
 
 .metrics-grid .metric-card:hover {
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 15px 30px -5px rgba(30, 104, 168, 0.18) !important;
+    transform: translateY(-8px) scale(1.02) !important;
 }
 
-.metrics-grid .metric-card:nth-child(1),
-.metrics-grid .metric-card:nth-child(2) {
-    transform: translateX(calc(-1 * var(--slide-x)));
+.metrics-grid .metric-card:hover .metric-icon {
+    transform: scale(1.12) rotate(5deg);
+    transition: transform 0.3s ease;
 }
-
-.metrics-grid .metric-card:nth-child(3),
-.metrics-grid .metric-card:nth-child(4) {
-    transform: translateX(var(--slide-x));
-}
-
-.metrics-grid.active .metric-card {
-    opacity: 1;
-    transform: translate(0, 0);
-}
-
-.metrics-grid.active .metric-card:nth-child(1) { transition-delay: 0.4s; }
-.metrics-grid.active .metric-card:nth-child(2) { transition-delay: 0.2s; }
-.metrics-grid.active .metric-card:nth-child(3) { transition-delay: 0.2s; }
-.metrics-grid.active .metric-card:nth-child(4) { transition-delay: 0.4s; }
 
 .metric-icon {
     width: 48px;
@@ -419,6 +465,7 @@ main {
     justify-content: center;
     font-size: 20px;
     margin: 0 auto 12px;
+    transition: transform 0.3s ease;
 }
 
 .metric-value {
@@ -471,21 +518,6 @@ main {
     gap: 24px;
 }
 
-.philosophy-card {
-    background-color: var(--surface-white);
-    border-radius: 16px;
-    padding: 32px;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.philosophy-card:hover {
-    border-color: var(--primary-blue);
-    box-shadow: var(--shadow-md);
-}
-
 .philosophy-num {
     font-size: 36px;
     font-weight: 900;
@@ -531,32 +563,6 @@ main {
 
 .legal-info-table {
     padding: 40px;
-}
-
-.legal-row {
-    display: flex;
-    padding: 16px 0;
-    border-bottom: 1px dashed var(--border-color);
-}
-
-.legal-row:last-child {
-    border-bottom: none;
-}
-
-.legal-label {
-    width: 180px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    flex-shrink: 0;
-}
-
-.legal-value {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--primary-dark);
 }
 
 .legal-highlight {
@@ -884,7 +890,7 @@ main {
     color: var(--accent-orange);
 }
 
-/* 9. TỐI ƯU CHO THIẾT BỊ DI ĐỘNG & BẢNG (RESPONSIVE OPTIMIZATIONS) */
+/* 9. RESPONSIVE OPTIMIZATIONS */
 @media (max-width: 992px) {
     .hero-grid {
         grid-template-columns: 1fr;
@@ -915,8 +921,10 @@ main {
         --slide-x: 0px;
     }
 
+    /* GIỮ NGUYÊN TÔNG MÀU DỌC TRUYỀN THỐNG TRÊN MÀN HÌNH DI ĐỘNG */
     .hero {
         padding-top: 1.5rem !important;
+        background: linear-gradient(180deg, #071728 0%, #0d3d6b 60%, #1e68a8 100%) !important;
     }
 
     .hero-tag {
@@ -932,15 +940,18 @@ main {
         padding-top: 1.0rem !important;
     }
 
-    .metrics-grid .metric-card:nth-child(1),
-    .metrics-grid .metric-card:nth-child(2),
-    .metrics-grid .metric-card:nth-child(3),
-    .metrics-grid .metric-card:nth-child(4) {
-        transform: translateY(20px);
-    }
-
     ::-webkit-scrollbar {
         width: 4px;
+    }
+
+    .metrics-grid .metric-card:nth-child(1),
+    .metrics-grid .metric-card:nth-child(2) {
+        transform: translateX(-40px);
+    }
+
+    .metrics-grid .metric-card:nth-child(3),
+    .metrics-grid .metric-card:nth-child(4) {
+        transform: translateX(40px);
     }
 }
 
@@ -973,4 +984,66 @@ main {
     .division-card {
         width: 100% !important;
     }
+}
+
+/* 10. CUSTOM CLASSES HỢP NHẤT */
+.bullet-dot {
+    color: #c29624;
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+.philosophy-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.philosophy-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.legal-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.legal-row:last-child {
+    border-bottom: none;
+}
+
+@media (min-width: 640px) {
+    .legal-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .legal-label {
+        width: 33.333333%;
+    }
+    .legal-value {
+        width: 66.666667%;
+    }
+}
+
+.legal-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
 }

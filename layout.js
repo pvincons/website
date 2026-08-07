@@ -145,7 +145,7 @@ async function navigateToPage(url, pushState = true) {
             const newMain = doc.querySelector('main');
             const newTitle = doc.querySelector('title');
 
-            // 2. Thay đổi ruột <main> & Tiêu đề
+            // 2. Thay đổi nội dung <main> & Tiêu đề
             if (newMain && mainContent) {
                 mainContent.innerHTML = newMain.innerHTML;
                 reexecuteScripts(mainContent);
@@ -166,8 +166,21 @@ async function navigateToPage(url, pushState = true) {
             window.scrollTo({ top: 0, behavior: 'instant' });
 
             // 4. Kích hoạt lại JS riêng từng tab
-            if ((pageId === 'about' || url.includes('about')) && typeof window.initAboutPage === 'function') {
-                window.initAboutPage();
+            if (pageId === 'about' || url.includes('about')) {
+                if (typeof window.initAboutPage === 'function') {
+                    window.initAboutPage();
+                }
+                // Delay căn giữa sau khi hiệu ứng Fade In hoàn thành
+                setTimeout(() => {
+                    if (typeof window.forceCenterOrgChart === 'function') {
+                        window.forceCenterOrgChart();
+                    }
+                }, 180);
+                setTimeout(() => {
+                    if (typeof window.forceCenterOrgChart === 'function') {
+                        window.forceCenterOrgChart();
+                    }
+                }, 350);
             }
 
             if (pageId === 'index' || pageId === '' || url.includes('index')) {
