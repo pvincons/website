@@ -1047,3 +1047,107 @@ main {
     letter-spacing: 0.5px;
     flex-shrink: 0;
 }
+/* ==========================================
+   FLOATING CHAT BUTTON STYLES
+   ========================================== */
+.chat-float-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background-color: var(--brand-orange, #e87e23);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(232, 126, 35, 0.4);
+    z-index: 9999;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chat-icon {
+    width: 26px;
+    height: 26px;
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng sóng lan tỏa xung quanh nút */
+.chat-float-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--brand-orange, #e87e23);
+    animation: chatPulse 2s infinite;
+    pointer-events: none;
+}
+
+/* Hover effect */
+.chat-float-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--brand-blue, #1e68a8);
+    box-shadow: 0 10px 28px rgba(30, 104, 168, 0.45);
+}
+
+.chat-float-btn:hover .chat-icon {
+    transform: rotate(-8deg);
+}
+
+/* Tooltip hiển thị text */
+.chat-tooltip {
+    position: absolute;
+    right: 68px;
+    background-color: var(--primary-dark, #071728);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.chat-float-btn:hover .chat-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Keyframe hiệu ứng phát sóng */
+@keyframes chatPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Responsive tối ưu cho thiết bị di động */
+@media (max-width: 768px) {
+    .chat-float-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .chat-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Ẩn tooltip trên di động để đỡ vướng màn hình */
+    .chat-tooltip {
+        display: none;
+    }
+}
