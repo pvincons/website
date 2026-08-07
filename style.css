@@ -119,6 +119,20 @@ main {
     background: radial-gradient(circle at 85% 30%, #1e68a8 0%, #0d3d6b 55%, #071728 100%);
 }
 
+/* Lớp ảnh nền chuyển động nhẹ Trang chủ */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/images/banner-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    will-change: transform;
+    animation: subtleZoom 10s ease-in-out infinite alternate;
+}
+
 /* Lớp ảnh công trình cao tầng ẩn mờ phía sau */
 .hero::before {
    content: '';
