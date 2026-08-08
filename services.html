@@ -57,7 +57,36 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <!-- HERO SECTION: Tối giản, Tinh tế, Khai trương tầm nhìn -->
+        <!-- HERO SECTION TAB -->
+        <section class="relative w-full">
+            <div
+                class="relative w-full h-[20vh] min-h-[200px] md:h-[35vh] md:min-h-[350px] bg-slate-800 flex items-center justify-center overflow-hidden">
+                <img src="https://i.pinimg.com/1200x/03/c5/d5/03c5d59ea81ce9e5bda1dce1891f61c6.jpg?q=100&w=1920&auto=format&fit=crop"
+                    alt="Dịch Vụ"
+                    class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
+
+                <!-- Lớp phủ mờ màu xanh gradient sang trọng -->
+                <!--<div class="absolute inset-0 bg-gradient-to-r from-[#0d3d6b]/30 via-[#1e68a8]/10 to-[#0d3d6b]/30"></div>-->
+
+                <div class="relative z-10 text-center px-4">
+                    <h1
+                        class="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-wider drop-shadow-md">
+                        DỊCH VỤ
+                    </h1>
+                </div>
+            </div>
+        </section>
+        <!-- THANH NAV TABS: dính header -->
+        <nav
+            class="sticky sm:static top-[80px] sm:top-auto z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-1.5 sm:py-3 px-3 sm:px-4 shadow-sm transition-all">
+            <div
+                class="max-w-7xl mx-auto flex items-center justify-center flex-wrap gap-y-1 sm:gap-y-2 gap-x-1.5 sm:gap-x-4 text-[10px] sm:text-sm font-semibold text-slate-600 uppercase">
+                <a href="#" class="tab-btn active transition-colors py-0.5">DỊCH VỤ</a>
+                <span class="text-slate-300 font-normal">/</span>
+                <a href="#" class="tab-btn hover:text-brand-orange transition-colors py-0.5">BÁO GIÁ</a>
+            </div>
+        </nav>
+
         <section class="py-8 sm:py-16 bg-slate-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
