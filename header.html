@@ -38,111 +38,76 @@
     }
 </style>
 
-<!-- Top Info Bar -->
+<!-- Top Info Bar (Icon màu cam text-brand-orange) -->
 <div class="bg-slate-900 text-slate-300 text-xs py-2 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        <div class="flex items-center space-x-6">
-            <span><i class="fa-solid fa-phone text-brand-orange mr-1.5"></i> CSKH: 0772 194789</span>
-            <span class="hidden md:inline"><i class="fa-solid fa-envelope text-brand-orange mr-1.5"></i>
-                pvincons@gmail.com</span>
-            <span class="hidden md:inline"><i class="fa-solid fa-location-dot text-brand-orange mr-1.5"></i> Văn phòng: P007 Lý Thái Tổ, Hưng Phú, Cần Thơ</span>
+        <div class="flex items-center space-x-4 sm:space-x-6">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-brand-orange"></i> CSKH: 0772 194789</span>
+            <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-envelope text-brand-orange"></i> pvincons@gmail.com</span>
+            <span class="hidden lg:flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-brand-orange"></i> Văn phòng: P007 Lý Thái Tổ, Hưng Phú, Cần Thơ</span>
         </div>
-        <div class="flex space-x-4">
-            <a href="https://www.facebook.com/profile.php?id=100080462977449" target="_blank" class="hover:text-white transition"><i
-                    class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.linkedin.com/in/pv-incons-company-363b95414/" target="_blank" class="hover:text-white transition"><i
-                    class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.youtube.com/@pvinconscompany8614/videos" target="_blank" class="hover:text-white transition"><i
-                    class="fa-brands fa-youtube"></i></a>
+        <div class="flex items-center space-x-3.5">
+            <a href="https://www.facebook.com/profile.php?id=100080462977449" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/pv-incons-company-363b95414/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.youtube.com/@pvinconscompany8614/videos" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
     </div>
 </div>
 
 <!-- Header Navigation -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-xs border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <!-- Logo -->
-        <a href="/index.html" class="flex items-center space-x-3 group py-2">
-            <img src="/img/logo.png" alt="logo"
-                class="h-16 sm:h-18 w-auto object-contain transition-transform group-hover:scale-105">
+        <a href="index.html" class="flex items-center space-x-3 group py-2">
+            <img src="img/logo.png" alt="PV INCONS Logo" class="h-16 sm:h-18 w-auto object-contain transition-transform duration-200 group-hover:scale-105">
         </a>
 
         <!-- Desktop Nav Tabs -->
-        <nav
-            class="hidden xl:flex space-x-1 h-full items-center font-bold text-xs xl:text-xs 2xl:text-sm uppercase tracking-wide">
-            <a href="/index.html" data-tab="index"
-                class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">TRANG
-                CHỦ</a>
-            <a href="/about.html" data-tab="about"
-                class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">GIỚI
-                THIỆU</a>
-            <a href="/projects.html" data-tab="projects"
-                class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">DỰ
-                ÁN</a>
-            <a href="/news.html" data-tab="news"
-                class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">TIN
-                TỨC</a>
-            <a href="/services.html" data-tab="services"
-                class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">DỊCH
-                VỤ</a>
-            <a href="/investment.html" data-tab="investment"
-                class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">QUAN
-                HỆ ĐẦU TƯ</a>
-            <a href="/hr.html" data-tab="hr"
-                class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">CHÍNH
-                SÁCH NHÂN SỰ</a>
+        <nav class="hidden xl:flex space-x-1 h-full items-center font-bold text-xs xl:text-xs 2xl:text-sm uppercase tracking-wide">
+            <a href="index.html" data-tab="index" class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">TRANG CHỦ</a>
+            <a href="about.html" data-tab="about" class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">GIỚI THIỆU</a>
+            <a href="projects.html" data-tab="projects" class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">DỰ ÁN</a>
+            <a href="news.html" data-tab="news" class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">TIN TỨC</a>
+            <a href="services.html" data-tab="services" class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">DỊCH VỤ</a>
+            <a href="investment.html" data-tab="investment" class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">QUAN HỆ ĐẦU TƯ</a>
+            <a href="hr.html" data-tab="hr" class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">CHÍNH SÁCH NHÂN SỰ</a>
         </nav>
 
         <!-- CTA Button & Switcher (Desktop) -->
         <div class="hidden sm:flex items-center space-x-3">
             <button type="button" 
                     onclick="toggleLanguage()" 
-                    class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100/80 hover:bg-slate-200/80 border border-slate-200/80 transition-all cursor-pointer shadow-xs"
-                    title="Bấm để đổi ngôn ngữ / Switch language">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" 
-                     onload="this.onload=null; this.src = document.cookie.indexOf('/en') !== -1 ? 'https://flagcdn.com/24x18/vn.png' : 'https://flagcdn.com/24x18/gb.png'" 
+                    class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-all cursor-pointer shadow-xs"
+                    title="Đổi ngôn ngữ / Switch language">
+                <img id="langFlagDesktop" 
+                     src="https://flagcdn.com/24x18/gb.png" 
                      alt="Language Flag" 
                      class="w-5 h-3.5 object-cover rounded-[2px]">
             </button>
 
-            <!-- Nút Liên Hệ -->
-            <a href="javascript:void(0)"
-                onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })"
-                class="bg-brand-blue hover:bg-brand-darkblue text-white font-semibold text-sm px-4 py-2.5 rounded-lg transition shadow-md shadow-brand-blue/20 cursor-pointer">
+            <!-- Nút Liên Hệ mở Modal -->
+            <button type="button"
+                onclick="openContactModal()"
+                class="bg-brand-blue hover:bg-brand-darkblue text-white font-semibold text-sm px-4 py-2.5 rounded-lg transition-all duration-200 shadow-md shadow-brand-blue/20 cursor-pointer flex items-center">
                 <i class="fa-solid fa-paper-plane mr-1.5"></i> Liên Hệ
-            </a>
+            </button>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="xl:hidden text-slate-700 text-2xl focus:outline-none p-2">
+        <button id="mobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" class="xl:hidden text-slate-700 text-2xl focus:outline-none p-2">
             <i class="fa-solid fa-bars"></i>
         </button>
     </div>
 
     <!-- Mobile Menu Drawer -->
-    <div id="mobileMenu"
-        class="hidden xl:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-1 uppercase text-xs font-bold">
-        <a href="/index.html" data-tab="index"
-            class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">TRANG
-            CHỦ</a>
-        <a href="/about.html" data-tab="about"
-            class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">GIỚI
-            THIỆU</a>
-        <a href="/projects.html" data-tab="projects"
-            class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">DỰ
-            ÁN</a>
-        <a href="/news.html" data-tab="news"
-            class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">TIN
-            TỨC</a>
-        <a href="/services.html" data-tab="services"
-            class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">DỊCH
-            VỤ</a>
-        <a href="/investment.html" data-tab="investment"
-            class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">QUAN HỆ
-            ĐẦU TƯ</a>
-        <a href="/hr.html" data-tab="hr"
-            class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">CHÍNH
-            SÁCH NHÂN SỰ</a>
+    <div id="mobileMenu" class="hidden xl:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-1 uppercase text-xs font-bold">
+        <a href="index.html" data-tab="index" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">TRANG CHỦ</a>
+        <a href="about.html" data-tab="about" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">GIỚI THIỆU</a>
+        <a href="projects.html" data-tab="projects" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">DỰ ÁN</a>
+        <a href="news.html" data-tab="news" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">TIN TỨC</a>
+        <a href="services.html" data-tab="services" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">DỊCH VỤ</a>
+        <a href="investment.html" data-tab="investment" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">QUAN HỆ ĐẦU TƯ</a>
+        <a href="hr.html" data-tab="hr" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">CHÍNH SÁCH NHÂN SỰ</a>
 
         <!-- Switcher (Mobile) -->
         <div class="flex items-center justify-between py-2.5 px-3 border-t border-slate-100 mt-2 normal-case font-normal">
@@ -150,25 +115,46 @@
             <button type="button" 
                     onclick="toggleLanguage()" 
                     class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 border border-slate-200 cursor-pointer shadow-xs">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" 
-                     onload="this.onload=null; this.src = document.cookie.indexOf('/en') !== -1 ? 'https://flagcdn.com/24x18/vn.png' : 'https://flagcdn.com/24x18/gb.png'" 
+                <img id="langFlagMobile" 
+                     src="https://flagcdn.com/24x18/gb.png" 
                      alt="Language Flag" 
                      class="w-5 h-3.5 object-cover rounded-[2px]">
             </button>
         </div>
 
-        <!-- Nút Liên Hệ Mobile -->
-        <a href="javascript:void(0)" 
-            onclick="closeMobileMenu(); window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })"
-            class="block text-center bg-brand-blue text-white font-semibold py-2.5 rounded-lg mt-3 normal-case text-sm cursor-pointer">Liên
-            Hệ</a>
+        <!-- Nút Liên Hệ Mobile mở Modal -->
+        <button type="button" 
+            onclick="closeMobileMenu(); openContactModal()"
+            class="w-full block text-center bg-brand-blue hover:bg-brand-darkblue text-white font-semibold py-2.5 rounded-lg mt-3 normal-case text-sm cursor-pointer transition-colors duration-200">
+            Liên Hệ
+        </button>
     </div>
 </header>
 
-<!-- FLOATING CHAT BUTTON (Đặt cuối file Header) -->
-<a href="https://zalo.me/0939751194" class="chat-float-btn" target="_blank" rel="noopener noreferrer" title="Chat ngay với chúng tôi">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="chat-icon">
+<!-- FLOATING CHAT BUTTON -->
+<a href="javascript:void(0)" 
+   onclick="if(window.innerWidth < 768){ window.location.href='tel:0909751194'; } else { window.open('https://zalo.me/0772194789', '_blank'); }" 
+   class="chat-float-btn" 
+   title="Liên hệ tư vấn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="chat-icon hidden md:block w-6 h-6">
         <path fill-rule="evenodd" d="M4.804 2.169A2.25 2.25 0 017.185 2h9.63a2.25 2.25 0 012.382 1.69c.39 1.455.603 2.986.603 4.56 0 1.574-.213 3.105-.603 4.56a2.25 2.25 0 01-2.382 1.69h-1.957a2.25 2.25 0 00-1.591.659l-2.708 2.709a.75.75 0 01-1.281-.53v-2.38a.75.75 0 00-.75-.75H7.185a2.25 2.25 0 01-2.382-1.69A16.29 16.29 0 014.2 8.25c0-1.574.213-3.105.604-4.561z" clip-rule="evenodd" />
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="chat-icon block md:hidden w-6 h-6">
+        <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c.135.28.288.552.458.814.92 1.417 2.16 2.657 3.577 3.577.262.17.534.323.814.458l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
     </svg>
     <span class="chat-tooltip">Liên hệ tư vấn</span>
 </a>
+
+<!-- MODAL POPUP: THÔNG BÁO GỬI THÀNH CÔNG -->
+<div id="thankYouModal" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    <div class="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl text-center border border-slate-100">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <h3 class="text-xl font-bold text-slate-800 mb-2">Gửi Thông Tin Thành Công!</h3>
+        <p class="text-slate-600 text-sm mb-6">Cảm ơn Quý khách đã liên hệ với PV INCONS. Chúng tôi sẽ xử lý thông tin và liên hệ lại trong thời gian sớm nhất.</p>
+        <button type="button" onclick="closeModal()" class="w-full bg-brand-blue hover:bg-brand-darkblue text-white font-semibold py-3 rounded-xl transition cursor-pointer text-sm">
+            Đóng
+        </button>
+    </div>
+</div>

@@ -1,4 +1,9 @@
 // ==========================================
+// CẤU HÌNH CỔNG GỬI MAIL FORMSPREE
+// ==========================================
+const FORMSPREE_URL = "https://formspree.io/f/xzdnldga"; 
+
+// ==========================================
 // CHỨC NĂNG ĐỔI NGÔN NGỮ (GLOBAL LANGUAGE SWITCHER)
 // ==========================================
 window.toggleLanguage = function () {
@@ -20,12 +25,14 @@ window.toggleLanguage = function () {
 };
 
 window.googleTranslateElementInit = function () {
-    new google.translate.TranslateElement({
-        pageLanguage: 'vi',
-        includedLanguages: 'en,vi',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-    }, 'google_translate_element');
+    if (typeof google !== 'undefined' && google.translate) {
+        new google.translate.TranslateElement({
+            pageLanguage: 'vi',
+            includedLanguages: 'en,vi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
 };
 
 // ==========================================
@@ -44,7 +51,9 @@ function reexecuteScripts(container) {
         } else {
             newScript.textContent = oldScript.textContent;
         }
-        oldScript.parentNode.replaceChild(newScript, oldScript);
+        if (oldScript.parentNode) {
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        }
     });
 }
 
@@ -92,14 +101,13 @@ function initClientRouter() {
 
         const isHomePage = href === 'index.html' || href === '/' || href.endsWith('/index.html');
 
-        // Luôn luôn tải lại toàn bộ trang khi click vào Trang chủ
         if (isHomePage) {
             e.preventDefault();
             const currentPath = window.location.pathname;
             if (currentPath.endsWith('index.html') || currentPath === '/' || currentPath === '') {
                 window.location.reload();
             } else {
-                window.location.href = '/index.html';
+                window.location.href = 'index.html';
             }
             return;
         }
@@ -121,7 +129,6 @@ function initClientRouter() {
 async function navigateToPage(url, pushState = true) {
     const mainContent = document.querySelector('main');
 
-    // 1. Hiệu ứng Fade Out mượt mà (0.15s)
     if (mainContent) {
         mainContent.style.opacity = '0';
         mainContent.style.transform = 'translateY(4px)';
@@ -136,7 +143,7 @@ async function navigateToPage(url, pushState = true) {
                 const response = await fetch(url);
                 if (!response.ok) throw new Error('Không thể tải trang');
                 htmlText = await response.text();
-                tabCache[url] = htmlText; // Lưu cache
+                tabCache[url] = htmlText;
             }
 
             const parser = new DOMParser();
@@ -145,7 +152,6 @@ async function navigateToPage(url, pushState = true) {
             const newMain = doc.querySelector('main');
             const newTitle = doc.querySelector('title');
 
-            // 2. Thay đổi nội dung <main> & Tiêu đề
             if (newMain && mainContent) {
                 mainContent.innerHTML = newMain.innerHTML;
                 reexecuteScripts(mainContent);
@@ -154,7 +160,6 @@ async function navigateToPage(url, pushState = true) {
                 document.title = newTitle.text;
             }
 
-            // 3. Cập nhật Tab Active
             const pageId = url.split('/').pop().replace('.html', '') || 'index';
             updateActiveTab(pageId);
 
@@ -165,22 +170,15 @@ async function navigateToPage(url, pushState = true) {
             closeMobileMenu();
             window.scrollTo({ top: 0, behavior: 'instant' });
 
-            // 4. Kích hoạt lại JS riêng từng tab
             if (pageId === 'about' || url.includes('about')) {
                 if (typeof window.initAboutPage === 'function') {
                     window.initAboutPage();
                 }
-                // Delay căn giữa sau khi hiệu ứng Fade In hoàn thành
                 setTimeout(() => {
                     if (typeof window.forceCenterOrgChart === 'function') {
                         window.forceCenterOrgChart();
                     }
                 }, 180);
-                setTimeout(() => {
-                    if (typeof window.forceCenterOrgChart === 'function') {
-                        window.forceCenterOrgChart();
-                    }
-                }, 350);
             }
 
             if (pageId === 'index' || pageId === '' || url.includes('index')) {
@@ -188,10 +186,14 @@ async function navigateToPage(url, pushState = true) {
                 if (typeof window.initHomeSlider === 'function') {
                     window.initHomeSlider();
                 }
+            } else {
+                if (window.homeSliderInterval) {
+                    clearInterval(window.homeSliderInterval);
+                }
             }
+
             initVisitorCounter();
 
-            // Phát sự kiện cập nhật giao diện
             window.dispatchEvent(new Event('DOMContentLoaded'));
             window.dispatchEvent(new Event('scroll'));
 
@@ -199,7 +201,6 @@ async function navigateToPage(url, pushState = true) {
                 AOS.refreshHard();
             }
 
-            // 5. Hiệu ứng Fade In nội dung mới
             if (mainContent) {
                 mainContent.style.opacity = '1';
                 mainContent.style.transform = 'translateY(0)';
@@ -226,7 +227,6 @@ function initSmoothScroll() {
         const href = anchor.getAttribute('href');
         if (!href) return;
 
-        // Tự động chuyển đổi màu tab active trong thanh <nav>
         const navContainer = anchor.closest('nav');
         if (navContainer) {
             const navLinks = navContainer.querySelectorAll('a[href^="#"]');
@@ -238,7 +238,6 @@ function initSmoothScroll() {
             anchor.classList.remove('text-slate-600');
         }
 
-        // Thực hiện cuộn mượt
         if (href === '#') {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -259,8 +258,8 @@ async function loadLayout(pageId) {
     try {
         if (!document.querySelector('header')) {
             const [headerRes, footerRes] = await Promise.all([
-                fetch('/header.html'),
-                fetch('/footer.html')
+                fetch('header.html'),
+                fetch('footer.html')
             ]);
 
             const headerHtml = await headerRes.text();
@@ -309,7 +308,8 @@ async function loadHomeNews() {
     if (!placeholder) return;
 
     try {
-        const response = await fetch('/news.html');
+        const response = await fetch('news.html');
+        if (!response.ok) return;
         const htmlText = await response.text();
 
         const parser = new DOMParser();
@@ -325,40 +325,79 @@ async function loadHomeNews() {
 }
 
 // ==========================================
-// GỬI FORM QUA AJAX
+// ÉP DỰNG FORM POPUP CHUẨN FORMSPREE
+// (Chỉnh chữ nét normal rõ ràng)
 // ==========================================
-async function submitContactForm(e) {
-    e.preventDefault();
+function getMasterModalHtml() {
+    return `
+    <div id="contactModal" class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto">
+        <div class="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 my-auto">
+            <button type="button" onclick="closeContactModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl font-bold p-2 focus:outline-none cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-    const form = e.target;
-    const thankYouModal = document.getElementById('thankYouModal');
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.innerText;
+            <h3 class="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Thông Tin Liên Hệ</h3>
 
-    submitBtn.disabled = true;
-    submitBtn.innerText = 'Đang gửi...';
+            <form id="contactForm" action="${FORMSPREE_URL}" method="POST" onsubmit="submitContactForm(event)" class="space-y-4">
+                <div>
+                    <input type="text" name="Họ_và_tên" required placeholder="Họ và Tên *" 
+                        class="w-full px-4 py-3.5 text-slate-800 bg-[#edf3fc] border border-transparent rounded-xl focus:outline-none focus:border-brand-blue focus:bg-white transition text-sm placeholder-slate-500 font-normal">
+                </div>
 
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        });
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <input type="tel" name="Số_điện_thoại" required placeholder="Số Điện Thoại *" 
+                            class="w-full px-4 py-3.5 text-slate-800 bg-[#edf3fc] border border-transparent rounded-xl focus:outline-none focus:border-brand-blue focus:bg-white transition text-sm placeholder-slate-500 font-normal">
+                    </div>
+                    <div>
+                        <input type="text" name="Địa_điểm_công_trình" placeholder="Địa Điểm Công Trình" 
+                            class="w-full px-4 py-3.5 text-slate-800 bg-[#edf3fc] border border-transparent rounded-xl focus:outline-none focus:border-brand-blue focus:bg-white transition text-sm placeholder-slate-500 font-normal">
+                    </div>
+                </div>
 
-        if (response.ok) {
-            form.reset();
-            if (thankYouModal) {
-                thankYouModal.classList.remove('hidden');
-                thankYouModal.classList.add('flex');
-            }
-        } else {
-            alert('Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại!');
-        }
-    } catch (error) {
-        alert('Không thể kết nối máy chủ. Vui lòng kiểm tra lại kết nối mạng!');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerText = originalBtnText;
+                <div>
+                    <textarea name="Nội_dung_yêu_cầu" rows="5" placeholder="Nội dung yêu cầu..." 
+                        class="w-full px-4 py-3.5 text-slate-800 bg-[#edf3fc] border border-transparent rounded-xl focus:outline-none focus:border-brand-blue focus:bg-white transition text-sm resize-none placeholder-slate-500 font-normal"></textarea>
+                </div>
+
+                <button type="submit" 
+                    class="w-full bg-[#1e6091] hover:bg-[#184e77] text-white font-bold py-3.5 px-6 rounded-xl transition duration-200 text-center shadow-md cursor-pointer text-base mt-2">
+                    Gửi Thông Tin
+                </button>
+            </form>
+        </div>
+    </div>`;
+}
+
+function openContactModal() {
+    document.querySelectorAll('#contactModal').forEach(el => el.remove());
+    document.body.insertAdjacentHTML('beforeend', getMasterModalHtml());
+}
+
+function closeContactModal() {
+    document.querySelectorAll('#contactModal').forEach(el => el.remove());
+}
+
+function showThankYouModal() {
+    let thankYouModal = document.getElementById('thankYouModal');
+    if (!thankYouModal) {
+        const modalHtml = `
+        <div id="thankYouModal" class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+            <div class="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl text-center border border-slate-100">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Gửi Thông Tin Thành Công!</h3>
+                <p class="text-slate-600 text-sm mb-6">Cảm ơn Quý khách đã liên hệ với PV INCONS. Chúng tôi sẽ xử lý thông tin và liên hệ lại trong thời gian sớm nhất.</p>
+                <button type="button" onclick="closeModal()" class="w-full bg-brand-blue hover:bg-brand-darkblue text-white font-semibold py-3 rounded-xl transition cursor-pointer text-sm">
+                    Đóng
+                </button>
+            </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    } else {
+        thankYouModal.classList.remove('hidden');
+        thankYouModal.classList.add('flex');
     }
 }
 
@@ -367,6 +406,48 @@ function closeModal() {
     if (thankYouModal) {
         thankYouModal.classList.add('hidden');
         thankYouModal.classList.remove('flex');
+    }
+}
+
+// ==========================================
+// HÀM GỬI DỮ LIỆU TỚI FORMSPREE (AJAX)
+// ==========================================
+async function submitContactForm(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerText : 'Gửi Thông Tin';
+
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Đang gửi...';
+    }
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 
+                'Accept': 'application/json' 
+            }
+        });
+
+        if (response.ok) {
+            form.reset();
+            closeContactModal();
+            showThankYouModal();
+        } else {
+            alert('Có lỗi xảy ra khi gửi dữ liệu qua Formspree. Vui lòng kiểm tra lại kết nối!');
+        }
+    } catch (error) {
+        console.error('Lỗi kết nối Formspree:', error);
+        alert('Không thể kết nối máy chủ. Vui lòng kiểm tra lại mạng internet!');
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalBtnText;
+        }
     }
 }
 
@@ -420,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(translateScript);
     }
 
-    initSmoothScroll(); // Khởi tạo cuộn mượt toàn trang & tự động đổi màu Tab Active
+    initSmoothScroll();
     setTimeout(initVisitorCounter, 300);
     loadHomeNews();
 });

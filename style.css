@@ -1229,3 +1229,29 @@ main {
     box-shadow: none !important;
     border: none !important;
 }
+
+/* ==========================================
+ 14. Style chữ dành riêng cho Nav Tabs 
+ ========================================== */
+.nav-tab-item {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #64748b; /* slate-600 */
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+@media (min-width: 640px) {
+    .nav-tab-item {
+        font-size: 14px; /* sm:text-sm */
+    }
+}
+
+/* Trạng thái Hover và Active */
+.nav-tab-item:hover,
+.nav-tab-item.active {
+    color: var(--brand-orange, #e87e23) !important;
+}

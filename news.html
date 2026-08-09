@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PV INCONS - TIN TỨC</title>
+    <title>PV INCONS - TIN TỨC & SỰ KIỆN</title>
     <link rel="icon" type="image/png" href="img/LOGO_PVI.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- File CSS dùng chung -->
     <link rel="stylesheet" href="/style.css">
 
     <script>
@@ -20,27 +19,16 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Open Graph Meta Tags (Dành cho Zalo, Facebook, Messenger) -->
+    
+    <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pvincons.com/" />
-    <meta property="og:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
-    <meta property="og:description"
-        content="Chuyên cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp." />
-    <!-- ĐƯỜNG DẪN ẢNH VỚI THƯ MỤC "img"-->
+    <meta property="og:title" content="PV INCONS - TIN TỨC & THÔNG CÁO BÁO CHÍ" />
+    <meta property="og:description" content="Cập nhật tin tức thị trường bất động sản, xu hướng công nghệ BIM/VDC, pháp lý xây dựng và sự kiện doanh nghiệp PV INCONS." />
     <meta property="og:image" content="https://pvincons.com/img/logo.png" />
-    <meta property="og:image:secure_url" content="https://pvincons.com/img/logo.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
-    <meta name="twitter:description"
-        content="Chuyên cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp." />
-    <meta name="twitter:image" content="https://pvincons.com/img/logo.png" />
 </head>
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-blue selection:text-white">
@@ -48,189 +36,205 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <!-- ===== CÁC STYLES THEO MAIN ===== -->
-        <style>
-            /* Hiệu ứng ảnh nền lướt nhẹ nhàng (Pan & Zoom) */
-            @keyframes bgPanZoom {
-                0% {
-                    transform: scale(1) translate(0, 0);
-                }
-
-                50% {
-                    transform: scale(1.1) translate(-1.5%, -1%);
-                }
-
-                100% {
-                    transform: scale(1) translate(0, 0);
-                }
-            }
-
-            .animate-bg-pan {
-                animation: bgPanZoom 20s ease-in-out infinite;
-                will-change: transform;
-            }
-
-            /* Style cho Tab active: Chỉ đổi chữ màu cam, bỏ hoàn toàn khung/nền xanh */
-            .tab-btn.active {
-                background: transparent !important;
-                color: #e87e23 !important;
-                /* Màu cam brand-orange */
-                font-weight: 700 !important;
-                box-shadow: none !important;
-                border: none !important;
-            }
-        </style>
-
         <!-- HERO SECTION TAB -->
         <section class="relative w-full">
-            <div
-                class="relative w-full h-[20vh] min-h-[200px] bg-slate-800 flex items-center justify-center overflow-hidden">
-                <img src="https://i.pinimg.com/1200x/48/07/1a/48071a9a47b068329e38f9caf0ff0382.jpg?q=100&w=1920&auto=format&fit=crop"
-                    alt="Tin Tức" class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
-                <div class="absolute inset-0 bg-[#1e68a8]/10"></div>
+            <div class="relative w-full h-[20vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] bg-slate-800 flex items-center justify-center overflow-hidden">
+                <img src="https://i.pinimg.com/1200x/48/07/1a/48071a9a47b068329e38f9caf0ff0382.jpg?q=80&w=1920&auto=format&fit=crop"
+                    alt="Tin tức PV Incons" class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
                 <div class="relative z-10 text-center px-4">
-                    <h1
-                        class="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-wider drop-shadow-md">
-                        TIN TỨC
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-wider drop-shadow-md">
+                        TIN TỨC & SỰ KIỆN
                     </h1>
                 </div>
             </div>
-
-            <!-- THANH NAV TABS -->
-            <nav class="bg-[#f5f5f5] border-b border-slate-200 py-3.5 px-4">
-                <div
-                    class="max-w-7xl mx-auto flex items-center justify-center flex-wrap gap-y-2 gap-x-2 sm:gap-x-4 text-xs sm:text-sm font-semibold text-slate-600 uppercase">
-                    <a href="#" class="tab-btn active transition-colors">TIN CÔNG TY</a>
-                    <span class="text-slate-300 font-normal">/</span>
-                    <a href="#" class="tab-btn hover:text-brand-orange transition-colors">THÔNG CÁO BÁO CHÍ</a>
-                    <span class="text-slate-300 font-normal">/</span>
-                    <a href="#" class="tab-btn hover:text-brand-orange transition-colors">TIN THỊ TRƯỜNG</a>
-                </div>
-            </nav>
         </section>
 
-        <!-- NỘI DUNG TIN TỨC DYNAMIC TẢI BẰNG AJAX -->
-        <div id="news-content-area">
-            <!-- Content tin tức sẽ được load vào đây -->
-        </div>
+        <!-- THANH NAV TABS -->
+        <nav class="sticky top-[80px] z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 py-1.5 sm:py-3 px-3 sm:px-4 shadow-sm transition-all">
+            <div class="max-w-7xl mx-auto flex items-center justify-center flex-wrap gap-y-1 sm:gap-y-2 gap-x-1.5 sm:gap-x-4 text-[10px] sm:text-sm font-normal uppercase">
+                <a href="#" class="text-brand-orange transition-colors py-0.5">TIN CÔNG TY</a>
+                <span class="text-slate-300 font-normal">/</span>
+                <a href="#thong-cao-bao-chi" class="text-slate-600 hover:text-brand-orange transition-colors py-0.5">THÔNG CÁO BÁO CHÍ</a>
+                <span class="text-slate-300 font-normal">/</span>
+                <a href="#tin-thi-truong" class="text-slate-600 hover:text-brand-orange transition-colors py-0.5">TIN THỊ TRƯỜNG & PHÁP LÝ</a>
+            </div>
+        </nav>
 
-        <section class="py-6 sm:py-16 bg-white">
+        <!-- 1. TIN CÔNG TY NỔI BẬT (Nền trắng) -->
+        <section class="py-8 sm:py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-4 sm:mb-10">
-                    <h2 class="text-1xl sm:text-2xl font-extrabold text-[#8c6239] tracking-wide uppercase block">
-                        THÔNG TIN MỚI CẬP NHẬT
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Cập Nhật Hoạt Động
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        TIN TỨC CÔNG TY
                     </h2>
-
+                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Cập nhật liên tục những giải pháp kỹ thuật số mới, dấu ấn dự án và định hướng phát triển từ <strong class="font-bold text-slate-800">PV INCONS</strong>.
+                    </p>
                 </div>
 
-                <!-- Danh sách 3 tin tức mới nhất -->
-                <div id="news-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Tin 9 -->
-                    <a href="news/news_009.html" target="_blank" class="block group transition-all duration-300">
-                        <article
-                            class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm group-hover:shadow-md group-hover:border-brand-blue/50 group-hover:-translate-y-1 transition-all duration-300">
-                            <div class="h-48 overflow-hidden">
+                <!-- Danh sách 3 tin nổi bật -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                    <!-- Tin 1 -->
+                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
                                 <img src="https://i.pinimg.com/1200x/cd/fb/c7/cdfbc75280e35fbfd63647e2259d7910.jpg?q=80&w=800&auto=format&fit=crop"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                                    alt="Tin tức xây dựng">
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="BIM PV Incons">
+                                <span class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Công Nghệ</span>
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-brand-blue font-semibold">2026-08-01</span>
-                                <h3
-                                    class="font-bold text-base text-slate-900 mt-1 mb-2 group-hover:text-brand-blue transition-colors">
-                                    PV Incons ứng dụng công nghệ BIM trong quản lý dự án</h3>
-                                <p class="text-slate-600 text-xs leading-relaxed">Công ty chúng tôi đã chuẩn hóa quy
-                                    trình thiết kế và thi công chính xác đến từng chi tiết nhờ bộ công cụ tự động hóa
-                                    Revit & Dynamo.</p>
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 01/08/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    PV INCONS Ứng Dụng Quy Trình Số BIM/VDC & Tự Động Hóa Trong Quản Lý Thi Công
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Chuẩn hóa quy trình thiết kế công trình với hệ thống Revit & Dynamo script, giúp phát hiện xung đột sớm và tối ưu chi phí cho Chủ đầu tư.
+                                </p>
                             </div>
-                        </article>
-                    </a>
-
-                    <!-- Tin 8 -->
-                    <a href="news/news_008.html" target="_blank" class="block group transition-all duration-300">
-                        <article
-                            class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm group-hover:shadow-md group-hover:border-brand-blue/50 group-hover:-translate-y-1 transition-all duration-300">
-                            <div class="h-48 overflow-hidden">
-                                <img src="https://i.pinimg.com/736x/52/3a/40/523a401a3971f4be91903267f1711fe6.jpg?q=80&w=800&auto=format&fit=crop"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                                    alt="Tin tức pháp lý">
-                            </div>
-                            <div class="p-6">
-                                <span class="text-xs text-brand-blue font-semibold">2026-07-31</span>
-                                <h3
-                                    class="font-bold text-base text-slate-900 mt-1 mb-2 group-hover:text-brand-blue transition-colors">
-                                    Giải pháp xử lý lệch ranh thửa đất</h3>
-                                <p class="text-slate-600 text-xs leading-relaxed">Tư vấn quy trình Trích đo hiện trạng
-                                    VN-2000 giúp chủ đầu tư yên tâm về mặt pháp lý tài sản bất động sản.</p>
-                            </div>
-                        </article>
-                    </a>
-                    <!-- Tin 7 -->
-                    <a href="news/news_007.html" target="_blank" class="block group transition-all duration-300">
-                        <article
-                            class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm group-hover:shadow-md group-hover:border-brand-blue/50 group-hover:-translate-y-1 transition-all duration-300">
-                            <div class="h-48 overflow-hidden">
-                                <img src="https://i.pinimg.com/1200x/0a/b6/54/0ab654c1fac75a3a4f96349e0f4d6aa2.jpg?q=80&w=800&auto=format&fit=crop"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                                    alt="Sự kiện doanh nghiệp">
-                            </div>
-                            <div class="p-6">
-                                <span class="text-xs text-brand-blue font-semibold">2026-07-30</span>
-                                <h3
-                                    class="font-bold text-base text-slate-900 mt-1 mb-2 group-hover:text-brand-blue transition-colors">
-                                    PV Incons mở rộng hợp tác thi công nhà xưởng tiền chế năm 2026</h3>
-                                <p class="text-slate-600 text-xs leading-relaxed">Tăng cường năng lực cung ứng kết cấu
-                                    thép và giải pháp xây dựng công nghiệp trọn gói cho doanh nghiệp.</p>
-                            </div>
-                        </article>
-                    </a>
-                </div>
-                <!-- ===== ĐƯỜNG PHÂN CÁCH TIN TỨC CŨ ===== -->
-                <div class="col-span-full relative py-6">
-                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                        <div class="w-full border-t border-slate-300"></div>
-                    </div>
-                    <div class="relative flex justify-center">
-                        <span
-                            class="bg-white px-4 text-xs font-bold text-slate-400 uppercase tracking-widest border border-slate-200 rounded-full py-1">
-                            Tin tức
-                        </span>
-                    </div>
-                </div>
-                <!-- ===================================== -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Tin 6 -->
-
-                    <!-- Tin 5 -->
-
-                    <!-- Tin 4 -->
-
-                    <!-- Tin 3 -->
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
 
                     <!-- Tin 2 -->
-
-                    <!-- Tin 1 -->
-                    <a href="news/news_007.html" target="_blank" class="block group transition-all duration-300">
-
-                        <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                            <div class="h-48 overflow-hidden">
-                                <img src="https://i.pinimg.com/1200x/57/9b/9a/579b9ab0b374e9314d9f9305f4303ffd.jpg?q=80&w=800&auto=format&fit=crop"
-                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                    alt="Sự kiện doanh nghiệp">
+                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://i.pinimg.com/736x/52/3a/40/523a401a3971f4be91903267f1711fe6.jpg?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Giải pháp pháp lý">
+                                <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Pháp Lý</span>
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-brand-blue font-semibold">2026-01-10</span>
-                                <h3 class="font-bold text-base text-slate-900 mt-1 mb-2">PV Incons về quản lý chất lượng
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 31/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Giải Pháp Xử Lý Ranh Thửa Đất & Trích Đo Hiện Trạng Hệ Tọa Độ VN-2000
                                 </h3>
-                                <p class="text-slate-600 text-xs leading-relaxed">Đảm bảo quy trình thiết kế, thi công
-                                    và dịch vụ tư vấn bđs đạt chuẩn quốc tế.</p>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Hỗ trợ chủ sở hữu bất động sản giải quyết dứt điểm các sai sót về ranh giới đất, đảm bảo đầy đủ điều kiện xin phép xây dựng và hoàn công.
+                                </p>
                             </div>
-                        </article>
-                    </a>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
 
+                    <!-- Tin 3 -->
+                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://i.pinimg.com/1200x/0a/b6/54/0ab654c1fac75a3a4f96349e0f4d6aa2.jpg?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Dự án nhà xưởng">
+                                <span class="absolute top-3 left-3 bg-slate-800 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Dự Án</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 30/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    PV INCONS Mở Rộng Hợp Tác Thi Công Nhà Xưởng Công Nghiệp Tiền Chế
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Nâng cao năng lực thi công kết cấu thép tổ hợp, giải pháp sàn bê tông tăng cứng cho các đối tác doanh nghiệp tại Đồng Bằng Sông Cửu Long.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
                 </div>
+            </div>
         </section>
 
+        <!-- 2. THÔNG CÁO BÁO CHÍ (Nền xám nhạt xen kẽ) -->
+        <section id="thong-cao-bao-chi" class="scroll-mt-28 sm:scroll-mt-32 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Thông Thông Tin Chính Thức
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        THÔNG CÁO BÁO CHÍ
+                    </h2>
+                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Thông tin chính thức về các mốc phát triển, cam kết chất lượng dịch vụ và hợp tác chiến lược của PV INCONS.
+                    </p>
+                </div>
+
+                <div class="space-y-4 max-w-5xl mx-auto">
+                    <div class="p-5 bg-white rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
+                        <div class="min-w-0 flex-1">
+                            <span class="text-[11px] text-brand-orange font-bold uppercase"><i class="fa-solid fa-newspaper mr-1"></i> Báo chí đưa tin</span>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">PV INCONS Chuẩn Hóa Quy Trình Báo Cáo Tài Chính & Minh Bạch Ngân Sách Đầu Tư 2026</h4>
+                            <p class="text-xs text-slate-500 mt-1">Đảm bảo tính pháp lý minh bạch cho các dự án hợp tác đầu tư và xây dựng dân dụng - công nghiệp.</p>
+                        </div>
+                        <a href="#" class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-regular fa-file-pdf"></i> Tải bản tin
+                        </a>
+                    </div>
+
+                    <div class="p-5 bg-white rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
+                        <div class="min-w-0 flex-1">
+                            <span class="text-[11px] text-brand-blue font-bold uppercase"><i class="fa-solid fa-certificate mr-1"></i> Cam kết chất lượng</span>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">Công Bố Tiêu Chuẩn Thiết Kế & Thi Công Trọn Gói Áp Dụng Công Nghệ 3D Rendering</h4>
+                            <p class="text-xs text-slate-500 mt-1">Tích hợp mô phỏng visual thời gian thực D5 Render / Vantage giúp chủ đầu tư duyệt thiết kế chính xác trước khi thi công.</p>
+                        </div>
+                        <a href="#" class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-regular fa-file-pdf"></i> Tải bản tin
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TIN THỊ TRƯỜNG & PHÁP LÝ (Nền trắng) -->
+        <section id="tin-thi-truong" class="scroll-mt-28 sm:scroll-mt-32 py-8 sm:py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Góc Nhìn Chuyên Gia
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        TIN THỊ TRƯỜNG & PHÁP LÝ
+                    </h2>
+                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Tổng hợp xu hướng xây dựng, quy hoạch đô thị và quy định pháp lý bất động sản mới nhất tại khu vực.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 hover:shadow-md transition-all">
+                        <span class="text-xs font-bold text-brand-orange uppercase"><i class="fa-solid fa-scale-balanced mr-1"></i> Pháp lý BĐS</span>
+                        <h3 class="font-bold text-base text-slate-900 mt-2 mb-2">Quy Trình Hoàn Công & Cấp Đổi Sổ Hồng Công Trình Mới Nhất Năm 2026</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Tổng hợp đầy đủ các bước chuẩn bị hồ sơ bản vẽ hoàn công, kiểm định an toàn và thủ tục nộp cơ quan quản lý nhà nước.
+                        </p>
+                        <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors">Đọc chi tiết bài viết &rarr;</a>
+                    </div>
+
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 hover:shadow-md transition-all">
+                        <span class="text-xs font-bold text-brand-blue uppercase"><i class="fa-solid fa-chart-line mr-1"></i> Phân tích thị trường</span>
+                        <h3 class="font-bold text-base text-slate-900 mt-2 mb-2">Xu Hướng Thiết Kế Nhà Phố & Biệt Thự Tối Ưu Năng Lượng Tại Cần Thơ</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Giải pháp kết cấu không gian mở, thông gió tự nhiên kết hợp vật liệu xây dựng thân thiện môi trường đang dẫn dắt xu hướng.
+                        </p>
+                        <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors">Đọc chi tiết bài viết &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div id="footer-placeholder"></div>
