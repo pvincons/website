@@ -7,7 +7,6 @@
     <title>PV INCONS - QUAN HỆ ĐẦU TƯ</title>
     <link rel="icon" type="image/png" href="img/LOGO_PVI.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- File CSS dùng chung -->
     <link rel="stylesheet" href="/style.css">
 
     <script>
@@ -20,27 +19,9 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Open Graph Meta Tags (Dành cho Zalo, Facebook, Messenger) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pvincons.com/" />
-    <meta property="og:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
-    <meta property="og:description"
-        content="Chuyên cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp." />
-    <!-- ĐƯỜNG DẪN ẢNH VỚI THƯ MỤC "img"-->
-    <meta property="og:image" content="https://pvincons.com/img/logo.png" />
-    <meta property="og:image:secure_url" content="https://pvincons.com/img/logo.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
-    <meta name="twitter:description"
-        content="Chuyên cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp." />
-    <meta name="twitter:image" content="https://pvincons.com/img/logo.png" />
 </head>
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-blue selection:text-white">
@@ -50,76 +31,215 @@
     <main>
         <!-- HERO SECTION TAB -->
         <section class="relative w-full">
-            <div
-                class="relative w-full h-[20vh] min-h-[200px] md:h-[35vh] md:min-h-[350px] bg-slate-800 flex items-center justify-center overflow-hidden">
-                <img src="https://i.pinimg.com/1200x/f1/63/82/f163826e95811f3f52e4d3e222c23ef4.jpg?q=100&w=1920&auto=format&fit=crop"
-                    alt="Quan Hệ Đầu Tư"
-                    class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
-
-                <!-- Lớp phủ mờ màu xanh gradient sang trọng -->
-                <!--<div class="absolute inset-0 bg-gradient-to-r from-[#0d3d6b]/30 via-[#1e68a8]/10 to-[#0d3d6b]/30"></div>-->
-
+            <div class="relative w-full h-[20vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] bg-slate-800 flex items-center justify-center overflow-hidden">
+                <img src="https://i.pinimg.com/1200x/f1/63/82/f163826e95811f3f52e4d3e222c23ef4.jpg?q=80&w=1920&auto=format&fit=crop"
+                    alt="Quan hệ đầu tư" class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
                 <div class="relative z-10 text-center px-4">
-                    <h1
-                        class="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-wider drop-shadow-md">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-wider drop-shadow-md">
                         QUAN HỆ ĐẦU TƯ
                     </h1>
                 </div>
             </div>
         </section>
-        <!-- THANH NAV TABS: dính header -->
-        <nav
-            class="sticky sm:static top-[80px] sm:top-auto z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-1.5 sm:py-3 px-3 sm:px-4 shadow-sm transition-all">
-            <div
-                class="max-w-7xl mx-auto flex items-center justify-center flex-wrap gap-y-1 sm:gap-y-2 gap-x-1.5 sm:gap-x-4 text-[10px] sm:text-sm font-semibold text-slate-600 uppercase">
-                <a href="#" class="tab-btn active transition-colors py-0.5">BÁO CÁO TÀI CHÍNH</a>
+
+        <!-- THANH NAV TABS -->
+        <nav class="sticky top-[80px] z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 py-1.5 sm:py-3 px-3 sm:px-4 shadow-sm transition-all">
+            <div class="max-w-7xl mx-auto flex items-center justify-center flex-wrap gap-y-1 sm:gap-y-2 gap-x-1.5 sm:gap-x-4 text-[10px] sm:text-sm font-normal uppercase">
+                <a href="#" class="text-brand-orange transition-colors py-0.5">QUẢN TRỊ DOANH NGHIỆP</a>
                 <span class="text-slate-300 font-normal">/</span>
-                <a href="#" class="tab-btn hover:text-brand-orange transition-colors py-0.5">cổ đông</a>
+                <a href="#ket-qua-kinh-doanh" class="text-slate-600 hover:text-brand-orange transition-colors py-0.5">KẾT QUẢ KINH DOANH</a>
+                <span class="text-slate-300 font-normal">/</span>
+                <a href="#cong-bo-thong-tin" class="text-slate-600 hover:text-brand-orange transition-colors py-0.5">CÔNG BỐ THÔNG TIN</a>
             </div>
         </nav>
-
-        <section class="py-16 bg-white">
+        
+        <!-- 1. QUẢN TRỊ DOANH NGHIỆP (Nền trắng) -->
+        <section class="py-8 sm:py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="text-brand-blue font-bold text-sm tracking-widest uppercase">Hợp Tác Phát Triển</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mt-2">Cơ Hội Đầu Tư & Quan Hệ Cổ Đông</h2>
-                    <p class="text-slate-600 text-sm mt-3 text-justify">PV INCONS liên tục tìm kiếm các đối tác chiến
-                        lược để cùng phát triển dự án nhà ở, khu dân cư và hạ tầng kỹ thuật.</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-                    <div class="p-8 bg-slate-50 rounded-2xl border border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-900 mb-3"><i
-                                class="fa-solid fa-handshake text-brand-blue mr-2"></i>Hợp Tác Đầu Tư Dự Án</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed text-justify">Hợp tác góp vốn, phát triển quỹ
-                            đất đô thị và thương mại tại khu vực Cần Thơ và Đồng bằng Sông Cửu Long.</p>
-                    </div>
-                    <div class="p-8 bg-slate-50 rounded-2xl border border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-900 mb-3"><i
-                                class="fa-solid fa-chart-line text-brand-blue mr-2"></i>Tư Vấn Tối Ưu Hóa Đầu Tư</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed text-justify">Phân tích hiệu quả tài chính, lập
-                            quy hoạch chi tiết và đảm bảo tính pháp lý tối đa cho nhà đầu tư.</p>
-                    </div>
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Quản trị Doanh nghiệp
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        QUY CHẾ QUẢN TRỊ
+                    </h2>
+                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Hệ thống quy chế ban hành chính thức, bảo đảm tính chuẩn mực,
+                        minh bạch và vận hành hiệu quả trong toàn bộ hoạt động của công ty.
+                    </p>
                 </div>
 
-                <div class="space-y-4 max-w-4xl mx-auto">
-                    <h3 class="font-bold text-lg text-slate-900 border-b pb-2">Báo Cáo & Công Khai Thông Tin</h3>
-                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                <!-- KHỐI 3 MỤC QUY CHẾ CÓ NÚT TẢI VỀ -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                    <!-- Mục 1 -->
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col justify-between hover:shadow-md transition-all">
                         <div>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">Báo cáo tài chính kiểm toán năm
-                                2025</h4>
-                            <p class="text-xs text-slate-500 mt-1">Đăng tải ngày: 2026-03-28</p>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-3 flex items-center">
+                                <i class="fa-solid fa-building-user text-brand-blue mr-2 text-xl"></i>
+                                Quy Chế Quản Trị Công Ty
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed text-justify mb-6">
+                                Quy định các nguyên tắc, chuẩn mực quản trị doanh nghiệp, phân định rõ quyền hạn và
+                                trách nhiệm nhằm bảo đảm tính chuẩn mực và hiệu quả.
+                            </p>
                         </div>
-                        <a href="#" class="text-brand-blue text-xs sm:text-sm font-bold hover:underline"><i
-                                class="fa-solid fa-download mr-1"></i> Tải về</a>
+                        <div class="flex justify-end pt-4 border-t border-slate-200/80">
+                            <a href="#" download
+                                class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                                <i class="fa-solid fa-download"></i> Tải về
+                            </a>
+                        </div>
                     </div>
-                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+
+                    <!-- Mục 2 -->
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col justify-between hover:shadow-md transition-all">
                         <div>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">Nghị quyết Đại hội đồng cổ đông
-                                thường niên 2026</h4>
-                            <p class="text-xs text-slate-500 mt-1">Đăng tải ngày: 2026-04-15</p>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-3 flex items-center">
+                                <i class="fa-solid fa-users-gear text-brand-blue mr-2 text-xl"></i>
+                                Quy Chế Hoạt Động Của HĐQT
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed text-justify mb-6">
+                                Quy định cụ thể về chức năng, nhiệm vụ, quyền hạn, phương thức hoạt động và cơ chế họp
+                                điều hành của Hội đồng Quản trị.
+                            </p>
                         </div>
-                        <a href="#" class="text-brand-blue text-xs sm:text-sm font-bold hover:underline"><i
-                                class="fa-solid fa-download mr-1"></i> Tải về</a>
+                        <div class="flex justify-end pt-4 border-t border-slate-200/80">
+                            <a href="#" download
+                                class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                                <i class="fa-solid fa-download"></i> Tải về
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mục 3 -->
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col justify-between hover:shadow-md transition-all">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-3 flex items-center">
+                                <i class="fa-solid fa-bullhorn text-brand-blue mr-2 text-xl"></i>
+                                Quy Chế Công Bố Thông Tin
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed text-justify mb-6">
+                                Đảm bảo tính công khai, minh bạch, kịp thời và chính xác các thông tin hoạt động và tài
+                                chính của công ty tới cổ đông và nhà đầu tư.
+                            </p>
+                        </div>
+                        <div class="flex justify-end pt-4 border-t border-slate-200/80">
+                            <a href="#" download
+                                class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                                <i class="fa-solid fa-download"></i> Tải về
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. KẾT QUẢ KINH DOANH (Nền xám nhạt xen kẽ) -->
+        <section id="ket-qua-kinh-doanh" class="scroll-mt-28 sm:scroll-mt-32 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Kết quả kinh doanh
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        BÁO CÁO TÀI CHÍNH
+                    </h2>
+                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Cập nhật định kỳ, công khai và minh bạch các chỉ số tài chính, báo cáo kiểm toán và tình hình
+                        tăng trưởng kinh doanh của PV INCONS.
+                    </p>
+                </div>
+
+                <!-- Danh sách Báo cáo Tài chính -->
+                <div class="space-y-4 max-w-5xl mx-auto">
+                    <div class="p-5 bg-white rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
+                        <div class="min-w-0 flex-1">
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">Báo cáo tài chính Quý I năm 2026</h4>
+                            <p class="text-xs text-slate-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Đăng tải ngày: 2026-04-25</p>
+                        </div>
+                        <a href="#" download
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-solid fa-download"></i> Tải về
+                        </a>
+                    </div>
+
+                    <div class="p-5 bg-white rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
+                        <div class="min-w-0 flex-1">
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">Báo cáo tài chính kiểm toán năm 2025</h4>
+                            <p class="text-xs text-slate-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Đăng tải ngày: 2026-03-28</p>
+                        </div>
+                        <a href="#" download
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-solid fa-download"></i> Tải về
+                        </a>
+                    </div>
+
+                    <div class="p-5 bg-white rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
+                        <div class="min-w-0 flex-1">
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">Báo cáo thường niên năm 2025</h4>
+                            <p class="text-xs text-slate-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Đăng tải ngày: 2026-03-20</p>
+                        </div>
+                        <a href="#" download
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-solid fa-download"></i> Tải về
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CÔNG BỐ THÔNG TIN (Nền trắng) -->
+        <section id="cong-bo-thong-tin" class="scroll-mt-28 sm:scroll-mt-32 py-8 sm:py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Công bố thông tin
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        THÔNG TIN CỔ ĐÔNG
+                    </h2>
+                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Cung cấp kịp thời, chính xác các nghị quyết, thông báo và sự kiện quan trọng bảo đảm tối đa
+                        quyền lợi của cổ đông và nhà đầu tư.
+                    </p>
+                </div>
+
+                <!-- Danh sách Công bố thông tin -->
+                <div class="space-y-4 max-w-5xl mx-auto">
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center hover:border-brand-blue/40 transition-colors gap-3">
+                        <div class="min-w-0 flex-1">
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">Nghị quyết Đại hội đồng cổ đông thường niên năm 2026</h4>
+                            <p class="text-xs text-slate-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Đăng tải ngày: 2026-04-15</p>
+                        </div>
+                        <a href="#" download
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-solid fa-download"></i> Tải về
+                        </a>
+                    </div>
+
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center hover:border-brand-blue/40 transition-colors gap-3">
+                        <div class="min-w-0 flex-1">
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">Thông báo họp Đại hội đồng cổ đông thường niên năm 2026</h4>
+                            <p class="text-xs text-slate-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Đăng tải ngày: 2026-03-15</p>
+                        </div>
+                        <a href="#" download
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-solid fa-download"></i> Tải về
+                        </a>
+                    </div>
+
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center hover:border-brand-blue/40 transition-colors gap-3">
+                        <div class="min-w-0 flex-1">
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">Báo cáo tình hình quản trị công ty năm 2025</h4>
+                            <p class="text-xs text-slate-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Đăng tải ngày: 2026-01-20</p>
+                        </div>
+                        <a href="#" download
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-solid fa-download"></i> Tải về
+                        </a>
                     </div>
                 </div>
             </div>
