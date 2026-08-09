@@ -213,6 +213,46 @@ async function navigateToPage(url, pushState = true) {
 }
 
 // ==========================================
+// CHỨC NĂNG CUỘN TRANG MƯỢT MÀ & ĐỔI MÀU SUB-NAV TAB
+// ==========================================
+function initSmoothScroll() {
+    if (window._smoothScrollInitialized) return;
+    window._smoothScrollInitialized = true;
+
+    document.addEventListener('click', function (e) {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (!anchor) return;
+
+        const href = anchor.getAttribute('href');
+        if (!href) return;
+
+        // Tự động chuyển đổi màu tab active trong thanh <nav>
+        const navContainer = anchor.closest('nav');
+        if (navContainer) {
+            const navLinks = navContainer.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(link => {
+                link.classList.remove('text-brand-orange');
+                link.classList.add('text-slate-600');
+            });
+            anchor.classList.add('text-brand-orange');
+            anchor.classList.remove('text-slate-600');
+        }
+
+        // Thực hiện cuộn mượt
+        if (href === '#') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (href.startsWith('#') && href.length > 1) {
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+}
+
+// ==========================================
 // NẠP HEADER / FOOTER DỰ ÁN
 // ==========================================
 async function loadLayout(pageId) {
@@ -380,6 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(translateScript);
     }
 
+    initSmoothScroll(); // Khởi tạo cuộn mượt toàn trang & tự động đổi màu Tab Active
     setTimeout(initVisitorCounter, 300);
     loadHomeNews();
 });

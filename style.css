@@ -45,11 +45,15 @@
 }
 
 @keyframes fade-out {
-    to { opacity: 0; }
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes fade-in {
-    from { opacity: 0; }
+    from {
+        opacity: 0;
+    }
 }
 
 main {
@@ -107,7 +111,7 @@ main {
 
 .nav-tab-btn.active {
     color: var(--brand-blue) !important;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 /* 5. HIỆU ỨNG HERO TITLE & BACKGROUND BANNER ANIMATION */
@@ -135,15 +139,15 @@ main {
 
 /* Lớp ảnh công trình cao tầng ẩn mờ phía sau */
 .hero::before {
-   content: '';
+    content: '';
     position: absolute;
     inset: 0;
     background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070');
     background-size: cover;
     background-position: center;
-    opacity: 0.15;
+    opacity: 0.1;
     mix-blend-mode: overlay;
-    pointer-events: none;   
+    pointer-events: none;
     z-index: 3;
 }
 
@@ -195,7 +199,7 @@ main {
     -webkit-text-fill-color: transparent;
     opacity: 0;
     animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards,
-               shimmerText 5s linear infinite;
+        shimmerText 5s linear infinite;
 }
 
 .animate-slide-up {
@@ -203,14 +207,27 @@ main {
     animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.25s; }
-.delay-3 { animation-delay: 0.4s; }
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.25s;
+}
+
+.delay-3 {
+    animation-delay: 0.4s;
+}
 
 /* Keyframe animations */
 @keyframes subtleZoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.08); }
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.08);
+    }
 }
 
 @keyframes heroFadeDown {
@@ -218,6 +235,7 @@ main {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -229,6 +247,7 @@ main {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -240,6 +259,7 @@ main {
         opacity: 0;
         transform: translateY(var(--slide-y));
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -247,7 +267,9 @@ main {
 }
 
 @keyframes shimmerText {
-    to { background-position: 200% center; }
+    to {
+        background-position: 200% center;
+    }
 }
 
 /* 6. LEADERSHIP SPOTLIGHT CARD COMPONENT */
@@ -346,8 +368,15 @@ main {
 }
 
 @keyframes floatIcon {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-6px); }
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
 }
 
 .pulse-avatar {
@@ -370,14 +399,32 @@ main {
 }
 
 @keyframes avatarPulse {
-    0% { transform: scale(0.95); opacity: 0.8; }
-    50% { transform: scale(1.15); opacity: 0; }
-    100% { transform: scale(0.95); opacity: 0; }
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
 }
 
 @keyframes leadershipFadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 7. METRICS GRID & RIBBON COMPONENT */
@@ -407,25 +454,25 @@ main {
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), ease;
 }
 
-/* Khối 1: Trượt từ trái qua - Thời gian lướt 4s */
+/* Khối 1: Trượt từ trái qua - Thời gian lướt 3s */
 .metrics-grid .metric-card:nth-child(1) {
     transform: translateX(-80px);
     transition-duration: 3s, 3s, 0.3s;
 }
 
-/* Khối 2: Trượt từ trái qua - Thời gian lướt 2s */
+/* Khối 2: Trượt từ trái qua - Thời gian lướt 1s */
 .metrics-grid .metric-card:nth-child(2) {
     transform: translateX(-80px);
     transition-duration: 1s, 1s, 0.3s;
 }
 
-/* Khối 3: Trượt từ phải qua - Thời gian lướt 2s */
+/* Khối 3: Trượt từ phải qua - Thời gian lướt 1s */
 .metrics-grid .metric-card:nth-child(3) {
     transform: translateX(80px);
     transition-duration: 1s, 1s, 0.3s;
 }
 
-/* Khối 4: Trượt từ phải qua - Thời gian lướt 4s */
+/* Khối 4: Trượt từ phải qua - Thời gian lướt 3s */
 .metrics-grid .metric-card:nth-child(4) {
     transform: translateX(80px);
     transition-duration: 3s, 3s, 0.3s;
@@ -689,7 +736,7 @@ main {
     border-radius: 6px;
 }
 
-/* SECTION 4: ORGANIZATIONAL CHART */
+/* 9. SECTION 4: ORGANIZATIONAL CHART */
 .org-section {
     background-color: var(--surface-white);
     border-top: 1px solid var(--border-color);
@@ -884,7 +931,7 @@ main {
     color: var(--accent-orange);
 }
 
-/* 9. RESPONSIVE OPTIMIZATIONS */
+/* 10. RESPONSIVE OPTIMIZATIONS */
 @media (max-width: 992px) {
     .hero-grid {
         grid-template-columns: 1fr;
@@ -980,7 +1027,7 @@ main {
     }
 }
 
-/* 10. CUSTOM CLASSES HỢP NHẤT */
+/* 11. CUSTOM CLASSES HỢP NHẤT */
 .bullet-dot {
     color: #c29624;
     font-weight: 700;
@@ -1025,9 +1072,11 @@ main {
         align-items: flex-start;
         gap: 1rem;
     }
+
     .legal-label {
         width: 33.333333%;
     }
+
     .legal-value {
         width: 66.666667%;
     }
@@ -1041,8 +1090,9 @@ main {
     letter-spacing: 0.5px;
     flex-shrink: 0;
 }
+
 /* ==========================================
-   FLOATING CHAT BUTTON STYLES
+  12. FLOATING CHAT BUTTON STYLES
    ========================================== */
 .chat-float-btn {
     position: fixed;
@@ -1120,6 +1170,7 @@ main {
         transform: scale(1);
         opacity: 0.8;
     }
+
     100% {
         transform: scale(1.5);
         opacity: 0;
@@ -1146,3 +1197,35 @@ main {
     }
 }
 
+/*==========================================
+ 13. CÁC STYLES THEO TAB
+ ==========================================*/
+/* Hiệu ứng ảnh nền lướt nhẹ nhàng (Pan & Zoom) */
+@keyframes bgPanZoom {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+
+    50% {
+        transform: scale(1.1) translate(-1.5%, -1%);
+    }
+
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+}
+
+.animate-bg-pan {
+    animation: bgPanZoom 20s ease-in-out infinite;
+    will-change: transform;
+}
+
+/* Style cho Tab active: Chỉ đổi chữ màu cam, bỏ hoàn toàn khung/nền xanh, giữ font mỏng */
+.tab-btn.active {
+    background: transparent !important;
+    color: #e87e23 !important;
+    /* Màu cam brand-orange */
+    font-weight: 400 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
