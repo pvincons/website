@@ -7,12 +7,12 @@ const FORMSPREE_URL = "https://formspree.io/f/xzdnldga";
 // CHỨC NĂNG ĐỔI NGÔN NGỮ (GLOBAL LANGUAGE SWITCHER)
 // ==========================================
 window.toggleLanguage = function () {
-    var isEn = document.cookie.indexOf('/en') !== -1;
-    var host = location.hostname;
-    var rootDomain = host.replace(/^www\./, '');
+    const isEn = document.cookie.indexOf('googtrans=/vi/en') !== -1 || document.cookie.indexOf('/en') !== -1;
+    const host = location.hostname;
+    const rootDomain = host.replace(/^www\./, '');
+    const pastDate = "expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
 
     if (isEn) {
-        var pastDate = "expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
         document.cookie = "googtrans=; " + pastDate;
         document.cookie = "googtrans=; domain=" + host + "; " + pastDate;
         document.cookie = "googtrans=; domain=." + rootDomain + "; " + pastDate;
@@ -63,7 +63,9 @@ function reexecuteScripts(container) {
 const tabCache = {};
 
 function updateActiveTab(pageId) {
+    const normalizedPageId = (!pageId || pageId === 'index') ? 'index' : pageId;
     const allTabs = document.querySelectorAll('[data-tab]');
+
     allTabs.forEach(el => {
         if (el.classList.contains('nav-tab-btn')) {
             el.classList.remove('border-brand-blue', 'text-brand-blue');
@@ -75,7 +77,7 @@ function updateActiveTab(pageId) {
         }
     });
 
-    const activeTabs = document.querySelectorAll(`[data-tab="${pageId}"]`);
+    const activeTabs = document.querySelectorAll(`[data-tab="${normalizedPageId}"]`);
     activeTabs.forEach(el => {
         if (el.classList.contains('nav-tab-btn')) {
             el.classList.add('border-brand-blue', 'text-brand-blue');
@@ -192,10 +194,13 @@ async function navigateToPage(url, pushState = true) {
                 }
             }
 
-            initVisitorCounter();
+            if (pageId === 'news' || url.includes('news')) {
+                if (typeof window.initNavTabs === 'function') {
+                    window.initNavTabs();
+                }
+            }
 
-            window.dispatchEvent(new Event('DOMContentLoaded'));
-            window.dispatchEvent(new Event('scroll'));
+            initVisitorCounter();
 
             if (typeof AOS !== 'undefined') {
                 AOS.refreshHard();
@@ -314,7 +319,7 @@ async function loadHomeNews() {
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, 'text/html');
-        const newsContent = doc.querySelector('#news-container');
+        const newsContent = doc.querySelector('#news-container') || doc.querySelector('#tin-tuc-cong-ty .grid');
 
         if (newsContent) {
             placeholder.innerHTML = newsContent.innerHTML;
@@ -326,7 +331,6 @@ async function loadHomeNews() {
 
 // ==========================================
 // ÉP DỰNG FORM POPUP CHUẨN FORMSPREE
-// (Chỉnh chữ nét normal rõ ràng)
 // ==========================================
 function getMasterModalHtml() {
     return `
@@ -388,7 +392,7 @@ function showThankYouModal() {
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <h3 class="text-xl font-bold text-slate-800 mb-2">Gửi Thông Tin Thành Công!</h3>
-                <p class="text-slate-600 text-sm mb-6">Cảm ơn Quý khách đã liên hệ với PV INCONS. Chúng tôi sẽ xử lý thông tin và liên hệ lại trong thời gian sớm nhất.</p>
+                <p class="text-slate-600 text-sm mb-6">Cảm ơn Quý khách đã liên hệ với PV INCONS. Chúng tôi sẽ xử lý thông tin và gửi lại cho Quý khách trong thời gian sớm nhất.</p>
                 <button type="button" onclick="closeModal()" class="w-full bg-brand-blue hover:bg-brand-darkblue text-white font-semibold py-3 rounded-xl transition cursor-pointer text-sm">
                     Đóng
                 </button>
@@ -402,6 +406,9 @@ function showThankYouModal() {
 }
 
 function closeModal() {
+    const reqModal = document.getElementById('requestModal');
+    if (reqModal) reqModal.classList.add('hidden');
+
     const thankYouModal = document.getElementById('thankYouModal');
     if (thankYouModal) {
         thankYouModal.classList.add('hidden');
@@ -425,7 +432,8 @@ async function submitContactForm(e) {
     }
 
     try {
-        const response = await fetch(form.action, {
+        const actionUrl = form.action && form.action.includes('formspree.io') ? form.action : FORMSPREE_URL;
+        const response = await fetch(actionUrl, {
             method: 'POST',
             body: new FormData(form),
             headers: { 
@@ -436,6 +444,8 @@ async function submitContactForm(e) {
         if (response.ok) {
             form.reset();
             closeContactModal();
+            const reqModal = document.getElementById('requestModal');
+            if (reqModal) reqModal.classList.add('hidden');
             showThankYouModal();
         } else {
             alert('Có lỗi xảy ra khi gửi dữ liệu qua Formspree. Vui lòng kiểm tra lại kết nối!');
@@ -479,6 +489,9 @@ async function initVisitorCounter() {
             if (totalVisitsEl) {
                 totalVisitsEl.innerText = Number(finalTotal).toLocaleString('vi-VN');
             }
+            if (onlineVisitorsEl) {
+                onlineVisitorsEl.innerText = Math.floor(Math.random() * 5) + 3;
+            }
         } else {
             throw new Error('Lỗi phản hồi API');
         }
@@ -486,9 +499,13 @@ async function initVisitorCounter() {
         if (totalVisitsEl) {
             totalVisitsEl.innerText = '12.000';
         }
+        if (onlineVisitorsEl) {
+            onlineVisitorsEl.innerText = '5';
+        }
     }
 }
 
+// KHỞI TẠO TỰ ĐỘNG CHUẨN
 document.addEventListener('DOMContentLoaded', function () {
     if (!document.getElementById('google_translate_element')) {
         const translateDiv = document.createElement('div');

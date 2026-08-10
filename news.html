@@ -7,13 +7,22 @@
     <title>PV INCONS - TIN TỨC & SỰ KIỆN</title>
     <link rel="icon" type="image/png" href="img/LOGO_PVI.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/style.css">
 
+    <!-- Config Tailwind đồng bộ tất cả màu thương hiệu -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { brand: { blue: '#1e68a8', darkblue: '#0d3d6b', orange: '#e87e23', brown: '#a67c52', gray: '#f4f6f9' } },
+                    colors: { 
+                        brand: { 
+                            blue: '#1e68a8', 
+                            darkblue: '#0d3d6b', 
+                            orange: '#e87e23', 
+                            gold: '#8c6239',
+                            brown: '#a67c52', 
+                            gray: '#f4f6f9' 
+                        } 
+                    },
                     fontFamily: { sans: ['Inter', 'sans-serif'] }
                 }
             }
@@ -22,12 +31,14 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="style.css">
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pvincons.com/" />
     <meta property="og:title" content="PV INCONS - TIN TỨC & THÔNG CÁO BÁO CHÍ" />
-    <meta property="og:description" content="Cập nhật tin tức thị trường bất động sản, xu hướng công nghệ BIM/VDC, pháp lý xây dựng và sự kiện doanh nghiệp PV INCONS." />
+    <meta property="og:description"
+        content="Cập nhật tin tức thị trường bất động sản, xu hướng công nghệ BIM/VDC, pháp lý xây dựng và sự kiện doanh nghiệp PV INCONS." />
     <meta property="og:image" content="https://pvincons.com/img/logo.png" />
 </head>
 
@@ -38,30 +49,50 @@
     <main>
         <!-- HERO SECTION TAB -->
         <section class="relative w-full">
-            <div class="relative w-full h-[20vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] bg-slate-800 flex items-center justify-center overflow-hidden">
+            <div
+                class="relative w-full h-[20vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] bg-slate-800 flex items-center justify-center overflow-hidden">
                 <img src="https://i.pinimg.com/1200x/48/07/1a/48071a9a47b068329e38f9caf0ff0382.jpg?q=80&w=1920&auto=format&fit=crop"
-                    alt="Tin tức PV Incons" class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
+                    alt="Tin tức PV Incons"
+                    class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
                 <div class="relative z-10 text-center px-4">
-                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-wider drop-shadow-md">
+                    <h1
+                        class="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-wider drop-shadow-md">
                         TIN TỨC & SỰ KIỆN
                     </h1>
                 </div>
             </div>
         </section>
-
+        
         <!-- THANH NAV TABS -->
-        <nav class="sticky top-[80px] z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 py-1.5 sm:py-3 px-3 sm:px-4 shadow-sm transition-all">
-            <div class="max-w-7xl mx-auto flex items-center justify-center flex-wrap gap-y-1 sm:gap-y-2 gap-x-1.5 sm:gap-x-4 text-[10px] sm:text-sm font-normal uppercase">
-                <a href="#" class="text-brand-orange transition-colors py-0.5">TIN CÔNG TY</a>
-                <span class="text-slate-300 font-normal">/</span>
-                <a href="#thong-cao-bao-chi" class="text-slate-600 hover:text-brand-orange transition-colors py-0.5">THÔNG CÁO BÁO CHÍ</a>
-                <span class="text-slate-300 font-normal">/</span>
-                <a href="#tin-thi-truong" class="text-slate-600 hover:text-brand-orange transition-colors py-0.5">TIN THỊ TRƯỜNG & PHÁP LÝ</a>
+        <nav
+            class="sticky top-[80px] z-40 bg-white/60 backdrop-blur-md border-b border-slate-200/80 py-1 sm:py-3 px-0 sm:px-4 shadow-sm transition-all">
+            <div id="navTabsContainer"
+                class="w-full max-w-7xl mx-auto flex items-center gap-3 sm:gap-5 overflow-x-auto whitespace-nowrap text-xs sm:text-sm font-normal uppercase 
+                justify-start sm:justify-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4">
+
+                <a href="#tin-tuc-cong-ty" class="text-brand-orange transition-colors py-0.5 shrink-0">TIN TỨC CÔNG TY</a>
+                <span class="text-slate-300 font-normal shrink-0">/</span>
+
+                <a href="#goc-nhin-chuyen-gia"
+                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">GÓC NHÌN CHUYÊN GIA</a>
+                <span class="text-slate-300 font-normal shrink-0">/</span>
+
+                <a href="#tin-thi-truong"
+                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">TIN THỊ TRƯỜNG</a>
+                <span class="text-slate-300 font-normal shrink-0">/</span>
+
+                <a href="#tin-phap-luat"
+                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">TIN PHÁP LUẬT</a>
+                <span class="text-slate-300 font-normal shrink-0">/</span>
+
+                <a href="#thong-tin-bao-chi"
+                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">THÔNG TIN BÁO CHÍ</a>
+
             </div>
         </nav>
 
-        <!-- 1. TIN CÔNG TY NỔI BẬT (Nền trắng) -->
-        <section class="py-8 sm:py-16 bg-white">
+        <!-- 1. TIN TỨC CÔNG TY (Nền trắng) -->
+        <section id="tin-tuc-cong-ty" class="scroll-mt-[100px] sm:scroll-mt-32 py-8 sm:py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
                     <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
@@ -70,79 +101,307 @@
                     <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
                         TIN TỨC CÔNG TY
                     </h2>
-                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
+                    <div
+                        class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
+                    </div>
                     <p class="text-slate-600 text-sm mt-3 text-center">
-                        Cập nhật liên tục những giải pháp kỹ thuật số mới, dấu ấn dự án và định hướng phát triển từ <strong class="font-bold text-slate-800">PV INCONS</strong>.
+                        Cập nhật liên tục những giải pháp kỹ thuật số mới, dấu ấn dự án và định hướng phát triển từ
+                        <strong class="font-bold text-slate-800">PV INCONS</strong>.
                     </p>
                 </div>
 
-                <!-- Danh sách 3 tin nổi bật -->
+                <!-- Danh sách 3 tin công ty -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                     <!-- Tin 1 -->
-                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
+                    <article
+                        class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
                         <div>
                             <div class="h-48 overflow-hidden relative">
                                 <img src="https://i.pinimg.com/1200x/cd/fb/c7/cdfbc75280e35fbfd63647e2259d7910.jpg?q=80&w=800&auto=format&fit=crop"
-                                    class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="BIM PV Incons">
-                                <span class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Công Nghệ</span>
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="BIM PV Incons">
+                                <span
+                                    class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Công
+                                    Nghệ</span>
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 01/08/2026</span>
-                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                <span class="text-xs text-brand-blue font-semibold"><i
+                                        class="fa-regular fa-calendar mr-1"></i> 01/08/2026</span>
+                                <h3
+                                    class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
                                     PV INCONS Ứng Dụng Quy Trình Số BIM/VDC & Tự Động Hóa Trong Quản Lý Thi Công
                                 </h3>
                                 <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
-                                    Chuẩn hóa quy trình thiết kế công trình với hệ thống Revit & Dynamo script, giúp phát hiện xung đột sớm và tối ưu chi phí cho Chủ đầu tư.
+                                    Chuẩn hóa quy trình thiết kế công trình với hệ thống Revit & Dynamo script, giúp
+                                    phát hiện xung đột sớm và tối ưu chi phí cho Chủ đầu tư.
                                 </p>
                             </div>
                         </div>
                         <div class="p-6 pt-0 flex justify-end">
-                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
+                            <a href="#"
+                                class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
                                 Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
                     </article>
 
                     <!-- Tin 2 -->
-                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
+                    <article
+                        class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
                         <div>
                             <div class="h-48 overflow-hidden relative">
                                 <img src="https://i.pinimg.com/736x/52/3a/40/523a401a3971f4be91903267f1711fe6.jpg?q=80&w=800&auto=format&fit=crop"
-                                    class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Giải pháp pháp lý">
-                                <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Pháp Lý</span>
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Giải pháp pháp lý">
+                                <span
+                                    class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Pháp
+                                    Lý</span>
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 31/07/2026</span>
-                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                <span class="text-xs text-brand-blue font-semibold"><i
+                                        class="fa-regular fa-calendar mr-1"></i> 31/07/2026</span>
+                                <h3
+                                    class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
                                     Giải Pháp Xử Lý Ranh Thửa Đất & Trích Đo Hiện Trạng Hệ Tọa Độ VN-2000
                                 </h3>
                                 <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
-                                    Hỗ trợ chủ sở hữu bất động sản giải quyết dứt điểm các sai sót về ranh giới đất, đảm bảo đầy đủ điều kiện xin phép xây dựng và hoàn công.
+                                    Hỗ trợ chủ sở hữu bất động sản giải quyết dứt điểm các sai sót về ranh giới đất, đảm
+                                    bảo đầy đủ điều kiện xin phép xây dựng và hoàn công.
                                 </p>
                             </div>
                         </div>
                         <div class="p-6 pt-0 flex justify-end">
-                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
+                            <a href="#"
+                                class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
                                 Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
                     </article>
 
                     <!-- Tin 3 -->
-                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
+                    <article
+                        class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-col justify-between">
                         <div>
                             <div class="h-48 overflow-hidden relative">
                                 <img src="https://i.pinimg.com/1200x/0a/b6/54/0ab654c1fac75a3a4f96349e0f4d6aa2.jpg?q=80&w=800&auto=format&fit=crop"
-                                    class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Dự án nhà xưởng">
-                                <span class="absolute top-3 left-3 bg-slate-800 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Dự Án</span>
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Dự án nhà xưởng">
+                                <span
+                                    class="absolute top-3 left-3 bg-slate-800 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Dự
+                                    Án</span>
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 30/07/2026</span>
-                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                <span class="text-xs text-brand-blue font-semibold"><i
+                                        class="fa-regular fa-calendar mr-1"></i> 30/07/2026</span>
+                                <h3
+                                    class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
                                     PV INCONS Mở Rộng Hợp Tác Thi Công Nhà Xưởng Công Nghiệp Tiền Chế
                                 </h3>
                                 <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
-                                    Nâng cao năng lực thi công kết cấu thép tổ hợp, giải pháp sàn bê tông tăng cứng cho các đối tác doanh nghiệp tại Đồng Bằng Sông Cửu Long.
+                                    Nâng cao năng lực thi công kết cấu thép tổ hợp, giải pháp sàn bê tông tăng cứng cho
+                                    các đối tác doanh nghiệp tại Đồng Bằng Sông Cửu Long.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#"
+                                class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. GÓC NHÌN CHUYÊN GIA (Nền xám nhạt xen kẽ) -->
+        <section id="goc-nhin-chuyen-gia"
+            class="scroll-mt-[100px] sm:scroll-mt-32 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Chia Sẻ Tri Thức
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        GÓC NHÌN CHUYÊN GIA
+                    </h2>
+                    <div
+                        class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
+                    </div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Phân tích chuyên sâu về giải pháp kết cấu, công nghệ diễn họa 3D và kinh nghiệm tối ưu chi phí công trình từ các Kỹ sư & Kiến trúc sư PV INCONS.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                    <!-- Bài 1 -->
+                    <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Diễn họa 3D D5 Render">
+                                <span class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">3D Visual</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 28/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Ứng Dụng Real-time Rendering D5 Render & Chaos Vantage Trong Thiết Kế Kiến Trúc
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Sự kết hợp giữa mô phỏng ánh sáng vật lý thời gian thực giúp Chủ đầu tư trải nghiệm trực quan không gian sống trước khi khởi công.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bài 2 -->
+                    <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Kết cấu công trình">
+                                <span class="absolute top-3 left-3 bg-brand-darkblue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Kết Cấu</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 25/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Tính Toán Móng Cọc Tiết Diện Nhỏ Cho Nhà Phố Theo Tiêu Chuẩn TCVN 10304
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Giải pháp đảm bảo an toàn chịu lực cho công trình xen kẽ đô thị, tránh rủi ro sụt lún và ảnh hưởng đến nhà liền kề.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bài 3 -->
+                    <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Dynamo Revit Automation">
+                                <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Tự Động Hóa</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 20/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Tự Động Hóa Đánh Mã Cửa Và Thống Kê Vật Tư Trong Revit Bằng Dynamo
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Tăng 200% tốc độ xuất bản vẽ thi công và kiểm soát chính xác 100% khối lượng vật tư xây dựng cho toàn bộ dự án.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TIN THỊ TRƯỜNG (Nền trắng) -->
+        <section id="tin-thi-truong" class="scroll-mt-[100px] sm:scroll-mt-32 py-8 sm:py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Xu Hướng & Tiềm Năng
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        TIN THỊ TRƯỜNG
+                    </h2>
+                    <div
+                        class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
+                    </div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Tổng hợp nhịp sống thị trường bất động sản, quy hoạch phát triển đô thị khu vực Cần Thơ và ĐBSCL.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                    <!-- Bài 1 -->
+                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Thị trường BĐS Cần Thơ">
+                                <span class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Quy Hoạch</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 18/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Thị Trường Bất Động Sản Cần Thơ 2026: Sức Hút Từ Hạ Tầng Đô Thị Mới
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Sự nâng cấp đồng bộ các tuyến cao tốc liên vùng thúc đẩy nhu cầu xây dựng nhà ở, biệt thự và nhà xưởng công nghiệp gia tăng mạnh mẽ.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bài 2 -->
+                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Xu hướng nhà ở xanh">
+                                <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Xu Hướng</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 15/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Xu Hướng Thiết Kế Nhà Phố Xanh & Tối Ưu Năng Lượng Cho Đô Thị Nhiệt Đới
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Giải pháp giếng trời kết hợp mảng xanh thẳng đứng giúp tiết kiệm năng lượng làm mát và mang lại không gian sống thoáng đãng.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bài 3 -->
+                    <article class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1590496793929-36417d3117de?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Công nghiệp ĐBSCL">
+                                <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Công Nghiệp</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 10/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Sự Bứt Phá Của Hạ Tầng Khu Công Nghiệp Tại Vùng Kinh Tế Trọng Điểm ĐBSCL
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Nhu cầu mặt bằng kho bãi và nhà xưởng tiêu chuẩn cao tăng vọt, mở ra cơ hội hợp tác thi công lớn cho các nhà thầu uy tín.
                                 </p>
                             </div>
                         </div>
@@ -156,41 +415,168 @@
             </div>
         </section>
 
-        <!-- 2. THÔNG CÁO BÁO CHÍ (Nền xám nhạt xen kẽ) -->
-        <section id="thong-cao-bao-chi" class="scroll-mt-28 sm:scroll-mt-32 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
+        <!-- 4. TIN PHÁP LUẬT (Nền xám nhạt xen kẽ) -->
+        <section id="tin-phap-luat"
+            class="scroll-mt-[100px] sm:scroll-mt-32 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
                     <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
-                        Thông Thông Tin Chính Thức
+                        Chuẩn Hoá Pháp Lý
                     </span>
                     <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
-                        THÔNG CÁO BÁO CHÍ
+                        TIN PHÁP LUẬT
                     </h2>
-                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
+                    <div
+                        class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
+                    </div>
                     <p class="text-slate-600 text-sm mt-3 text-center">
-                        Thông tin chính thức về các mốc phát triển, cam kết chất lượng dịch vụ và hợp tác chiến lược của PV INCONS.
+                        Hướng dẫn quy trình cấp phép, trích đo địa chính, thủ tục hoàn công và cập nhật luật xây dựng hiện hành.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                    <!-- Bài 1 -->
+                    <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Thủ tục hoàn công">
+                                <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Hoàn Công</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 05/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Quy Trình Hoàn Công & Cấp Đổi Sổ Hồng Công Trình Mới Nhất Năm 2026
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Chi tiết bộ hồ sơ bản vẽ hoàn công, biên bản nghiệm thu kỹ thuật và quy trình nộp hồ sơ tại cơ quan quản lý đô thị.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bài 2 -->
+                    <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Đo đạc VN-2000">
+                                <span class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Địa Chính</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 02/07/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Hướng Dẫn Xử Lý Sai Biệt Diện Tích Đất Khi Đo Đạc Theo Hệ Tọa Độ VN-2000
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Các bước đính chính Giấy chứng nhận quyền sử dụng đất khi có chênh lệch giữa thực địa và bản vẽ cũ.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bài 3 -->
+                    <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop"
+                                    class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                                    alt="Xin phép xây dựng">
+                                <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Cấp Phép XD</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 25/06/2026</span>
+                                <h3 class="font-bold text-base text-slate-900 mt-2 mb-2 line-clamp-2 hover:text-brand-blue transition-colors">
+                                    Những Lưu Ý Quan Trọng Khi Xin Giấy Phép Xây Dựng Nhà Ở Tại Ninh Kiều
+                                </h3>
+                                <p class="text-justify text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                    Quy định về khoảng lùi, mật độ xây dựng và chiều cao tầng tối đa theo đồ án quy hoạch phân khu mới nhất.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex justify-end">
+                            <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange">
+                                Xem chi tiết <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. THÔNG TIN BÁO CHÍ (Nền trắng) -->
+        <section id="thong-tin-bao-chi" class="scroll-mt-[100px] sm:scroll-mt-32 py-8 sm:py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Thông Tin Chính Thức
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
+                        THÔNG TIN BÁO CHÍ
+                    </h2>
+                    <div
+                        class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
+                    </div>
+                    <p class="text-slate-600 text-sm mt-3 text-center">
+                        Thông cáo báo chí, tư liệu truyền thông và các cam kết minh bạch chất lượng dịch vụ từ PV INCONS.
                     </p>
                 </div>
 
                 <div class="space-y-4 max-w-5xl mx-auto">
-                    <div class="p-5 bg-white rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
+                    <div
+                        class="p-5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
                         <div class="min-w-0 flex-1">
-                            <span class="text-[11px] text-brand-orange font-bold uppercase"><i class="fa-solid fa-newspaper mr-1"></i> Báo chí đưa tin</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">PV INCONS Chuẩn Hóa Quy Trình Báo Cáo Tài Chính & Minh Bạch Ngân Sách Đầu Tư 2026</h4>
-                            <p class="text-xs text-slate-500 mt-1">Đảm bảo tính pháp lý minh bạch cho các dự án hợp tác đầu tư và xây dựng dân dụng - công nghiệp.</p>
+                            <span class="text-[11px] text-brand-orange font-bold uppercase"><i
+                                    class="fa-solid fa-newspaper mr-1"></i> Báo chí đưa tin</span>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">PV INCONS Chuẩn Hóa Quy
+                                Trình Báo Cáo Tài Chính & Minh Bạch Ngân Sách Đầu Tư 2026</h4>
+                            <p class="text-xs text-slate-500 mt-1">Đảm bảo tính pháp lý minh bạch cho các dự án hợp tác
+                                đầu tư và xây dựng dân dụng - công nghiệp.</p>
                         </div>
-                        <a href="#" class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                        <a href="#"
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
                             <i class="fa-regular fa-file-pdf"></i> Tải bản tin
                         </a>
                     </div>
 
-                    <div class="p-5 bg-white rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
+                    <div
+                        class="p-5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
                         <div class="min-w-0 flex-1">
-                            <span class="text-[11px] text-brand-blue font-bold uppercase"><i class="fa-solid fa-certificate mr-1"></i> Cam kết chất lượng</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">Công Bố Tiêu Chuẩn Thiết Kế & Thi Công Trọn Gói Áp Dụng Công Nghệ 3D Rendering</h4>
-                            <p class="text-xs text-slate-500 mt-1">Tích hợp mô phỏng visual thời gian thực D5 Render / Vantage giúp chủ đầu tư duyệt thiết kế chính xác trước khi thi công.</p>
+                            <span class="text-[11px] text-brand-blue font-bold uppercase"><i
+                                    class="fa-solid fa-certificate mr-1"></i> Cam kết chất lượng</span>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">Công Bố Tiêu Chuẩn Thiết Kế
+                                & Thi Công Trọn Gói Áp Dụng Công Nghệ 3D Rendering</h4>
+                            <p class="text-xs text-slate-500 mt-1">Tích hợp mô phỏng visual thời gian thực D5 Render /
+                                Vantage giúp chủ đầu tư duyệt thiết kế chính xác trước khi thi công.</p>
                         </div>
-                        <a href="#" class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                        <a href="#"
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
+                            <i class="fa-regular fa-file-pdf"></i> Tải bản tin
+                        </a>
+                    </div>
+
+                    <div
+                        class="p-5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all gap-3">
+                        <div class="min-w-0 flex-1">
+                            <span class="text-[11px] text-emerald-600 font-bold uppercase"><i
+                                    class="fa-solid fa-handshake mr-1"></i> Hợp tác chiến lược</span>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">Mở Rộng Hợp Tác Dịch Vụ Tư Vấn Trích Đo Hiện Trạng & Xin Phép Xây Dựng Trọn Gói</h4>
+                            <p class="text-xs text-slate-500 mt-1">Cam kết hỗ trợ tối đa chủ đầu tư rút ngắn thời gian chuẩn bị thủ tục pháp lý công trình.</p>
+                        </div>
+                        <a href="#"
+                            class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded bg-white border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
                             <i class="fa-regular fa-file-pdf"></i> Tải bản tin
                         </a>
                     </div>
@@ -198,43 +584,74 @@
             </div>
         </section>
 
-        <!-- 3. TIN THỊ TRƯỜNG & PHÁP LÝ (Nền trắng) -->
-        <section id="tin-thi-truong" class="scroll-mt-28 sm:scroll-mt-32 py-8 sm:py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
-                        Góc Nhìn Chuyên Gia
-                    </span>
-                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-2 uppercase tracking-wide">
-                        TIN THỊ TRƯỜNG & PHÁP LÝ
-                    </h2>
-                    <div class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3"></div>
-                    <p class="text-slate-600 text-sm mt-3 text-center">
-                        Tổng hợp xu hướng xây dựng, quy hoạch đô thị và quy định pháp lý bất động sản mới nhất tại khu vực.
-                    </p>
-                </div>
+        <!-- SCRIPT TỰ ĐỘNG CUỘN NAV TAB ĐÃ ĐƯỢC CẢI TIẾN TRÁNH VÒNG LẶP RÒ RỈ BỘ NHỚ -->
+        <script>
+            window.initNavTabs = function() {
+                const container = document.getElementById("navTabsContainer");
+                if (!container) return;
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 hover:shadow-md transition-all">
-                        <span class="text-xs font-bold text-brand-orange uppercase"><i class="fa-solid fa-scale-balanced mr-1"></i> Pháp lý BĐS</span>
-                        <h3 class="font-bold text-base text-slate-900 mt-2 mb-2">Quy Trình Hoàn Công & Cấp Đổi Sổ Hồng Công Trình Mới Nhất Năm 2026</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Tổng hợp đầy đủ các bước chuẩn bị hồ sơ bản vẽ hoàn công, kiểm định an toàn và thủ tục nộp cơ quan quản lý nhà nước.
-                        </p>
-                        <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors">Đọc chi tiết bài viết &rarr;</a>
-                    </div>
+                if (container.dataset.initialized === "true") return;
+                container.dataset.initialized = "true";
 
-                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 hover:shadow-md transition-all">
-                        <span class="text-xs font-bold text-brand-blue uppercase"><i class="fa-solid fa-chart-line mr-1"></i> Phân tích thị trường</span>
-                        <h3 class="font-bold text-base text-slate-900 mt-2 mb-2">Xu Hướng Thiết Kế Nhà Phố & Biệt Thự Tối Ưu Năng Lượng Tại Cần Thơ</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Giải pháp kết cấu không gian mở, thông gió tự nhiên kết hợp vật liệu xây dựng thân thiện môi trường đang dẫn dắt xu hướng.
-                        </p>
-                        <a href="#" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors">Đọc chi tiết bài viết &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+                let speed = 0.3;
+                let direction = 1;
+                let isPaused = false;
+                let resumeTimeout;
+                let currentScroll = container.scrollLeft;
+
+                function autoOscillate() {
+                    const activeContainer = document.getElementById("navTabsContainer");
+                    if (!activeContainer) return; // Tự động dừng vòng lặp khi chuyển trang SPA
+
+                    if (!isPaused) {
+                        const maxScroll = activeContainer.scrollWidth - activeContainer.clientWidth;
+
+                        if (maxScroll > 0) {
+                            currentScroll += speed * direction;
+
+                            if (currentScroll >= maxScroll) {
+                                currentScroll = maxScroll;
+                                direction = -1;
+                            } else if (currentScroll <= 0) {
+                                currentScroll = 0;
+                                direction = 1;
+                            }
+
+                            activeContainer.scrollLeft = currentScroll;
+                        }
+                    }
+                    requestAnimationFrame(autoOscillate);
+                }
+
+                function pauseScroll() {
+                    isPaused = true;
+                    clearTimeout(resumeTimeout);
+                }
+
+                function resumeScroll() {
+                    clearTimeout(resumeTimeout);
+                    resumeTimeout = setTimeout(() => {
+                        if (container) currentScroll = container.scrollLeft;
+                        isPaused = false;
+                    }, 3000);
+                }
+
+                container.addEventListener("touchstart", pauseScroll, { passive: true });
+                container.addEventListener("touchend", resumeScroll, { passive: true });
+                container.addEventListener("mouseenter", pauseScroll);
+                container.addEventListener("mouseleave", resumeScroll);
+
+                container.addEventListener("scroll", () => {
+                    if (isPaused) {
+                        currentScroll = container.scrollLeft;
+                    }
+                }, { passive: true });
+
+                autoOscillate();
+            };
+
+            window.initNavTabs();
+        </script>
     </main>
 
     <div id="footer-placeholder"></div>

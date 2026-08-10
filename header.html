@@ -8,7 +8,7 @@
     iframe[id*=":1.container"],
     iframe[class*="goog-te-banner"],
     iframe.skiptranslate,
-    body > .skiptranslate,
+    body>.skiptranslate,
     #google_translate_element {
         display: none !important;
         visibility: hidden !important;
@@ -22,6 +22,7 @@
         margin-top: 0px !important;
         padding-top: 0px !important;
     }
+
     body {
         top: 0px !important;
         margin-top: 0px !important;
@@ -32,13 +33,36 @@
     .goog-te-balloon-frame {
         display: none !important;
     }
+
     .goog-text-highlight {
         background-color: transparent !important;
         box-shadow: none !important;
     }
+
+    /* Animation for mobile menu sliding in from the right */
+    @keyframes slideInFromRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    .menu-slide-in {
+        animation: slideInFromRight 0.25s ease-out forwards;
+    }
+
+    /* =========================================================
+       BẮT BUỘC: LOGIC HIỂN THỊ CỜ BẰNG CSS ĐỂ ĐẢM BẢO CHÍNH XÁC
+       ========================================================= */
+    
+    /* Trạng thái mặc định (Tiếng Việt): Ẩn cờ VN, Hiện cờ Anh */
+    .lang-flag-vn { display: none !important; }
+    .lang-flag-uk { display: block !important; }
+
+    /* Trạng thái khi Google đã dịch (Tiếng Anh): Ẩn cờ Anh, Hiện cờ VN */
+    html.translated-ltr .lang-flag-uk { display: none !important; }
+    html.translated-ltr .lang-flag-vn { display: block !important; }
+
 </style>
 
-<!-- Top Info Bar (Icon màu cam text-brand-orange) -->
+<!-- Top Info Bar -->
 <div class="bg-slate-900 text-slate-300 text-xs py-2 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <div class="flex items-center space-x-4 sm:space-x-6">
@@ -75,20 +99,14 @@
 
         <!-- CTA Button & Switcher (Desktop) -->
         <div class="hidden sm:flex items-center space-x-3">
-            <button type="button" 
-                    onclick="toggleLanguage()" 
-                    class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-all cursor-pointer shadow-xs"
-                    title="Đổi ngôn ngữ / Switch language">
-                <img id="langFlagDesktop" 
-                     src="https://flagcdn.com/24x18/gb.png" 
-                     alt="Language Flag" 
-                     class="w-5 h-3.5 object-cover rounded-[2px]">
+            <button type="button" onclick="toggleLanguage()" class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-all cursor-pointer shadow-xs" title="Đổi ngôn ngữ / Switch language">
+                <!-- Chèn SẴN 2 cờ, CSS sẽ lo việc ẩn/hiện -->
+                <img src="https://flagcdn.com/24x18/gb.png" class="lang-flag-uk w-5 h-3.5 object-cover rounded-[2px]" alt="English">
+                <img src="https://flagcdn.com/24x18/vn.png" class="lang-flag-vn w-5 h-3.5 object-cover rounded-[2px]" alt="Tiếng Việt">
             </button>
 
             <!-- Nút Liên Hệ mở Modal -->
-            <button type="button"
-                onclick="openContactModal()"
-                class="bg-brand-blue hover:bg-brand-darkblue text-white font-semibold text-sm px-4 py-2.5 rounded-lg transition-all duration-200 shadow-md shadow-brand-blue/20 cursor-pointer flex items-center">
+            <button type="button" onclick="openContactModal()" class="bg-brand-blue hover:bg-brand-darkblue text-white font-semibold text-sm px-4 py-2.5 rounded-lg transition-all duration-200 shadow-md shadow-brand-blue/20 cursor-pointer flex items-center">
                 <i class="fa-solid fa-paper-plane mr-1.5"></i> Liên Hệ
             </button>
         </div>
@@ -100,42 +118,34 @@
     </div>
 
     <!-- Mobile Menu Drawer -->
-    <div id="mobileMenu" class="hidden xl:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-1 uppercase text-xs font-bold">
-        <a href="index.html" data-tab="index" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">TRANG CHỦ</a>
-        <a href="about.html" data-tab="about" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">GIỚI THIỆU</a>
-        <a href="projects.html" data-tab="projects" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">DỰ ÁN</a>
-        <a href="news.html" data-tab="news" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">TIN TỨC</a>
-        <a href="services.html" data-tab="services" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">DỊCH VỤ</a>
-        <a href="investment.html" data-tab="investment" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">QUAN HỆ ĐẦU TƯ</a>
-        <a href="hr.html" data-tab="hr" class="mobile-tab-btn block w-full text-left py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">CHÍNH SÁCH NHÂN SỰ</a>
+    <div id="mobileMenu" class="hidden xl:hidden absolute top-full right-0 w-1/2 md:w-1/4 z-50 bg-white/90 backdrop-blur-md border-l border-b border-slate-200 px-3 pt-2 pb-6 space-y-1 uppercase text-xs font-bold shadow-2xl menu-slide-in">
+        <a href="index.html" data-tab="index" class="mobile-tab-btn block w-full text-center py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">TRANG CHỦ</a>
+        <a href="about.html" data-tab="about" class="mobile-tab-btn block w-full text-center py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">GIỚI THIỆU</a>
+        <a href="projects.html" data-tab="projects" class="mobile-tab-btn block w-full text-center py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">DỰ ÁN</a>
+        <a href="news.html" data-tab="news" class="mobile-tab-btn block w-full text-center py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">TIN TỨC</a>
+        <a href="services.html" data-tab="services" class="mobile-tab-btn block w-full text-center py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">DỊCH VỤ</a>
+        <a href="investment.html" data-tab="investment" class="mobile-tab-btn block w-full text-center py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">QUAN HỆ ĐẦU TƯ</a>
+        <a href="hr.html" data-tab="hr" class="mobile-tab-btn block w-full text-center py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">CHÍNH SÁCH NHÂN SỰ</a>
 
         <!-- Switcher (Mobile) -->
-        <div class="flex items-center justify-between py-2.5 px-3 border-t border-slate-100 mt-2 normal-case font-normal">
-            <span class="text-slate-500 text-xs">Ngôn ngữ / Language:</span>
-            <button type="button" 
-                    onclick="toggleLanguage()" 
-                    class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 border border-slate-200 cursor-pointer shadow-xs">
-                <img id="langFlagMobile" 
-                     src="https://flagcdn.com/24x18/gb.png" 
-                     alt="Language Flag" 
-                     class="w-5 h-3.5 object-cover rounded-[2px]">
+        <div class="flex flex-col items-center justify-between gap-3 py-2.5 px-3 border-t border-slate-100 mt-2 normal-case font-normal">
+            <span class="text-slate-500 text-xs">Ngôn ngữ / Language</span>
+            <button type="button" onclick="toggleLanguage()" class="flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 border border-slate-200 cursor-pointer shadow-xs">
+                <!-- Chèn SẴN 2 cờ, CSS sẽ lo việc ẩn/hiện -->
+                <img src="https://flagcdn.com/24x18/gb.png" class="lang-flag-uk w-5 h-3.5 object-cover rounded-[2px]" alt="English">
+                <img src="https://flagcdn.com/24x18/vn.png" class="lang-flag-vn w-5 h-3.5 object-cover rounded-[2px]" alt="Tiếng Việt">
             </button>
         </div>
-
+        
         <!-- Nút Liên Hệ Mobile mở Modal -->
-        <button type="button" 
-            onclick="closeMobileMenu(); openContactModal()"
-            class="w-full block text-center bg-brand-blue hover:bg-brand-darkblue text-white font-semibold py-2.5 rounded-lg mt-3 normal-case text-sm cursor-pointer transition-colors duration-200">
+        <button type="button" onclick="closeMobileMenu(); openContactModal()" class="w-full block text-center bg-brand-blue hover:bg-brand-darkblue text-white font-semibold py-2.5 rounded-lg mt-3 normal-case text-sm cursor-pointer transition-colors duration-200">
             Liên Hệ
         </button>
     </div>
 </header>
 
 <!-- FLOATING CHAT BUTTON -->
-<a href="javascript:void(0)" 
-   onclick="if(window.innerWidth < 768){ window.location.href='tel:0909751194'; } else { window.open('https://zalo.me/0772194789', '_blank'); }" 
-   class="chat-float-btn" 
-   title="Liên hệ tư vấn">
+<a href="javascript:void(0)" onclick="if(window.innerWidth < 768){ window.location.href='tel:0909751194'; } else { window.open('https://zalo.me/0772194789', '_blank'); }" class="chat-float-btn" title="Liên hệ tư vấn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="chat-icon hidden md:block w-6 h-6">
         <path fill-rule="evenodd" d="M4.804 2.169A2.25 2.25 0 017.185 2h9.63a2.25 2.25 0 012.382 1.69c.39 1.455.603 2.986.603 4.56 0 1.574-.213 3.105-.603 4.56a2.25 2.25 0 01-2.382 1.69h-1.957a2.25 2.25 0 00-1.591.659l-2.708 2.709a.75.75 0 01-1.281-.53v-2.38a.75.75 0 00-.75-.75H7.185a2.25 2.25 0 01-2.382-1.69A16.29 16.29 0 014.2 8.25c0-1.574.213-3.105.604-4.561z" clip-rule="evenodd" />
     </svg>
@@ -145,7 +155,7 @@
     <span class="chat-tooltip">Liên hệ tư vấn</span>
 </a>
 
-<!-- MODAL POPUP: THÔNG BÁO GỬI THÀNH CÔNG -->
+<!-- MODAL POPUP -->
 <div id="thankYouModal" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
     <div class="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl text-center border border-slate-100">
         <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
@@ -158,3 +168,57 @@
         </button>
     </div>
 </div>
+
+<!-- Khung ẩn để chứa Script Google Translate -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'vi',
+            includedLanguages: 'en,vi',
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Script Xử Lý Chuyển Đổi Ngôn Ngữ -->
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        if (menu) menu.classList.toggle('hidden');
+    }
+
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        if (menu) menu.classList.add('hidden');
+    }
+
+    function toggleLanguage() {
+        // Nhận dạng chính xác 100% việc trang có đang ở Tiếng Anh hay không 
+        // dựa vào class mà Google tự động sinh ra, hoặc dựa vào cookie
+        const isTranslated = document.documentElement.classList.contains('translated-ltr') || document.cookie.includes('googtrans=/vi/en');
+        const domain = location.hostname;
+
+        if (isTranslated) {
+            // ĐANG LÀ TIẾNG ANH -> XÓA COOKIE ĐỂ VỀ TIẾNG VIỆT
+            document.cookie = "googtrans=/vi/vi; path=/;";
+            
+            // Ép xóa sạch mọi giá trị cookie cũ có thể gây kẹt
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            if (domain && domain !== 'localhost') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + domain;
+                document.cookie = "googtrans=/vi/vi; path=/; domain=." + domain;
+            }
+        } else {
+            // ĐANG LÀ TIẾNG VIỆT -> SET COOKIE ĐỂ CHUYỂN SANG TIẾNG ANH
+            document.cookie = "googtrans=/vi/en; path=/;";
+            if (domain && domain !== 'localhost') {
+                document.cookie = "googtrans=/vi/en; path=/; domain=." + domain;
+            }
+        }
+
+        // Tải lại trang ngay lập tức
+        location.reload();
+    }
+</script>
