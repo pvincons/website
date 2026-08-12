@@ -5226,7 +5226,7 @@ main {
 @font-face {
   font-family: 'Inter';
 
-  src: url('/assets/fonts/Inter/static/Inter_18pt-Regular.ttf') format('truetype');
+  src: url('assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
 
   font-weight: 400;
 
@@ -5240,7 +5240,7 @@ main {
 @font-face {
   font-family: 'Inter';
 
-  src: url('/assets/fonts/Inter/static/Inter_18pt-Bold.ttf') format('truetype');
+  src: url('assets/fonts/Inter_18pt-Bold.ttf') format('truetype');
 
   font-weight: 700;
 
@@ -5254,7 +5254,7 @@ main {
 @font-face {
   font-family: 'Oswald';
 
-  src: url('/assets/fonts/Oswald/static/Oswald-Bold.ttf') format('truetype');
+  src: url('assets/fonts/Oswald-Bold.ttf') format('truetype');
 
   font-weight: 700;
 
