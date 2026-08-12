@@ -44,14 +44,58 @@
 
     <!-- Schema JSON-LD (Dữ liệu có cấu trúc xác thực doanh nghiệp với Google) -->
     <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+            "@type": "Question",
+            "name": "BIM/VDC là gì và tại sao nên áp dụng vào dự án xây dựng?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "BIM (Building Information Modeling) và VDC (Virtual Design and Construction) là quy trình xây dựng mô hình kỹ thuật số 3D chính xác. Việc áp dụng giúp tối ưu hóa thiết kế, quản lý chi phí chặt chẽ, kiểm soát tiến độ thi công và giảm thiểu tối đa sai sót trước khi công trình được khởi công thực tế."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "PV INCONS hỗ trợ những gì trong quy trình tư vấn BIM?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Chúng tôi cung cấp giải pháp toàn diện: từ lập kế hoạch thực hiện BIM (BEP), quản lý mô hình (Model Management), đến chuyển đổi dữ liệu và tối ưu hóa quy trình làm việc (workflow) với các phần mềm kiến trúc hiện đại như Lumion 2026, đảm bảo tính nhất quán và hiệu quả cho dự án."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "Chi phí áp dụng BIM/VDC có đắt hơn thi công truyền thống không?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mặc dù đầu tư ban đầu cho công nghệ và nhân sự BIM cao hơn, nhưng về tổng thể, BIM giúp tiết kiệm chi phí đáng kể bằng cách loại bỏ các xung đột thiết kế, giảm lãng phí vật liệu và rút ngắn thời gian thi công, mang lại hiệu quả kinh tế lâu dài cho chủ đầu tư."
+            }
+            }
+        }
+    </script>
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "PV INCONS",
       "url": "https://pvincons.com",
       "logo": "https://pvincons.com/assets/pic/logo.webp",
+      "image": "https://pvincons.com/assets/pic/logo.webp",
       "description": "Cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án.",
       "telephone": "+84-909-751-194",
+      "priceRange": "VND",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100080462977449",
+        "https://www.linkedin.com/in/pv-incons-company-363b95414/"
+        "https://www.youtube.com/@pvinconscompany8614/videos/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "292/30 đường Phan Văn Quân, phường Bình Minh",
@@ -113,7 +157,7 @@
                 class="w-full max-w-7xl mx-auto flex items-center gap-3 sm:gap-5 overflow-x-auto whitespace-nowrap text-xs sm:text-sm font-normal uppercase 
                 justify-start sm:justify-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4">
 
-                <a id="nav-dich-vu" href="#" class="text-brand-orange transition-colors py-0.5 shrink-0">GIẢI PHÁP TOÀN 
+                <a id="nav-dich-vu" href="#" class="text-brand-orange transition-colors py-0.5 shrink-0">GIẢI PHÁP TOÀN
                     DIỆN</a>
                 <span class="text-slate-300 font-normal shrink-0">/</span>
 
@@ -408,7 +452,8 @@
                         class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
                     </div>
                     <p class="text-slate-600 text-sm mt-3 text-center">
-                        Thư viện tổng hợp các mẫu hợp đồng, biên bản kiểm tra và biểu mẫu nghiệp vụ được chuẩn hóa theo quy trình vận hành PV INCONS; 
+                        Thư viện tổng hợp các mẫu hợp đồng, biên bản kiểm tra và biểu mẫu nghiệp vụ được chuẩn hóa theo
+                        quy trình vận hành PV INCONS;
                         Hỗ trợ tối đa cho Chủ đầu tư, Nhà thầu và các Đối tác chiến lược.
                     </p>
                 </div>
