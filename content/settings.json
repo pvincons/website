@@ -1,0 +1,25 @@
+{
+  "company_name": "CÔNG TY TNHH THIẾT KẾ VÀ XÂY DỰNG PV INCONS",
+  "slogan": "Giải pháp Kiến trúc & Xây dựng Tối ưu",
+  "brand": {
+    "logo": "/assets/images/logo.png",
+    "favicon": "/assets/images/favicon.ico"
+  },
+  "contact": {
+    "phone": "0901 234 567",
+    "phone_display": "0901.234.567",
+    "zalo": "0901234567",
+    "email": "contact@pvincons.com",
+    "address": "Bình Thủy, TP. Cần Thơ",
+    "working_hours": "07:30 - 17:00 (Thứ 2 - Thứ 7)"
+  },
+  "socials": {
+    "facebook": "https://facebook.com/pvincons",
+    "youtube": "https://youtube.com/@pvincons",
+    "zalo_oa": "https://zalo.me/pvincons"
+  },
+  "seo_default": {
+    "meta_title": "PV INCONS - Thiết kế & Thi công Kiến trúc Chuyên nghiệp",
+    "meta_description": "Chuyên tư vấn thiết kế, cải tạo nhà phố, biệt thự và quản lý thi công công trình tại Cần Thơ."
+  }
+}
