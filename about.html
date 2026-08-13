@@ -111,15 +111,10 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* Ghi đè mở rộng Wide / Full cho Hero Grid và Metrics Grid trên Desktop */
-        .hero .full-wide-container{,
+        /* Ghi đè mở rộng Wide / Full cho Hero Grid trên Desktop */
+        .hero .full-wide-container {
             width: 90% !important;
             max-width: 90% !important;
-        }
-
-        .metrics-full-container {
-            width: 100% !important;
-            max-width: 100% !important;
         }
 
         .hero-grid {
@@ -127,58 +122,64 @@
             width: 100% !important;
         }
 
-        .metrics-grid {
-            max-width: 100% !important;
+        /* ==========================================
+           CHUẨN HÓA 3 KHỐI METRICS (LIGHT TONE GRADIENT)
+           ========================================== */
+        .metrics-full-container {
             width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        .metrics-container {
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 60px;
+        }
+
+        .metrics-grid {
             display: grid !important;
             grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
             gap: 1.5rem !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            justify-items: stretch !important;
+            align-items: stretch !important;
         }
 
-        @media (max-width: 1024px) {
-            .metrics-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-            }
-        }
-
-        @media (max-width: 640px) {
+        /* Responsive: Tự động đưa về 1 cột cho Mobile & Tablet nhỏ (< 768px) */
+        @media (max-width: 768px) {
             .metrics-grid {
                 grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+                gap: 1rem !important;
             }
         }
 
-        /* THIẾT KẾ METRIC CARDS: VIỀN MỎNG - TONE XÁM GRADIENT ÁNH KIM VỮNG TRÃI */
         .metric-card {
-            border-radius: 1rem;
-            padding: 1.85rem 1.25rem;
+            border-radius: 1.25rem;
+            padding: 2rem 1.25rem;
             text-align: center;
-            /* Gradient xám ánh kim platinum / titan sang trọng */
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 35%, #e2e8f0 70%, #f8fafc 100%);
-            /* Viền mỏng chuẩn xác, phản chiếu kim loại */
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 35%, #e2e8f0 70%, #f8fafc 100%) !important;
             border: 1px solid rgba(148, 163, 184, 0.5) !important;
-            /* Đổ bóng đa tầng tạo cảm giác khối dày dặn, kiên cố */
             box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9),
                 0 10px 25px -5px rgba(30, 41, 59, 0.08),
                 0 4px 6px -2px rgba(30, 41, 59, 0.03);
             position: relative;
             overflow: hidden;
 
-            /* Trạng thái ban đầu trước khi cuộn tới: Ẩn và dịch xuống */
             opacity: 0;
             transform: translateY(35px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s ease,
-                border-color 0.4s ease;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
         }
 
-        /* Trạng thái khi kích hoạt Animation */
         .metric-card.animate-in {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
 
-        /* Hiệu ứng quét dải sáng kim loại khi Hover */
         .metric-card::before {
             content: '';
             position: absolute;
@@ -188,7 +189,7 @@
             height: 200%;
             background: linear-gradient(60deg,
                     transparent 30%,
-                    rgba(255, 255, 255, 0.55) 50%,
+                    rgba(255, 255, 255, 0.6) 50%,
                     transparent 70%);
             transition: all 0.75s ease;
             pointer-events: none;
@@ -206,76 +207,45 @@
                 0 8px 12px -4px rgba(30, 41, 59, 0.08);
         }
 
-        /* TONE ĐẦU TƯ: Icon Xanh Thép Navy */
-        .metric-card.card-dautu .metric-icon {
-            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
-            color: #ffffff;
-            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.3);
-        }
-
-        /* TONE XÂY DỰNG: Icon Cyan Thép Titan */
-        .metric-card.card-xaydung .metric-icon {
-            background: linear-gradient(135deg, #0284c7 0%, #1e293b 100%);
-            color: #ffffff;
-            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.28);
-        }
-
-        /* TẮT HOÀN TOÀN HIỆU ỨNG CHUYỂN ĐỘNG ANIMATION CỦA KHỐI METRIC THỨ 2 (XÂY DỰNG) */
-        .metric-card.card-xaydung {
-            opacity: 1 !important;
-            transform: none !important;
-            transition: none !important;
-        }
-
-        .metric-card.card-xaydung::before {
-            display: none !important;
-        }
-
-        .metric-card.card-xaydung:hover {
-            transform: none !important;
-        }
-
-        .metric-card.card-xaydung .metric-icon,
-        .metric-card.card-xaydung:hover .metric-icon {
-            transform: none !important;
-            transition: none !important;
-        }
-
-        /* TONE PHÁP LÝ: Icon Cam Thép Đồng */
-        .metric-card.card-phaply .metric-icon {
-            background: linear-gradient(135deg, #ea580c 0%, #334155 100%);
-            color: #ffffff;
-            box-shadow: 0 6px 16px rgba(234, 88, 12, 0.28);
-        }
-
         .metric-icon {
-            width: 62px;
-            height: 62px;
+            width: 68px;
+            height: 68px;
             margin: 0 auto 1.25rem auto;
-            border-radius: 14px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.65rem;
+            font-size: 1.75rem;
+            color: #1e68a8;
+            background: rgba(30, 104, 168, 0.08);
+            position: relative;
             transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            outline: 1px solid rgba(148, 163, 184, 0.3);
+            outline-offset: 3px;
         }
 
         .metric-card:hover .metric-icon {
-            transform: scale(1.1) rotate(2deg);
+            transform: scale(1.08) rotate(3deg);
         }
 
         .metric-value {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 800;
-            margin-bottom: 0.35rem;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
             text-transform: uppercase;
-            letter-spacing: 0.025em;
+            letter-spacing: 0.04em;
+            color: #07243ff6 !important;
         }
 
         .metric-label {
-            font-size: 0.875rem;
-            color: #475569;
-            font-weight: 600;
+            font-size: 0.75rem;
+            color: #64748b !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -332,7 +302,7 @@
                             TỔNG QUAN VỀ CÔNG TY
                         </span>
                         <h1
-                            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase leading-snug tracking-tight text-white mb-3 hero-title">
+                            class="text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase leading-snug tracking-tight text-white mb-3 hero-title">
                             CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS
                         </h1>
 
@@ -388,21 +358,21 @@
             <div class="metrics-grid">
                 <!-- Khối 1: ĐẦU TƯ -->
                 <div class="metric-card card-dautu">
-                    <div class="metric-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <div class="metric-value text-slate-800">Đầu Tư</div>
-                    <div class="metric-label">Kiến tạo giá trị</div>
+                    <div class="metric-icon"><i class="fa-solid fa-landmark"></i></div>
+                    <div class="metric-value">Đầu Tư</div>
+                    <div class="metric-label">KIẾN TẠO GIÁ TRỊ</div>
                 </div>
                 <!-- Khối 2: XÂY DỰNG -->
                 <div class="metric-card card-xaydung">
-                    <div class="metric-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="metric-value text-slate-800">Xây Dựng</div>
-                    <div class="metric-label">Chất lượng chuẩn mực</div>
+                    <div class="metric-icon"><i class="fa-solid fa-city"></i></div>
+                    <div class="metric-value">Xây Dựng</div>
+                    <div class="metric-label">CHẤT LƯỢNG CHUẨN MỰC</div>
                 </div>
                 <!-- Khối 3: PHÁP LÝ -->
                 <div class="metric-card card-phaply">
-                    <div class="metric-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="metric-value text-slate-800">Pháp Lý</div>
-                    <div class="metric-label">Chuẩn hóa pháp lý</div>
+                    <div class="metric-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="metric-value">Pháp Lý</div>
+                    <div class="metric-label">CHUẨN HÓA PHÁP LÝ</div>
                 </div>
             </div>
         </div>
@@ -526,7 +496,7 @@
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <div class="text-amber-600 text-xl font-bold flex items-center gap-2">
-                                    <i class="fa-solid fa-chart-line"></i>
+                                    <i class="fa-solid fa-landmark"></i>
                                     <span class="text-slate-900 text-base uppercase font-extrabold tracking-wide">ĐẦU
                                         TƯ</span>
                                 </div>
@@ -583,7 +553,7 @@
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <div class="text-amber-600 text-xl font-bold flex items-center gap-2">
-                                    <i class="fa-solid fa-helmet-safety"></i>
+                                    <i class="fa-solid fa-city"></i>
                                     <span class="text-slate-900 text-base uppercase font-extrabold tracking-wide">XÂY
                                         DỰNG</span>
                                 </div>
