@@ -1,25 +1,5 @@
 [
   {
-    "id": 3,
-    "category": "cong-ty",
-    "categoryLabel": "TIN TỨC 56",
-    "title": "PV INCONS Chuẩn Tài Chính",
-    "summary": "Đảm bảo các dự án.",
-    "date": "10/08/2020",
-    "image": "https://i.pinimg.com/1200x/9d/bb/4c/9dbb4c8a1120da8b8c1b2e55c0d85e54.jpg",
-    "link": "https://vnexpress.net/"
-  },
-  {
-    "id": 2,
-    "category": "cong-ty",
-    "categoryLabel": "TIN TỨC",
-    "title": "PV INCONS Chuẩn Hóa Quy Trình Báo Cáo Tài Chính",
-    "summary": "Đảm bảo tính pháp lý minh bạch cho các dự án.",
-    "date": "10/08/2026",
-    "image": "https://i.pinimg.com/1200x/cd/fb/c7/cdfbc75280e35fbfd63647e2259d7910.jpg",
-    "link": "content/news/news_007.html"
-  },
-  {
     "id": 1,
     "category": "chuyen-gia",
     "categoryLabel": "3D VISUAL",
