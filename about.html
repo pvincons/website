@@ -115,32 +115,12 @@
         .hero .full-wide-container,
         .metrics-full-container {
             width: 90% !important;
-            max-width: 900% !important;
+            max-width: 90% !important;
         }
 
         .hero-grid {
             max-width: 100% !important;
             width: 100% !important;
-        }
-
-        .metrics-grid {
-            max-width: 100% !important;
-            width: 100% !important;
-            display: grid !important;
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-            gap: 1.5rem !important;
-        }
-
-        @media (max-width: 1024px) {
-            .metrics-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .metrics-grid {
-                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-            }
         }
     </style>
 </head>
@@ -248,29 +228,28 @@
             </div>
         </section>
 
-        <!-- METRICS RIBBON (ĐÃ CHỈNH WIDE - FULL MÀN HÌNH) -->
+        <!-- METRICS RIBBON (VIỀN MỎNG - TONE XÁM GRADIENT ÁNH KIM KIÊN CỐ) -->
         <div class="metrics-full-container w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 mx-auto metrics-container">
             <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-icon"><i class="fa-solid fa-coins"></i></div>
-                    <div class="metric-value">9 Tỷ VNĐ</div>
-                    <div class="metric-label">Vốn Điều Lệ</div>
+                <!-- Khối 1: ĐẦU TƯ -->
+                <div class="metric-card card-icon">
+                    <div class="metric-icon border border-sky-200"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="metric-title uppercase">Đầu Tư</div>
+                    <div class="metric-subtitle uppercase">KIẾN TẠO GIÁ TRỊ</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-icon"><i class="fa-solid fa-award"></i></div>
-                    <div class="metric-value">Năng Lực</div>
-                    <div class="metric-label">Chứng nhận VIL-00050772</div>
+                <!-- Khối 2: XÂY DỰNG -->
+                <div class="metric-card card-icon">
+                    <div class="metric-icon border border-sky-200"><i class="fa-solid fa-city"></i></div>
+                    <div class="metric-title uppercase">Xây Dựng</div>
+                    <div class="metric-subtitle uppercase">CHẤT LƯỢNG CHUẨN MỰC</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                    <div class="metric-value">BIM & VDC</div>
-                    <div class="metric-label">Chuẩn Kỹ Thuật Số</div>
+                <!-- Khối 3: PHÁP LÝ -->
+                <div class="metric-card card-icon">
+                    <div class="metric-icon border border-sky-200"><i class="fa-solid fa-file-contract"></i></div>
+                    <div class="metric-title uppercase">Pháp Lý</div>
+                    <div class="metric-subtitle uppercase">CHUẨN HÓA PHÁP LÝ</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-icon"><i class="fa-solid fa-building-shield"></i></div>
-                    <div class="metric-value">100%</div>
-                    <div class="metric-label">Chuẩn Hóa Pháp Lý</div>
-                </div>
+
             </div>
         </div>
 
@@ -531,7 +510,8 @@
                                 <div class="legal-label">Năng Lực Tổ Chức</div>
                                 <div class="legal-value">
                                     <strong class="text-brand-blue">Chứng Nhận:</strong> VIL-00050772<br>
-                                    <span class="text-sm text-slate-500 font-medium">Do Sở Xây dựng cấp - Hiệu lực đến năm
+                                    <span class="text-sm text-slate-500 font-medium">Do Sở Xây dựng cấp - Hiệu lực đến
+                                        năm
                                         2031</span>
                                 </div>
                             </div>
@@ -551,7 +531,8 @@
                                 <div class="location-icon"><i class="fa-solid fa-building"></i></div>
                                 <div class="location-details">
                                     <h5>Trụ Sở</h5>
-                                    <p class="text-sm text-justify">Số 292/30 đường Phan Văn Quân, phường Bình Minh, tỉnh Vĩnh
+                                    <p class="text-sm text-justify">Số 292/30 đường Phan Văn Quân, phường Bình Minh,
+                                        tỉnh Vĩnh
                                         Long.</p>
                                 </div>
                             </div>
@@ -559,7 +540,8 @@
                                 <div class="location-icon"><i class="fa-solid fa-city"></i></div>
                                 <div class="location-details">
                                     <h5>Văn Phòng</h5>
-                                    <p class="text-sm text-justify">Số P007 đường Lý Thái Tổ, phường Hưng Phú, thành phố Cần
+                                    <p class="text-sm text-justify">Số P007 đường Lý Thái Tổ, phường Hưng Phú, thành phố
+                                        Cần
                                         Thơ.</p>
                                 </div>
                             </div>
@@ -772,48 +754,28 @@
                 }
             };
 
-            // Hàm kích hoạt hiệu ứng xuất hiện cho 4 khối Metric (2 trái, 2 phải)
-            window.animateMetricCards = function () {
-                const cards = document.querySelectorAll('.metrics-grid .metric-card');
-                if (!cards.length) return;
+            // Căn giữa Sơ đồ tổ chức
+            const wrapper = document.querySelector('.org-chart-wrapper');
+            if (wrapper) {
+                window.forceCenterOrgChart();
+                setTimeout(window.forceCenterOrgChart, 50);
+                setTimeout(window.forceCenterOrgChart, 150);
+                setTimeout(window.forceCenterOrgChart, 350);
 
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.classList.add('animate-in');
-                    }, index * 120 + 80);
-                });
-            };
-
-            window.initAboutPage = function () {
-                // Kích hoạt chuyển động cho Metrics
-                window.animateMetricCards();
-
-                // Căn giữa Sơ đồ tổ chức
-                const wrapper = document.querySelector('.org-chart-wrapper');
-                if (wrapper) {
-                    window.forceCenterOrgChart();
-                    setTimeout(window.forceCenterOrgChart, 50);
-                    setTimeout(window.forceCenterOrgChart, 150);
-                    setTimeout(window.forceCenterOrgChart, 350);
-
-                    if (document.fonts) {
-                        document.fonts.ready.then(window.forceCenterOrgChart);
-                    }
-
-                    if (window.ResizeObserver && !wrapper._hasResizeObserver) {
-                        wrapper._hasResizeObserver = true;
-                        const ro = new ResizeObserver(() => {
-                            window.forceCenterOrgChart();
-                        });
-                        ro.observe(wrapper);
-                        const tree = wrapper.querySelector('.org-tree');
-                        if (tree) ro.observe(tree);
-                    }
+                if (document.fonts) {
+                    document.fonts.ready.then(window.forceCenterOrgChart);
                 }
-            };
 
-            // Kích hoạt ngay lập tức khi <main> được chèn vào DOM qua AJAX
-            setTimeout(window.initAboutPage, 40);
+                if (window.ResizeObserver && !wrapper._hasResizeObserver) {
+                    wrapper._hasResizeObserver = true;
+                    const ro = new ResizeObserver(() => {
+                        window.forceCenterOrgChart();
+                    });
+                    ro.observe(wrapper);
+                    const tree = wrapper.querySelector('.org-tree');
+                    if (tree) ro.observe(tree);
+                }
+            }
 
             // HÀM CHẠY CHỮ NAV TAB
             window.initNavTabs = function () {
