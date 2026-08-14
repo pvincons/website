@@ -339,82 +339,82 @@
             </div>
         </section>
 
-        <!-- SCRIPT SLIDER -->
-        <script>
-            window.latestProjectIndex = window.latestProjectIndex || 0;
-            window.totalLatestProjects = 6;
+    </main>
+    
+    <!-- SCRIPT SLIDER -->
+    <script>
+        window.latestProjectIndex = window.latestProjectIndex || 0;
+        window.totalLatestProjects = 6;
 
-            window.setLatestProject = function (index) {
-                window.latestProjectIndex = index;
-                const latestTrack = document.getElementById('latestProjectsTrack');
-                const latestDots = document.querySelectorAll('.latest-dot');
+        window.setLatestProject = function (index) {
+            window.latestProjectIndex = index;
+            const latestTrack = document.getElementById('latestProjectsTrack');
+            const latestDots = document.querySelectorAll('.latest-dot');
 
-                if (latestTrack) {
-                    latestTrack.style.transform = `translateX(-${window.latestProjectIndex * 100}%)`;
+            if (latestTrack) {
+                latestTrack.style.transform = `translateX(-${window.latestProjectIndex * 100}%)`;
+            }
+            latestDots.forEach((dot, i) => {
+                if (i === window.latestProjectIndex) {
+                    dot.classList.remove('bg-slate-300', 'w-2.5');
+                    dot.classList.add('bg-[#8c6239]', 'w-6');
+                } else {
+                    dot.classList.remove('bg-[#8c6239]', 'w-6');
+                    dot.classList.add('bg-slate-300', 'w-2.5');
                 }
-                latestDots.forEach((dot, i) => {
-                    if (i === window.latestProjectIndex) {
-                        dot.classList.remove('bg-slate-300', 'w-2.5');
-                        dot.classList.add('bg-[#8c6239]', 'w-6');
-                    } else {
-                        dot.classList.remove('bg-[#8c6239]', 'w-6');
-                        dot.classList.add('bg-slate-300', 'w-2.5');
+            });
+        };
+
+        window.nextLatestProject = function () {
+            window.latestProjectIndex = (window.latestProjectIndex + 1) % window.totalLatestProjects;
+            window.setLatestProject(window.latestProjectIndex);
+        };
+
+        window.prevLatestProject = function () {
+            window.latestProjectIndex = (window.latestProjectIndex - 1 + window.totalLatestProjects) % window.totalLatestProjects;
+            window.setLatestProject(window.latestProjectIndex);
+        };
+
+        window.initHomeSlider = function () {
+            const track = document.getElementById('latestProjectsTrack');
+            if (!track) return;
+
+            if (!track._hasSwipeListener) {
+                track._hasSwipeListener = true;
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                track.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                track.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const swipeThreshold = 70;
+                    const diffX = touchStartX - touchEndX;
+
+                    if (diffX > swipeThreshold) {
+                        window.nextLatestProject();
+                    } else if (diffX < -swipeThreshold) {
+                        window.prevLatestProject();
                     }
-                });
-            };
+                }, { passive: true });
+            }
 
-            window.nextLatestProject = function () {
-                window.latestProjectIndex = (window.latestProjectIndex + 1) % window.totalLatestProjects;
-                window.setLatestProject(window.latestProjectIndex);
-            };
-
-            window.prevLatestProject = function () {
-                window.latestProjectIndex = (window.latestProjectIndex - 1 + window.totalLatestProjects) % window.totalLatestProjects;
-                window.setLatestProject(window.latestProjectIndex);
-            };
-
-            window.initHomeSlider = function () {
-                const track = document.getElementById('latestProjectsTrack');
-                if (!track) return;
-
-                if (!track._hasSwipeListener) {
-                    track._hasSwipeListener = true;
-                    let touchStartX = 0;
-                    let touchEndX = 0;
-
-                    track.addEventListener('touchstart', (e) => {
-                        touchStartX = e.changedTouches[0].screenX;
-                    }, { passive: true });
-
-                    track.addEventListener('touchend', (e) => {
-                        touchEndX = e.changedTouches[0].screenX;
-                        const swipeThreshold = 70;
-                        const diffX = touchStartX - touchEndX;
-
-                        if (diffX > swipeThreshold) {
-                            window.nextLatestProject();
-                        } else if (diffX < -swipeThreshold) {
-                            window.prevLatestProject();
-                        }
-                    }, { passive: true });
-                }
-
-                if (window.homeSliderInterval) {
+            if (window.homeSliderInterval) {
+                clearInterval(window.homeSliderInterval);
+            }
+            window.homeSliderInterval = setInterval(() => {
+                if (document.getElementById('latestProjectsTrack')) {
+                    window.nextLatestProject();
+                } else {
                     clearInterval(window.homeSliderInterval);
                 }
-                window.homeSliderInterval = setInterval(() => {
-                    if (document.getElementById('latestProjectsTrack')) {
-                        window.nextLatestProject();
-                    } else {
-                        clearInterval(window.homeSliderInterval);
-                    }
-                }, 4000);
-            };
+            }, 4000);
+        };
 
-            window.initHomeSlider();
-        </script>
-    </main>
-
+        window.initHomeSlider();
+    </script>
     <div id="footer-placeholder"></div>
 
     <script src="layout.js"></script>
