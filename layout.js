@@ -1,14 +1,14 @@
 // ==========================================
-// 1. CẤU HÌNH BÀI VIẾT TRANG CHỦ THEO ID
+// 1. CẤU HÌNH LỌC BÀI VIẾT TRANG CHỦ
 // ==========================================
-// Điền danh sách ID các bài viết bạn muốn hiển thị trên trang chủ (index.html) tại đây
-const HOME_FEATURED_IDS = ["1", "2", "3", "4", "5", "6"];
+// Tự động lọc tất cả bài viết có category là "cong-ty" lên trang chủ
+const HOME_CATEGORY = "cong-ty"; 
 
 // Cấu hình Formspree
 const FORMSPREE_URL = "https://formspree.io/f/xzdnldga"; 
 
 // ==========================================
-// 2. TẢI HEADER & FOOTER (ĐÃ SỬA LỖI MẤT HEADER/FOOTER)
+// 2. TẢI HEADER & FOOTER (ĐÃ SỬA LỖI NẠP HEADER/FOOTER)
 // ==========================================
 async function loadLayout(pageId) {
     try {
@@ -20,7 +20,7 @@ async function loadLayout(pageId) {
             const headerRes = await fetch('header.html');
             if (headerRes.ok) {
                 const headerHtml = await headerRes.text();
-                headerPlaceholder.outerHTML = headerHtml;
+                headerPlaceholder.innerHTML = headerHtml;
             }
         }
 
@@ -55,7 +55,7 @@ async function loadLayout(pageId) {
 window.loadLayout = loadLayout;
 
 // ==========================================
-// 3. NẠP TIN TỨC TRANG CHỦ (LỌC THEO ID BÀI VIẾT)
+// 3. NẠP TIN TỨC TRANG CHỦ (CỘT NGANG 100% GIỐNG TRANG TIN TỨC)
 // ==========================================
 async function loadHomeNews() {
     const placeholder = document.getElementById('latest-news-placeholder');
@@ -63,93 +63,100 @@ async function loadHomeNews() {
 
     let articlesData = [];
 
-    // Tải dữ liệu từ assets/js/news-loader.js
+    // 1. Lấy dữ liệu trực tiếp từ content/posts-news.json
     try {
-        const loaderRes = await fetch('assets/js/news-loader.js');
-        if (loaderRes.ok) {
-            const jsText = await loaderRes.text();
-            const match = jsText.match(/(?:const|let|var)\s+\w+\s*=\s*(\[\s*\{[\s\S]*?\}\s*\])/);
-            if (match && match[1]) {
-                articlesData = new Function(`return ${match[1]}`)();
-            }
+        const jsonRes = await fetch('content/posts-news.json');
+        if (jsonRes.ok) {
+            articlesData = await jsonRes.json();
         }
     } catch (err) {
-        console.warn('Không đọc được news-loader.js:', err);
+        console.warn('Không đọc được content/posts-news.json, thử phương án dự phòng:', err);
     }
 
-    // Tải dự phòng từ file JSON nếu chưa lấy được dữ liệu
+    // 2. Dự phòng: Tải từ news-loader.js nếu chưa lấy được dữ liệu
     if (!articlesData || articlesData.length === 0) {
-        const jsonPaths = ['assets/data/news.json', 'data/news.json', 'news.json'];
-        for (const path of jsonPaths) {
-            try {
-                const res = await fetch(path);
-                if (res.ok) {
-                    articlesData = await res.json();
-                    break;
+        try {
+            const loaderRes = await fetch('assets/js/news-loader.js');
+            if (loaderRes.ok) {
+                const jsText = await loaderRes.text();
+                const match = jsText.match(/(?:const|let|var)\s+\w+\s*=\s*(\[\s*\{[\s\S]*?\}\s*\])/);
+                if (match && match[1]) {
+                    articlesData = new Function(`return ${match[1]}`)();
                 }
-            } catch (e) {}
-        }
+            }
+        } catch (e) {}
     }
 
     if (!Array.isArray(articlesData) || articlesData.length === 0) return;
 
-    // Lọc bài viết khớp với danh sách HOME_FEATURED_IDS
-    let selectedArticles = [];
-    if (typeof HOME_FEATURED_IDS !== 'undefined' && HOME_FEATURED_IDS.length > 0) {
-        selectedArticles = articlesData.filter(item => HOME_FEATURED_IDS.includes(String(item.id)));
-    }
+    // 3. Lọc bài viết có category === "cong-ty"
+    let selectedArticles = articlesData.filter(item => 
+        item.category === HOME_CATEGORY || 
+        (item.category && item.category.toLowerCase().includes('cong-ty'))
+    );
 
-    // Phương án dự phòng: Lấy thuộc tính featured hoặc 3 bài mới nhất nếu ID không khớp
-    if (selectedArticles.length === 0) {
-        selectedArticles = articlesData.filter(item => item.featured === true || item.pinHome === true);
-    }
+    // Sắp xếp bài viết mới nhất lên đầu (theo ID giảm dần)
+    selectedArticles.sort((a, b) => Number(b.id) - Number(a.id));
+
+    // Dự phòng: Lấy 3 bài mới nhất nếu không có bài nào thuộc category cong-ty
     if (selectedArticles.length === 0) {
         selectedArticles = articlesData.slice(0, 3);
     }
 
-    // Render danh sách bài viết hàng dọc đúng khung giao diện
+    // 4. Render danh sách bài viết dạng hàng ngang (Mobile & Desktop)
     placeholder.innerHTML = `
         <div class="flex flex-col gap-5 w-full max-w-4xl mx-auto">
-            ${selectedArticles.map(item => `
-                <article class="w-full bg-slate-50/60 hover:bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition duration-300 p-3.5 sm:p-4 flex flex-col sm:flex-row gap-4 items-center justify-between">
-                    <!-- Ảnh đại diện + Tag -->
-                    <div class="relative w-full sm:w-5/12 h-44 sm:h-36 rounded-xl overflow-hidden shrink-0 bg-slate-200">
+            ${selectedArticles.map(item => {
+                const articleUrl = item.link || item.url || `news-detail.html?id=${item.id}`;
+                return `
+                <article onclick="window.location.href='${articleUrl}'" 
+                         class="bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-row items-stretch min-h-[130px] sm:min-h-[200px] cursor-pointer group">
+                    
+                    <!-- Hình ảnh đại diện (Bên trái: 40% Mobile, 33%-40% Desktop) -->
+                    <div class="w-[40%] sm:w-1/3 lg:w-2/5 relative shrink-0">
                         <img src="${item.image || item.img || 'assets/pic/PC_01.webp'}" 
-                             alt="${item.title || ''}" 
-                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                            ${item.category || item.tag || 'CÔNG NGHỆ'}
+                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" 
+                             alt="${item.title || ''}">
+                        <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-brand-blue text-white text-[8px] sm:text-[10px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase shadow-sm">
+                            ${item.categoryLabel || 'CÔNG NGHỆ'}
                         </span>
                     </div>
 
-                    <!-- Nội dung bài viết -->
-                    <div class="flex-1 flex flex-col justify-between w-full h-full py-1">
+                    <!-- Mảng chữ và nội dung (Bên phải) -->
+                    <div class="w-[60%] sm:w-2/3 lg:w-3/5 p-3 sm:p-6 flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-1.5 text-brand-blue font-bold text-xs mb-2">
-                                <i class="fa-regular fa-calendar"></i>
-                                <span>${item.date || '14/08/2026'}</span>
-                            </div>
-                            <h3 class="text-base sm:text-lg font-extrabold text-slate-800 leading-snug tracking-tight hover:text-brand-orange transition line-clamp-2 uppercase">
-                                <a href="${item.link || item.url || `news-detail.html?id=${item.id}`}">${item.title}</a>
+                            <!-- Ngày đăng -->
+                            <span class="text-[10px] sm:text-xs text-brand-blue font-semibold">
+                                <i class="fa-regular fa-calendar mr-1"></i> ${item.date || '14/08/2026'}
+                            </span>
+                            
+                            <!-- Tiêu đề (Canh đều) -->
+                            <h3 class="font-bold text-[13px] leading-snug sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors text-justify">
+                                ${item.title}
                             </h3>
+
+                            <!-- Mô tả tóm tắt (Canh đều) -->
+                            <p class="text-slate-600 text-[11px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 text-justify mt-1">
+                                ${item.summary || ''}
+                            </p>
                         </div>
 
-                        <!-- Nút Xem chi tiết -->
-                        <div class="flex justify-end mt-4 sm:mt-2">
-                            <a href="${item.link || item.url || `news-detail.html?id=${item.id}`}" 
-                               class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-white hover:bg-brand-blue text-slate-700 hover:text-white border border-slate-200 text-xs font-bold transition-all shadow-xs">
-                                Xem <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                            </a>
+                        <!-- Nút xem chi tiết -->
+                        <div class="mt-2 sm:mt-5 flex justify-end">
+                            <span class="text-brand-blue group-hover:text-brand-orange text-[10px] sm:text-xs font-bold flex items-center gap-1 sm:gap-1.5 transition-colors py-1.5 px-2.5 sm:py-2 sm:px-4 rounded bg-slate-50 border border-slate-200 group-hover:border-brand-orange shadow-sm">
+                                Xem <span class="hidden sm:inline">chi tiết</span> <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
+                            </span>
                         </div>
                     </div>
                 </article>
-            `).join('')}
+                `;
+            }).join('')}
         </div>
     `;
 }
 
 // ==========================================
-// 4. CÁC HÀM PHỤ TRỢ (LANGUAGE, ACTIVE TAB, SCROLL, FORM)
+// 4. CÁC HÀM PHỤ TRỢ (ACTIVE TAB, SCROLL)
 // ==========================================
 function updateActiveTab(pageId) {
     const normalizedPageId = (!pageId || pageId === 'index') ? 'index' : pageId;
