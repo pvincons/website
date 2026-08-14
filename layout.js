@@ -1,100 +1,180 @@
 // ==========================================
-// CẤU HÌNH CỔNG GỬI MAIL FORMSPREE
+// 1. CẤU HÌNH BÀI VIẾT TRANG CHỦ THEO ID
 // ==========================================
+// Điền danh sách ID các bài viết bạn muốn hiển thị trên trang chủ (index.html) tại đây
+const HOME_FEATURED_IDS = ["1", "2", "3", "4", "5", "6"];
+
+// Cấu hình Formspree
 const FORMSPREE_URL = "https://formspree.io/f/xzdnldga"; 
 
 // ==========================================
-// CHỨC NĂNG ĐỔI NGÔN NGỮ (GLOBAL LANGUAGE SWITCHER)
+// 2. TẢI HEADER & FOOTER (ĐÃ SỬA LỖI MẤT HEADER/FOOTER)
 // ==========================================
-window.toggleLanguage = function () {
-    const isEn = document.cookie.indexOf('googtrans=/vi/en') !== -1 || document.cookie.indexOf('/en') !== -1;
-    const host = location.hostname;
-    const rootDomain = host.replace(/^www\./, '');
-    const pastDate = "expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+async function loadLayout(pageId) {
+    try {
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        const footerPlaceholder = document.getElementById('footer-placeholder');
 
-    if (isEn) {
-        document.cookie = "googtrans=; " + pastDate;
-        document.cookie = "googtrans=; domain=" + host + "; " + pastDate;
-        document.cookie = "googtrans=; domain=." + rootDomain + "; " + pastDate;
-    } else {
-        document.cookie = "googtrans=/vi/en; path=/;";
-        document.cookie = "googtrans=/vi/en; path=/; domain=" + host + ";";
-        document.cookie = "googtrans=/vi/en; path=/; domain=." + rootDomain + ";";
-    }
-    location.reload();
-};
+        // Tải Header nếu có vị trí cắm (placeholder)
+        if (headerPlaceholder) {
+            const headerRes = await fetch('header.html');
+            if (headerRes.ok) {
+                const headerHtml = await headerRes.text();
+                headerPlaceholder.outerHTML = headerHtml;
+            }
+        }
 
-window.googleTranslateElementInit = function () {
-    if (typeof google !== 'undefined' && google.translate) {
-        new google.translate.TranslateElement({
-            pageLanguage: 'vi',
-            includedLanguages: 'en,vi',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
-        }, 'google_translate_element');
+        // Tải Footer nếu có vị trí cắm (placeholder)
+        if (footerPlaceholder) {
+            const footerRes = await fetch('footer.html');
+            if (footerRes.ok) {
+                const footerHtml = await footerRes.text();
+                footerPlaceholder.innerHTML = footerHtml;
+            }
+        }
+
+        // Khởi tạo nút Toggle Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+        }
+
+        // Cập nhật trạng thái Menu active
+        updateActiveTab(pageId);
+
+        // Tải danh sách bài viết nếu đang ở trang chủ
+        if (!pageId || pageId === 'index') {
+            loadHomeNews();
+        }
+
+    } catch (error) {
+        console.error('Lỗi khi nạp Header/Footer:', error);
     }
-};
+}
+window.loadLayout = loadLayout;
 
 // ==========================================
-// CẬP NHẬT TRẠNG THÁI TAB ACTIVE TRÊN MENU
+// 3. NẠP TIN TỨC TRANG CHỦ (LỌC THEO ID BÀI VIẾT)
+// ==========================================
+async function loadHomeNews() {
+    const placeholder = document.getElementById('latest-news-placeholder');
+    if (!placeholder) return;
+
+    let articlesData = [];
+
+    // Tải dữ liệu từ assets/js/news-loader.js
+    try {
+        const loaderRes = await fetch('assets/js/news-loader.js');
+        if (loaderRes.ok) {
+            const jsText = await loaderRes.text();
+            const match = jsText.match(/(?:const|let|var)\s+\w+\s*=\s*(\[\s*\{[\s\S]*?\}\s*\])/);
+            if (match && match[1]) {
+                articlesData = new Function(`return ${match[1]}`)();
+            }
+        }
+    } catch (err) {
+        console.warn('Không đọc được news-loader.js:', err);
+    }
+
+    // Tải dự phòng từ file JSON nếu chưa lấy được dữ liệu
+    if (!articlesData || articlesData.length === 0) {
+        const jsonPaths = ['assets/data/news.json', 'data/news.json', 'news.json'];
+        for (const path of jsonPaths) {
+            try {
+                const res = await fetch(path);
+                if (res.ok) {
+                    articlesData = await res.json();
+                    break;
+                }
+            } catch (e) {}
+        }
+    }
+
+    if (!Array.isArray(articlesData) || articlesData.length === 0) return;
+
+    // Lọc bài viết khớp với danh sách HOME_FEATURED_IDS
+    let selectedArticles = [];
+    if (typeof HOME_FEATURED_IDS !== 'undefined' && HOME_FEATURED_IDS.length > 0) {
+        selectedArticles = articlesData.filter(item => HOME_FEATURED_IDS.includes(String(item.id)));
+    }
+
+    // Phương án dự phòng: Lấy thuộc tính featured hoặc 3 bài mới nhất nếu ID không khớp
+    if (selectedArticles.length === 0) {
+        selectedArticles = articlesData.filter(item => item.featured === true || item.pinHome === true);
+    }
+    if (selectedArticles.length === 0) {
+        selectedArticles = articlesData.slice(0, 3);
+    }
+
+    // Render danh sách bài viết hàng dọc đúng khung giao diện
+    placeholder.innerHTML = `
+        <div class="flex flex-col gap-5 w-full max-w-4xl mx-auto">
+            ${selectedArticles.map(item => `
+                <article class="w-full bg-slate-50/60 hover:bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition duration-300 p-3.5 sm:p-4 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                    <!-- Ảnh đại diện + Tag -->
+                    <div class="relative w-full sm:w-5/12 h-44 sm:h-36 rounded-xl overflow-hidden shrink-0 bg-slate-200">
+                        <img src="${item.image || item.img || 'assets/pic/PC_01.webp'}" 
+                             alt="${item.title || ''}" 
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                            ${item.category || item.tag || 'CÔNG NGHỆ'}
+                        </span>
+                    </div>
+
+                    <!-- Nội dung bài viết -->
+                    <div class="flex-1 flex flex-col justify-between w-full h-full py-1">
+                        <div>
+                            <div class="flex items-center gap-1.5 text-brand-blue font-bold text-xs mb-2">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>${item.date || '14/08/2026'}</span>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-extrabold text-slate-800 leading-snug tracking-tight hover:text-brand-orange transition line-clamp-2 uppercase">
+                                <a href="${item.link || item.url || `news-detail.html?id=${item.id}`}">${item.title}</a>
+                            </h3>
+                        </div>
+
+                        <!-- Nút Xem chi tiết -->
+                        <div class="flex justify-end mt-4 sm:mt-2">
+                            <a href="${item.link || item.url || `news-detail.html?id=${item.id}`}" 
+                               class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-white hover:bg-brand-blue text-slate-700 hover:text-white border border-slate-200 text-xs font-bold transition-all shadow-xs">
+                                Xem <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            `).join('')}
+        </div>
+    `;
+}
+
+// ==========================================
+// 4. CÁC HÀM PHỤ TRỢ (LANGUAGE, ACTIVE TAB, SCROLL, FORM)
 // ==========================================
 function updateActiveTab(pageId) {
     const normalizedPageId = (!pageId || pageId === 'index') ? 'index' : pageId;
-    const allTabs = document.querySelectorAll('[data-tab]');
-
-    allTabs.forEach(el => {
+    document.querySelectorAll('[data-tab]').forEach(el => {
         if (el.classList.contains('nav-tab-btn')) {
             el.classList.remove('border-brand-blue', 'text-brand-blue');
             el.classList.add('border-transparent', 'text-slate-600');
         }
-        if (el.classList.contains('mobile-tab-btn')) {
-            el.classList.remove('text-brand-blue', 'bg-blue-50');
-            el.classList.add('text-slate-700');
-        }
     });
-
-    const activeTabs = document.querySelectorAll(`[data-tab="${normalizedPageId}"]`);
-    activeTabs.forEach(el => {
+    document.querySelectorAll(`[data-tab="${normalizedPageId}"]`).forEach(el => {
         if (el.classList.contains('nav-tab-btn')) {
             el.classList.add('border-brand-blue', 'text-brand-blue');
             el.classList.remove('border-transparent', 'text-slate-600');
         }
-        if (el.classList.contains('mobile-tab-btn')) {
-            el.classList.add('text-brand-blue', 'bg-blue-50');
-            el.classList.remove('text-slate-700');
-        }
     });
 }
 
-// ==========================================
-// CHỨC NĂNG CUỘN TRANG MƯỢT MÀ VỚI LIÊN KẾT NỘI TRANG (#)
-// ==========================================
 function initSmoothScroll() {
     if (window._smoothScrollInitialized) return;
     window._smoothScrollInitialized = true;
-
     document.addEventListener('click', function (e) {
         const anchor = e.target.closest('a[href^="#"]');
         if (!anchor) return;
-
         const href = anchor.getAttribute('href');
-        if (!href) return;
-
-        const navContainer = anchor.closest('nav');
-        if (navContainer) {
-            const navLinks = navContainer.querySelectorAll('a[href^="#"]');
-            navLinks.forEach(link => {
-                link.classList.remove('text-brand-orange');
-                link.classList.add('text-slate-600');
-            });
-            anchor.classList.add('text-brand-orange');
-            anchor.classList.remove('text-slate-600');
-        }
-
-        if (href === '#') {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else if (href.startsWith('#') && href.length > 1) {
+        if (href && href.length > 1) {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
@@ -104,283 +184,12 @@ function initSmoothScroll() {
     });
 }
 
-// ==========================================
-// NẠP HEADER / FOOTER DỰ ÁN
-// ==========================================
-async function loadLayout(pageId) {
-    try {
-        if (!document.querySelector('header')) {
-            const [headerRes, footerRes] = await Promise.all([
-                fetch('header.html'),
-                fetch('footer.html')
-            ]);
-
-            const headerHtml = await headerRes.text();
-            const footerHtml = await footerRes.text();
-
-            const headerPlaceholder = document.getElementById('header-placeholder');
-            if (headerPlaceholder) {
-                headerPlaceholder.outerHTML = headerHtml;
-            }
-
-            const footerPlaceholder = document.getElementById('footer-placeholder');
-            if (footerPlaceholder) {
-                footerPlaceholder.innerHTML = footerHtml;
-            }
-
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-        }
-
-        updateActiveTab(pageId);
-
-    } catch (error) {
-        console.error('Lỗi khi nạp Header/Footer:', error);
-    }
-}
-
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-    }
-}
-
-// ==========================================
-// TỰ ĐỘNG LẤY 6 TIN TỨC CHO INDEX.HTML
-// ==========================================
-async function loadHomeNews() {
-    const placeholder = document.getElementById('latest-news-placeholder');
-    if (!placeholder) return;
-
-    try {
-        const response = await fetch('news.html');
-        if (!response.ok) return;
-        const htmlText = await response.text();
-
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlText, 'text/html');
-        
-        const newsContainer = doc.querySelector('#news-container');
-
-        if (newsContainer) {
-            const articles = Array.from(newsContainer.querySelectorAll('article')).slice(0, 6);
-            placeholder.innerHTML = '';
-
-            articles.forEach(article => {
-                const clonedArticle = article.cloneNode(true);
-
-                clonedArticle.classList.remove(
-                    'min-w-[320px]', 'w-[85vw]', 'md:w-[450px]', 'w-[280px]', 'sm:w-[320px]', 'md:w-[350px]',
-                    'shrink-0', 'snap-start'
-                );
-
-                clonedArticle.classList.add('w-full');
-                placeholder.appendChild(clonedArticle);
-            });
-        }
-    } catch (error) {
-        console.error('Lỗi tải tin tức trang chủ:', error);
-    }
-}
-
-// ==========================================
-// FORM POPUP CHUẨN FORMSPREE
-// ==========================================
-function getMasterModalHtml() {
-    return `
-    <div id="contactModal" class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto">
-        <div class="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 my-auto">
-            <button type="button" onclick="closeContactModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl font-bold p-2 focus:outline-none cursor-pointer">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <h3 class="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Thông Tin Liên Hệ</h3>
-
-            <form id="contactForm" action="${FORMSPREE_URL}" method="POST" onsubmit="submitContactForm(event)" class="space-y-4">
-                <div>
-                    <input type="text" name="Họ_và_tên" required placeholder="Họ và Tên *" 
-                        class="w-full px-4 py-3.5 text-slate-800 bg-[#edf3fc] border border-transparent rounded-xl focus:outline-none focus:border-brand-blue focus:bg-white transition text-sm placeholder-slate-500 font-normal">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <input type="tel" name="Số_điện_thoại" required placeholder="Số Điện Thoại *" 
-                            class="w-full px-4 py-3.5 text-slate-800 bg-[#edf3fc] border border-transparent rounded-xl focus:outline-none focus:border-brand-blue focus:bg-white transition text-sm placeholder-slate-500 font-normal">
-                    </div>
-                    <div>
-                        <input type="text" name="Địa_điểm_công_trình" placeholder="Địa Điểm Công Trình" 
-                            class="w-full px-4 py-3.5 text-slate-800 bg-[#edf3fc] border border-transparent rounded-xl focus:outline-none focus:border-brand-blue focus:bg-white transition text-sm placeholder-slate-500 font-normal">
-                    </div>
-                </div>
-
-                <div>
-                    <textarea name="Nội_dung_yêu_cầu" rows="5" placeholder="Nội dung yêu cầu..." 
-                        class="w-full px-4 py-3.5 text-slate-800 bg-[#edf3fc] border border-transparent rounded-xl focus:outline-none focus:border-brand-blue focus:bg-white transition text-sm resize-none placeholder-slate-500 font-normal"></textarea>
-                </div>
-
-                <button type="submit" 
-                    class="w-full bg-[#1e6091] hover:bg-[#184e77] text-white font-bold py-3.5 px-6 rounded-xl transition duration-200 text-center shadow-md cursor-pointer text-base mt-2">
-                    Gửi Thông Tin
-                </button>
-            </form>
-        </div>
-    </div>`;
-}
-
-function openContactModal() {
-    document.querySelectorAll('#contactModal').forEach(el => el.remove());
-    document.body.insertAdjacentHTML('beforeend', getMasterModalHtml());
-}
-
-function closeContactModal() {
-    document.querySelectorAll('#contactModal').forEach(el => el.remove());
-}
-
-function showThankYouModal() {
-    let thankYouModal = document.getElementById('thankYouModal');
-    if (!thankYouModal) {
-        const modalHtml = `
-        <div id="thankYouModal" class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-            <div class="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl text-center border border-slate-100">
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-800 mb-2">Gửi Thông Tin Thành Công!</h3>
-                <p class="text-slate-600 text-sm mb-6">Cảm ơn Quý khách đã liên hệ với PV INCONS. Chúng tôi sẽ xử lý thông tin và gửi lại cho Quý khách trong thời gian sớm nhất.</p>
-                <button type="button" onclick="closeModal()" class="w-full bg-brand-blue hover:bg-brand-darkblue text-white font-semibold py-3 rounded-xl transition cursor-pointer text-sm">
-                    Đóng
-                </button>
-            </div>
-        </div>`;
-        document.body.insertAdjacentHTML('beforeend', modalHtml);
-    } else {
-        thankYouModal.classList.remove('hidden');
-        thankYouModal.classList.add('flex');
-    }
-}
-
-function closeModal() {
-    const reqModal = document.getElementById('requestModal');
-    if (reqModal) reqModal.classList.add('hidden');
-
-    const thankYouModal = document.getElementById('thankYouModal');
-    if (thankYouModal) {
-        thankYouModal.classList.add('hidden');
-        thankYouModal.classList.remove('flex');
-    }
-}
-
-// ==========================================
-// HÀM GỬI DỮ LIỆU TỚI FORMSPREE (AJAX)
-// ==========================================
-async function submitContactForm(e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn ? submitBtn.innerText : 'Gửi Thông Tin';
-
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Đang gửi...';
-    }
-
-    try {
-        const actionUrl = form.action && form.action.includes('formspree.io') ? form.action : FORMSPREE_URL;
-        const response = await fetch(actionUrl, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 
-                'Accept': 'application/json' 
-            }
-        });
-
-        if (response.ok) {
-            form.reset();
-            closeContactModal();
-            const reqModal = document.getElementById('requestModal');
-            if (reqModal) reqModal.classList.add('hidden');
-            showThankYouModal();
-        } else {
-            alert('Có lỗi xảy ra khi gửi dữ liệu qua Formspree. Vui lòng kiểm tra lại kết nối!');
-        }
-    } catch (error) {
-        console.error('Lỗi kết nối Formspree:', error);
-        alert('Không thể kết nối máy chủ. Vui lòng kiểm tra lại mạng internet!');
-    } finally {
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = originalBtnText;
-        }
-    }
-}
-
-// ==========================================
-// THỐNG KÊ LƯỢT TRUY CẬP
-// ==========================================
-async function initVisitorCounter() {
-    const totalVisitsEl = document.getElementById('totalVisits');
-    const onlineVisitorsEl = document.getElementById('onlineVisitors');
-
-    if (!totalVisitsEl && !onlineVisitorsEl) return;
-
-    const NAMESPACE = 'pvincons_construct_2026';
-    const KEY = 'total_visits';
-
-    try {
-        let endpoint = `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/`;
-
-        if (!sessionStorage.getItem('pv_counted_session')) {
-            endpoint += 'up/';
-            sessionStorage.setItem('pv_counted_session', 'true');
-        }
-
-        const response = await fetch(endpoint);
-        if (response.ok) {
-            const data = await response.json();
-            const BASE_OFFSET = 12000;
-            const finalTotal = (data.count || 0) + BASE_OFFSET;
-            if (totalVisitsEl) {
-                totalVisitsEl.innerText = Number(finalTotal).toLocaleString('vi-VN');
-            }
-            if (onlineVisitorsEl) {
-                onlineVisitorsEl.innerText = Math.floor(Math.random() * 5) + 3;
-            }
-        } else {
-            throw new Error('Lỗi phản hồi API');
-        }
-    } catch (error) {
-        if (totalVisitsEl) {
-            totalVisitsEl.innerText = '12.000';
-        }
-        if (onlineVisitorsEl) {
-            onlineVisitorsEl.innerText = '5';
-        }
-    }
-}
-
-// ==========================================
-// KHỞI TẠO TỰ ĐỘNG KHI TẢI TRANG
-// ==========================================
+// Khởi tạo tự động khi trang đã sẵn sàng
 document.addEventListener('DOMContentLoaded', function () {
-    if (!document.getElementById('google_translate_element')) {
-        const translateDiv = document.createElement('div');
-        translateDiv.id = 'google_translate_element';
-        translateDiv.style.display = 'none';
-        document.body.appendChild(translateDiv);
-
-        const translateScript = document.createElement('script');
-        translateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-        document.body.appendChild(translateScript);
-    }
-
     initSmoothScroll();
-    setTimeout(initVisitorCounter, 300);
-    loadHomeNews();
+    
+    // Tự động nạp layout nếu trang có sẵn thẻ placeholder
+    if (document.getElementById('header-placeholder') || document.getElementById('footer-placeholder')) {
+        loadLayout('index');
+    }
 });

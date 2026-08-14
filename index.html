@@ -145,13 +145,13 @@
 
                 <div class="relative max-w-4xl mx-auto group">
                     <!-- Nút chuyển trái -->
-                    <button type="button" onclick="prevLatestProject()"
+                    <button type="button" onclick="prevLatestProject()" aria-label="Dự án trước"
                         class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all z-10 cursor-pointer">
                         <i class="fa-solid fa-chevron-left text-sm"></i>
                     </button>
 
                     <!-- Nút chuyển phải -->
-                    <button type="button" onclick="nextLatestProject()"
+                    <button type="button" onclick="nextLatestProject()" aria-label="Dự án tiếp theo"
                         class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all z-10 cursor-pointer">
                         <i class="fa-solid fa-chevron-right text-sm"></i>
                     </button>
@@ -240,17 +240,17 @@
                     </div>
 
                     <div class="flex justify-center space-x-2 mt-4">
-                        <button type="button" onclick="setLatestProject(0)"
+                        <button type="button" aria-label="Slide 1" onclick="setLatestProject(0)"
                             class="latest-dot w-6 h-2.5 rounded-full bg-[#8c6239] transition-all cursor-pointer"></button>
-                        <button type="button" onclick="setLatestProject(1)"
+                        <button type="button" aria-label="Slide 2" onclick="setLatestProject(1)"
                             class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                        <button type="button" onclick="setLatestProject(2)"
+                        <button type="button" aria-label="Slide 3" onclick="setLatestProject(2)"
                             class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                        <button type="button" onclick="setLatestProject(3)"
+                        <button type="button" aria-label="Slide 4" onclick="setLatestProject(3)"
                             class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                        <button type="button" onclick="setLatestProject(4)"
+                        <button type="button" aria-label="Slide 5" onclick="setLatestProject(4)"
                             class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                        <button type="button" onclick="setLatestProject(5)"
+                        <button type="button" aria-label="Slide 6" onclick="setLatestProject(5)"
                             class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
                     </div>
                 </div>
@@ -334,13 +334,13 @@
                 </div>
 
                 <div id="latest-news-placeholder" class="flex flex-col gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
-                    <!-- Bài viết từ news.html sẽ tự động đổ vào đây -->
+                    <!-- Bài viết từ tin tức sẽ tự động đổ vào đây -->
                 </div>
             </div>
         </section>
 
     </main>
-    
+
     <!-- SCRIPT SLIDER -->
     <script>
         window.latestProjectIndex = window.latestProjectIndex || 0;
@@ -413,7 +413,9 @@
             }, 4000);
         };
 
-        window.initHomeSlider();
+        document.addEventListener('DOMContentLoaded', function () {
+            window.initHomeSlider();
+        });
     </script>
     <div id="footer-placeholder"></div>
 
