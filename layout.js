@@ -36,8 +36,32 @@ window.googleTranslateElementInit = function () {
 };
 
 // ==========================================
-// CẬP NHẬT TRẠNG THÁI TAB ACTIVE TRÊN MENU
+// HÀM HỖ TRỢ CHẠY LẠI SCRIPT TRONG NỘI DUNG MỚI NẠP
 // ==========================================
+function reexecuteScripts(container) {
+    if (!container) return;
+    const scripts = container.querySelectorAll('script');
+    scripts.forEach(oldScript => {
+        const newScript = document.createElement('script');
+        Array.from(oldScript.attributes).forEach(attr => {
+            newScript.setAttribute(attr.name, attr.value);
+        });
+        if (oldScript.src) {
+            newScript.src = oldScript.src;
+        } else {
+            newScript.textContent = oldScript.textContent;
+        }
+        if (oldScript.parentNode) {
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        }
+    });
+}
+
+// ==========================================
+// BỘ NHỚ TẠM (TAB CACHE) & CLIENT-SIDE ROUTER
+// ==========================================
+const tabCache = {};
+
 function updateActiveTab(pageId) {
     const normalizedPageId = (!pageId || pageId === 'index') ? 'index' : pageId;
     const allTabs = document.querySelectorAll('[data-tab]');
@@ -66,8 +90,136 @@ function updateActiveTab(pageId) {
     });
 }
 
+function initClientRouter() {
+    if (window._routerInitialized) return;
+    window._routerInitialized = true;
+
+    document.addEventListener('click', async (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        const isHomePage = href === 'index.html' || href === '/' || href.endsWith('/index.html');
+
+        if (isHomePage) {
+            e.preventDefault();
+            const currentPath = window.location.pathname;
+            if (currentPath.endsWith('index.html') || currentPath === '/' || currentPath === '') {
+                window.location.reload();
+            } else {
+                window.location.href = 'index.html';
+            }
+            return;
+        }
+
+        if (href.endsWith('.html') && !href.startsWith('http') && !href.startsWith('#') && link.target !== '_blank') {
+            e.preventDefault();
+            const targetUrl = new URL(href, window.location.origin).pathname;
+            if (window.location.pathname === targetUrl) return;
+
+            await navigateToPage(targetUrl);
+        }
+    });
+
+    window.addEventListener('popstate', () => {
+        navigateToPage(window.location.pathname, false);
+    });
+}
+
+async function navigateToPage(url, pushState = true) {
+    const mainContent = document.querySelector('main');
+
+    if (mainContent) {
+        mainContent.style.opacity = '0';
+        mainContent.style.transform = 'translateY(4px)';
+        mainContent.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+    }
+
+    setTimeout(async () => {
+        try {
+            let htmlText = tabCache[url];
+
+            if (!htmlText) {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Không thể tải trang');
+                htmlText = await response.text();
+                tabCache[url] = htmlText;
+            }
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, 'text/html');
+
+            const newMain = doc.querySelector('main');
+            const newTitle = doc.querySelector('title');
+
+            if (newMain && mainContent) {
+                mainContent.innerHTML = newMain.innerHTML;
+                reexecuteScripts(mainContent);
+            }
+            if (newTitle) {
+                document.title = newTitle.text;
+            }
+
+            const pageId = url.split('/').pop().replace('.html', '') || 'index';
+            updateActiveTab(pageId);
+
+            if (pushState) {
+                window.history.pushState({}, '', url);
+            }
+
+            closeMobileMenu();
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            if (pageId === 'about' || url.includes('about')) {
+                if (typeof window.initAboutPage === 'function') {
+                    window.initAboutPage();
+                }
+                setTimeout(() => {
+                    if (typeof window.forceCenterOrgChart === 'function') {
+                        window.forceCenterOrgChart();
+                    }
+                }, 180);
+            }
+
+            if (pageId === 'index' || pageId === '' || url.includes('index')) {
+                loadHomeNews();
+                if (typeof window.initHomeSlider === 'function') {
+                    window.initHomeSlider();
+                }
+            } else {
+                if (window.homeSliderInterval) {
+                    clearInterval(window.homeSliderInterval);
+                }
+            }
+
+            if (pageId === 'news' || url.includes('news')) {
+                if (typeof window.initNavTabs === 'function') {
+                    window.initNavTabs();
+                }
+            }
+
+            initVisitorCounter();
+
+            if (typeof AOS !== 'undefined') {
+                AOS.refreshHard();
+            }
+
+            if (mainContent) {
+                mainContent.style.opacity = '1';
+                mainContent.style.transform = 'translateY(0)';
+            }
+
+        } catch (error) {
+            console.error('Lỗi chuyển tab:', error);
+            window.location.href = url;
+        }
+    }, 150);
+}
+
 // ==========================================
-// CHỨC NĂNG CUỘN TRANG MƯỢT MÀ VỚI LIÊN KẾT NỘI TRANG (#)
+// CHỨC NĂNG CUỘN TRANG MƯỢT MÀ & ĐỔI MÀU SUB-NAV TAB
 // ==========================================
 function initSmoothScroll() {
     if (window._smoothScrollInitialized) return;
@@ -105,41 +257,40 @@ function initSmoothScroll() {
 }
 
 // ==========================================
-// NẠP HEADER / FOOTER DỰ ÁN (ĐÃ SỬA LỖI)
+// NẠP HEADER / FOOTER DỰ ÁN
 // ==========================================
 async function loadLayout(pageId) {
     try {
-        const headerPlaceholder = document.getElementById('header-placeholder');
-        const footerPlaceholder = document.getElementById('footer-placeholder');
+        if (!document.querySelector('header')) {
+            const [headerRes, footerRes] = await Promise.all([
+                fetch('header.html'),
+                fetch('footer.html')
+            ]);
 
-        // Nạp Header nếu có placeholder
-        if (headerPlaceholder) {
-            const headerRes = await fetch('header.html');
-            if (headerRes.ok) {
-                const headerHtml = await headerRes.text();
+            const headerHtml = await headerRes.text();
+            const footerHtml = await footerRes.text();
+
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) {
                 headerPlaceholder.outerHTML = headerHtml;
             }
-        }
 
-        // Nạp Footer nếu có placeholder
-        if (footerPlaceholder) {
-            const footerRes = await fetch('footer.html');
-            if (footerRes.ok) {
-                const footerHtml = await footerRes.text();
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+            if (footerPlaceholder) {
                 footerPlaceholder.innerHTML = footerHtml;
             }
+
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            initClientRouter();
         }
 
-        // Gán sự kiện cho Menu Mobile sau khi Header nạp xong
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Cập nhật trạng thái tab active
         updateActiveTab(pageId);
 
     } catch (error) {
@@ -152,72 +303,6 @@ function closeMobileMenu() {
     if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.add('hidden');
     }
-}
-
-// ==========================================
-// CHỨC NĂNG TỰ ĐỘNG CUỘN NAV TAB (ĐÃ SỬA LỖI CÚ PHÁP)
-// ==========================================
-function initNavTabs() {
-    const container = document.getElementById("navTabsContainer");
-    if (!container) return; 
-    if (container.dataset.initialized === "true") return;
-    container.dataset.initialized = "true";
-
-    let speed = 0.3;
-    let direction = 1;
-    let isPaused = false;
-    let resumeTimeout;
-    let currentScroll = container.scrollLeft;
-
-    function autoOscillate() {
-        const activeContainer = document.getElementById("navTabsContainer");
-        if (!activeContainer) return;
-
-        if (!isPaused) {
-            const maxScroll = activeContainer.scrollWidth - activeContainer.clientWidth;
-
-            if (maxScroll > 0) {
-                currentScroll += speed * direction;
-
-                if (currentScroll >= maxScroll) {
-                    currentScroll = maxScroll;
-                    direction = -1;
-                } else if (currentScroll <= 0) {
-                    currentScroll = 0;
-                    direction = 1;
-                }
-
-                activeContainer.scrollLeft = currentScroll;
-            }
-        }
-        requestAnimationFrame(autoOscillate);
-    }
-
-    function pauseScroll() {
-        isPaused = true;
-        clearTimeout(resumeTimeout);
-    }
-
-    function resumeScroll() {
-        clearTimeout(resumeTimeout);
-        resumeTimeout = setTimeout(() => {
-            if (container) currentScroll = container.scrollLeft;
-            isPaused = false;
-        }, 3000);
-    }
-
-    container.addEventListener("touchstart", pauseScroll, {passive: true});
-    container.addEventListener("touchend", resumeScroll, {passive: true});
-    container.addEventListener("mouseenter", pauseScroll);
-    container.addEventListener("mouseleave", resumeScroll);
-
-    container.addEventListener("scroll", () => {
-        if (isPaused) {
-            currentScroll = container.scrollLeft;
-        }
-    }, {passive: true});
-
-    autoOscillate();
 }
 
 // ==========================================
@@ -235,21 +320,30 @@ async function loadHomeNews() {
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, 'text/html');
         
+        // Tìm vùng chứa tin tức trong news.html bằng ID
         const newsContainer = doc.querySelector('#news-container');
 
         if (newsContainer) {
+            // Lấy đúng 6 bài viết đầu tiên
             const articles = Array.from(newsContainer.querySelectorAll('article')).slice(0, 6);
+            
+            // Xóa nội dung cũ trong placeholder
             placeholder.innerHTML = '';
 
             articles.forEach(article => {
+                // Tạo bản sao bài viết để giữ trọn vẹn HTML/CSS từ trang news.html
                 const clonedArticle = article.cloneNode(true);
 
+                // Loại bỏ hoàn toàn các class cuộn ngang nếu có
                 clonedArticle.classList.remove(
                     'min-w-[320px]', 'w-[85vw]', 'md:w-[450px]', 'w-[280px]', 'sm:w-[320px]', 'md:w-[350px]',
                     'shrink-0', 'snap-start'
                 );
 
+                // Ép chiều rộng full theo khung chứa
                 clonedArticle.classList.add('w-full');
+                
+                // Đưa bài viết vào trang chủ
                 placeholder.appendChild(clonedArticle);
             });
         }
@@ -259,7 +353,7 @@ async function loadHomeNews() {
 }
 
 // ==========================================
-// FORM POPUP CHUẨN FORMSPREE
+// ÉP DỰNG FORM POPUP CHUẨN FORMSPREE
 // ==========================================
 function getMasterModalHtml() {
     return `
@@ -434,9 +528,7 @@ async function initVisitorCounter() {
     }
 }
 
-// ==========================================
-// KHỞI TẠO TỰ ĐỘNG KHI TẢI TRANG
-// ==========================================
+// KHỞI TẠO TỰ ĐỘNG CHUẨN
 document.addEventListener('DOMContentLoaded', function () {
     if (!document.getElementById('google_translate_element')) {
         const translateDiv = document.createElement('div');
@@ -452,5 +544,4 @@ document.addEventListener('DOMContentLoaded', function () {
     initSmoothScroll();
     setTimeout(initVisitorCounter, 300);
     loadHomeNews();
-    initNavTabs();
 });
