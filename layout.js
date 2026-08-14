@@ -105,38 +105,41 @@ function initSmoothScroll() {
 }
 
 // ==========================================
-// NẠP HEADER / FOOTER DỰ ÁN
+// NẠP HEADER / FOOTER DỰ ÁN (ĐÃ SỬA LỖI)
 // ==========================================
 async function loadLayout(pageId) {
     try {
-        if (!document.querySelector('header')) {
-            const [headerRes, footerRes] = await Promise.all([
-                fetch('header.html'),
-                fetch('footer.html')
-            ]);
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        const footerPlaceholder = document.getElementById('footer-placeholder');
 
-            const headerHtml = await headerRes.text();
-            const footerHtml = await footerRes.text();
-
-            const headerPlaceholder = document.getElementById('header-placeholder');
-            if (headerPlaceholder) {
+        // Nạp Header nếu có placeholder
+        if (headerPlaceholder) {
+            const headerRes = await fetch('header.html');
+            if (headerRes.ok) {
+                const headerHtml = await headerRes.text();
                 headerPlaceholder.outerHTML = headerHtml;
-            }
-
-            const footerPlaceholder = document.getElementById('footer-placeholder');
-            if (footerPlaceholder) {
-                footerPlaceholder.innerHTML = footerHtml;
-            }
-
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
             }
         }
 
+        // Nạp Footer nếu có placeholder
+        if (footerPlaceholder) {
+            const footerRes = await fetch('footer.html');
+            if (footerRes.ok) {
+                const footerHtml = await footerRes.text();
+                footerPlaceholder.innerHTML = footerHtml;
+            }
+        }
+
+        // Gán sự kiện cho Menu Mobile sau khi Header nạp xong
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Cập nhật trạng thái tab active
         updateActiveTab(pageId);
 
     } catch (error) {
@@ -152,13 +155,11 @@ function closeMobileMenu() {
 }
 
 // ==========================================
-// CHỨC NĂNG TỰ ĐỘNG CUỘN NAV TAB
+// CHỨC NĂNG TỰ ĐỘNG CUỘN NAV TAB (ĐÃ SỬA LỖI CÚ PHÁP)
 // ==========================================
 function initNavTabs() {
     const container = document.getElementById("navTabsContainer");
-    // 1. Kiểm tra an toàn: Trang nào không có thanh Tab thì bỏ qua ngay
     if (!container) return; 
-    // 2. Chống chạy trùng lặp
     if (container.dataset.initialized === "true") return;
     container.dataset.initialized = "true";
 
@@ -168,58 +169,55 @@ function initNavTabs() {
     let resumeTimeout;
     let currentScroll = container.scrollLeft;
 
-            function autoOscillate() {
-                const activeContainer = document.getElementById("navTabsContainer");
-                if (!activeContainer) return;
+    function autoOscillate() {
+        const activeContainer = document.getElementById("navTabsContainer");
+        if (!activeContainer) return;
 
-                if (!isPaused) {
-                    const maxScroll = activeContainer.scrollWidth - activeContainer.clientWidth;
+        if (!isPaused) {
+            const maxScroll = activeContainer.scrollWidth - activeContainer.clientWidth;
 
-                    if (maxScroll > 0) {
-                        currentScroll += speed * direction;
+            if (maxScroll > 0) {
+                currentScroll += speed * direction;
 
-                        if (currentScroll >= maxScroll) {
-                            currentScroll = maxScroll;
-                            direction = -1;
-                        } else if (currentScroll <= 0) {
-                            currentScroll = 0;
-                            direction = 1;
-                        }
-
-                        activeContainer.scrollLeft = currentScroll;
-                    }
+                if (currentScroll >= maxScroll) {
+                    currentScroll = maxScroll;
+                    direction = -1;
+                } else if (currentScroll <= 0) {
+                    currentScroll = 0;
+                    direction = 1;
                 }
-                requestAnimationFrame(autoOscillate);
+
+                activeContainer.scrollLeft = currentScroll;
             }
+        }
+        requestAnimationFrame(autoOscillate);
+    }
 
-            function pauseScroll() {
-                isPaused = true;
-                clearTimeout(resumeTimeout);
-            }
+    function pauseScroll() {
+        isPaused = true;
+        clearTimeout(resumeTimeout);
+    }
 
-            function resumeScroll() {
-                clearTimeout(resumeTimeout);
-                resumeTimeout = setTimeout(() => {
-                    if (container) currentScroll = container.scrollLeft;
-                    isPaused = false;
-                }, 3000);
-            }
+    function resumeScroll() {
+        clearTimeout(resumeTimeout);
+        resumeTimeout = setTimeout(() => {
+            if (container) currentScroll = container.scrollLeft;
+            isPaused = false;
+        }, 3000);
+    }
 
-            container.addEventListener("touchstart", pauseScroll, {passive: true});
-            container.addEventListener("touchend", resumeScroll, {passive: true});
-            container.addEventListener("mouseenter", pauseScroll);
-            container.addEventListener("mouseleave", resumeScroll);
+    container.addEventListener("touchstart", pauseScroll, {passive: true});
+    container.addEventListener("touchend", resumeScroll, {passive: true});
+    container.addEventListener("mouseenter", pauseScroll);
+    container.addEventListener("mouseleave", resumeScroll);
 
-            container.addEventListener("scroll", () => {
-                if (isPaused) {
-                    currentScroll = container.scrollLeft;
-                }
-            }, {passive: true});
+    container.addEventListener("scroll", () => {
+        if (isPaused) {
+            currentScroll = container.scrollLeft;
+        }
+    }, {passive: true});
 
-            autoOscillate();
-        };
-
-        window.initNavTabs();
+    autoOscillate();
 }
 
 // ==========================================
