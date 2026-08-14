@@ -4868,7 +4868,7 @@ main {
   }
 
   .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .philosophy-grid,
@@ -4915,19 +4915,9 @@ main {
   ::-webkit-scrollbar {
     width: 4px;
   }
-
-  .metrics-grid .metric-card:nth-child(1),
-    .metrics-grid .metric-card:nth-child(2) {
-    transform: translateX(-40px);
-  }
-
-  .metrics-grid .metric-card:nth-child(3),
-    .metrics-grid .metric-card:nth-child(4) {
-    transform: translateX(40px);
-  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .metrics-grid {
     grid-template-columns: 1fr;
   }
