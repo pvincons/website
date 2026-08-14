@@ -111,10 +111,11 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* Ghi đè mở rộng Wide / Full cho Hero Grid trên Desktop */
-        .hero .full-wide-container {
+        /* Ghi đè mở rộng Wide / Full cho Hero Grid và Metrics Grid trên Desktop */
+        .hero .full-wide-container,
+        .metrics-full-container {
             width: 90% !important;
-            max-width: 90% !important;
+            max-width: 900% !important;
         }
 
         .hero-grid {
@@ -122,130 +123,24 @@
             width: 100% !important;
         }
 
-        /* ==========================================
-           CHUẨN HÓA 3 KHỐI METRICS (LIGHT TONE GRADIENT)
-           ========================================== */
-        .metrics-full-container {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-
-        .metrics-container {
-            margin-top: -50px;
-            position: relative;
-            z-index: 10;
-            margin-bottom: 60px;
-        }
-
         .metrics-grid {
-            display: grid !important;
-            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-            gap: 1.5rem !important;
-            width: 100% !important;
             max-width: 100% !important;
-            justify-items: stretch !important;
-            align-items: stretch !important;
+            width: 100% !important;
+            display: grid !important;
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+            gap: 1.5rem !important;
         }
 
-        /* Responsive: Tự động đưa về 1 cột cho Mobile & Tablet nhỏ (< 768px) */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .metrics-grid {
-                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-                gap: 1rem !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
             }
         }
 
-        .metric-card {
-            border-radius: 1.25rem;
-            padding: 2rem 1.25rem;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 35%, #e2e8f0 70%, #f8fafc 100%) !important;
-            border: 1px solid rgba(148, 163, 184, 0.5) !important;
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9),
-                0 10px 25px -5px rgba(30, 41, 59, 0.08),
-                0 4px 6px -2px rgba(30, 41, 59, 0.03);
-            position: relative;
-            overflow: hidden;
-
-            opacity: 0;
-            transform: translateY(35px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
-        }
-
-        .metric-card.animate-in {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-
-        .metric-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -150%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(60deg,
-                    transparent 30%,
-                    rgba(255, 255, 255, 0.6) 50%,
-                    transparent 70%);
-            transition: all 0.75s ease;
-            pointer-events: none;
-        }
-
-        .metric-card:hover::before {
-            left: 100%;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-6px) !important;
-            border-color: rgba(100, 116, 139, 0.8) !important;
-            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 1),
-                0 20px 30px -10px rgba(30, 41, 59, 0.16),
-                0 8px 12px -4px rgba(30, 41, 59, 0.08);
-        }
-
-        .metric-icon {
-            width: 68px;
-            height: 68px;
-            margin: 0 auto 1.25rem auto;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            color: #1e68a8;
-            background: rgba(30, 104, 168, 0.08);
-            position: relative;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            outline: 1px solid rgba(148, 163, 184, 0.3);
-            outline-offset: 3px;
-        }
-
-        .metric-card:hover .metric-icon {
-            transform: scale(1.08) rotate(3deg);
-        }
-
-        .metric-value {
-            font-size: 1.35rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 0.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: #07243ff6 !important;
-        }
-
-        .metric-label {
-            font-size: 0.75rem;
-            color: #64748b !important;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            line-height: 1.4;
+        @media (max-width: 640px) {
+            .metrics-grid {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
         }
     </style>
 </head>
@@ -293,7 +188,7 @@
             </div>
         </nav>
 
-        <!-- HERO SECTION ABOUT (WIDE - FULL MÀN HÌNH) -->
+        <!-- HERO SECTION ABOUT (ĐÃ CHỈNH WIDE - FULL MÀN HÌNH) -->
         <section id="gioi-thieu-cong-ty" class="scroll-mt-[100px] sm:scroll-mt-32 hero w-full">
             <div class="full-wide-container w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 mx-auto">
                 <div class="hero-grid">
@@ -302,7 +197,7 @@
                             TỔNG QUAN VỀ CÔNG TY
                         </span>
                         <h1
-                            class="text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase leading-snug tracking-tight text-white mb-3 hero-title">
+                            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase leading-snug tracking-tight text-white mb-3 hero-title">
                             CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS
                         </h1>
 
@@ -353,26 +248,28 @@
             </div>
         </section>
 
-        <!-- METRICS RIBBON (VIỀN MỎNG - TONE XÁM GRADIENT ÁNH KIM KIÊN CỐ) -->
+        <!-- METRICS RIBBON (ĐÃ CHỈNH WIDE - FULL MÀN HÌNH) -->
         <div class="metrics-full-container w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 mx-auto metrics-container">
             <div class="metrics-grid">
-                <!-- Khối 1: ĐẦU TƯ -->
-                <div class="metric-card card-dautu">
-                    <div class="metric-icon"><i class="fa-solid fa-landmark"></i></div>
-                    <div class="metric-value">Đầu Tư</div>
-                    <div class="metric-label">KIẾN TẠO GIÁ TRỊ</div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-coins"></i></div>
+                    <div class="metric-value">9 Tỷ VNĐ</div>
+                    <div class="metric-label">Vốn Điều Lệ</div>
                 </div>
-                <!-- Khối 2: XÂY DỰNG -->
-                <div class="metric-card card-xaydung">
-                    <div class="metric-icon"><i class="fa-solid fa-city"></i></div>
-                    <div class="metric-value">Xây Dựng</div>
-                    <div class="metric-label">CHẤT LƯỢNG CHUẨN MỰC</div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-award"></i></div>
+                    <div class="metric-value">Năng Lực</div>
+                    <div class="metric-label">Chứng nhận VIL-00050772</div>
                 </div>
-                <!-- Khối 3: PHÁP LÝ -->
-                <div class="metric-card card-phaply">
-                    <div class="metric-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <div class="metric-value">Pháp Lý</div>
-                    <div class="metric-label">CHUẨN HÓA PHÁP LÝ</div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="metric-value">BIM & VDC</div>
+                    <div class="metric-label">Chuẩn Kỹ Thuật Số</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fa-solid fa-building-shield"></i></div>
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Chuẩn Hóa Pháp Lý</div>
                 </div>
             </div>
         </div>
@@ -475,7 +372,7 @@
             </div>
         </section>
 
-        <!-- SECTION: LĨNH VỰC CỐT LÕI -->
+        <!-- SECTION: TRIẾT LÝ ĐIỀU HÀNH -->
         <section id="linh-vuc-cot-loi" class="scroll-mt-[100px] sm:scroll-mt-32 py-16 bg-slate-50/50 w-full">
             <div class="w-full px-4 sm:px-8 lg:px-12 xl:px-16 mx-auto">
                 <div class="text-center max-w-3xl mx-auto mb-12">
@@ -496,7 +393,7 @@
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <div class="text-amber-600 text-xl font-bold flex items-center gap-2">
-                                    <i class="fa-solid fa-landmark"></i>
+                                    <i class="fa-solid fa-chart-line"></i>
                                     <span class="text-slate-900 text-base uppercase font-extrabold tracking-wide">ĐẦU
                                         TƯ</span>
                                 </div>
@@ -553,7 +450,7 @@
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <div class="text-amber-600 text-xl font-bold flex items-center gap-2">
-                                    <i class="fa-solid fa-city"></i>
+                                    <i class="fa-solid fa-helmet-safety"></i>
                                     <span class="text-slate-900 text-base uppercase font-extrabold tracking-wide">XÂY
                                         DỰNG</span>
                                 </div>
@@ -634,8 +531,7 @@
                                 <div class="legal-label">Năng Lực Tổ Chức</div>
                                 <div class="legal-value">
                                     <strong class="text-brand-blue">Chứng Nhận:</strong> VIL-00050772<br>
-                                    <span class="text-sm text-slate-500 font-medium">Do Sở Xây dựng cấp - Hiệu lực đến
-                                        năm
+                                    <span class="text-sm text-slate-500 font-medium">Do Sở Xây dựng cấp - Hiệu lực đến năm
                                         2031</span>
                                 </div>
                             </div>
@@ -655,8 +551,7 @@
                                 <div class="location-icon"><i class="fa-solid fa-building"></i></div>
                                 <div class="location-details">
                                     <h5>Trụ Sở</h5>
-                                    <p class="text-sm text-justify">Số 292/30 đường Phan Văn Quân, phường Bình Minh,
-                                        tỉnh Vĩnh
+                                    <p class="text-sm text-justify">Số 292/30 đường Phan Văn Quân, phường Bình Minh, tỉnh Vĩnh
                                         Long.</p>
                                 </div>
                             </div>
@@ -664,8 +559,7 @@
                                 <div class="location-icon"><i class="fa-solid fa-city"></i></div>
                                 <div class="location-details">
                                     <h5>Văn Phòng</h5>
-                                    <p class="text-sm text-justify">Số P007 đường Lý Thái Tổ, phường Hưng Phú, thành phố
-                                        Cần
+                                    <p class="text-sm text-justify">Số P007 đường Lý Thái Tổ, phường Hưng Phú, thành phố Cần
                                         Thơ.</p>
                                 </div>
                             </div>
@@ -862,8 +756,9 @@
             </div>
         </section>
 
-        <!-- SCRIPT TƯƠNG TÁC -->
+        <!-- ĐẶT SCRIPT TRONG MAIN ĐỂ LUÔN THỰC THI KHI CHUYỂN TAB BẰNG AJAX -->
         <script>
+            //CHỈNH SƠ ĐỒ
             window.forceCenterOrgChart = function () {
                 const wrapper = document.querySelector('.org-chart-wrapper');
                 if (!wrapper) return;
@@ -877,35 +772,23 @@
                 }
             };
 
-            /* Kích hoạt hiệu ứng xuất hiện cho Metric Cards bằng IntersectionObserver */
+            // Hàm kích hoạt hiệu ứng xuất hiện cho 4 khối Metric (2 trái, 2 phải)
             window.animateMetricCards = function () {
-                const container = document.querySelector('.metrics-container');
                 const cards = document.querySelectorAll('.metrics-grid .metric-card');
-                if (!container || !cards.length) return;
+                if (!cards.length) return;
 
-                if ('IntersectionObserver' in window) {
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                cards.forEach((card, index) => {
-                                    setTimeout(() => {
-                                        card.classList.add('animate-in');
-                                    }, index * 140);
-                                });
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    }, { threshold: 0.2 });
-
-                    observer.observe(container);
-                } else {
-                    cards.forEach(card => card.classList.add('animate-in'));
-                }
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('animate-in');
+                    }, index * 120 + 80);
+                });
             };
 
             window.initAboutPage = function () {
+                // Kích hoạt chuyển động cho Metrics
                 window.animateMetricCards();
 
+                // Căn giữa Sơ đồ tổ chức
                 const wrapper = document.querySelector('.org-chart-wrapper');
                 if (wrapper) {
                     window.forceCenterOrgChart();
@@ -929,21 +812,25 @@
                 }
             };
 
+            // Kích hoạt ngay lập tức khi <main> được chèn vào DOM qua AJAX
             setTimeout(window.initAboutPage, 40);
 
+            // HÀM CHẠY CHỮ NAV TAB
             window.initNavTabs = function () {
                 const container = document.getElementById("navTabsContainer");
                 if (!container) return;
 
+                // Tránh khởi tạo lặp lại
                 if (container.dataset.initialized === "true") return;
                 container.dataset.initialized = "true";
 
-                let speed = 0.3;
-                let direction = 1;
+                let speed = 0.3;            // Tốc độ cuộn
+                let direction = 1;          // 1: sang phải, -1: sang trái
                 let isPaused = false;
                 let resumeTimeout = null;
                 let currentScroll = container.scrollLeft;
 
+                // Vòng lặp tự động chuyển động qua lại
                 function autoOscillate() {
                     if (!container.isConnected) return;
 
@@ -955,10 +842,10 @@
 
                             if (currentScroll >= maxScroll) {
                                 currentScroll = maxScroll;
-                                direction = -1;
+                                direction = -1; // Chạm mép phải -> Đổi chiều sang trái
                             } else if (currentScroll <= 0) {
                                 currentScroll = 0;
-                                direction = 1;
+                                direction = 1;  // Chạm mép trái -> Đổi chiều sang phải
                             }
 
                             container.scrollLeft = currentScroll;
@@ -967,25 +854,30 @@
                     requestAnimationFrame(autoOscillate);
                 }
 
+                // Tạm dừng và đếm ngược 5 giây để kích hoạt lại
                 function pauseAndResetTimer() {
                     isPaused = true;
                     currentScroll = container.scrollLeft;
                     clearTimeout(resumeTimeout);
 
+                    // Đủ ??? giây không tương tác sẽ tự động chuyển động tiếp
                     resumeTimeout = setTimeout(() => {
                         currentScroll = container.scrollLeft;
                         isPaused = false;
-                    }, 10000);
+                    }, 10000); //thời gian dừng
                 }
 
+                // Bắt các sự kiện tương tác người dùng (chạm, vuốt, lăn chuột, di chuột)
                 const userEvents = ["touchstart", "touchmove", "mousedown", "wheel", "mouseenter"];
                 userEvents.forEach(eventType => {
                     container.addEventListener(eventType, pauseAndResetTimer, { passive: true });
                 });
 
+                // Đếm lại 5s khi người dùng nhấc tay hoặc di chuột ra ngoài
                 container.addEventListener("touchend", pauseAndResetTimer, { passive: true });
                 container.addEventListener("mouseleave", pauseAndResetTimer, { passive: true });
 
+                // Cập nhật vị trí cuộn liên tục khi người dùng tự trượt bằng tay
                 container.addEventListener("scroll", () => {
                     if (isPaused) {
                         currentScroll = container.scrollLeft;
@@ -995,7 +887,9 @@
                 autoOscillate();
             };
 
+            // Khởi tạo
             window.initNavTabs();
+
         </script>
     </main>
 
