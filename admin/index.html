@@ -64,7 +64,7 @@
       <div class="flex items-center gap-3">
         <div class="w-6 h-6 rounded bg-rose-600 flex items-center justify-center font-bold text-white text-xs">PV</div>
         <span class="font-semibold text-gray-100">PV INCONS Studio</span>
-        <span class="text-xs bg-[#222630] text-gray-400 px-2 py-0.5 rounded">v4.0.0</span>
+        <span class="text-xs bg-[#222630] text-gray-400 px-2 py-0.5 rounded">v4.1.0</span>
         <span class="text-gray-600">/</span>
         <span id="active-module-badge" class="text-xs text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
           posts-news.json Active
@@ -85,8 +85,8 @@
     <!-- MAIN CONTENT (3 CỘT) -->
     <div class="flex flex-1 overflow-hidden">
 
-      <!-- CỘT 1: TAB CHA & DANH SÁCH BÀI VIẾT -->
-      <aside class="w-72 border-r border-[#222630] bg-[#12141c] flex flex-col shrink-0">
+      <!-- CỘT 1: TAB CHA & DANH SÁCH BÀI VIẾT + BỘ LỌC -->
+      <aside class="w-80 border-r border-[#222630] bg-[#12141c] flex flex-col shrink-0">
         
         <!-- CÁC TAB CHA -->
         <div class="p-3 border-b border-[#222630]">
@@ -136,7 +136,7 @@
           </nav>
         </div>
 
-        <!-- BẢNG BÀI VIẾT TAB DƯỚI -->
+        <!-- TIÊU ĐỀ & SYNC BUTTON -->
         <div class="p-3 border-b border-[#222630] flex items-center justify-between bg-[#0f1117]">
           <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
             <i data-lucide="list" class="w-3.5 h-3.5 text-rose-500"></i>
@@ -147,27 +147,54 @@
           </button>
         </div>
 
+        <!-- BỘ LỌC TÌM KIẾM BÀI VIẾT (FILTER SECTION) -->
+        <div class="p-2 border-b border-[#222630] bg-[#14171f] space-y-2">
+          <div class="flex gap-1.5">
+            <select id="filter-category" class="w-1/2 bg-[#0f1117] border border-[#2a2e3d] rounded-md px-2 py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer">
+              <option value="">Tất cả Category</option>
+              <option value="cong-ty">cong-ty</option>
+              <option value="chuyen-gia">chuyen-gia</option>
+              <option value="thi-truong">thi-truong</option>
+              <option value="phap-luat">phap-luat</option>
+              <option value="khach-hang-bao-chi">khach-hang-bao-chi</option>
+            </select>
+            <div class="relative w-1/2">
+              <input type="text" id="filter-search" placeholder="Lọc nhãn/tiêu đề..." class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-md pl-6 pr-2 py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500">
+              <i data-lucide="search" class="w-3 h-3 text-gray-500 absolute left-1.5 top-2"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- DANH SÁCH BÀI VIẾT -->
         <div id="posts-list-container" class="flex-1 overflow-y-auto p-2 space-y-1.5"></div>
       </aside>
 
-      <!-- CỘT 2: FORM NHẬP LIỆU -->
+      <!-- CỘT 2: FORM NHẬP LIỆU & CẬP NHẬT -->
       <main class="flex-1 flex flex-col bg-[#14171f] overflow-hidden border-r border-[#222630]">
         
         <div class="h-12 border-b border-[#222630] px-6 flex items-center justify-between bg-[#12141c] shrink-0">
           <div class="flex items-center gap-2">
             <i data-lucide="edit-3" class="w-4 h-4 text-rose-500"></i>
             <span id="form-title" class="font-semibold text-gray-200">Soạn bài viết cho [Tin tức]</span>
+            <!-- BẢNG TRẠNG THÁI CẬP NHẬT -->
+            <span id="edit-status-badge" class="hidden text-[11px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20 font-mono">
+              Đang sửa bài ID: #<span id="editing-id-text"></span>
+            </span>
           </div>
           
           <div class="flex items-center gap-2">
+            <button id="btn-cancel-edit" class="hidden px-2.5 py-1.5 text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded transition font-medium">
+              Hủy sửa
+            </button>
+
             <button id="btn-reset" class="px-3 py-1.5 text-xs text-gray-400 hover:text-white transition font-medium">
               Làm mới form
             </button>
 
-            <!-- LƯU VÀO DỮ LIỆU TẠM -->
+            <!-- NÚT THÊM / CẬP NHẬT VÀO DANH SÁCH TẠM -->
             <button id="btn-add-to-list" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-blue-900/20">
-              <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
-              Lưu vào danh sách
+              <i id="btn-add-icon" data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+              <span id="btn-add-text">Lưu vào danh sách</span>
             </button>
 
             <!-- NÚT XUẤT BẢN TRỰC TIẾP LÊN GITHUB MAIN -->
@@ -260,7 +287,7 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT AUTHENTICATION & GITHUB API SYNC -->
+  <!-- JAVASCRIPT AUTHENTICATION & GITHUB API SYNC & FILTER & UPDATE LOGIC -->
   <script>
     lucide.createIcons();
 
@@ -271,6 +298,7 @@
     let db = JSON.parse(localStorage.getItem('pv_studio_db')) || { news: [], projects: [], services: [], investors: [], hr: [] };
     let currentFolder = "news";
     let currentTitle = "Tin tức";
+    let editingPostId = null; // Trạng thái bài viết đang chỉnh sửa
 
     function getTodayFormatted() {
       const today = new Date();
@@ -280,12 +308,10 @@
       return `${dd}/${mm}/${yyyy}`;
     }
 
-    // Chuyển đổi UTF-8 sang Base64 cho tiếng Việt
     function utf8_to_b64(str) {
       return window.btoa(unescape(encodeURIComponent(str)));
     }
 
-    // Decode Base64 UTF-8 từ GitHub
     function b64_to_utf8(str) {
       return decodeURIComponent(escape(window.atob(str)));
     }
@@ -309,9 +335,18 @@
     const jsonOutput = document.getElementById('json-output');
     const postsListContainer = document.getElementById('posts-list-container');
 
+    const filterCategory = document.getElementById('filter-category');
+    const filterSearch = document.getElementById('filter-search');
+
+    const editStatusBadge = document.getElementById('edit-status-badge');
+    const editingIdText = document.getElementById('editing-id-text');
+    const btnCancelEdit = document.getElementById('btn-cancel-edit');
+    const btnAddToList = document.getElementById('btn-add-to-list');
+    const btnAddText = document.getElementById('btn-add-text');
+
     inputDate.value = getTodayFormatted();
 
-    // KÍCH HOẠT AUTHENTICATION LOGIC
+    // AUTHENTICATION LOGIC
     function initAuth() {
       if (authConfig && authConfig.token) {
         loginModal.classList.add('hidden');
@@ -324,7 +359,6 @@
       }
     }
 
-    // Bấm Đăng nhập
     document.getElementById('btn-login').addEventListener('click', async () => {
       const owner = inputOwner.value.trim();
       const repo = inputRepo.value.trim();
@@ -332,7 +366,6 @@
 
       if (!owner || !repo || !token) return alert('Vui lòng điền đầy đủ 3 thông tin!');
 
-      // Kiểm tra token có hợp lệ không bằng cách gọi GitHub API thử nghiệm
       try {
         const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
           headers: { "Authorization": `Bearer ${token}` }
@@ -351,7 +384,6 @@
       }
     });
 
-    // Đăng xuất
     document.getElementById('btn-logout').addEventListener('click', () => {
       if (confirm('Bạn có muốn đăng xuất và xóa Token khỏi máy tính?')) {
         localStorage.removeItem('pv_github_auth');
@@ -360,7 +392,6 @@
       }
     });
 
-    // Cập nhật đếm tab sidebar
     function updateTabCounts() {
       ['news', 'projects', 'services', 'investors', 'hr'].forEach(folder => {
         const countEl = document.getElementById(`count-${folder}`);
@@ -368,31 +399,53 @@
       });
     }
 
-    // Render danh sách bài viết
+    // RENDER DANH SÁCH BÀI VIẾT (KÈM BỘ LỌC FILTER)
     function renderPostsList() {
       updateTabCounts();
       const currentList = db[currentFolder] || [];
       jsonOutput.textContent = JSON.stringify(currentList, null, 2);
       localStorage.setItem('pv_studio_db', JSON.stringify(db));
 
-      if (currentList.length === 0) {
-        postsListContainer.innerHTML = `<div class="p-4 text-center text-xs text-gray-600">Chưa có bài nào trong Tab <strong>${currentTitle}</strong>.</div>`;
+      const selectedCat = filterCategory.value;
+      const searchKeyword = filterSearch.value.toLowerCase().trim();
+
+      // Áp dụng Bộ lọc Filter
+      const filteredList = currentList.filter(post => {
+        const matchCat = !selectedCat || post.category === selectedCat;
+        const matchSearch = !searchKeyword ||
+          (post.title && post.title.toLowerCase().includes(searchKeyword)) ||
+          (post.categoryLabel && post.categoryLabel.toLowerCase().includes(searchKeyword)) ||
+          (post.summary && post.summary.toLowerCase().includes(searchKeyword));
+        return matchCat && matchSearch;
+      });
+
+      if (filteredList.length === 0) {
+        postsListContainer.innerHTML = `<div class="p-4 text-center text-xs text-gray-600">Không tìm thấy bài viết phù hợp trong Tab <strong>${currentTitle}</strong>.</div>`;
         return;
       }
 
       postsListContainer.innerHTML = '';
-      currentList.forEach((post, index) => {
+      filteredList.forEach((post) => {
+        const originalIndex = currentList.findIndex(p => p.id === post.id);
+        const isEditing = editingPostId === post.id;
+
         const item = document.createElement('div');
-        item.className = "bg-[#181b24] p-2.5 rounded-lg border border-[#282c38] hover:border-rose-500/50 transition flex items-start justify-between gap-2 group cursor-pointer";
+        item.className = `p-2.5 rounded-lg border transition flex items-start justify-between gap-2 group cursor-pointer ${
+          isEditing 
+            ? 'bg-amber-500/10 border-amber-500/80' 
+            : 'bg-[#181b24] border-[#282c38] hover:border-rose-500/50'
+        }`;
+
         item.innerHTML = `
-          <div class="flex-1 overflow-hidden" onclick="editPost(${index})">
+          <div class="flex-1 overflow-hidden" onclick="editPost(${originalIndex})">
             <div class="flex items-center gap-1.5 text-[10px] text-gray-400 font-mono mb-1">
               <span class="bg-rose-500/10 text-rose-400 px-1.5 py-0.2 rounded font-bold">#${post.id}</span>
+              <span class="bg-gray-800 text-gray-300 px-1 py-0.2 rounded text-[9px] uppercase">${post.categoryLabel || post.category}</span>
               <span>${post.date}</span>
             </div>
             <div class="text-xs font-semibold text-gray-200 truncate group-hover:text-rose-400 transition">${post.title || 'Bài chưa có tiêu đề'}</div>
           </div>
-          <button onclick="deletePost(${index})" class="text-gray-500 hover:text-rose-500 p-1 rounded transition">
+          <button onclick="deletePost(${originalIndex})" class="text-gray-500 hover:text-rose-500 p-1 rounded transition" title="Xóa">
             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
           </button>
         `;
@@ -417,12 +470,12 @@
       document.getElementById('form-title').innerText = `Soạn bài viết cho [${currentTitle}]`;
       document.getElementById('current-tab-label').innerText = currentTitle;
 
-      const nextId = getNextId();
-      inputId.value = nextId;
-      inputLink.value = `content/${currentFolder}/${currentFolder}_${String(nextId).padStart(3, '0')}.html`;
-
-      renderPostsList();
+      resetForm();
     }
+
+    // SỰ KIỆN LỌC
+    filterCategory.addEventListener('change', renderPostsList);
+    filterSearch.addEventListener('input', renderPostsList);
 
     // Chuyển Tab Sidebar
     document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -443,11 +496,59 @@
     });
 
     selectCategory.addEventListener('change', (e) => {
-      inputCategoryLabel.value = e.target.options[e.target.selectedIndex].getAttribute('data-label');
+      inputCategoryLabel.value = e.target.options[e.target.selectedIndex].getAttribute('data-label') || e.target.value.toUpperCase();
     });
 
-    // Lưu vào mảng local
-    document.getElementById('btn-add-to-list').addEventListener('click', () => {
+    // CHỨC NĂNG EDIT / CHỈNH SỬA BÀI VIẾT
+    window.editPost = function(index) {
+      const post = db[currentFolder][index];
+      if (!post) return;
+
+      editingPostId = post.id;
+
+      inputId.value = post.id;
+      selectCategory.value = post.category || 'cong-ty';
+      inputCategoryLabel.value = post.categoryLabel || '';
+      inputTitle.value = post.title || '';
+      inputSummary.value = post.summary || '';
+      inputDate.value = post.date || getTodayFormatted();
+      inputImage.value = post.image || '';
+      inputLink.value = post.link || '';
+
+      // Cập nhật UI Chế độ Cập nhật
+      editStatusBadge.classList.remove('hidden');
+      editingIdText.innerText = post.id;
+      btnCancelEdit.classList.remove('hidden');
+      btnAddText.innerText = "Cập nhật bài viết";
+      btnAddToList.className = "bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-amber-900/20";
+
+      renderPostsList();
+    };
+
+    // HỦY EDIT & RESET FORM
+    function resetForm() {
+      editingPostId = null;
+      const nextId = getNextId();
+      inputId.value = nextId;
+      inputLink.value = `content/${currentFolder}/${currentFolder}_${String(nextId).padStart(3, '0')}.html`;
+      inputTitle.value = '';
+      inputSummary.value = '';
+      inputImage.value = '';
+      inputDate.value = getTodayFormatted();
+
+      editStatusBadge.classList.add('hidden');
+      btnCancelEdit.classList.add('hidden');
+      btnAddText.innerText = "Lưu vào danh sách";
+      btnAddToList.className = "bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-blue-900/20";
+
+      renderPostsList();
+    }
+
+    btnCancelEdit.addEventListener('click', resetForm);
+    document.getElementById('btn-reset').addEventListener('click', resetForm);
+
+    // THÊM HOẶC CẬP NHẬT BÀI VIẾT VÀO MẢNG
+    btnAddToList.addEventListener('click', () => {
       const title = inputTitle.value.trim();
       if (!title) return alert('Vui lòng nhập tiêu đề bài viết!');
 
@@ -463,23 +564,33 @@
       };
 
       if (!db[currentFolder]) db[currentFolder] = [];
-      const idx = db[currentFolder].findIndex(p => p.id === postData.id);
-      if (idx !== -1) db[currentFolder][idx] = postData;
-      else db[currentFolder].push(postData);
 
-      const nextId = getNextId();
-      inputId.value = nextId;
-      inputLink.value = `content/${currentFolder}/${currentFolder}_${String(nextId).padStart(3, '0')}.html`;
-      inputTitle.value = '';
-      inputSummary.value = '';
-      inputImage.value = '';
+      if (editingPostId !== null) {
+        // Cập nhật bài đang chọn
+        const idx = db[currentFolder].findIndex(p => p.id === editingPostId);
+        if (idx !== -1) {
+          db[currentFolder][idx] = postData;
+        } else {
+          db[currentFolder].push(postData);
+        }
+      } else {
+        // Thêm mới
+        const existingIdx = db[currentFolder].findIndex(p => p.id === postData.id);
+        if (existingIdx !== -1) {
+          if (confirm(`ID #${postData.id} đã tồn tại trong danh sách. Bạn có muốn ghi đè bài viết này?`)) {
+            db[currentFolder][existingIdx] = postData;
+          } else {
+            return;
+          }
+        } else {
+          db[currentFolder].push(postData);
+        }
+      }
 
-      renderPostsList();
+      resetForm();
     });
 
-    // ==================== TẢI VÀ XUẤT BẢN LÊN GITHUB REST API ==================== //
-
-    // 1. Tải file từ GitHub về Studio
+    // TẢI FILE TỪ GITHUB REST API
     document.getElementById('btn-sync-github').addEventListener('click', async () => {
       if (!authConfig) return alert('Chưa đăng nhập!');
       const filePath = `content/posts-${currentFolder}.json`;
@@ -491,17 +602,17 @@
           const data = await res.json();
           const content = JSON.parse(b64_to_utf8(data.content));
           db[currentFolder] = content;
-          renderPostsList();
+          resetForm();
           alert(`✅ Đã tải thành công ${content.length} bài viết từ file ${filePath} trên GitHub!`);
         } else {
-          alert(`⚠️ Chưa tìm thấy file ${filePath} trên GitHub (Có thể file chưa tạo).`);
+          alert(`⚠️ Chưa tìm thấy file ${filePath} trên GitHub.`);
         }
       } catch (err) {
         alert('❌ Lỗi kết nối khi tải file từ GitHub!');
       }
     });
 
-    // 2. Ghi đè xuất bản trực tiếp lên GitHub Main
+    // XUẤT BẢN TRỰC TIẾP LÊN GITHUB MAIN
     document.getElementById('btn-publish-github').addEventListener('click', async () => {
       if (!authConfig) return alert('Chưa đăng nhập!');
 
@@ -514,7 +625,6 @@
       btn.disabled = true;
 
       try {
-        // Lấy SHA file cũ
         let sha = "";
         const getRes = await fetch(apiUrl, { headers: { "Authorization": `Bearer ${authConfig.token}` } });
         if (getRes.ok) {
@@ -522,7 +632,6 @@
           sha = fileData.sha;
         }
 
-        // Đẩy file mới lên đè file cũ
         const contentStr = JSON.stringify(currentList, null, 2);
         const putRes = await fetch(apiUrl, {
           method: "PUT",
@@ -553,31 +662,12 @@
       }
     });
 
-    window.editPost = function(index) {
-      const post = db[currentFolder][index];
-      inputId.value = post.id;
-      selectCategory.value = post.category;
-      inputCategoryLabel.value = post.categoryLabel;
-      inputTitle.value = post.title;
-      inputSummary.value = post.summary;
-      inputDate.value = post.date;
-      inputImage.value = post.image;
-      inputLink.value = post.link;
-    };
-
     window.deletePost = function(index) {
       if (confirm('Xóa bài này khỏi danh sách?')) {
         db[currentFolder].splice(index, 1);
-        renderPostsList();
+        resetForm();
       }
     };
-
-    document.getElementById('btn-reset').addEventListener('click', () => {
-      inputTitle.value = '';
-      inputSummary.value = '';
-      inputImage.value = '';
-      inputDate.value = getTodayFormatted();
-    });
 
     document.getElementById('btn-copy').addEventListener('click', () => {
       navigator.clipboard.writeText(jsonOutput.textContent);
@@ -585,10 +675,12 @@
     });
 
     inputId.addEventListener('input', () => {
-      inputLink.value = `content/${currentFolder}/${currentFolder}_${String(inputId.value || 1).padStart(3, '0')}.html`;
+      if (editingPostId === null) {
+        inputLink.value = `content/${currentFolder}/${currentFolder}_${String(inputId.value || 1).padStart(3, '0')}.html`;
+      }
     });
 
-    // Chạy khởi tạo
+    // Khởi tạo ứng dụng
     initAuth();
   </script>
 </body>
