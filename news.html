@@ -155,9 +155,10 @@
                     </p>
                 </div>
                 <!-- Danh sách tin công ty truyền qua Index-->
-                <div id="news-container" data-category="cong-ty" class="flex flex-col gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
+                <div id="news-container" data-category="cong-ty"
+                    class="flex flex-col gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
                     <!-- Posts-news ......... news-loader -->
-                  
+
                 </div>
             </div>
         </section>
@@ -312,8 +313,8 @@
                     }, 3000);
                 }
 
-                container.addEventListener("touchstart", pauseScroll, { passive: true });
-                container.addEventListener("touchend", resumeScroll, { passive: true });
+                container.addEventListener("touchstart", pauseScroll, {passive: true});
+                container.addEventListener("touchend", resumeScroll, {passive: true});
                 container.addEventListener("mouseenter", pauseScroll);
                 container.addEventListener("mouseleave", resumeScroll);
 
@@ -321,22 +322,21 @@
                     if (isPaused) {
                         currentScroll = container.scrollLeft;
                     }
-                }, { passive: true });
+                }, {passive: true});
 
                 autoOscillate();
             };
 
             window.initNavTabs();
         </script>
+        <!-- Nhúng file tự động nạp tin tức -->
+        <script src="assets/js/news-loader.js"></script>
     </main>
 
     <div id="footer-placeholder"></div>
 
     <script src="layout.js"></script>
     <script>loadLayout('news');</script>
-
-    <!-- Nhúng file tự động nạp tin tức -->
-    <script src="assets/js/news-loader.js"></script>
 </body>
 
 </html>
