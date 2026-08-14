@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PV INCONS - Admin Portal Studio Multi-Module</title>
+  <title>PV INCONS - Admin Portal Studio</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Inter & Lucide Icons -->
@@ -19,38 +19,76 @@
 </head>
 <body class="bg-[#0f1117] text-gray-200 h-screen overflow-hidden text-sm select-none">
 
-  <!-- MAIN WORKSPACE -->
-  <div id="admin-workspace" class="h-full flex flex-col">
+  <!-- ==================== 1. MÀN HÌNH ĐĂNG NHẬP (AUTH GATE MODAL) ==================== -->
+  <div id="login-modal" class="fixed inset-0 bg-[#090a0f]/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="bg-[#14171f] border border-[#262a36] rounded-xl p-6 w-full max-w-md shadow-2xl space-y-5">
+      <div class="text-center space-y-1.5">
+        <div class="w-12 h-12 bg-rose-600 rounded-xl flex items-center justify-center font-bold text-white text-lg mx-auto shadow-lg shadow-rose-900/30">PV</div>
+        <h2 class="text-lg font-bold text-gray-100">Xác thực PV INCONS Admin</h2>
+        <p class="text-xs text-gray-400">Nhập GitHub Token để bắt đầu quản lý bài viết</p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-gray-400 uppercase">GitHub Owner / User</label>
+          <input type="text" id="auth-owner" placeholder="VD: pv-incons" class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-gray-400 uppercase">Repository Name</label>
+          <input type="text" id="auth-repo" placeholder="VD: website" class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-gray-400 uppercase">Personal Access Token (PAT)</label>
+          <input type="password" id="auth-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+        </div>
+      </div>
+
+      <button id="btn-login" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-semibold py-2.5 rounded-lg text-xs transition shadow-lg shadow-rose-900/20 flex items-center justify-center gap-2">
+        <i data-lucide="key-round" class="w-4 h-4"></i>
+        <span>Xác nhận & Vào Studio</span>
+      </button>
+
+      <div class="text-[11px] text-gray-500 text-center leading-relaxed">
+        Token được lưu an toàn trong trình duyệt cá nhân (<code class="text-gray-400">localStorage</code>) và dùng trực tiếp với GitHub REST API.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 2. GIAO DIỆN CHÍNH (MAIN WORKSPACE) ==================== -->
+  <div id="admin-workspace" class="h-full flex flex-col hidden">
     
     <!-- TOP NAVBAR -->
     <header class="h-12 border-b border-[#222630] bg-[#14171f] px-4 flex items-center justify-between shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-6 h-6 rounded bg-rose-600 flex items-center justify-center font-bold text-white text-xs">PV</div>
         <span class="font-semibold text-gray-100">PV INCONS Studio</span>
-        <span class="text-xs bg-[#222630] text-gray-400 px-2 py-0.5 rounded">v3.40.0</span>
+        <span class="text-xs bg-[#222630] text-gray-400 px-2 py-0.5 rounded">v4.0.0</span>
         <span class="text-gray-600">/</span>
         <span id="active-module-badge" class="text-xs text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
           posts-news.json Active
         </span>
       </div>
 
-      <!-- ĐỌC FILE JSON CÓ SẴN -->
-      <div class="flex items-center gap-2">
-        <label for="file-input" class="cursor-pointer bg-[#222630] hover:bg-[#2a2e3d] text-gray-300 text-xs px-3 py-1.5 rounded transition font-medium flex items-center gap-1.5">
-          <i data-lucide="upload-cloud" class="w-3.5 h-3.5 text-blue-400"></i>
-          <span>Nạp JSON vào Tab này</span>
-        </label>
-        <input type="file" id="file-input" accept=".json" class="hidden">
+      <div class="flex items-center gap-3">
+        <span class="text-xs text-gray-400 font-mono flex items-center gap-1">
+          <i data-lucide="github" class="w-3.5 h-3.5 text-gray-300"></i>
+          <span id="display-repo-info" class="text-gray-200 font-semibold">user/repo</span>
+        </span>
+        <button id="btn-logout" class="bg-[#222630] hover:bg-rose-600/20 hover:text-rose-400 text-gray-400 text-xs px-2.5 py-1 rounded transition flex items-center gap-1 font-medium">
+          <i data-lucide="log-out" class="w-3 h-3"></i> Đăng xuất
+        </button>
       </div>
     </header>
 
     <!-- MAIN CONTENT (3 CỘT) -->
     <div class="flex flex-1 overflow-hidden">
 
-      <!-- CỘT 1: TAB CHA & DANH SÁCH BÀI VIẾT THEO TAB -->
+      <!-- CỘT 1: TAB CHA & DANH SÁCH BÀI VIẾT -->
       <aside class="w-72 border-r border-[#222630] bg-[#12141c] flex flex-col shrink-0">
         
-        <!-- SECTION 1: CÁC TAB CHA -->
+        <!-- CÁC TAB CHA -->
         <div class="p-3 border-b border-[#222630]">
           <div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Danh mục hệ thống</div>
           <nav class="space-y-1" id="sidebar-nav">
@@ -98,27 +136,23 @@
           </nav>
         </div>
 
-        <!-- SECTION 2: DANH SÁCH BÀI VIẾT THUỘC TAB ĐANG CHỌN -->
+        <!-- BẢNG BÀI VIẾT TAB DƯỚI -->
         <div class="p-3 border-b border-[#222630] flex items-center justify-between bg-[#0f1117]">
           <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
             <i data-lucide="list" class="w-3.5 h-3.5 text-rose-500"></i>
             Bài viết: <span id="current-tab-label" class="text-rose-400">Tin tức</span>
           </span>
-          <button id="btn-clear-tab" title="Xóa danh sách Tab này" class="text-gray-500 hover:text-rose-400 text-[11px] transition">
-            Xóa tab
+          <button id="btn-sync-github" title="Tải file trực tiếp từ GitHub về Studio" class="text-blue-400 hover:underline text-[11px] font-medium flex items-center gap-1">
+            <i data-lucide="refresh-cw" class="w-3 h-3"></i> Tải từ GitHub
           </button>
         </div>
 
-        <!-- CONTAINER CHỨA LIST BÀI VIẾT -->
-        <div id="posts-list-container" class="flex-1 overflow-y-auto p-2 space-y-1.5">
-          <!-- Item bài viết render ở đây -->
-        </div>
+        <div id="posts-list-container" class="flex-1 overflow-y-auto p-2 space-y-1.5"></div>
       </aside>
 
       <!-- CỘT 2: FORM NHẬP LIỆU -->
       <main class="flex-1 flex flex-col bg-[#14171f] overflow-hidden border-r border-[#222630]">
         
-        <!-- Form Header & Action Bar -->
         <div class="h-12 border-b border-[#222630] px-6 flex items-center justify-between bg-[#12141c] shrink-0">
           <div class="flex items-center gap-2">
             <i data-lucide="edit-3" class="w-4 h-4 text-rose-500"></i>
@@ -130,44 +164,34 @@
               Làm mới form
             </button>
 
-            <!-- NÚT LƯU BÀI VÀO BỘ NHỚ TAB -->
+            <!-- LƯU VÀO DỮ LIỆU TẠM -->
             <button id="btn-add-to-list" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-blue-900/20">
               <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
-              Lưu vào Tab này
+              Lưu vào danh sách
             </button>
 
-            <!-- NÚT XUẤT CSV -->
-            <button id="btn-export-csv" class="bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-emerald-900/20">
-              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
-              Xuất Sheets (.CSV)
-            </button>
-
-            <!-- NÚT XUẤT JSON TAB HIỆN TẠI -->
-            <button id="btn-export-json" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-rose-900/20">
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-              Tải file <span id="export-json-filename" class="font-mono ml-0.5">posts-news.json</span>
+            <!-- NÚT XUẤT BẢN TRỰC TIẾP LÊN GITHUB MAIN -->
+            <button id="btn-publish-github" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-emerald-900/20">
+              <i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i>
+              Xuất bản lên GitHub Main
             </button>
           </div>
         </div>
 
-        <!-- Form Inputs Area -->
+        <!-- FORM INPUTS -->
         <div class="flex-1 overflow-y-auto p-6 space-y-5">
           
-          <!-- Hàng 1: ID & Ngày đăng -->
           <div class="grid grid-cols-2 gap-4">
             <div class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Mã ID (<code class="text-rose-400">id</code>)</label>
-              <input type="number" id="input-id" value="1" 
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
+              <input type="number" id="input-id" value="1" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
             </div>
             <div class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Ngày đăng (<code class="text-rose-400">date</code>)</label>
-              <input type="text" id="input-date" placeholder="DD/MM/YYYY" 
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
+              <input type="text" id="input-date" placeholder="DD/MM/YYYY" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
             </div>
           </div>
 
-          <!-- Hàng 2: SELECT CATEGORY & CATEGORY LABEL -->
           <div class="grid grid-cols-2 gap-4">
             <div class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Phân loại (<code class="text-rose-400">category</code>)</label>
@@ -182,45 +206,36 @@
 
             <div class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Nhãn Hiển Thị (<code class="text-rose-400">categoryLabel</code>)</label>
-              <input type="text" id="input-category-label" value="TIN TỨC" 
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-300 font-mono text-xs outline-none">
+              <input type="text" id="input-category-label" value="TIN TỨC" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-300 font-mono text-xs outline-none">
             </div>
           </div>
 
-          <!-- Tiêu đề (title) -->
           <div class="space-y-1.5">
             <label class="block text-xs font-semibold text-gray-300">
               Tiêu đề bài viết (<code class="text-rose-400">title</code>) <span class="text-rose-500">*</span>
             </label>
-            <input type="text" id="input-title" placeholder="VD: PV INCONS Chuẩn Hóa Quy Trình Báo Cáo Tài Chính" 
-              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 focus:ring-1 focus:ring-rose-500 rounded-lg px-3.5 py-2 text-gray-100 placeholder-gray-600 outline-none transition text-sm">
+            <input type="text" id="input-title" placeholder="VD: PV INCONS Chuẩn Hóa Quy Trình Báo Cáo Tài Chính" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 focus:ring-1 focus:ring-rose-500 rounded-lg px-3.5 py-2 text-gray-100 outline-none transition text-sm">
           </div>
 
-          <!-- Mô tả tóm tắt (summary) -->
           <div class="space-y-1.5">
             <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code class="text-rose-400">summary</code>)</label>
-            <textarea id="input-summary" rows="2" placeholder="VD: Đảm bảo tính pháp lý minh bạch cho các dự án." 
-              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 placeholder-gray-600 outline-none transition text-sm"></textarea>
+            <textarea id="input-summary" rows="2" placeholder="VD: Đảm bảo tính pháp lý minh bạch cho các dự án." class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-sm"></textarea>
           </div>
 
-          <!-- Đường dẫn Hình ảnh (image) -->
           <div class="space-y-1.5">
             <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code class="text-rose-400">image</code>)</label>
-            <input type="text" id="input-image" placeholder="https://i.pinimg.com/1200x/..." 
-              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 placeholder-gray-600 outline-none transition text-xs font-mono">
+            <input type="text" id="input-image" placeholder="https://i.pinimg.com/1200x/..." class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 outline-none transition text-xs font-mono">
           </div>
 
-          <!-- Đường dẫn Bài viết (link) -->
           <div class="space-y-1.5">
             <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML chi tiết (<code class="text-rose-400">link</code>)</label>
-            <input type="text" id="input-link" placeholder="content/news/news_001.html" 
-              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 placeholder-gray-600 outline-none transition text-xs font-mono">
+            <input type="text" id="input-link" placeholder="content/news/news_001.html" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 outline-none transition text-xs font-mono">
           </div>
 
         </div>
       </main>
 
-      <!-- CỘT 3: LIVE JSON PREVIEW THUỘC TAB HIỆN TẠI -->
+      <!-- CỘT 3: PREVIEW JSON -->
       <aside class="w-96 bg-[#0c0d12] flex flex-col shrink-0">
         <div class="h-12 border-b border-[#222630] px-4 flex items-center justify-between bg-[#12141c]">
           <div class="flex items-center gap-2 text-xs font-semibold text-gray-300 font-mono">
@@ -237,7 +252,7 @@
         </div>
 
         <div class="p-3 border-t border-[#222630] bg-[#12141c] text-[11px] text-gray-500 flex justify-between items-center font-mono">
-          <span>Auto-Saved LocalStorage</span>
+          <span>GitHub Sync Ready</span>
           <span class="text-emerald-500">Mảng JSON Tab Hiện Tại</span>
         </div>
       </aside>
@@ -245,20 +260,15 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT XỬ LÝ QUẢN LÝ THEO TAB CHA -->
+  <!-- JAVASCRIPT AUTHENTICATION & GITHUB API SYNC -->
   <script>
     lucide.createIcons();
 
-    // Dữ liệu tổng lưu trong LocalStorage dạng Object: { news: [...], projects: [...], services: [...], investors: [...], hr: [...] }
-    let db = JSON.parse(localStorage.getItem('pv_studio_db')) || {
-      news: [],
-      projects: [],
-      services: [],
-      investors: [],
-      hr: []
-    };
+    // Biến cấu hình GitHub Auth
+    let authConfig = JSON.parse(localStorage.getItem('pv_github_auth')) || null;
 
-    // Tab hiện tại (Mặc định là 'news')
+    // Local DB
+    let db = JSON.parse(localStorage.getItem('pv_studio_db')) || { news: [], projects: [], services: [], investors: [], hr: [] };
     let currentFolder = "news";
     let currentTitle = "Tin tức";
 
@@ -270,7 +280,24 @@
       return `${dd}/${mm}/${yyyy}`;
     }
 
-    // Elements
+    // Chuyển đổi UTF-8 sang Base64 cho tiếng Việt
+    function utf8_to_b64(str) {
+      return window.btoa(unescape(encodeURIComponent(str)));
+    }
+
+    // Decode Base64 UTF-8 từ GitHub
+    function b64_to_utf8(str) {
+      return decodeURIComponent(escape(window.atob(str)));
+    }
+
+    // DOM Elements
+    const loginModal = document.getElementById('login-modal');
+    const adminWorkspace = document.getElementById('admin-workspace');
+    const inputOwner = document.getElementById('auth-owner');
+    const inputRepo = document.getElementById('auth-repo');
+    const inputToken = document.getElementById('auth-token');
+    const displayRepoInfo = document.getElementById('display-repo-info');
+
     const inputId = document.getElementById('input-id');
     const selectCategory = document.getElementById('select-category');
     const inputCategoryLabel = document.getElementById('input-category-label');
@@ -281,22 +308,59 @@
     const inputLink = document.getElementById('input-link');
     const jsonOutput = document.getElementById('json-output');
     const postsListContainer = document.getElementById('posts-list-container');
-    
-    const formTitle = document.getElementById('form-title');
-    const currentTabLabel = document.getElementById('current-tab-label');
-    const activeModuleBadge = document.getElementById('active-module-badge');
-    const exportJsonFilename = document.getElementById('export-json-filename');
-    const jsonHeaderFilename = document.getElementById('json-header-filename');
 
     inputDate.value = getTodayFormatted();
 
-    // Tự đổi categoryLabel khi chọn dropdown
-    selectCategory.addEventListener('change', (e) => {
-      const selectedOption = e.target.options[e.target.selectedIndex];
-      inputCategoryLabel.value = selectedOption.getAttribute('data-label');
+    // KÍCH HOẠT AUTHENTICATION LOGIC
+    function initAuth() {
+      if (authConfig && authConfig.token) {
+        loginModal.classList.add('hidden');
+        adminWorkspace.classList.remove('hidden');
+        displayRepoInfo.innerText = `${authConfig.owner}/${authConfig.repo}`;
+        setTabContext('news', 'Tin tức');
+      } else {
+        loginModal.classList.remove('hidden');
+        adminWorkspace.classList.add('hidden');
+      }
+    }
+
+    // Bấm Đăng nhập
+    document.getElementById('btn-login').addEventListener('click', async () => {
+      const owner = inputOwner.value.trim();
+      const repo = inputRepo.value.trim();
+      const token = inputToken.value.trim();
+
+      if (!owner || !repo || !token) return alert('Vui lòng điền đầy đủ 3 thông tin!');
+
+      // Kiểm tra token có hợp lệ không bằng cách gọi GitHub API thử nghiệm
+      try {
+        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+
+        if (res.ok) {
+          authConfig = { owner, repo, token };
+          localStorage.setItem('pv_github_auth', JSON.stringify(authConfig));
+          alert('✅ Đăng nhập thành công! Kết nối với GitHub thành công.');
+          initAuth();
+        } else {
+          alert('❌ Đăng nhập thất bại: Token hoặc Tên Repo không hợp lệ!');
+        }
+      } catch (err) {
+        alert('❌ Không thể kết nối tới GitHub API.');
+      }
     });
 
-    // Cập nhật số lượng đếm trên Sidebar Tabs
+    // Đăng xuất
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      if (confirm('Bạn có muốn đăng xuất và xóa Token khỏi máy tính?')) {
+        localStorage.removeItem('pv_github_auth');
+        authConfig = null;
+        initAuth();
+      }
+    });
+
+    // Cập nhật đếm tab sidebar
     function updateTabCounts() {
       ['news', 'projects', 'services', 'investors', 'hr'].forEach(folder => {
         const countEl = document.getElementById(`count-${folder}`);
@@ -304,19 +368,15 @@
       });
     }
 
-    // Render danh sách bài viết thuộc Tab hiện tại
+    // Render danh sách bài viết
     function renderPostsList() {
       updateTabCounts();
       const currentList = db[currentFolder] || [];
-      
-      // Hiển thị JSON Preview của riêng Tab này
       jsonOutput.textContent = JSON.stringify(currentList, null, 2);
-      
-      // Lưu toàn bộ vào LocalStorage
       localStorage.setItem('pv_studio_db', JSON.stringify(db));
 
       if (currentList.length === 0) {
-        postsListContainer.innerHTML = `<div class="p-4 text-center text-xs text-gray-600">Chưa có bài viết nào trong Tab <strong>${currentTitle}</strong>.</div>`;
+        postsListContainer.innerHTML = `<div class="p-4 text-center text-xs text-gray-600">Chưa có bài nào trong Tab <strong>${currentTitle}</strong>.</div>`;
         return;
       }
 
@@ -341,43 +401,34 @@
       lucide.createIcons();
     }
 
-    // Tự động gợi ý ID tiếp theo cho Tab
     function getNextId() {
       const currentList = db[currentFolder] || [];
       if (currentList.length === 0) return 1;
-      const maxId = Math.max(...currentList.map(p => parseInt(p.id) || 0));
-      return maxId + 1;
+      return Math.max(...currentList.map(p => parseInt(p.id) || 0)) + 1;
     }
 
-    // Cập nhật lại Form theo Tab đang chọn
     function setTabContext(folder, title) {
       currentFolder = folder;
       currentTitle = title;
 
       const fileName = `posts-${currentFolder}.json`;
-      activeModuleBadge.innerText = `${fileName} Active`;
-      exportJsonFilename.innerText = fileName;
-      jsonHeaderFilename.innerText = fileName;
-      formTitle.innerText = `Soạn bài viết cho [${currentTitle}]`;
-      currentTabLabel.innerText = currentTitle;
+      document.getElementById('active-module-badge').innerText = `${fileName} Active`;
+      document.getElementById('json-header-filename').innerText = fileName;
+      document.getElementById('form-title').innerText = `Soạn bài viết cho [${currentTitle}]`;
+      document.getElementById('current-tab-label').innerText = currentTitle;
 
-      // Reset ID & Link chuẩn theo Folder
       const nextId = getNextId();
       inputId.value = nextId;
-      const padId = String(nextId).padStart(3, '0');
-      inputLink.value = `content/${currentFolder}/${currentFolder}_${padId}.html`;
+      inputLink.value = `content/${currentFolder}/${currentFolder}_${String(nextId).padStart(3, '0')}.html`;
 
       renderPostsList();
     }
 
-    // SỰ KIỆN CLICK CHUYỂN TAB CHA
-    const navTabs = document.querySelectorAll('.nav-tab');
-    navTabs.forEach(tab => {
+    // Chuyển Tab Sidebar
+    document.querySelectorAll('.nav-tab').forEach(tab => {
       tab.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        // Active Style
-        navTabs.forEach(t => {
+        document.querySelectorAll('.nav-tab').forEach(t => {
           t.className = "nav-tab flex items-center justify-between px-3 py-2 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition";
           const icon = t.querySelector('i');
           if (icon) icon.classList.remove('text-rose-500');
@@ -387,47 +438,38 @@
         const currentIcon = tab.querySelector('i');
         if (currentIcon) currentIcon.classList.add('text-rose-500');
 
-        const folder = tab.getAttribute('data-folder');
-        const title = tab.getAttribute('data-title');
-        
-        setTabContext(folder, title);
+        setTabContext(tab.getAttribute('data-folder'), tab.getAttribute('data-title'));
       });
     });
 
-    // Lấy dữ liệu từ Form
-    function getFormData() {
-      return {
-        id: parseInt(inputId.value) || 1,
-        category: selectCategory.value || "cong-ty",
-        categoryLabel: inputCategoryLabel.value || "TIN TỨC",
-        title: inputTitle.value || "",
-        summary: inputSummary.value || "",
-        date: inputDate.value || getTodayFormatted(),
-        image: inputImage.value || "",
-        link: inputLink.value || ""
-      };
-    }
+    selectCategory.addEventListener('change', (e) => {
+      inputCategoryLabel.value = e.target.options[e.target.selectedIndex].getAttribute('data-label');
+    });
 
-    // LƯU BÀI VÀO TAB HIỆN TẠI
+    // Lưu vào mảng local
     document.getElementById('btn-add-to-list').addEventListener('click', () => {
-      const currentData = getFormData();
-      if (!currentData.title) return alert('Vui lòng nhập tiêu đề bài viết!');
+      const title = inputTitle.value.trim();
+      if (!title) return alert('Vui lòng nhập tiêu đề bài viết!');
+
+      const postData = {
+        id: parseInt(inputId.value) || 1,
+        category: selectCategory.value,
+        categoryLabel: inputCategoryLabel.value,
+        title: title,
+        summary: inputSummary.value,
+        date: inputDate.value || getTodayFormatted(),
+        image: inputImage.value,
+        link: inputLink.value
+      };
 
       if (!db[currentFolder]) db[currentFolder] = [];
+      const idx = db[currentFolder].findIndex(p => p.id === postData.id);
+      if (idx !== -1) db[currentFolder][idx] = postData;
+      else db[currentFolder].push(postData);
 
-      // Kiểm tra trùng ID trong Tab hiện tại
-      const existingIndex = db[currentFolder].findIndex(p => p.id === currentData.id);
-      if (existingIndex !== -1) {
-        db[currentFolder][existingIndex] = currentData; // Cập nhật
-      } else {
-        db[currentFolder].push(currentData); // Thêm mới
-      }
-
-      // Tự nhảy ID lên +1
       const nextId = getNextId();
       inputId.value = nextId;
-      const padId = String(nextId).padStart(3, '0');
-      inputLink.value = `content/${currentFolder}/${currentFolder}_${padId}.html`;
+      inputLink.value = `content/${currentFolder}/${currentFolder}_${String(nextId).padStart(3, '0')}.html`;
       inputTitle.value = '';
       inputSummary.value = '';
       inputImage.value = '';
@@ -435,7 +477,82 @@
       renderPostsList();
     });
 
-    // Sửa bài viết khi click vào Item trong list
+    // ==================== TẢI VÀ XUẤT BẢN LÊN GITHUB REST API ==================== //
+
+    // 1. Tải file từ GitHub về Studio
+    document.getElementById('btn-sync-github').addEventListener('click', async () => {
+      if (!authConfig) return alert('Chưa đăng nhập!');
+      const filePath = `content/posts-${currentFolder}.json`;
+      const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
+
+      try {
+        const res = await fetch(url, { headers: { "Authorization": `Bearer ${authConfig.token}` } });
+        if (res.ok) {
+          const data = await res.json();
+          const content = JSON.parse(b64_to_utf8(data.content));
+          db[currentFolder] = content;
+          renderPostsList();
+          alert(`✅ Đã tải thành công ${content.length} bài viết từ file ${filePath} trên GitHub!`);
+        } else {
+          alert(`⚠️ Chưa tìm thấy file ${filePath} trên GitHub (Có thể file chưa tạo).`);
+        }
+      } catch (err) {
+        alert('❌ Lỗi kết nối khi tải file từ GitHub!');
+      }
+    });
+
+    // 2. Ghi đè xuất bản trực tiếp lên GitHub Main
+    document.getElementById('btn-publish-github').addEventListener('click', async () => {
+      if (!authConfig) return alert('Chưa đăng nhập!');
+
+      const currentList = db[currentFolder] || [];
+      const filePath = `content/posts-${currentFolder}.json`;
+      const apiUrl = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
+
+      const btn = document.getElementById('btn-publish-github');
+      btn.innerText = "Đang xuất bản...";
+      btn.disabled = true;
+
+      try {
+        // Lấy SHA file cũ
+        let sha = "";
+        const getRes = await fetch(apiUrl, { headers: { "Authorization": `Bearer ${authConfig.token}` } });
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          sha = fileData.sha;
+        }
+
+        // Đẩy file mới lên đè file cũ
+        const contentStr = JSON.stringify(currentList, null, 2);
+        const putRes = await fetch(apiUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${authConfig.token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: `Admin Studio: Cập nhật ${filePath} (${getTodayFormatted()})`,
+            content: utf8_to_b64(contentStr),
+            sha: sha ? sha : undefined,
+            branch: "main"
+          })
+        });
+
+        if (putRes.ok) {
+          alert(`🚀 XUẤT BẢN THÀNH CÔNG!\nFile ${filePath} đã được đè trực tiếp lên nhánh 'main' trên GitHub.`);
+        } else {
+          const err = await putRes.json();
+          alert(`❌ Lỗi xuất bản: ${err.message}`);
+        }
+      } catch (err) {
+        alert('❌ Không thể kết nối tới GitHub API!');
+      } finally {
+        btn.innerHTML = `<i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i> Xuất bản lên GitHub Main`;
+        btn.disabled = false;
+        lucide.createIcons();
+      }
+    });
+
     window.editPost = function(index) {
       const post = db[currentFolder][index];
       inputId.value = post.id;
@@ -448,23 +565,13 @@
       inputLink.value = post.link;
     };
 
-    // Xóa một bài
     window.deletePost = function(index) {
-      if (confirm(`Bạn có muốn xóa bài này khỏi Tab [${currentTitle}]?`)) {
+      if (confirm('Xóa bài này khỏi danh sách?')) {
         db[currentFolder].splice(index, 1);
         renderPostsList();
       }
     };
 
-    // Xóa danh sách Tab hiện tại
-    document.getElementById('btn-clear-tab').addEventListener('click', () => {
-      if (confirm(`Xóa toàn bộ bài viết trong Tab [${currentTitle}]?`)) {
-        db[currentFolder] = [];
-        renderPostsList();
-      }
-    });
-
-    // Reset Form
     document.getElementById('btn-reset').addEventListener('click', () => {
       inputTitle.value = '';
       inputSummary.value = '';
@@ -472,83 +579,17 @@
       inputDate.value = getTodayFormatted();
     });
 
-    // Nạp dữ liệu từ File JSON cũ vào đúng Tab đang chọn
-    document.getElementById('file-input').addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        try {
-          const importedData = JSON.parse(evt.target.result);
-          if (Array.isArray(importedData)) {
-            db[currentFolder] = importedData;
-            renderPostsList();
-            alert(`✅ Đã nạp ${importedData.length} bài viết vào Tab [${currentTitle}] thành công!`);
-          } else {
-            alert('❌ File JSON không đúng định dạng Mảng (Array)');
-          }
-        } catch (err) {
-          alert('❌ Đọc file lỗi: Không đúng định dạng JSON!');
-        }
-      };
-      reader.readAsText(file);
-    });
-
-    // Copy JSON Mảng
     document.getElementById('btn-copy').addEventListener('click', () => {
       navigator.clipboard.writeText(jsonOutput.textContent);
-      alert(`📋 Đã sao chép Mảng JSON của Tab [${currentTitle}]!`);
+      alert('📋 Đã sao chép Mảng JSON!');
     });
 
-    // Xuất File JSON cho Tab Hiện Tại (posts-news.json / posts-projects.json ...)
-    document.getElementById('btn-export-json').addEventListener('click', () => {
-      const currentList = db[currentFolder] || [];
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentList, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `posts-${currentFolder}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-    });
-
-    // Xuất Google Sheets CSV cho Tab hiện tại
-    document.getElementById('btn-export-csv').addEventListener('click', () => {
-      const currentList = db[currentFolder] || [];
-      if (currentList.length === 0) return alert(`Tab [${currentTitle}] chưa có bài nào để xuất CSV!`);
-
-      const headers = ["id", "category", "categoryLabel", "title", "summary", "date", "image", "link"];
-      const rows = currentList.map(item => [
-        item.id,
-        `"${(item.category || '').replace(/"/g, '""')}"`,
-        `"${(item.categoryLabel || '').replace(/"/g, '""')}"`,
-        `"${(item.title || '').replace(/"/g, '""')}"`,
-        `"${(item.summary || '').replace(/"/g, '""')}"`,
-        `"${(item.date || '').replace(/"/g, '""')}"`,
-        `"${(item.image || '').replace(/"/g, '""')}"`,
-        `"${(item.link || '').replace(/"/g, '""')}"`
-      ]);
-
-      const csvContent = "\uFEFF" + headers.join(",") + "\n" + rows.map(r => r.join(",")).join("\n");
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.setAttribute("href", url);
-      link.setAttribute("download", `posts_${currentFolder}_export.csv`);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    });
-
-    // Tự cập nhật lại link theo ID khi gõ
     inputId.addEventListener('input', () => {
-      const padId = String(inputId.value || 1).padStart(3, '0');
-      inputLink.value = `content/${currentFolder}/${currentFolder}_${padId}.html`;
+      inputLink.value = `content/${currentFolder}/${currentFolder}_${String(inputId.value || 1).padStart(3, '0')}.html`;
     });
 
-    // Khởi chạy mặc định Tab Tin tức
-    setTabContext('news', 'Tin tức');
+    // Chạy khởi tạo
+    initAuth();
   </script>
 </body>
 </html>
