@@ -261,79 +261,79 @@
             </div>
         </section>
 
-        <!-- SCRIPT TỰ ĐỘNG CUỘN NAV TAB -->
-        <script>
-            window.initNavTabs = function () {
-                const container = document.getElementById("navTabsContainer");
-                if (!container) return;
-
-                if (container.dataset.initialized === "true") return;
-                container.dataset.initialized = "true";
-
-                let speed = 0.3;
-                let direction = 1;
-                let isPaused = false;
-                let resumeTimeout;
-                let currentScroll = container.scrollLeft;
-
-                function autoOscillate() {
-                    const activeContainer = document.getElementById("navTabsContainer");
-                    if (!activeContainer) return;
-
-                    if (!isPaused) {
-                        const maxScroll = activeContainer.scrollWidth - activeContainer.clientWidth;
-
-                        if (maxScroll > 0) {
-                            currentScroll += speed * direction;
-
-                            if (currentScroll >= maxScroll) {
-                                currentScroll = maxScroll;
-                                direction = -1;
-                            } else if (currentScroll <= 0) {
-                                currentScroll = 0;
-                                direction = 1;
-                            }
-
-                            activeContainer.scrollLeft = currentScroll;
-                        }
-                    }
-                    requestAnimationFrame(autoOscillate);
-                }
-
-                function pauseScroll() {
-                    isPaused = true;
-                    clearTimeout(resumeTimeout);
-                }
-
-                function resumeScroll() {
-                    clearTimeout(resumeTimeout);
-                    resumeTimeout = setTimeout(() => {
-                        if (container) currentScroll = container.scrollLeft;
-                        isPaused = false;
-                    }, 3000);
-                }
-
-                container.addEventListener("touchstart", pauseScroll, {passive: true});
-                container.addEventListener("touchend", resumeScroll, {passive: true});
-                container.addEventListener("mouseenter", pauseScroll);
-                container.addEventListener("mouseleave", resumeScroll);
-
-                container.addEventListener("scroll", () => {
-                    if (isPaused) {
-                        currentScroll = container.scrollLeft;
-                    }
-                }, {passive: true});
-
-                autoOscillate();
-            };
-
-            window.initNavTabs();
-        </script>
-        <!-- Nhúng file tự động nạp tin tức -->
-        <script src="assets/js/news-loader.js"></script>
     </main>
 
     <div id="footer-placeholder"></div>
+    <!-- SCRIPT TỰ ĐỘNG CUỘN NAV TAB -->
+    <script>
+        window.initNavTabs = function () {
+            const container = document.getElementById("navTabsContainer");
+            if (!container) return;
+
+            if (container.dataset.initialized === "true") return;
+            container.dataset.initialized = "true";
+
+            let speed = 0.3;
+            let direction = 1;
+            let isPaused = false;
+            let resumeTimeout;
+            let currentScroll = container.scrollLeft;
+
+            function autoOscillate() {
+                const activeContainer = document.getElementById("navTabsContainer");
+                if (!activeContainer) return;
+
+                if (!isPaused) {
+                    const maxScroll = activeContainer.scrollWidth - activeContainer.clientWidth;
+
+                    if (maxScroll > 0) {
+                        currentScroll += speed * direction;
+
+                        if (currentScroll >= maxScroll) {
+                            currentScroll = maxScroll;
+                            direction = -1;
+                        } else if (currentScroll <= 0) {
+                            currentScroll = 0;
+                            direction = 1;
+                        }
+
+                        activeContainer.scrollLeft = currentScroll;
+                    }
+                }
+                requestAnimationFrame(autoOscillate);
+            }
+
+            function pauseScroll() {
+                isPaused = true;
+                clearTimeout(resumeTimeout);
+            }
+
+            function resumeScroll() {
+                clearTimeout(resumeTimeout);
+                resumeTimeout = setTimeout(() => {
+                    if (container) currentScroll = container.scrollLeft;
+                    isPaused = false;
+                }, 3000);
+            }
+
+            container.addEventListener("touchstart", pauseScroll, {passive: true});
+            container.addEventListener("touchend", resumeScroll, {passive: true});
+            container.addEventListener("mouseenter", pauseScroll);
+            container.addEventListener("mouseleave", resumeScroll);
+
+            container.addEventListener("scroll", () => {
+                if (isPaused) {
+                    currentScroll = container.scrollLeft;
+                }
+            }, {passive: true});
+
+            autoOscillate();
+        };
+
+        window.initNavTabs();
+    </script>
+    <!-- Nhúng file tự động nạp tin tức -->
+    <script src="assets/js/news-loader.js"></script>
 
     <script src="layout.js"></script>
     <script>loadLayout('news');</script>
