@@ -4395,38 +4395,9 @@ main {
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border-color);
   text-align: center;
-  opacity: 0;
   will-change: transform, opacity;
   transition-property: opacity, transform, box-shadow;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), ease;
-}
-
-/* Khối 1: Trượt từ trái qua - Thời gian lướt 3s */
-
-.metrics-grid .metric-card:nth-child(1) {
-  transform: translateX(-80px);
-  transition-duration: 3s, 3s, 0.3s;
-}
-
-/* Khối 2: Trượt từ trái qua - Thời gian lướt 1s */
-
-.metrics-grid .metric-card:nth-child(2) {
-  transform: translateX(-80px);
-  transition-duration: 1s, 1s, 0.3s;
-}
-
-/* Khối 3: Trượt từ phải qua - Thời gian lướt 1s */
-
-.metrics-grid .metric-card:nth-child(3) {
-  transform: translateX(80px);
-  transition-duration: 1s, 1s, 0.3s;
-}
-
-/* Khối 4: Trượt từ phải qua - Thời gian lướt 3s */
-
-.metrics-grid .metric-card:nth-child(4) {
-  transform: translateX(80px);
-  transition-duration: 3s, 3s, 0.3s;
 }
 
 /* Trạng thái sau khi kích hoạt animation lướt vào */
