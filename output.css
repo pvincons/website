@@ -4384,7 +4384,7 @@ main {
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -4432,15 +4432,15 @@ main {
   transition: transform 0.3s ease;
 }
 
-.metric-value {
-  font-size: 22px;
+.metric-title {
+  font-size: 20px;
   font-weight: 800;
-  color: var(--primary-dark);
+  color: var(--brand-darkblue);
   margin-bottom: 4px;
 }
 
-.metric-label {
-  font-size: 12px;
+.metric-subtitle {
+  font-size: 14px;
   color: var(--text-muted);
   font-weight: 500;
   text-transform: uppercase;
