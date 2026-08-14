@@ -4419,8 +4419,8 @@ main {
 }
 
 .metric-icon {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   background: rgba(30, 104, 168, 0.08);
   color: var(--primary-blue);
   border-radius: 12px;
