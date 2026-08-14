@@ -152,6 +152,77 @@ function closeMobileMenu() {
 }
 
 // ==========================================
+// CHỨC NĂNG TỰ ĐỘNG CUỘN NAV TAB
+// ==========================================
+function initNavTabs() {
+    const container = document.getElementById("navTabsContainer");
+    // 1. Kiểm tra an toàn: Trang nào không có thanh Tab thì bỏ qua ngay
+    if (!container) return; 
+    // 2. Chống chạy trùng lặp
+    if (container.dataset.initialized === "true") return;
+    container.dataset.initialized = "true";
+
+    let speed = 0.3;
+    let direction = 1;
+    let isPaused = false;
+    let resumeTimeout;
+    let currentScroll = container.scrollLeft;
+
+            function autoOscillate() {
+                const activeContainer = document.getElementById("navTabsContainer");
+                if (!activeContainer) return;
+
+                if (!isPaused) {
+                    const maxScroll = activeContainer.scrollWidth - activeContainer.clientWidth;
+
+                    if (maxScroll > 0) {
+                        currentScroll += speed * direction;
+
+                        if (currentScroll >= maxScroll) {
+                            currentScroll = maxScroll;
+                            direction = -1;
+                        } else if (currentScroll <= 0) {
+                            currentScroll = 0;
+                            direction = 1;
+                        }
+
+                        activeContainer.scrollLeft = currentScroll;
+                    }
+                }
+                requestAnimationFrame(autoOscillate);
+            }
+
+            function pauseScroll() {
+                isPaused = true;
+                clearTimeout(resumeTimeout);
+            }
+
+            function resumeScroll() {
+                clearTimeout(resumeTimeout);
+                resumeTimeout = setTimeout(() => {
+                    if (container) currentScroll = container.scrollLeft;
+                    isPaused = false;
+                }, 3000);
+            }
+
+            container.addEventListener("touchstart", pauseScroll, {passive: true});
+            container.addEventListener("touchend", resumeScroll, {passive: true});
+            container.addEventListener("mouseenter", pauseScroll);
+            container.addEventListener("mouseleave", resumeScroll);
+
+            container.addEventListener("scroll", () => {
+                if (isPaused) {
+                    currentScroll = container.scrollLeft;
+                }
+            }, {passive: true});
+
+            autoOscillate();
+        };
+
+        window.initNavTabs();
+}
+
+// ==========================================
 // TỰ ĐỘNG LẤY 6 TIN TỨC CHO INDEX.HTML
 // ==========================================
 async function loadHomeNews() {
@@ -383,4 +454,5 @@ document.addEventListener('DOMContentLoaded', function () {
     initSmoothScroll();
     setTimeout(initVisitorCounter, 300);
     loadHomeNews();
+    initNavTabs();
 });
