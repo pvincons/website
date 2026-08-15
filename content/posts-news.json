@@ -8,5 +8,15 @@
     "date": "14/08/2026",
     "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
     "link": "content/news/news_008.html"
+  },
+  {
+    "id": 2,
+    "category": "tin-noi-bat",
+    "categoryLabel": "TIN NỔI BẬT",
+    "title": "HỢP TÁC XÂY DỰNG NHÀ THÉP TIỀN CHẾ",
+    "summary": "Thực hiện quy trình kỹ thuật BIM/VDC",
+    "date": "15/08/2026",
+    "image": "https://i.pinimg.com/736x/9f/17/2d/9f172da6529dbbef9f4ba00eb72d3abc.jpg",
+    "link": "content/news/news_009.html"
   }
 ]
