@@ -4390,7 +4390,7 @@ main {
 }
 
 .metrics-grid .metric-card {
-  background: #e4e4e4fd;
+  background: #e4e4e4;
   padding: 24px;
   border-radius: 16px;
   box-shadow: var(--shadow-md);
@@ -4399,6 +4399,23 @@ main {
   will-change: transform, opacity;
   transition-property: opacity, transform, box-shadow;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), ease;
+  /* Tạo hiệu ứng kim loại bóng bằng gradient dải sáng tối xen kẽ */
+    background: 
+        linear-gradient(#868686af, #e4e4e4f5), 
+        linear-gradient(135deg, #ffffff 0%, #a6a6a6 25%, #ffffff 50%, #787878af 75%, #ffffff 100%) padding-box;
+    
+    /* Viền trong suốt để dải gradient kim loại hiển thị lên */
+    border: 4px solid transparent; 
+    border-radius: 16px;
+    padding: 24px;
+
+    /* Ánh kim phát sáng (Glow nhẹ) xung quanh thẻ */
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), var(--shadow-md);
+
+    text-align: center;
+    will-change: transform, opacity;
+    transition-property: opacity, transform, box-shadow;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Trạng thái sau khi kích hoạt animation lướt vào */
@@ -4431,6 +4448,9 @@ main {
   font-size: 32px;
   margin: 0 auto 12px;
   transition: transform 0.3s ease;
+  /* Viền trắng độ rộng ~1mm */
+    border: 3px solid #fffffff6; 
+    box-sizing: border-box;
 }
 
 .metric-title {
