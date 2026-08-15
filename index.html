@@ -106,15 +106,10 @@
         <section
             class="hero relative w-full h-[20vh] min-h-[200px] sm:h-[45vh] lg:h-[85vh] bg-slate-900 !p-0 flex items-center justify-center overflow-hidden">
 
-            <!-- Video nền toàn màn hình -->
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover"
-                poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop">
-                <source src="video/banner-pvincons.mp4" type="video/mp4">
-                Trình duyệt của bạn không hỗ trợ thẻ video.
-            </video>
-
-            <!-- Lớp phủ (Overlay) làm tối video một chút để chữ nổi bật hơn -->
-            <div class="absolute inset-0 bg-black/40 z-0"></div>
+            <!-- Ảnh nền chuyển động (Zoom in/out mượt mà) -->
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop"
+                alt="Banner PV INCONS"
+               class="absolute inset-0 w-full h-full object-cover animate-bg-pan">
 
             <!-- Khối chứa chữ căn giữa tuyệt đối -->
             <div
@@ -126,7 +121,7 @@
                 </h1>
                 <!-- Phụ đề -->
                 <p
-                    class="hero-subtitle text-sm sm:text-lg md:text-xl lg:text-2xl text-slate-100 max-w-3xl mx-auto font-normal tracking-wide leading-relaxed !m-0 drop-shadow-md">
+                    class="hero-subtitle text-base sm:text-xlg md:text-3xl lg:text-4xl text-slate-100 max-w-3xl mx-auto font-normal tracking-wide leading-relaxed !m-0 drop-shadow-md">
                     Đầu tư - Xây dựng - Pháp lý
                 </p>
             </div>
