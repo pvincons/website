@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "id": 1,
+    "category": "dang-trien-khai",
+    "categoryLabel": "ĐANG TRIỂN KHAI",
+    "title": "THI CÔNG CÔNG TRÌNH",
+    "summary": "Giải pháp an toàn",
+    "date": "15/08/2026",
+    "image": "https://i.pinimg.com/736x/9f/17/2d/9f172da6529dbbef9f4ba00eb72d3abc.jpg",
+    "link": "content/projects/projects_001.html",
+    "code": "CÔNG TRÌNH MỚI",
+    "scale": "10 TẦNG",
+    "client": "ABC",
+    "location": "Can Tho",
+    "architect": "PVI",
+    "bulletPoints": [
+      "Đạt chất lượng",
+      "ISO"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "dang-trien-khai",
+    "categoryLabel": "ĐANG TRIỂN KHAI",
+    "title": "TẠO DỮ LIỆU ẢO",
+    "summary": "",
+    "date": "15/08/2026",
+    "image": "",
+    "link": "content/projects/projects_002.html",
+    "code": "CAD",
+    "scale": "",
+    "client": "DD",
+    "location": "",
+    "architect": ""
+  }
+]

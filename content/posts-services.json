@@ -2,16 +2,113 @@
   {
     "id": 1,
     "category": "pricing",
-    "categoryLabel": "BẢNG GIÁ DỊCH VỤ",
-    "title": "FFFFFFFFFFFFF",
-    "summary": "SSSD",
-    "date": "15/08/2026",
-    "image": "",
-    "link": "DDD",
-    "code": "KAAA",
-    "icon": "BUILDING",
-    "bulletPoints": [
-      "DĐ"
-    ]
+    "title": "Thiết kế Kiến trúc, Kết cấu & M&E (Mô phỏng 3D BIM)",
+    "summary": "Đơn giá: 150.000 - 550.000 VNĐ/m²",
+    "icon": "fa-tag",
+    "link": "#dich-vu-chinh"
+  },
+  {
+    "id": 2,
+    "category": "pricing",
+    "title": "Thi công xây dựng phần thô & Trọn gói công trình",
+    "summary": "Đơn giá: 6.000.000 - 11.000.000 VNĐ/m²",
+    "icon": "fa-tag",
+    "link": "#dich-vu-chinh"
+  },
+  {
+    "id": 3,
+    "category": "pricing",
+    "title": "Tư vấn báo cáo tiền khả thi & Bảng tính dòng tiền dự án",
+    "summary": "Đơn giá: Từ 15.000.000 VNĐ / Hồ sơ",
+    "icon": "fa-tag",
+    "link": "#dich-vu-chinh"
+  },
+  {
+    "id": 4,
+    "category": "pricing",
+    "title": "Trích đo hiện trạng VN-2000, Xin phép XD & Hoàn công",
+    "summary": "Đơn giá: Từ 5.000.000 - 35.000.000 VNĐ / Trọn gói",
+    "icon": "fa-tag",
+    "link": "#dich-vu-chinh"
+  },
+  {
+    "id": 5,
+    "category": "documents",
+    "title": "1. Hợp đồng thiết kế",
+    "summary": "Mẫu hợp đồng tư vấn & thiết kế chuẩn quy trình BIM/VDC",
+    "icon": "fa-file-contract",
+    "link": ""
+  },
+  {
+    "id": 6,
+    "category": "documents",
+    "title": "2. Hợp đồng thi công",
+    "summary": "Mẫu hợp đồng thi công phần thô & trọn gói công trình",
+    "icon": "fa-file-contract",
+    "link": ""
+  },
+  {
+    "id": 7,
+    "category": "documents",
+    "title": "3. Hợp đồng dịch vụ pháp lý",
+    "summary": "Mẫu hợp đồng trích đo, xin phép xây dựng & hoàn công",
+    "icon": "fa-file-contract",
+    "link": ""
+  },
+  {
+    "id": 8,
+    "category": "documents",
+    "title": "4. Văn bản thỏa thuận thực hiện dịch vụ",
+    "summary": "Mẫu thỏa thuận ghi nhớ & nguyên tắc hợp tác ban đầu",
+    "icon": "fa-file-signature",
+    "link": ""
+  },
+  {
+    "id": 9,
+    "category": "documents",
+    "title": "5. Biên bản giám sát tác giả",
+    "summary": "Mẫu ghi nhận kiểm tra thực địa của đơn vị tư vấn thiết kế",
+    "icon": "fa-clipboard-check",
+    "link": ""
+  },
+  {
+    "id": 10,
+    "category": "documents",
+    "title": "6. Phiếu RFI (Request For Information)",
+    "summary": "Mẫu phiếu yêu cầu làm rõ thông tin thiết kế & kỹ thuật",
+    "icon": "fa-circle-question",
+    "link": ""
+  },
+  {
+    "id": 11,
+    "category": "documents",
+    "title": "7. Phiếu RFA (Request For Approval)",
+    "summary": "Mẫu phiếu trình duyệt vật tư, thiết bị & giải pháp thi công",
+    "icon": "fa-file-circle-check",
+    "link": ""
+  },
+  {
+    "id": 12,
+    "category": "documents",
+    "title": "8. Biên bản nghiệm thu công việc",
+    "summary": "Mẫu biên bản nghiệm thu chuyển bước thi công & giai đoạn công trình",
+    "icon": "fa-list-check",
+    "link": ""
+  },
+  {
+    "id": 13,
+    "category": "documents",
+    "title": "9. Hợp đồng khoán việc",
+    "summary": "Mẫu hợp đồng giao khoán nhân công & hạng mục chuyên biệt",
+    "icon": "fa-file-contract",
+    "link": ""
+  },
+  {
+    "id": 14,
+    "category": "documents",
+    "title": "10. Phiếu giao nhận hồ sơ",
+    "summary": "Mẫu biên bản bàn giao bản vẽ, hồ sơ pháp lý & chứng từ công trình",
+    "icon": "fa-box-archive",
+    "link": ""
   }
 ]
