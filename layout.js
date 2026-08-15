@@ -11,15 +11,19 @@ window.toggleLanguage = function () {
     const host = location.hostname;
     const rootDomain = host.replace(/^www\./, '');
     const pastDate = "expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+    
+    // Kiểm tra nếu là localhost hoặc IP thì không gán domain trong cookie
+    const isLocal = host === 'localhost' || /^\d+\.\d+\.\d+\.\d+$/.test(host);
+    const domainStr = isLocal ? "" : " domain=." + rootDomain + ";";
 
     if (isEn) {
         document.cookie = "googtrans=; " + pastDate;
-        document.cookie = "googtrans=; domain=" + host + "; " + pastDate;
-        document.cookie = "googtrans=; domain=." + rootDomain + "; " + pastDate;
+        document.cookie = "googtrans=; path=/;" + domainStr + " " + pastDate;
     } else {
         document.cookie = "googtrans=/vi/en; path=/;";
-        document.cookie = "googtrans=/vi/en; path=/; domain=" + host + ";";
-        document.cookie = "googtrans=/vi/en; path=/; domain=." + rootDomain + ";";
+        if (!isLocal) {
+            document.cookie = "googtrans=/vi/en; path=/; domain=." + rootDomain + ";";
+        }
     }
     location.reload();
 };
@@ -119,28 +123,29 @@ async function loadLayout(pageId) {
             const footerHtml = await footerRes.text();
 
             const headerPlaceholder = document.getElementById('header-placeholder');
-            if (headerPlaceholder) {
-                headerPlaceholder.outerHTML = headerHtml;
-            }
+            if (headerPlaceholder) headerPlaceholder.outerHTML = headerHtml;
 
             const footerPlaceholder = document.getElementById('footer-placeholder');
-            if (footerPlaceholder) {
-                footerPlaceholder.innerHTML = footerHtml;
-            }
-
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
+            if (footerPlaceholder) footerPlaceholder.innerHTML = footerHtml;
         }
 
+        // Đảm bảo gán sự kiện Toggle Mobile Menu bất kể Header được fetch hay có sẵn
+        initMobileMenu();
         updateActiveTab(pageId);
 
     } catch (error) {
         console.error('Lỗi khi nạp Header/Footer:', error);
+    }
+}
+
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu && !mobileMenuBtn._hasListener) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenuBtn._hasListener = true; // Tránh gán lặp sự kiện
     }
 }
 
@@ -150,44 +155,6 @@ function closeMobileMenu() {
         mobileMenu.classList.add('hidden');
     }
 }
-
-// ==========================================
-// TỰ ĐỘNG LẤY TIN TỨC CHO INDEX.HTML
-// ==========================================
-/* async function loadHomeNews() {
-    const placeholder = document.getElementById('latest-news-placeholder');
-    if (!placeholder) return;
-
-    try {
-        const response = await fetch('news.html');
-        if (!response.ok) return;
-        const htmlText = await response.text();
-
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlText, 'text/html');
-        
-        const newsContainer = doc.querySelector('#news-container');
-
-        if (newsContainer) {
-            const articles = Array.from(newsContainer.querySelectorAll('article')).slice(0, 6);
-            placeholder.innerHTML = '';
-
-            articles.forEach(article => {
-                const clonedArticle = article.cloneNode(true);
-
-                clonedArticle.classList.remove(
-                    'min-w-[320px]', 'w-[85vw]', 'md:w-[450px]', 'w-[280px]', 'sm:w-[320px]', 'md:w-[350px]',
-                    'shrink-0', 'snap-start'
-                );
-
-                clonedArticle.classList.add('w-full');
-                placeholder.appendChild(clonedArticle);
-            });
-        }
-    } catch (error) {
-        console.error('Lỗi tải tin tức trang chủ:', error);
-    }
-} */
 
 // ==========================================
 // FORM POPUP CHUẨN FORMSPREE
@@ -234,12 +201,13 @@ function getMasterModalHtml() {
 }
 
 function openContactModal() {
-    document.querySelectorAll('#contactModal').forEach(el => el.remove());
+    closeContactModal();
     document.body.insertAdjacentHTML('beforeend', getMasterModalHtml());
 }
 
 function closeContactModal() {
-    document.querySelectorAll('#contactModal').forEach(el => el.remove());
+    const modal = document.getElementById('contactModal');
+    if (modal) modal.remove();
 }
 
 function showThankYouModal() {
@@ -251,8 +219,8 @@ function showThankYouModal() {
                 <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                     <i class="fa-solid fa-check"></i>
                 </div>
-                <h3 class="text-xl font-bold text-slate-800 mb-2">Gửi Thông Tin Thành Công!</h3>
-                <p class="text-slate-600 text-sm mb-6">Cảm ơn Quý khách đã liên hệ với PV INCONS. Chúng tôi sẽ xử lý thông tin và gửi lại cho Quý khách trong thời gian sớm nhất.</p>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Gửi thông tin thành công!</h3>
+                <p class="text-slate-600 text-sm mb-6">Cảm ơn Quý khách đã liên hệ với PV INCONS. Chúng tôi sẽ xử lý thông tin và liên hệ với Quý khách trong thời gian sớm nhất.</p>
                 <button type="button" onclick="closeModal()" class="w-full bg-brand-blue hover:bg-brand-darkblue text-white font-semibold py-3 rounded-xl transition cursor-pointer text-sm">
                     Đóng
                 </button>
@@ -266,9 +234,7 @@ function showThankYouModal() {
 }
 
 function closeModal() {
-    const reqModal = document.getElementById('requestModal');
-    if (reqModal) reqModal.classList.add('hidden');
-
+    closeContactModal();
     const thankYouModal = document.getElementById('thankYouModal');
     if (thankYouModal) {
         thankYouModal.classList.add('hidden');
@@ -296,19 +262,15 @@ async function submitContactForm(e) {
         const response = await fetch(actionUrl, {
             method: 'POST',
             body: new FormData(form),
-            headers: { 
-                'Accept': 'application/json' 
-            }
+            headers: { 'Accept': 'application/json' }
         });
 
         if (response.ok) {
             form.reset();
             closeContactModal();
-            const reqModal = document.getElementById('requestModal');
-            if (reqModal) reqModal.classList.add('hidden');
             showThankYouModal();
         } else {
-            alert('Có lỗi xảy ra khi gửi dữ liệu qua Formspree. Vui lòng kiểm tra lại kết nối!');
+            alert('Có lỗi xảy ra khi gửi dữ liệu. Vui lòng kiểm tra lại kết nối!');
         }
     } catch (error) {
         console.error('Lỗi kết nối Formspree:', error);
@@ -324,7 +286,7 @@ async function submitContactForm(e) {
 // ==========================================
 // THỐNG KÊ LƯỢT TRUY CẬP
 // ==========================================
-/* async function initVisitorCounter() {
+async function initVisitorCounter() {
     const totalVisitsEl = document.getElementById('totalVisits');
     const onlineVisitorsEl = document.getElementById('onlineVisitors');
 
@@ -356,15 +318,11 @@ async function submitContactForm(e) {
             throw new Error('Lỗi phản hồi API');
         }
     } catch (error) {
-        if (totalVisitsEl) {
-            totalVisitsEl.innerText = '12.000';
-        }
-        if (onlineVisitorsEl) {
-            onlineVisitorsEl.innerText = '5';
-        }
+        if (totalVisitsEl) totalVisitsEl.innerText = '12.000';
+        if (onlineVisitorsEl) onlineVisitorsEl.innerText = '5';
     }
 }
- */
+
 // ==========================================
 // KHỞI TẠO TỰ ĐỘNG KHI TẢI TRANG
 // ==========================================
@@ -381,6 +339,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initSmoothScroll();
-    setTimeout(initVisitorCounter, 300);
-    /* loadHomeNews(); */
+
+    // Kiểm tra an toàn trước khi gọi hàm đếm
+    if (typeof initVisitorCounter === 'function') {
+        setTimeout(initVisitorCounter, 300);
+    }
 });
