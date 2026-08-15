@@ -154,7 +154,7 @@ function closeMobileMenu() {
 // ==========================================
 // TỰ ĐỘNG LẤY TIN TỨC CHO INDEX.HTML
 // ==========================================
-async function loadHomeNews() {
+/* async function loadHomeNews() {
     const placeholder = document.getElementById('latest-news-placeholder');
     if (!placeholder) return;
 
@@ -187,7 +187,7 @@ async function loadHomeNews() {
     } catch (error) {
         console.error('Lỗi tải tin tức trang chủ:', error);
     }
-}
+} */
 
 // ==========================================
 // FORM POPUP CHUẨN FORMSPREE
@@ -324,7 +324,7 @@ async function submitContactForm(e) {
 // ==========================================
 // THỐNG KÊ LƯỢT TRUY CẬP
 // ==========================================
-async function initVisitorCounter() {
+/* async function initVisitorCounter() {
     const totalVisitsEl = document.getElementById('totalVisits');
     const onlineVisitorsEl = document.getElementById('onlineVisitors');
 
@@ -364,7 +364,7 @@ async function initVisitorCounter() {
         }
     }
 }
-
+ */
 // ==========================================
 // KHỞI TẠO TỰ ĐỘNG KHI TẢI TRANG
 // ==========================================
@@ -382,5 +382,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initSmoothScroll();
     setTimeout(initVisitorCounter, 300);
-    loadHomeNews();
+    /* loadHomeNews(); */
 });

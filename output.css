@@ -4109,7 +4109,7 @@ main {
   color: var(--accent-orange);
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   display: inline-block;
   opacity: 0;
   animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
@@ -4121,12 +4121,13 @@ main {
 
 .hero-title {
   font-family: 'Oswald', sans-serif !important;
-  letter-spacing: 0.03em;
-  line-height: 1.3 !important;
+  letter-spacing: 0.05em;
+  line-height: 1.25 !important;
   opacity: 0;
   will-change: transform, opacity;
   animation: heroFadeDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
+  margin-bottom: 20px !important;
 }
 
 .hero-subtitle {
@@ -5014,8 +5015,8 @@ main {
 }
 
 /* ==========================================
-  12. FLOATING CHAT BUTTON STYLES
-   ========================================== */
+12. FLOATING CHAT BUTTON STYLES
+========================================== */
 
 .chat-float-btn {
   position: fixed;
@@ -5127,8 +5128,8 @@ main {
 }
 
 /*==========================================
- 13. CÁC STYLES THEO TAB
- ==========================================*/
+13. CÁC STYLES THEO TAB
+==========================================*/
 
 /* Hiệu ứng ảnh nền lướt nhẹ nhàng (Pan & Zoom) */
 
@@ -5193,8 +5194,8 @@ main {
 }
 
 /* ==========================================
- 15. Fonts chữ nội bộ Truy cập trang chính thức: fonts.google.com
- ========================================== */
+15. Fonts chữ nội bộ Truy cập trang chính thức: fonts.google.com
+========================================== */
 
 /* Khai báo Font Inter (Thường) */
 
@@ -5273,6 +5274,11 @@ main {
     }
   }
 }
+
+/* ==========================================
+16. ++++++++++++++
+========================================== */
+
 
 .selection\:bg-brand-blue *::-moz-selection {
   --tw-bg-opacity: 1;
