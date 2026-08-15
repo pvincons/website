@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   // 1. Tìm container chứa danh sách dự án
-  const projectsContainer = document.getElementById('projects-container');
+  const projectsContainer = document.getElementById('content/post-projects.js');
   if (!projectsContainer) return;
 
   try {
