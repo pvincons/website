@@ -1,12 +1,21 @@
 [
   {
     "id": 1,
-    "title": "Biệt Thự Phố Hiện Đại Villa H38",
-    "location": "Ninh Kiều, Cần Thơ",
-    "status": "Đang Thi Công (85%)",
-    "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop",
-    "description": "Thiết kế kiến trúc tối ưu không gian, áp dụng mô phỏng BIM/Revit 2027 và thi công hoàn thiện nội thất trọn gói.",
-    "scale": "4 Tầng (44.5m²)",
-    "email": "workspace.pvi@gmail.com"
+    "category": "dang-trien-khai",
+    "categoryLabel": "ĐANG TRIỂN KHAI",
+    "title": "THI CÔNG CÔNG TRÌNH",
+    "summary": "Giải pháp an toàn",
+    "date": "15/08/2026",
+    "image": "https://i.pinimg.com/736x/9f/17/2d/9f172da6529dbbef9f4ba00eb72d3abc.jpg",
+    "link": "content/projects/projects_001.html",
+    "code": "CAN THO",
+    "scale": "5 tang",
+    "client": "ABC",
+    "location": "Can Tho",
+    "architect": "PVI",
+    "bulletPoints": [
+      "Đạt chất lượng",
+      "ISO"
+    ]
   }
 ]
