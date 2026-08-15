@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   // 1. Tìm container chứa danh sách dự án
-  const projectsContainer = document.getElementById('content/posts-news.json');
+  const projectsContainer = document.getElementById('content/posts-projects.json');
   if (!projectsContainer) return;
 
   try {
