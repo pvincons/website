@@ -284,45 +284,48 @@ async function submitContactForm(e) {
 }
 
 // ==========================================
-// THỐNG KÊ LƯỢT TRUY CẬP
+// THỐNG KÊ LƯỢT TRUY CẬP (GOOGLE FIREBASE REALTIME DATABASE)
 // ==========================================
-async function initVisitorCounter() {
+// ==========================================
+// THỐNG KÊ LƯỢT TRUY CẬP (GIẢ LẬP LOCAL)
+// ==========================================
+function initVisitorCounter() {
     const totalVisitsEl = document.getElementById('totalVisits');
     const onlineVisitorsEl = document.getElementById('onlineVisitors');
 
     if (!totalVisitsEl && !onlineVisitorsEl) return;
 
-    const NAMESPACE = 'pvincons_construct_2026';
-    const KEY = 'total_visits';
+    // 1. Xử lý Tổng lượt truy cập (Total Visits)
+    const BASE_VISITS = 12450; // Số đếm nền ban đầu bạn muốn hiển thị
+    
+    // Lấy số lượt cộng thêm đã lưu trong máy người dùng
+    let addedVisits = parseInt(localStorage.getItem('pv_simulated_visits') || '0', 10);
 
-    try {
-        let endpoint = `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/`;
+    // Nếu là phiên truy cập mới (mới mở lại web), cộng thêm +1
+    if (!sessionStorage.getItem('pv_counted_session')) {
+        addedVisits += 1;
+        localStorage.setItem('pv_simulated_visits', addedVisits.toString());
+        sessionStorage.setItem('pv_counted_session', 'true');
+    }
 
-        if (!sessionStorage.getItem('pv_counted_session')) {
-            endpoint += 'up/';
-            sessionStorage.setItem('pv_counted_session', 'true');
-        }
+    const finalTotal = BASE_VISITS + addedVisits;
 
-        const response = await fetch(endpoint);
-        if (response.ok) {
-            const data = await response.json();
-            const BASE_OFFSET = 12000;
-            const finalTotal = (data.count || 0) + BASE_OFFSET;
-            if (totalVisitsEl) {
-                totalVisitsEl.innerText = Number(finalTotal).toLocaleString('vi-VN');
-            }
-            if (onlineVisitorsEl) {
-                onlineVisitorsEl.innerText = Math.floor(Math.random() * 5) + 3;
-            }
-        } else {
-            throw new Error('Lỗi phản hồi API');
-        }
-    } catch (error) {
-        if (totalVisitsEl) totalVisitsEl.innerText = '12.000';
-        if (onlineVisitorsEl) onlineVisitorsEl.innerText = '5';
+    if (totalVisitsEl) {
+        totalVisitsEl.innerText = finalTotal.toLocaleString('vi-VN');
+    }
+
+    // 2. Xử lý Số người đang Online (Online Visitors)
+    if (onlineVisitorsEl) {
+        // Khởi tạo số online ngẫu nhiên từ 3 đến 20 người
+        const getRandomOnline = () => Math.floor(Math.random() * 18) + 3;
+        onlineVisitorsEl.innerText = getRandomOnline();
+
+        // Cập nhật nhảy số tự nhiên mỗi 8 giây cho giống thật
+        setInterval(() => {
+            onlineVisitorsEl.innerText = getRandomOnline();
+        }, 8000);
     }
 }
-
 // ==========================================
 // KHỞI TẠO TỰ ĐỘNG KHI TẢI TRANG
 // ==========================================
@@ -339,9 +342,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initSmoothScroll();
-
-    // Kiểm tra an toàn trước khi gọi hàm đếm
-    if (typeof initVisitorCounter === 'function') {
-        setTimeout(initVisitorCounter, 300);
-    }
 });
