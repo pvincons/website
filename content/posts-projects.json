@@ -17,20 +17,5 @@
       "Đạt chất lượng",
       "ISO"
     ]
-  },
-  {
-    "id": 2,
-    "category": "dang-trien-khai",
-    "categoryLabel": "ĐANG TRIỂN KHAI",
-    "title": "TẠO DỮ LIỆU ẢO",
-    "summary": "",
-    "date": "15/08/2026",
-    "image": "",
-    "link": "content/projects/projects_002.html",
-    "code": "CAD",
-    "scale": "",
-    "client": "DD",
-    "location": "",
-    "architect": ""
   }
 ]
