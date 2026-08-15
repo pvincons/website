@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": 1,
+    "category": "pricing",
+    "categoryLabel": "BẢNG GIÁ DỊCH VỤ",
+    "title": "FFFFFFFFFFFFF",
+    "summary": "SSSD",
+    "date": "15/08/2026",
+    "image": "",
+    "link": "DDD",
+    "code": "KAAA",
+    "icon": "BUILDING",
+    "bulletPoints": [
+      "DĐ"
+    ]
+  }
+]
