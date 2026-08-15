@@ -1,61 +1,80 @@
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('content/posts-news.json')
-        .then(response => {
-            if (!response.ok) throw new Error('Không tìm thấy file posts-news.json');
-            return response.json();
-        })
-        .then(posts => {
-            // Sắp xếp bài viết theo ID giảm dần
-            posts.sort((a, b) => b.id - a.id); 
+document.addEventListener('DOMContentLoaded', async () => {
+  // 1. Tìm container chứa danh sách dự án
+  const projectsContainer = document.getElementById('projects-container');
+  if (!projectsContainer) return;
 
-            // Vẽ giao diện bài viết
-            renderNewsPosts(posts);
-        })
-        .catch(error => console.error('Lỗi nạp tin tức:', error));
+  try {
+    // 2. Lấy dữ liệu dự án (Lấy từ file JSON do Admin xuất ra hoặc LocalStorage)
+    let projects = [];
+
+    // Trường hợp 1: Fetch từ file JSON do CMS / Admin cập nhật
+    const response = await fetch('/data/projects.json');
+    if (response.ok) {
+      projects = await response.json();
+    } else {
+      // Trường hợp 2: Fallback lấy từ LocalStorage nếu Admin lưu trực tiếp ở browser
+      const localData = localStorage.getItem('pv_incons_projects');
+      if (localData) projects = JSON.parse(localData);
+    }
+
+    if (!projects || projects.length === 0) {
+      projectsContainer.innerHTML = '<p class="text-center text-slate-500 col-span-full">Chưa có dữ liệu dự án nào.</p>';
+      return;
+    }
+
+    // 3. Render danh sách thẻ Card chuẩn HTML theo mẫu
+    projectsContainer.innerHTML = projects.map(project => {
+      // Tạo tiêu đề mail động theo tên dự án
+      const mailSubject = encodeURIComponent(`Tư vấn dự án ${project.title || ''}`);
+      const mailToUrl = `mailto:${project.email || 'workspace.pvi@gmail.com'}?subject=${mailSubject}`;
+
+      return `
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <!-- Khung ảnh & Tag trạng thái -->
+            <div class="h-52 overflow-hidden relative">
+              <img src="${project.image || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop'}" 
+                   alt="${project.title || 'Dự án'}" 
+                   class="w-full h-full object-cover hover:scale-105 transition duration-500">
+              
+              ${project.status ? `
+                <span class="absolute top-3 right-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase shadow">
+                  ${project.status}
+                </span>
+              ` : ''}
+            </div>
+
+            <!-- Nội dung chính -->
+            <div class="p-6">
+              ${project.location ? `
+                <span class="text-xs text-brand-blue font-semibold uppercase tracking-wider">
+                  <i class="fa-solid fa-location-dot mr-1"></i> ${project.location}
+                </span>
+              ` : ''}
+              
+              <h3 class="font-bold text-base text-slate-900 mt-1 mb-3">${project.title || 'Chưa đặt tên'}</h3>
+              
+              <p class="text-slate-600 text-xs leading-relaxed text-justify mb-4">
+                ${project.description || ''}
+              </p>
+            </div>
+          </div>
+
+          <!-- Footer của Card -->
+          <div class="p-6 pt-0 flex justify-between items-center border-t border-slate-200/60 mt-2">
+            <span class="text-[11px] text-slate-500">
+              <i class="fa-solid fa-ruler-combined mr-1"></i> Q.Mô: ${project.scale || 'N/A'}
+            </span>
+            <a href="${mailToUrl}" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors">
+              Chi tiết &rarr;
+            </a>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+  } catch (error) {
+    console.error('Lỗi khi tải danh sách dự án:', error);
+    projectsContainer.innerHTML = '<p class="text-center text-red-500 col-span-full">Không thể tải dữ liệu dự án.</p>';
+  }
 });
-
-function renderNewsPosts(posts) {
-    posts.forEach(post => {
-        const container = document.querySelector(`[data-category="${post.category}"]`);
-
-        if (container) {
-            const articleHTML = `
-                <article onclick="window.location.href='${post.link}'" 
-                         class="bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-row items-stretch min-h-[130px] sm:min-h-[200px] cursor-pointer group">
-                    
-                    <!-- Hình ảnh đại diện + Thẻ chủ đề -->
-                    <div class="w-[40%] sm:w-1/3 lg:w-2/5 relative shrink-0">
-                        <img src="${post.image}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${post.title}">
-                        <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-brand-blue text-white text-[8px] sm:text-[10px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase shadow-sm">${post.categoryLabel}</span>
-                    </div>
-
-                    <!-- Mảng chữ và nội dung -->
-                    <div class="w-[60%] sm:w-2/3 lg:w-3/5 p-3 sm:p-6 flex flex-col justify-between">
-                        <div>
-                            <!-- Ngày đăng -->
-                            <span class="text-[10px] sm:text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> ${post.date}</span>
-                            
-                            <!-- Tiêu đề (Đã thêm text-justify) -->
-                            <h3 class="font-bold text-[13px] leading-snug sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors">
-                                ${post.title}
-                            </h3>
-
-                            <!-- Đoạn mô tả tóm tắt (Đã thêm text-justify & hiện chữ nhỏ phía dưới) -->
-                            <p class="text-slate-600 text-[11px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
-                                ${post.summary || ''}
-                            </p>
-                        </div>
-
-                        <!-- Nút xem chi tiết -->
-                        <div class="mt-2 sm:mt-4 flex justify-end">
-                            <span class="text-brand-blue group-hover:text-brand-orange text-[10px] sm:text-xs font-bold flex items-center gap-1 sm:gap-1.5 transition-colors py-1.5 px-2.5 sm:py-2 sm:px-4 rounded bg-slate-50 border border-slate-200 group-hover:border-brand-orange shadow-sm">
-                                Xem <span class="hidden sm:inline">chi tiết</span> <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            `;
-            container.insertAdjacentHTML('beforeend', articleHTML);
-        }
-    });
-}
