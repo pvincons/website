@@ -284,9 +284,6 @@ async function submitContactForm(e) {
 }
 
 // ==========================================
-// THỐNG KÊ LƯỢT TRUY CẬP (GOOGLE FIREBASE REALTIME DATABASE)
-// ==========================================
-// ==========================================
 // THỐNG KÊ LƯỢT TRUY CẬP (GIẢ LẬP LOCAL)
 // ==========================================
 function initVisitorCounter() {
