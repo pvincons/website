@@ -1,12 +1,202 @@
 [
   {
+    "id": 20,
+    "category": "tin-noi-bat",
+    "categoryLabel": "Tin nổi bật",
+    "title": "Công Bố Thư Viện Mẫu Hợp Đồng Thi Công Tiêu Chuẩn Cho Khách Hàng",
+    "summary": "Bộ tài liệu mẫu hợp đồng thi công pháp lý khép kín, minh bạch bảo vệ quyền lợi song phương giữa Chủ đầu tư và Nhà thầu do PV INCONS biên soạn.",
+    "date": "25/05/2026",
+    "image": "https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_020.html"
+  },
+  {
+    "id": 19,
+    "category": "cong-ty",
+    "categoryLabel": "Công ty",
+    "title": "Khảo Sát Địa Hình Và Thổ Nhưỡng Dự Án Trọng Điểm Tại Cần Thơ",
+    "summary": "Đội ngũ PV INCONS tiến hành khoan trắc địa, phân tích địa chất để đưa ra phương án thiết kế móng tối ưu nhất cho Chủ đầu tư.",
+    "date": "01/06/2026",
+    "image": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_019.html"
+  },
+  {
+    "id": 18,
+    "category": "khach-hang-bao-chi",
+    "categoryLabel": "Khách hàng & Báo chí",
+    "title": "Đánh Giá Của Chủ Đầu Tư Về Chất Lượng Dịch Vụ Thiết Kế Trọn Gói",
+    "summary": "Lắng nghe những chia sẻ thực tế từ các đối tác và khách hàng sau khi hoàn thành dự án bàn giao nhà phố và biệt thự.",
+    "date": "05/06/2026",
+    "image": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_018.html"
+  },
+  {
+    "id": 17,
+    "category": "phap-luat",
+    "categoryLabel": "Pháp luật",
+    "title": "Quy Trình Chuyển Đổi Mục Đích Sử Dụng Đất Lên Thổ Cư Tỉnh Vĩnh Long",
+    "summary": "Chi phí, hạn mức và quy trình các bước pháp lý nộp hồ sơ xin chuyển mục đích sử dụng đất nông nghiệp chi tiết nhất.",
+    "date": "10/06/2026",
+    "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_017.html"
+  },
+  {
+    "id": 16,
+    "category": "thi-truong",
+    "categoryLabel": "Thị trường",
+    "title": "Báo Cáo Tiền Khả Thi (Pre-FS): Lá Chắn Rủi Ro Cho Nhà Đầu Tư",
+    "summary": "Những chỉ số tài chính quan trọng cần xem xét trong Pre-FS để ra quyết định rót vốn an toàn vào dự án xây dựng thương mại.",
+    "date": "15/06/2026",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_016.html"
+  },
+  {
+    "id": 15,
+    "category": "cong-ty",
+    "categoryLabel": "Công ty",
+    "title": "Tổ Chức Đào Tạo Nội Bộ Về Lập Hồ Sơ Quản Lý Chất Lượng",
+    "summary": "Chương trình nâng cao nghiệp vụ cho Kỹ sư Site về kỹ năng viết nhật ký thi công, biểu mẫu và biên bản nghiệm thu chuẩn.",
+    "date": "18/06/2026",
+    "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_015.html"
+  },
+  {
+    "id": 14,
+    "category": "khach-hang-bao-chi",
+    "categoryLabel": "Khách hàng & Báo chí",
+    "title": "Đưa Tin: Nỗ Lực Số Hóa Ngành Xây Dựng Tại Đồng Bằng Sông Cửu Long",
+    "summary": "Bài viết trên chuyên trang Xây Dựng đánh giá cao các bước tiến của PV INCONS trong việc mang công nghệ VDC vào các dự án tại Cần Thơ.",
+    "date": "22/06/2026",
+    "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_014.html"
+  },
+  {
+    "id": 13,
+    "category": "chuyen-gia",
+    "categoryLabel": "Chuyên gia",
+    "title": "Khác Biệt Giữa BIM 3D, 4D, 5D Và Tiềm Năng Ứng Dụng",
+    "summary": "Từ mô phỏng không gian 3D đến việc tích hợp tiến độ thi công (4D) và quản lý chi phí dự toán (5D) vào duy nhất một mô hình quản lý.",
+    "date": "28/06/2026",
+    "image": "https://images.unsplash.com/photo-1631545638286-9a25b2931215?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_013.html"
+  },
+  {
+    "id": 12,
+    "category": "tin-noi-bat",
+    "categoryLabel": "Tin nổi bật",
+    "title": "Clash Detection: Loại Bỏ 100% Xung Đột Trước Khi Đổ Bê Tông",
+    "summary": "Ứng dụng các công cụ kiểm tra xung đột giữa hệ MEP và Kiến trúc, Kết cấu để tiết kiệm hàng trăm triệu đồng chi phí sửa chữa hiện trường.",
+    "date": "01/07/2026",
+    "image": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_012.html"
+  },
+  {
+    "id": 11,
+    "category": "phap-luat",
+    "categoryLabel": "Pháp luật",
+    "title": "Thủ Tục Cấp Đổi Sổ Hồng & Hoàn Công Chú Ý Gì Năm 2026?",
+    "summary": "Quy trình nộp hồ sơ trực tuyến, các điều kiện bắt buộc về bản vẽ hoàn công và thời gian xét duyệt tại cơ quan chức năng địa phương.",
+    "date": "05/07/2026",
+    "image": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_011.html"
+  },
+  {
+    "id": 10,
+    "category": "thi-truong",
+    "categoryLabel": "Thị trường",
+    "title": "Cập Nhật Bảng Giá Dịch Vụ Thiết Kế - Thi Công Quý 3/2026",
+    "summary": "Công bố báo giá thi công xây dựng trọn gói và dịch vụ pháp lý với nhiều chính sách tối ưu chi phí nguyên vật liệu mới nhất.",
+    "date": "10/07/2026",
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_010.html"
+  },
+  {
+    "id": 9,
+    "category": "cong-ty",
+    "categoryLabel": "Công ty",
+    "title": "Nghiệm Thu Bàn Giao Phần Thô Biệt Thự Nghỉ Dưỡng Tại Cần Thơ",
+    "summary": "Đội ngũ giám sát vừa hoàn tất biên bản nghiệm thu chuyển giai đoạn phần thô, chuẩn bị bước vào công tác hoàn thiện nội thất.",
+    "date": "15/07/2026",
+    "image": "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_009.html"
+  },
+  {
+    "id": 8,
+    "category": "cong-ty",
+    "categoryLabel": "Công ty",
+    "title": "Tổ Chức Đào Tạo Lập Kế Hoạch Thực Thi BIM (BEP) Nội Bộ",
+    "summary": "Nâng cao năng lực đội ngũ kỹ sư PV INCONS thông qua khóa huấn luyện chuyên sâu về cách triển khai BIM Execution Plan cho dự án lớn.",
+    "date": "20/07/2026",
+    "image": "https://images.unsplash.com/photo-1507208773393-40d9fc670acf?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_008.html"
+  },
+  {
+    "id": 7,
+    "category": "phap-luat",
+    "categoryLabel": "Pháp luật",
+    "title": "Trích Đo Tọa Độ VN-2000 & Giải Quyết Ranh Giới Thửa Đất",
+    "summary": "Những lưu ý quan trọng khi tiến hành đo đạc hiện trạng, xử lý chồng lấp ranh giới chuẩn bị cho công tác xin phép xây dựng.",
+    "date": "25/07/2026",
+    "image": "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_007.html"
+  },
+  {
+    "id": 6,
+    "category": "chuyen-gia",
+    "categoryLabel": "Chuyên gia",
+    "title": "Phân Loại Dữ Liệu Công Trình Bằng Bảng Mã OmniClass",
+    "summary": "Phân tích cấu trúc dữ liệu OmniClass và cách gán mã định danh thông minh cho các cấu kiện trong mô hình 3D Revit.",
+    "date": "28/07/2026",
+    "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_006.html"
+  },
+  {
+    "id": 5,
+    "category": "thi-truong",
+    "categoryLabel": "Thị trường",
+    "title": "Đánh Giá Biến Động Ngành Xây Dựng Qua Các Báo Cáo Tài Chính",
+    "summary": "Theo dõi xu hướng giá vật liệu xây dựng và dòng vốn đầu tư thông qua các báo cáo phân tích thị trường chuyên sâu từ bảng điện ứng dụng SSI.",
+    "date": "02/08/2026",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_005.html"
+  },
+  {
+    "id": 4,
+    "category": "chuyen-gia",
+    "categoryLabel": "Chuyên gia",
+    "title": "Ứng Dụng Tiêu Chuẩn AIA & MasterFormat Trong Quản Lý Hồ Sơ",
+    "summary": "Tìm hiểu cách hệ thống hóa hồ sơ thiết kế, thiết lập Kế hoạch thực thi BIM (BEP) chuẩn mực dựa trên bảng phân loại của AIA.",
+    "date": "05/08/2026",
+    "image": "https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_004.html"
+  },
+  {
+    "id": 3,
+    "category": "cong-ty",
+    "categoryLabel": "Công ty",
+    "title": "Hoàn Thành Lập Dự Toán Báo Giá Cho Nhà Phố 5 Tầng Tại Bình Thủy",
+    "summary": "Dự án cải tạo nhà phố 5 tầng tại Bình Thủy, Cần Thơ đã hoàn tất hồ sơ bóc tách khối lượng chi tiết, sẵn sàng cho công tác đấu thầu thi công.",
+    "date": "10/08/2026",
+    "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_003.html"
+  },
+  {
+    "id": 2,
+    "category": "chuyen-gia",
+    "categoryLabel": "Chuyên gia",
+    "title": "Tối Ưu Hóa Render Kiến Trúc Với Lumion 2026 Trên Cấu Hình RAM DDR4",
+    "summary": "Hướng dẫn các kỹ thuật tinh chỉnh, vá lỗi môi trường và quản lý bộ nhớ để xuất ảnh, video phối cảnh mượt mà nhất trên hệ thống RAM DDR4 với phiên bản Lumion 2026.",
+    "date": "12/08/2026",
+    "image": "https://images.unsplash.com/photo-1541888082470-fa4071337424?q=80&w=800&auto=format&fit=crop",
+    "link": "content/news/news_002.html"
+  },
+  {
     "id": 1,
     "category": "tin-noi-bat",
-    "categoryLabel": "CÔNG NGHỆ",
-    "title": "PV INCONS XÂY DỰNG HẠ TÂNG SỐ CHO CÔNG NGHỆ BIM/VDC",
-    "summary": "Thực hiện quy trình kỹ thuật",
+    "categoryLabel": "Tin nổi bật",
+    "title": "PV INCONS Xây Dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC",
+    "summary": "Thực hiện quy trình kỹ thuật tiên tiến, tối ưu hóa phối hợp nhóm bằng mô hình thông tin công trình BIM trên nền tảng đám mây.",
     "date": "14/08/2026",
     "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_008.html"
+    "link": "content/news/news_001.html"
   }
 ]
