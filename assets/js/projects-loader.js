@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     let projects = [];
 
     // Trường hợp 1: Fetch từ file JSON do CMS / Admin cập nhật
-    const response = await fetch('/data/projects.json');
+    const response = await fetch('content/posts-projects.json');
     if (response.ok) {
       projects = await response.json();
     } else {
       // Trường hợp 2: Fallback lấy từ LocalStorage nếu Admin lưu trực tiếp ở browser
-      const localData = localStorage.getItem('pv_incons_projects');
+      const localData = localStorage.getItem('content/posts-projects.json');
       if (localData) projects = JSON.parse(localData);
     }
 
