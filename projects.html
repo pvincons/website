@@ -166,22 +166,14 @@
 
                 <!-- Card Grid Dự Án Đang Triển Khai -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                    <!-- Dự án 1 -->
-                    <div
-                        class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                        <!-- Grid container -->
-                        <div id="projects-container" data-category="dang-trien-khai"
-                            class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                            <!-- Code JS sẽ tự động bơm các card vào đây -->
-                        </div>
-                    </div>
+                    <!-- đẩy dữ liệu vào grid -->
                 </div>
             </div>
         </section>
 
         <!-- 2. DỰ ÁN ĐÃ HOÀN THÀNH -->
         <section id="da-hoan-thanh"
-            class="scroll-mt-[100px] sm:scroll-mt-32 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
+            class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
                     <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
@@ -200,46 +192,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                    <!-- Grid container -->
-                    <div data-category="dang-trien-khai"
-                        class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                        <!-- Code JS sẽ tự động bơm các card vào đây -->
-                    </div>
-                    <div
-                        class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop"
-                                alt="Nhà phố thương mại Chị Thảo"
-                                class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                        </div>
-                        <div class="p-5">
-                            <span
-                                class="text-[10px] font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded uppercase">Đã
-                                Hoàn Công</span>
-                            <h4 class="font-bold text-slate-900 text-base mt-2">Nhà Phố Thương Mại 3 Tầng - Chị Thảo
-                            </h4>
-                            <p class="text-xs text-slate-500 mt-1">Nghiệm thu hoàn thành công trình và bàn giao sổ hồng
-                                cấp đổi chính thức.</p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
-                                alt="Showroom văn phòng"
-                                class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                        </div>
-                        <div class="p-5">
-                            <span
-                                class="text-[10px] font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded uppercase">Đã
-                                Bàn Giao</span>
-                            <h4 class="font-bold text-slate-900 text-base mt-2">Văn Phòng Điều Hành & Showroom Doanh
-                                Nghiệp</h4>
-                            <p class="text-xs text-slate-500 mt-1">Tối ưu chi phí đầu tư với giải pháp thiết kế kết cấu
-                                thép hiện đại.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -264,11 +216,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                    <!-- Grid container -->
-                    <div id="projects-container" data-category="moi-nha-dau-tu"
-                        class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                        <!-- Code JS sẽ tự động bơm các card vào đây -->
-                    </div>
                 </div>
             </div>
         </section>
@@ -404,13 +351,13 @@
 
     <div id="footer-placeholder"></div>
 
-    <!-- Nhúng file loader ở cuối body -->
-    <script src="assets/js/projects-loader.js"></script>
-
     <script src="layout.js"></script>
     <script>
         loadLayout('projects');
     </script>
+
+    <!-- SCRIPT TỰ NẠP DỮ LIỆU TỪ FILE JSON -->
+    <script src="assets/js/projects-loader.js"></script>
 
 </body>
 
