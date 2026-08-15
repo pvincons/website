@@ -23,7 +23,7 @@
     <!-- Thẻ Canonical chuẩn SEO -->
     <link rel="canonical" href="https://pvincons.com/">
 
-    <!-- Open Graph Meta Tags -->
+    <!-- Open Graph Meta Tags (Dành cho Zalo, Facebook, Messenger) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pvincons.com/" />
     <meta property="og:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
@@ -158,8 +158,8 @@
                 class="w-full max-w-7xl mx-auto flex items-center gap-3 sm:gap-5 overflow-x-auto whitespace-nowrap text-xs sm:text-sm font-normal uppercase 
                 justify-start sm:justify-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4">
 
-                <a id="nav-dich-vu" href="#" class="text-brand-orange transition-colors py-0.5 shrink-0">GIẢI PHÁP TOÀN
-                    DIỆN</a>
+                <a id="nav-dich-vu" href="#giai-phap-toan-dien"
+                    class="text-brand-orange transition-colors py-0.5 shrink-0">GIẢI PHÁP TOÀN DIỆN</a>
                 <span class="text-slate-300 font-normal shrink-0">/</span>
 
                 <a id="nav-bang-gia" href="#bang-gia-dich-vu"
@@ -178,8 +178,8 @@
             </div>
         </nav>
 
-        <!-- 1. GIẢI PHÁP TOÀN DIỆN-->
-        <section class="scroll-mt-[100px] sm:scroll-mt-32 py-8 sm:py-16 bg-white">
+        <!-- 1. GIẢI PHÁP TOÀN DIỆN -->
+        <section id="giai-phap-toan-dien" class="scroll-mt-[100px] sm:scroll-mt-32 py-8 sm:py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
                     <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
@@ -266,7 +266,7 @@
             </div>
         </section>
 
-        <!-- 2. BẢNG GIÁ THAM KHẢO (ĐÃ ĐỔI THÀNH CONTAINER DỰNG TỰ ĐỘNG) -->
+        <!-- 2. BẢNG GIÁ THAM KHẢO -->
         <section id="bang-gia-dich-vu"
             class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -286,8 +286,10 @@
                     </p>
                 </div>
 
-                <!-- Container được nạp động từ services-loader.js -->
-                <div id="pricing-list-container" class="space-y-4 max-w-5xl mx-auto"></div>
+                <!-- KHU VỰC RENDER DỮ LIỆU TỪ JSON BỞI JAVASCRIPT -->
+                <div data-category="pricing" class="space-y-4 max-w-5xl mx-auto">
+                    <!-- Dữ liệu bảng giá sẽ được tự động đổ vào đây -->
+                </div>
             </div>
         </section>
 
@@ -345,7 +347,7 @@
             </div>
         </section>
 
-        <!-- 4. TÀI LIỆU MẪU (ĐÃ ĐỔI THÀNH CONTAINER DỰNG TỰ ĐỘNG) -->
+        <!-- 4. TÀI LIỆU MẪU -->
         <section id="tai-lieu-mau"
             class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -368,8 +370,10 @@
                     </p>
                 </div>
 
-                <!-- Container được nạp động từ services-loader.js -->
-                <div id="docs-list-container" class="space-y-3.5 max-w-5xl mx-auto"></div>
+                <!-- KHU VỰC RENDER DỮ LIỆU TỪ JSON BỞI JAVASCRIPT -->
+                <div data-category="documents" class="space-y-3.5 max-w-5xl mx-auto">
+                    <!-- Dữ liệu tài liệu mẫu sẽ được tự động đổ vào đây -->
+                </div>
             </div>
         </section>
     </main>
@@ -420,7 +424,6 @@
 
     <!-- SCRIPT ĐIỀU KHIỂN NỘI TRANG -->
     <script>
-        // HÀM HIỂN THỊ VÀ CĂN GIỮA POPUP MODAL
         function openRequestModal(serviceName, requestType) {
             const modal = document.getElementById('requestModal');
             document.getElementById('modalServiceInput').value = serviceName;
@@ -473,7 +476,6 @@
             }
         }
         
-        // SCRIPT TỰ ĐỘNG CUỘN NAV TAB
         window.initNavTabs = function () {
             const container = document.getElementById("navTabsContainer");
             if (!container) return;
@@ -543,12 +545,13 @@
 
     <div id="footer-placeholder"></div>
     <script src="layout.js"></script>
-    <!-- Script tải dữ liệu động từ Admin -->
-    <script src="services-loader.js"></script>
 
     <script>
     loadLayout('services');
     </script>
+
+    <!-- KẾT NỐI SCRIPT RENDER DỮ LIỆU JSON -->
+    <script src="assets/js/services-loader.js"></script>
 </body>
 
 </html>
