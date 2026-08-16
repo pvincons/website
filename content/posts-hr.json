@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "category": "tuyen-dung",
+    "type": "Toàn thời gian",
+    "deadline": "Hạn nộp: Đang tuyển",
+    "title": "Kỹ Sư Triển Khai BIM / Revit (Kiến Trúc & Kết Cấu)",
+    "location": "Cần Thơ",
+    "salary": "Lương: Thỏa thuận theo năng lực",
+    "requirement": "Sử dụng thành thạo Revit, AutoCAD (Biết Dynamo là lợi thế)",
+    "quantity": "Số lượng: 02 Nhân viên",
+    "applyLink": "mailto:workspace.pvi@gmail.com?subject=Ung tuyen Ky Su BIM"
+  },
+  {
+    "id": 2,
+    "category": "tuyen-dung",
+    "type": "Toàn thời gian",
+    "deadline": "Hạn nộp: Đang tuyển",
+    "title": "Kỹ Sư Giám Sát / Quản Lý Thi Công",
+    "location": "Cần Thơ & Các tỉnh ĐBSCL",
+    "salary": "Lương: Thỏa thuận + Thưởng dự án",
+    "requirement": "Giám sát tiến độ, chất lượng thi công nhà phố, biệt thự",
+    "quantity": "Số lượng: 01 Nhân viên",
+    "applyLink": "mailto:workspace.pvi@gmail.com?subject=Ung tuyen Ky Su Giam Sat"
+  },
+  {
+    "id": 3,
+    "category": "tuyen-dung",
+    "type": "Toàn thời gian",
+    "deadline": "Hạn nộp: Đang tuyển",
+    "title": "Kiến Trúc Sư / Họa Viên 3D Rendering",
+    "location": "Cần Thơ",
+    "salary": "Lương: Cạnh tranh theo sản phẩm / Năng lực",
+    "requirement": "Thành thạo D5 Render / Chaos Vantage / Lumion & SketchUp/Revit",
+    "quantity": "Số lượng: 01 Nhân viên",
+    "applyLink": "mailto:workspace.pvi@gmail.com?subject=Ung tuyen Hoa Vien 3D"
+  },
+  {
+    "id": 4,
+    "category": "tuyen-dung",
+    "type": "Thực tập / Tiếp nhận đồ án",
+    "deadline": "Hạn nộp: Liên tục",
+    "title": "Thực Tập Sinh Thiết Kế & Thi Công",
+    "location": "Cần Thơ",
+    "salary": "Hỗ trợ phụ cấp thực tập + Đào tạo phần mềm thực chiến",
+    "requirement": "Sinh viên năm cuối ngành Kiến trúc / Xây dựng",
+    "quantity": "Số lượng: Không giới hạn",
+    "applyLink": "mailto:workspace.pvi@gmail.com?subject=Ung tuyen Thuc Tap Sinh"
+  }
+]
