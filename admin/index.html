@@ -60,13 +60,39 @@
       font-family: Arial, Helvetica, sans-serif !important;
     }
 
+    /* ĐÃ CẬP NHẬT 1: Font Inter, in nghiêng và xám mờ cho placeholder */
     ::-placeholder,
     input::placeholder,
     textarea::placeholder {
-      font-family: Arial, Helvetica, sans-serif !important;
+      font-family: 'Inter', sans-serif !important;
+      font-style: italic !important;
       font-size: 11px !important;
       color: #6b7280 !important;
-      opacity: 0.85;
+      opacity: 0.5 !important;
+    }
+
+    /* CSS tùy chỉnh cho Cột 3: Khung riêng biệt từng bài viết JSON */
+    .json-block-item {
+      background-color: #08090c;
+      border: 1px solid #1e222d;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .json-block-item::before {
+      content: "ID: " attr(data-id);
+      position: absolute;
+      top: -9px;
+      left: 12px;
+      background: #12141c;
+      padding: 0 6px;
+      font-size: 10px;
+      color: #10b981;
+      border-radius: 4px;
+      border: 1px solid #1e222d;
+      font-family: monospace;
     }
   </style>
 </head>
@@ -299,7 +325,7 @@
 
             <span id="active-module-badge"
               class="text-xs text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/20 font-mono">
-              posts-news.json Active
+              content/posts-news.json Active
             </span>
 
             <span id="edit-status-badge"
@@ -492,16 +518,16 @@
         <div class="h-12 border-b border-[#222630] px-3 flex items-center justify-between bg-[#12141c] shrink-0">
           <div class="flex items-center gap-2 text-xs font-semibold text-gray-300 font-mono truncate">
             <i data-lucide="code-2" class="w-4 h-4 text-emerald-400 shrink-0"></i>
-            <span id="json-header-filename" class="truncate">posts-news.json</span>
+            <span id="json-header-filename" class="truncate">content/posts-news.json</span>
           </div>
           <button id="btn-copy" class="text-[11px] text-rose-400 hover:underline flex items-center gap-1 font-mono">
             <i data-lucide="copy" class="w-3 h-3"></i> Copy
           </button>
         </div>
 
-        <div class="flex-1 p-4 overflow-y-auto font-mono text-xs">
-          <pre id="json-output"
-            class="text-emerald-400 leading-relaxed whitespace-pre-wrap break-all bg-[#08090c] p-4 rounded-lg border border-[#1e222d]">[]</pre>
+        <!-- CỘT 3 BODY: HIỂN THỊ CÁC KHUNG JSON ĐÃ ĐỒNG BỘ -->
+        <div id="json-output-container" class="flex-1 p-4 overflow-y-auto font-mono text-xs">
+          <!-- Các khung json-block-item sẽ được render tự động tại đây -->
         </div>
 
         <div
@@ -553,6 +579,9 @@
     let currentFolder = "news";
     let currentTitle = "Tin tức";
     let editingPostId = null;
+
+    // Biến lưu trữ kết quả dữ liệu đang được lọc/sắp xếp hiển thị thực tế trên UI Cột 1 và Cột 3
+    let currentFilteredPosts = [];
 
     // Hàm mã hóa / giải mã UTF-8 cho Base64 của GitHub REST API (Tránh lỗi tiếng Việt)
     function utf8_to_b64(str) {
@@ -651,8 +680,8 @@
       }, false);
     }
 
-    setupDragAndDrop('dropZone-image', 'input-image', 'images/');
-    setupDragAndDrop('dropZone-link', 'input-link', 'content/');
+    setupDragAndDrop('drop-zone-image', 'input-image', 'images/');
+    setupDragAndDrop('drop-zone-link', 'input-link', 'content/');
 
     // CẬP NHẬT CẤU HÌNH DANH MỤC & KHUNG FORM THEO TAB
     function updateFormCategoryOptions() {
@@ -697,11 +726,34 @@
       });
     }
 
+    // ==========================================
+    // CẬP NHẬT: ĐỒNG BỘ CỘT 3 VỚI CỘT 1 & ĐÓNG KHUNG TỪNG BÀI
+    // ==========================================
     function updateJsonPreview() {
-      const currentData = db[currentFolder] || [];
-      document.getElementById('json-output').innerText = JSON.stringify(currentData, null, 2);
-      document.getElementById('json-header-filename').innerText = `posts-${currentFolder}.json`;
-      document.getElementById('active-module-badge').innerText = `posts-${currentFolder}.json Active`;
+      const container = document.getElementById('json-output-container');
+      container.innerHTML = '';
+      
+      document.getElementById('json-header-filename').innerText = `content/posts-${currentFolder}.json`;
+      document.getElementById('active-module-badge').innerText = `content/posts-${currentFolder}.json Active`;
+
+      if (!currentFilteredPosts || currentFilteredPosts.length === 0) {
+        container.innerHTML = `<pre class="text-emerald-400 leading-relaxed bg-[#08090c] p-4 rounded-lg border border-[#1e222d]">[]</pre>`;
+        return;
+      }
+
+      // Duyệt qua từng bài viết đã qua bộ lọc/sắp xếp của Cột 1 để tạo khung riêng biệt
+      currentFilteredPosts.forEach(post => {
+        const blockDiv = document.createElement('div');
+        blockDiv.className = 'json-block-item';
+        blockDiv.setAttribute('data-id', post.id || 'N/A');
+
+        const pre = document.createElement('pre');
+        pre.className = 'text-emerald-400 leading-relaxed whitespace-pre-wrap break-all m-0';
+        pre.textContent = JSON.stringify(post, null, 2);
+
+        blockDiv.appendChild(pre);
+        container.appendChild(blockDiv);
+      });
     }
 
     function renderPostsList() {
@@ -719,8 +771,12 @@
       if (sortVal === 'id-desc') posts.sort((a, b) => b.id - a.id);
       else posts.sort((a, b) => a.id - b.id);
 
+      // Lưu lại mảng dữ liệu đã đồng bộ
+      currentFilteredPosts = posts;
+
       if (posts.length === 0) {
         container.innerHTML = `<div class="p-4 text-center text-xs text-gray-500 italic">Không tìm thấy bài viết nào</div>`;
+        updateJsonPreview(); // Cập nhật luôn Cột 3 thành trống
         return;
       }
 
@@ -746,6 +802,9 @@
         container.appendChild(div);
       });
       lucide.createIcons();
+
+      // Cập nhật Cột 3 sau khi lọc/sắp xếp
+      updateJsonPreview();
     }
 
     function resetForm() {
@@ -818,7 +877,6 @@
       if (editingPostId === id) resetForm();
       updateTabCounts();
       renderPostsList();
-      updateJsonPreview();
       showToast(`Đã xóa bài viết ID #${id}`);
     };
 
@@ -875,7 +933,6 @@
       resetForm();
       updateTabCounts();
       renderPostsList();
-      updateJsonPreview();
     });
 
     document.getElementById('btn-cancel-edit').addEventListener('click', resetForm);
@@ -900,7 +957,6 @@
         updateFormCategoryOptions();
         resetForm();
         renderPostsList();
-        updateJsonPreview();
       });
     });
 
@@ -909,18 +965,20 @@
     document.getElementById('filter-category').addEventListener('change', renderPostsList);
     document.getElementById('filter-search').addEventListener('input', renderPostsList);
 
-    // BACKUP & IMPORT LOCAL JSON
+    /* ĐÃ CẬP NHẬT 2: Sửa nút Backup chỉ xuất dữ liệu đang hiển thị trên màn hình hiện tại */
     document.getElementById('btn-export-backup').addEventListener('click', () => {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
+      const dataToExport = currentFilteredPosts || [];
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataToExport, null, 2));
       const downloadAnchor = document.createElement('a');
       downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `PV_INCONS_Database_Backup_${new Date().toISOString().split('T')[0]}.json`);
+      downloadAnchor.setAttribute("download", `PV_INCONS_${currentFolder}_Backup_${new Date().toISOString().split('T')[0]}.json`);
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
-      showToast('Đã xuất file sao lưu dữ liệu!');
+      showToast(`Đã xuất file sao lưu cho tab [${currentTitle}]!`);
     });
 
+    /* ĐÃ CẬP NHẬT 3: Sửa nút Nhập JSON để ghi đè mảng dữ liệu vào Tab hiện tại */
     document.getElementById('import-json-file').addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (!file) return;
@@ -929,30 +987,42 @@
       reader.onload = (event) => {
         try {
           const imported = JSON.parse(event.target.result);
-          if (typeof imported === 'object') {
-            db = { ...db, ...imported };
+          if (Array.isArray(imported)) {
+            db[currentFolder] = imported;
             localStorage.setItem('pv_studio_db', JSON.stringify(db));
             updateTabCounts();
             renderPostsList();
-            updateJsonPreview();
-            showToast('Đã nhập dữ liệu từ file thành công!');
+            resetForm();
+            showToast(`Đã ghi đè dữ liệu mới lên tab [${currentTitle}] thành công!`);
+          } else {
+            showToast('Lỗi: File JSON phải là một mảng dữ liệu (Array) bắt đầu bằng dấu [ ]', 'error');
           }
         } catch (err) {
-          showToast('File JSON không hợp lệ!', 'error');
+          showToast('Định dạng file JSON không hợp lệ!', 'error');
         }
       };
       reader.readAsText(file);
+      e.target.value = '';
     });
 
     document.getElementById('btn-copy').addEventListener('click', () => {
-      const text = document.getElementById('json-output').innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Đã sao chép mã JSON!');
+      // Sao chép toàn bộ nội dung hiển thị hiện tại trong Cột 3
+      const blocks = document.querySelectorAll('.json-block-item pre');
+      let combinedJson = [];
+      blocks.forEach(b => {
+        try {
+          combinedJson.push(JSON.parse(b.innerText));
+        } catch (e) {}
+      });
+      
+      const textToCopy = JSON.stringify(combinedJson, null, 2);
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast('Đã sao chép mã JSON của danh sách hiện tại!');
       });
     });
 
     // ==========================================
-    // TÍNH NĂNG ĐÃ FIX: TẢI TỪ GITHUB
+    // TẢI TỪ GITHUB
     // ==========================================
     document.getElementById('btn-sync-github').addEventListener('click', async () => {
       if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
@@ -960,7 +1030,7 @@
         return;
       }
 
-      const filePath = `posts-${currentFolder}.json`;
+      const filePath = `content/posts-${currentFolder}.json`;
       const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
 
       const btnSync = document.getElementById('btn-sync-github');
@@ -992,7 +1062,6 @@
 
         updateTabCounts();
         renderPostsList();
-        updateJsonPreview();
         resetForm();
 
         showToast(`Đã đồng bộ file ${filePath} từ GitHub!`);
@@ -1007,7 +1076,7 @@
     });
 
     // ==========================================
-    // TÍNH NĂNG ĐÃ FIX: XUẤT BẢN LÊN GITHUB MAIN
+    // XUẤT BẢN LÊN GITHUB MAIN
     // ==========================================
     document.getElementById('btn-publish-github').addEventListener('click', async () => {
       if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
@@ -1015,7 +1084,7 @@
         return;
       }
 
-      const filePath = `posts-${currentFolder}.json`;
+      const filePath = `content/posts-${currentFolder}.json`;
       const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
 
       const btnPublish = document.getElementById('btn-publish-github');
@@ -1024,7 +1093,6 @@
       lucide.createIcons();
 
       try {
-        // Lấy SHA của file hiện tại trên GitHub
         let sha = "";
         const getRes = await fetch(url, {
           headers: {
@@ -1075,7 +1143,6 @@
     updateFormCategoryOptions();
     updateTabCounts();
     renderPostsList();
-    updateJsonPreview();
     resetForm();
   </script>
 </body>
