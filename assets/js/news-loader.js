@@ -36,7 +36,7 @@ function renderNewsPosts(posts) {
             // Ép toàn bộ cấu trúc mảng thành một chuỗi HTML duy nhất trước khi chèn
             container.innerHTML = categoriesData[categoryKey].map(post => {
                 return `
-                    <article onclick="window.location.href='${post.link}'" 
+                    <article onclick="window.location.href='${post.link }'" 
                              class="bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-row items-stretch min-h-[130px] sm:min-h-[200px] cursor-pointer group">
                         
                         <!-- Hình ảnh đại diện + Thẻ chủ đề -->
@@ -49,15 +49,15 @@ function renderNewsPosts(posts) {
                         <div class="w-[60%] sm:w-2/3 lg:w-3/5 p-3 sm:p-6 flex flex-col justify-between">
                             <div>
                                 <!-- Ngày đăng -->
-                                <span class="text-[10px] sm:text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> ${post.date}</span>
+                                <span class="text-[10px] sm:text-sm text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> ${post.date}</span>
                                 
                                 <!-- Tiêu đề -->
-                                <h3 class="font-bold text-[12px] leading-snug sm:text-sm text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors">
+                                <h3 class="font-bold text-[12px] leading-snug sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 group-hover:text-brand-blue transition-colors">
                                     ${post.title}
                                 </h3>
 
                                 <!-- Đoạn mô tả tóm tắt -->
-                                <p class="text-slate-600 text-[10px] sm:text-xs leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
+                                <p class=" hidden sm:block text-slate-600 text-[10px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
                                     ${post.summary || ''}
                                 </p>
                             </div>
