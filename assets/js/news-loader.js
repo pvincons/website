@@ -52,23 +52,15 @@ function renderNewsPosts(posts) {
                                 <span class="text-[10px] sm:text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> ${post.date}</span>
                                 
                                 <!-- Tiêu đề -->
-                                <h3 class="font-bold text-[13px] leading-snug sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors">
+                                <h3 class="font-bold text-[14px] leading-snug sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 line-clamp-2 group-hover:text-brand-blue uppercase transition-colors">
                                     ${post.title}
                                 </h3>
 
                                 <!-- Đoạn mô tả tóm tắt -->
-                                <p class="text-slate-600 text-[11px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
+                                <p class="text-slate-600 text-[12px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
                                     ${post.summary || ''}
                                 </p>
                             </div>
-
-                            <!-- Nút xem chi tiết -->
-                            <div class="mt-2 sm:mt-4 flex justify-end">
-                                <span class="text-brand-blue group-hover:text-brand-orange text-[10px] sm:text-xs font-bold flex items-center gap-1 sm:gap-1.5 transition-colors py-1.5 px-2.5 sm:py-2 sm:px-4 rounded bg-slate-50 border border-slate-200 group-hover:border-brand-orange shadow-sm">
-                                    Xem <span class="hidden sm:inline">chi tiết</span> <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
-                                </span>
-                            </div>
-                        </div>
                     </article>
                 `;
             }).join(''); 
