@@ -139,6 +139,13 @@
             <a href="hr.html" data-tab="hr"
                 class="nav-tab-btn px-2.5 py-2 border-b-2 border-transparent text-slate-600 hover:text-brand-blue transition-all">CHÍNH
                 SÁCH NHÂN SỰ</a>
+              <!-- Workspace link trên Desktop -->
+            <a href="https://pvincons.cloud" target="_blank" rel="noopener noreferrer" title="Truy cập Cloud"
+                class="inline-flex items-center gap-2 px-3 py-1.5 text-slate-600 hover:text-brand-blue bg-slate-100 hover:bg-brand-blue/10 rounded-lg 
+                transition-all duration-200 text-xs sm:text-sm font-medium">
+                <img src="/assets/pic/PVI_CLOUD.webp" alt="Workspace" class="w-5 h-5 object-contain rounded-xs">
+                <span>Workspace</span>
+            </a>
         </nav>
 
         <!-- CTA Button & Switcher (Desktop) -->
@@ -159,12 +166,22 @@
                 <i class="fa-solid fa-paper-plane mr-1.5"></i> Liên Hệ
             </button>
         </div>
+        
+       <!-- Khối chứa nút Workspace & Nút Menu trên Mobile -->
+        <div class="flex items-center space-x-2 xl:hidden">
+            <!-- Workspace link trên Mobile -->
+            <a href="https://pvincons.cloud" target="_blank" rel="noopener noreferrer" title="Truy cập Cloud"
+                class="inline-flex items-center gap-2 px-3 py-1.5 text-slate-600 hover:text-brand-blue bg-slate-100 hover:bg-brand-blue/10 rounded-lg transition-all duration-200 text-xs sm:text-sm font-medium">
+                <img src="/assets/pic/PVI_CLOUD.webp" alt="Workspace" class="w-5 h-5 object-contain rounded-xs">
+                <span>Workspace</span>
+            </a>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" type="button" aria-label="Toggle Mobile Menu"
-            class="xl:hidden text-slate-700 text-2xl focus:outline-none p-2">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" type="button" aria-label="Toggle Mobile Menu" onclick="toggleMobileMenu()"
+                class="text-slate-700 text-2xl focus:outline-none p-2">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </div>
 
     <!-- Mobile Menu Drawer -->
@@ -223,8 +240,8 @@
         <a href="hr.html" data-tab="hr"
             class="mobile-tab-btn block w-full text-center py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-100/80 text-base sm:text-lg font-normal uppercase tracking-wide">CHÍNH
             SÁCH NHÂN SỰ</a>
-            <hr class="w-full mx-auto border-t border-slate-600 my-6">
-            <div class="h-6 w-full"></div>
+        <hr class="w-full mx-auto border-t border-slate-600 my-6">
+        <div class="h-6 w-full"></div>
 
         <!-- Nút Liên Hệ Mobile -->
         <button type="button" onclick="closeMobileMenu(); openContactModal()"
