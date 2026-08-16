@@ -52,12 +52,12 @@ function renderNewsPosts(posts) {
                                 <span class="text-[10px] sm:text-xs text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> ${post.date}</span>
                                 
                                 <!-- Tiêu đề -->
-                                <h3 class="font-bold text-[14px] leading-snug sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 line-clamp-2 group-hover:text-brand-blue uppercase transition-colors">
+                                <h3 class="font-bold text-[12px] leading-snug sm:text-sm text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors">
                                     ${post.title}
                                 </h3>
 
                                 <!-- Đoạn mô tả tóm tắt -->
-                                <p class="text-slate-600 text-[12px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
+                                <p class="text-slate-600 text-[10px] sm:text-xs leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
                                     ${post.summary || ''}
                                 </p>
                             </div>
