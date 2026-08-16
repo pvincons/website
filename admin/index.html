@@ -60,18 +60,38 @@
       font-family: Arial, Helvetica, sans-serif !important;
     }
 
-    /* ĐÃ CẬP NHẬT 1: Font Inter, in nghiêng và xám mờ cho placeholder */
-    ::-placeholder,
     input::placeholder,
     textarea::placeholder {
       font-family: 'Inter', sans-serif !important;
-      font-style: italic !important;
-      font-size: 11px !important;
+      font-size: 10px !important;
       color: #6b7280 !important;
-      opacity: 0.5 !important;
+      opacity: 0.6 !important;
     }
 
-    /* CSS tùy chỉnh cho Cột 3: Khung riêng biệt từng bài viết JSON */
+    input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      color: #6b7280 !important;
+      opacity: 0.6 !important;
+    }
+
+    input::-moz-placeholder,
+    textarea::-moz-placeholder {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      color: #6b7280 !important;
+      opacity: 0.6 !important;
+    }
+
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      color: #6b7280 !important;
+      opacity: 0.6 !important;
+    }
+
     .json-block-item {
       background-color: #08090c;
       border: 1px solid #1e222d;
@@ -111,7 +131,7 @@
         <img src="https://i.pinimg.com/736x/54/56/c7/5456c78c0aa3b2aea8d4b96fa5a500cf.jpg" alt="PV INCONS Logo"
           class="mx-auto h-16 w-16 rounded-full object-cover border border-[#2a2e3d] shadow-lg shadow-rose-900/10">
         <h2 class="text-lg font-bold text-gray-100">PV INCONS Data Website</h2>
-        <p class="text-xs text-gray-400">Phiên bản v1.3.0 • Xác thực GitHub Quản trị dữ liệu</p>
+        <p class="text-xs text-gray-400">Xác thực GitHub Quản trị dữ liệu</p>
       </div>
 
       <div class="space-y-3">
@@ -152,7 +172,7 @@
             class="w-8 h-8 rounded-full object-cover border border-[#2a2e3d] shadow">
           <div>
             <h3 class="text-sm font-bold text-gray-100">PV INCONS Data Website Admin</h3>
-            <p class="text-[11px] text-rose-400 font-mono">Phiên bản v1.3.0</p>
+            <p class="text-[11px] text-rose-400 font-mono">Phiên bản ver. 1.3.1</p>
           </div>
         </div>
         <button id="btn-close-about" class="text-gray-400 hover:text-white p-1 rounded-lg">
@@ -164,9 +184,7 @@
         <div class="bg-[#0f1117] p-3 rounded-lg border border-[#222630] space-y-1.5">
           <div class="font-semibold text-gray-200">🏢 Đơn vị chủ quản: PV INCONS</div>
           <div>© 2026 PV INCONS. Tất cả các quyền được bảo lưu. Phần mềm quản trị dữ liệu website này được xây dựng độc
-            quyền phục vụ công tác vận hành nội bộ.
-            Nghiêm cấm sao chép, phân phối hoặc chỉnh sửa mã nguồn khi chưa có văn bản chấp thuận chính thức từ Ban Giám
-            Đốc PV INCONS.</div>
+            quyền phục vụ công tác vận hành nội bộ.</div>
         </div>
       </div>
 
@@ -185,20 +203,17 @@
     <!-- TOP HEADER -->
     <header class="h-12 border-b border-[#222630] bg-[#14171f] flex items-center justify-between shrink-0">
 
-      <!-- KHỐI LOGO/TITLE -->
       <div class="w-80 shrink-0 px-4 border-r border-[#222630] flex items-center justify-between h-full">
         <div id="btn-open-about" class="flex items-center gap-2 cursor-pointer group"
           title="Xem thông tin phiên bản & bản quyền">
           <img src="https://i.pinimg.com/736x/54/56/c7/5456c78c0aa3b2aea8d4b96fa5a500cf.jpg" alt="PV INCONS Logo"
             class="w-7 h-7 rounded-full object-cover border border-[#2a2e3d] group-hover:border-rose-500 transition shadow">
-          <span class="font-bold text-gray-100 group-hover:text-rose-400 transition text-xs">PV INCONS Admin
-            Website</span>
+          <span class="font-bold text-gray-100 group-hover:text-rose-400 transition text-xs">PV INCONS Admin</span>
         </div>
         <span
-          class="text-xs bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded font-mono font-bold">v1.3.0</span>
+          class="text-xs bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded font-mono font-bold">ver. 1.3.1</span>
       </div>
 
-      <!-- KHỐI NAV TABS -->
       <div class="flex-1 px-4 flex items-center justify-between h-full">
         <nav class="flex items-center gap-1.5" id="sidebar-nav">
           <button data-folder="news" data-title="Tin tức"
@@ -272,7 +287,6 @@
 
       <!-- CỘT 1: DANH SÁCH BÀI VIẾT (W-80) -->
       <aside class="w-80 border-r border-[#222630] bg-[#12141c] flex flex-col shrink-0">
-        <!-- HEADER CỘT 1 -->
         <div class="h-12 px-3 border-b border-[#222630] bg-[#0f1117] flex items-center justify-between shrink-0">
           <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
             <i data-lucide="list" class="w-3.5 h-3.5 text-rose-500"></i>
@@ -317,7 +331,6 @@
       <!-- CỘT 2: FORM SOẠN THẢO BÀI VIẾT -->
       <main class="flex-1 flex flex-col bg-[#14171f] overflow-hidden border-r border-[#222630]">
 
-        <!-- HEADER CỘT 2 -->
         <div class="h-12 border-b border-[#222630] px-6 flex items-center justify-between bg-[#12141c] shrink-0">
           <div class="flex items-center gap-3">
             <i data-lucide="edit-3" class="w-4 h-4 text-rose-500"></i>
@@ -359,6 +372,7 @@
         </div>
 
         <div class="flex-1 overflow-y-auto p-6 space-y-5">
+          <!-- DÒNG 1: GIỮ CỐ ĐỊNH 4 Ô TRÊN TẤT CẢ TAB -->
           <div class="grid grid-cols-4 gap-3">
             <div class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Mã ID (<code
@@ -375,14 +389,14 @@
               </select>
             </div>
 
-            <div class="space-y-1.5">
+            <div id="wrapper-category-label" class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Nhãn Hiển Thị (<code
                   class="text-rose-400">label</code>)</label>
               <input type="text" id="input-category-label" value=""
                 class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-300 font-mono text-xs outline-none">
             </div>
 
-            <div class="space-y-1.5">
+            <div id="wrapper-date-picker" class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Ngày đăng (<code
                   class="text-rose-400">date</code>)</label>
               <input type="date" id="input-date-picker"
@@ -392,10 +406,23 @@
 
           <div class="border-t border-[#222630] pt-1"></div>
 
-          <!-- EXTRA FIELDS FOR PROJECTS -->
-          <div id="project-extra-fields" class="hidden space-y-4">
-            <div class="text-xs font-bold text-rose-400 uppercase tracking-wider">Thông tin chi tiết dự án</div>
+          <!-- TIÊU ĐỀ ĐỘNG PHÍA DƯỚI DÒNG GẠCH -->
+          <div id="tab-detail-header" class="text-xs font-bold text-rose-400 uppercase tracking-wider">
+            THÔNG TIN CHI TIẾT TIN TỨC
+          </div>
 
+          <!-- DỜI TIÊU ĐỀ (TITLE) LÊN NẰM NGAY DƯỚI TIÊU ĐỀ PHẦN CHI TIẾT -->
+          <div class="space-y-1.5">
+            <label class="block text-xs font-semibold text-gray-300">
+              <span id="title-field-label">Tiêu đề bài viết / Vị trí tuyển dụng</span> (<code
+                class="text-rose-400">title</code>) <span class="text-rose-500">*</span>
+            </label>
+            <input type="text" id="input-title" placeholder="VD: Kỹ Sư Triển Khai BIM / Revit (Kiến Trúc & Kết Cấu)"
+              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 outline-none transition text-sm">
+          </div>
+
+          <!-- DỰ ÁN (PROJECTS) -->
+          <div id="project-extra-fields" class="hidden space-y-4">
             <div class="grid grid-cols-2 gap-4">
               <div class="space-y-1.5">
                 <label class="block text-xs font-semibold text-gray-300">Mã Dự Án / Ký hiệu (<code
@@ -433,15 +460,13 @@
             </div>
           </div>
 
-          <!-- EXTRA FIELDS FOR SERVICES -->
+          <!-- DỊCH VỤ & QUAN HỆ ĐẦU TƯ (SERVICES & INVESTORS) -->
           <div id="service-extra-fields" class="hidden space-y-4">
-            <div class="text-xs font-bold text-rose-400 uppercase tracking-wider">Thông tin chi tiết dịch vụ</div>
-
             <div class="grid grid-cols-2 gap-4">
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Mã Dịch Vụ (<code
+                <label class="block text-xs font-semibold text-gray-300">Mã Dịch Vụ / Mã Tài Liệu (<code
                     class="text-rose-400">code</code>)</label>
-                <input type="text" id="input-service-code" placeholder="VD: SERV-DESIGN"
+                <input type="text" id="input-service-code" placeholder="VD: SERV-DESIGN / DOC-2026"
                   class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
               </div>
               <div class="space-y-1.5">
@@ -449,63 +474,113 @@
                     class="text-rose-400">icon</code>)</label>
                 <select id="input-service-icon"
                   class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 text-xs outline-none cursor-pointer font-mono">
-                  <option value="file-text">📄 file-text (Hợp đồng)</option>
-                  <option value="scroll">📜 scroll (Văn bản)</option>
+                  <option value="file-text">📄 file-text (Hợp đồng / Văn bản)</option>
+                  <option value="scroll">📜 scroll (Nghị quyết / Quy chế)</option>
                   <option value="clipboard-check">📋 clipboard-check (Biên bản)</option>
+                  <option value="trending-up">📈 trending-up (Báo cáo tài chính)</option>
                   <option value="help-circle">❓ help-circle (Phiếu trợ giúp)</option>
                   <option value="tag">🏷️ tag (Phụ lục)</option>
                   <option value="list-checks">📑 list-checks (Liệt kê)</option>
-                  <option value="inbox">📥 inbox (Thư)</option>
+                  <option value="inbox">📥 inbox (Thư ngỏ)</option>
                 </select>
               </div>
             </div>
           </div>
 
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-gray-300">
-              Tiêu đề bài viết / Tên dịch vụ (<code class="text-rose-400">title</code>) <span
-                class="text-rose-500">*</span>
-            </label>
-            <input type="text" id="input-title" placeholder="VD: Thiết Kế Kiến Trúc & Kết Cấu Công Trình"
-              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 outline-none transition text-sm">
-          </div>
-
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code
-                class="text-rose-400">summary</code>)</label>
-            <textarea id="input-summary" rows="2" placeholder="VD: Giải pháp toàn diện từ khâu lập bản vẽ đến dự toán."
-              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-sm"></textarea>
-          </div>
-
-          <!-- KÉO THẢ DÀNH CHO HÌNH ẢNH -->
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code
-                class="text-rose-400">image</code>)</label>
-            <div id="drop-zone-image"
-              class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5">
-              <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-400 transition">
-                <i data-lucide="image-plus" class="w-4 h-4 text-rose-500"></i>
-                <span>Kéo & thả file ảnh / URL vào khung này hoặc nhập bên dưới</span>
+          <!-- Ô NHẬP LIỆU RIÊNG CHO CHÍNH SÁCH NHÂN SỰ / TUYỂN DỤNG (HR) -->
+          <div id="hr-extra-fields" class="hidden space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Hình thức làm việc (<code
+                    class="text-rose-400">type</code>)</label>
+                <input type="text" id="input-hr-type" placeholder="VD: Toàn thời gian / Thực tập / Bán thời gian"
+                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
-              <input type="text" id="input-image"
-                placeholder="Dán URL hình ảnh (https://...) hoặc kéo thả file ảnh vào đây"
-                class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-1.5 text-gray-100 outline-none transition text-xs font-mono">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Hạn nộp hồ sơ (<code
+                    class="text-rose-400">deadline</code>)</label>
+                <input type="text" id="input-hr-deadline" placeholder="VD: Hạn nộp: Đang tuyển / Hạn nộp: Liên tục"
+                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Địa điểm làm việc (<code
+                    class="text-rose-400">location</code>)</label>
+                <input type="text" id="input-hr-location" placeholder="VD: Cần Thơ & Các tỉnh ĐBSCL"
+                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Mức lương (<code
+                    class="text-rose-400">salary</code>)</label>
+                <input type="text" id="input-hr-salary" placeholder="VD: Lương: Thỏa thuận theo năng lực"
+                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Số lượng tuyển (<code
+                    class="text-rose-400">quantity</code>)</label>
+                <input type="text" id="input-hr-quantity" placeholder="VD: Số lượng: 02 Nhân viên / Không giới hạn"
+                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Yêu cầu công việc (<code
+                  class="text-rose-400">requirement</code>)</label>
+              <textarea id="input-hr-requirement" rows="2"
+                placeholder="VD: Sử dụng thành thạo Revit, AutoCAD (Biết Dynamo là lợi thế)"
+                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-xs"></textarea>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Liên kết / Mail ứng tuyển (<code
+                  class="text-rose-400">applyLink</code>)</label>
+              <input type="text" id="input-hr-applyLink"
+                placeholder="VD: mailto:workspace.pvi@gmail.com?subject=Ung tuyen Ky Su BIM"
+                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
             </div>
           </div>
 
-          <!-- KÉO THẢ DÀNH CHO FILE HTML / LINK -->
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML /file PDF/ Chi tiết (<code
-                class="text-rose-400">link</code>)</label>
-            <div id="drop-zone-link"
-              class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5">
-              <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-400 transition">
-                <i data-lucide="file-up" class="w-4 h-4 text-rose-500"></i>
-                <span>Kéo & thả file HTML /file PDF / URL liên kết vào khung này hoặc nhập bên dưới</span>
+          <!-- CÁC TRƯỜNG CHUNG CHO NEWS, PROJECTS, SERVICES, INVESTORS (ẨN KHI Ở TAB HR) -->
+          <div id="standard-common-fields" class="space-y-4">
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code
+                  class="text-rose-400">summary</code>)</label>
+              <textarea id="input-summary" rows="2" placeholder="VD: Tóm tắt nội dung chính của bài viết."
+                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-sm"></textarea>
+            </div>
+
+            <!-- KÉO THẢ DÀNH CHO HÌNH ẢNH -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code
+                  class="text-rose-400">image</code>)</label>
+              <div id="drop-zone-image"
+                class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5">
+                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-400 transition">
+                  <i data-lucide="image-plus" class="w-4 h-4 text-rose-500"></i>
+                  <span>Kéo & thả file ảnh / URL vào khung này hoặc nhập bên dưới</span>
+                </div>
+                <input type="text" id="input-image"
+                  placeholder="Dán URL hình ảnh (https://...) hoặc kéo thả file ảnh vào đây"
+                  class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-1.5 text-gray-100 outline-none transition text-xs font-mono">
               </div>
-              <input type="text" id="input-link"
-                placeholder="Dán đường dẫn (content/services/services_001.html) hoặc kéo thả file vào đây"
-                class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-1.5 text-gray-100 outline-none transition text-xs font-mono">
+            </div>
+
+            <!-- KÉO THẢ DÀNH CHO FILE HTML / LINK -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML /file PDF/ Chi tiết (<code
+                  class="text-rose-400">link</code>)</label>
+              <div id="drop-zone-link"
+                class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5">
+                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-400 transition">
+                  <i data-lucide="file-up" class="w-4 h-4 text-rose-500"></i>
+                  <span>Kéo & thả file HTML /file PDF / URL liên kết vào khung này hoặc nhập bên dưới</span>
+                </div>
+                <input type="text" id="input-link"
+                  placeholder="Dán đường dẫn (content/investors/doc_001.pdf) hoặc kéo thả file vào đây"
+                  class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-1.5 text-gray-100 outline-none transition text-xs font-mono">
+              </div>
             </div>
           </div>
 
@@ -514,7 +589,6 @@
 
       <!-- CỘT 3: PREVIEW JSON -->
       <aside class="w-96 bg-[#0c0d12] flex flex-col shrink-0">
-        <!-- HEADER CỘT 3 -->
         <div class="h-12 border-b border-[#222630] px-3 flex items-center justify-between bg-[#12141c] shrink-0">
           <div class="flex items-center gap-2 text-xs font-semibold text-gray-300 font-mono truncate">
             <i data-lucide="code-2" class="w-4 h-4 text-emerald-400 shrink-0"></i>
@@ -525,10 +599,7 @@
           </button>
         </div>
 
-        <!-- CỘT 3 BODY: HIỂN THỊ CÁC KHUNG JSON ĐÃ ĐỒNG BỘ -->
-        <div id="json-output-container" class="flex-1 p-4 overflow-y-auto font-mono text-xs">
-          <!-- Các khung json-block-item sẽ được render tự động tại đây -->
-        </div>
+        <div id="json-output-container" class="flex-1 p-4 overflow-y-auto font-mono text-xs"></div>
 
         <div
           class="p-3 border-t border-[#222630] bg-[#12141c] text-[11px] text-gray-500 flex justify-between items-center font-mono">
@@ -540,13 +611,12 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC CHUYỂN TAB & XỬ LÝ DỮ LIỆU -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
     lucide.createIcons();
 
-    // Dữ liệu danh mục cấu hình
     const CATEGORIES = {
-     news: [
+      news: [
         { value: 'tin-noi-bat', label: 'Tin nổi bật' },
         { value: 'cong-ty', label: 'Công ty' },
         { value: 'chuyen-gia', label: 'Chuyên gia' },
@@ -579,11 +649,8 @@
     let currentFolder = "news";
     let currentTitle = "Tin tức";
     let editingPostId = null;
-
-    // Biến lưu trữ kết quả dữ liệu đang được lọc/sắp xếp hiển thị thực tế trên UI Cột 1 và Cột 3
     let currentFilteredPosts = [];
 
-    // Hàm mã hóa / giải mã UTF-8 cho Base64 của GitHub REST API (Tránh lỗi tiếng Việt)
     function utf8_to_b64(str) {
       return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
     }
@@ -592,7 +659,6 @@
       return decodeURIComponent(Array.prototype.map.call(atob(str.replace(/\s/g, '')), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
     }
 
-    // Toast thông báo
     function showToast(message, type = 'success') {
       const toastContainer = document.getElementById('toast-container');
       const toast = document.createElement('div');
@@ -610,7 +676,6 @@
       setTimeout(() => { toast.remove(); }, 3000);
     }
 
-    // Modal & Auth
     document.getElementById('btn-open-about').addEventListener('click', () => document.getElementById('about-modal').classList.remove('hidden'));
     document.getElementById('btn-close-about').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
     document.getElementById('btn-close-about-2').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
@@ -642,7 +707,6 @@
       location.reload();
     });
 
-    // CHỨC NĂNG KÉO THẢ (DRAG & DROP) CHO IMAGE & LINK
     function setupDragAndDrop(dropZoneId, inputId, defaultPathPrefix = '') {
       const dropZone = document.getElementById(dropZoneId);
       const input = document.getElementById(inputId);
@@ -683,11 +747,16 @@
     setupDragAndDrop('drop-zone-image', 'input-image', 'images/');
     setupDragAndDrop('drop-zone-link', 'input-link', 'content/');
 
-    // CẬP NHẬT CẤU HÌNH DANH MỤC & KHUNG FORM THEO TAB
     function updateFormCategoryOptions() {
       const selectCat = document.getElementById('select-category');
       const filterCat = document.getElementById('filter-category');
       const cats = CATEGORIES[currentFolder] || [];
+
+      // Cập nhật tiêu đề động phía dưới đường gạch ngang theo Tab
+      const detailHeader = document.getElementById('tab-detail-header');
+      if (detailHeader) {
+        detailHeader.innerText = `THÔNG TIN CHI TIẾT ${currentTitle.toUpperCase()}`;
+      }
 
       selectCat.innerHTML = '';
       filterCat.innerHTML = '<option value="">Tất cả Category</option>';
@@ -714,9 +783,17 @@
         if (selected) inputCategoryLabel.value = selected.label;
       };
 
-      // Ẩn/Hiện trường đặc thù
+      // Tự động bật/tắt các ô nhập liệu tùy theo Tab được chọn
+      const isHr = currentFolder === 'hr';
       document.getElementById('project-extra-fields').classList.toggle('hidden', currentFolder !== 'projects');
-      document.getElementById('service-extra-fields').classList.toggle('hidden', currentFolder !== 'services');
+      document.getElementById('service-extra-fields').classList.toggle('hidden', currentFolder !== 'services' && currentFolder !== 'investors');
+      document.getElementById('hr-extra-fields').classList.toggle('hidden', !isHr);
+      document.getElementById('standard-common-fields').classList.toggle('hidden', isHr);
+
+      const titleLabel = document.getElementById('title-field-label');
+      if (titleLabel) {
+        titleLabel.innerText = isHr ? 'Tiêu đề vị trí tuyển dụng' : 'Tiêu đề bài viết / Tên dịch vụ';
+      }
     }
 
     function updateTabCounts() {
@@ -726,13 +803,10 @@
       });
     }
 
-    // ==========================================
-    // CẬP NHẬT: ĐỒNG BỘ CỘT 3 VỚI CỘT 1 & ĐÓNG KHUNG TỪNG BÀI
-    // ==========================================
     function updateJsonPreview() {
       const container = document.getElementById('json-output-container');
       container.innerHTML = '';
-      
+
       document.getElementById('json-header-filename').innerText = `content/posts-${currentFolder}.json`;
       document.getElementById('active-module-badge').innerText = `content/posts-${currentFolder}.json Active`;
 
@@ -741,7 +815,6 @@
         return;
       }
 
-      // Duyệt qua từng bài viết đã qua bộ lọc/sắp xếp của Cột 1 để tạo khung riêng biệt
       currentFilteredPosts.forEach(post => {
         const blockDiv = document.createElement('div');
         blockDiv.className = 'json-block-item';
@@ -771,12 +844,11 @@
       if (sortVal === 'id-desc') posts.sort((a, b) => b.id - a.id);
       else posts.sort((a, b) => a.id - b.id);
 
-      // Lưu lại mảng dữ liệu đã đồng bộ
       currentFilteredPosts = posts;
 
       if (posts.length === 0) {
         container.innerHTML = `<div class="p-4 text-center text-xs text-gray-500 italic">Không tìm thấy bài viết nào</div>`;
-        updateJsonPreview(); // Cập nhật luôn Cột 3 thành trống
+        updateJsonPreview();
         return;
       }
 
@@ -792,7 +864,7 @@
           </div>
           <div class="text-xs font-semibold text-gray-200 line-clamp-2 leading-snug">${post.title || 'Chưa có tiêu đề'}</div>
           <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1 border-t border-[#1e222d]">
-            <span>${post.date || ''}</span>
+            <span>${post.type || post.date || ''}</span>
             <div class="flex items-center gap-1">
               <button onclick="editPost(${post.id})" class="p-1 hover:text-amber-400" title="Sửa"><i data-lucide="edit-2" class="w-3 h-3"></i></button>
               <button onclick="deletePost(${post.id})" class="p-1 hover:text-rose-400" title="Xóa"><i data-lucide="trash-2" class="w-3 h-3"></i></button>
@@ -802,8 +874,6 @@
         container.appendChild(div);
       });
       lucide.createIcons();
-
-      // Cập nhật Cột 3 sau khi lọc/sắp xếp
       updateJsonPreview();
     }
 
@@ -824,13 +894,23 @@
       document.getElementById('input-link').value = '';
       document.getElementById('input-date-picker').value = new Date().toISOString().split('T')[0];
 
-      // Form dự án / dịch vụ
       document.getElementById('input-code').value = '';
       document.getElementById('input-scale').value = '';
       document.getElementById('input-client').value = '';
       document.getElementById('input-location').value = '';
       document.getElementById('input-architect').value = '';
+
       document.getElementById('input-service-code').value = '';
+      document.getElementById('input-service-icon').value = 'file-text';
+
+      // Reset các trường thuộc HR
+      document.getElementById('input-hr-type').value = 'Toàn thời gian';
+      document.getElementById('input-hr-deadline').value = 'Hạn nộp: Đang tuyển';
+      document.getElementById('input-hr-location').value = 'Cần Thơ';
+      document.getElementById('input-hr-salary').value = 'Lương: Thỏa thuận theo năng lực';
+      document.getElementById('input-hr-requirement').value = '';
+      document.getElementById('input-hr-quantity').value = 'Số lượng: 01 Nhân viên';
+      document.getElementById('input-hr-applyLink').value = 'mailto:workspace.pvi@gmail.com';
 
       lucide.createIcons();
     }
@@ -861,9 +941,17 @@
         document.getElementById('input-client').value = post.client || '';
         document.getElementById('input-location').value = post.location || '';
         document.getElementById('input-architect').value = post.architect || '';
-      } else if (currentFolder === 'services') {
+      } else if (currentFolder === 'services' || currentFolder === 'investors') {
         document.getElementById('input-service-code').value = post.code || '';
         document.getElementById('input-service-icon').value = post.icon || 'file-text';
+      } else if (currentFolder === 'hr') {
+        document.getElementById('input-hr-type').value = post.type || '';
+        document.getElementById('input-hr-deadline').value = post.deadline || '';
+        document.getElementById('input-hr-location').value = post.location || '';
+        document.getElementById('input-hr-salary').value = post.salary || '';
+        document.getElementById('input-hr-requirement').value = post.requirement || '';
+        document.getElementById('input-hr-quantity').value = post.quantity || '';
+        document.getElementById('input-hr-applyLink').value = post.applyLink || '';
       }
 
       renderPostsList();
@@ -880,7 +968,6 @@
       showToast(`Đã xóa bài viết ID #${id}`);
     };
 
-    // LƯU BÀI VIẾT VÀO DANH SÁCH LOCAL
     document.getElementById('btn-add-to-list').addEventListener('click', () => {
       const id = parseInt(document.getElementById('input-id').value);
       const title = document.getElementById('input-title').value.trim();
@@ -890,26 +977,37 @@
         return;
       }
 
-      const postObj = {
+      let postObj = {
         id: id,
         category: document.getElementById('select-category').value,
         label: document.getElementById('input-category-label').value.trim(),
         date: document.getElementById('input-date-picker').value,
-        title: title,
-        summary: document.getElementById('input-summary').value.trim(),
-        image: document.getElementById('input-image').value.trim(),
-        link: document.getElementById('input-link').value.trim()
+        title: title
       };
 
-      if (currentFolder === 'projects') {
-        postObj.code = document.getElementById('input-code').value.trim();
-        postObj.scale = document.getElementById('input-scale').value.trim();
-        postObj.client = document.getElementById('input-client').value.trim();
-        postObj.location = document.getElementById('input-location').value.trim();
-        postObj.architect = document.getElementById('input-architect').value.trim();
-      } else if (currentFolder === 'services') {
-        postObj.code = document.getElementById('input-service-code').value.trim();
-        postObj.icon = document.getElementById('input-service-icon').value;
+      if (currentFolder === 'hr') {
+        postObj.type = document.getElementById('input-hr-type').value.trim();
+        postObj.deadline = document.getElementById('input-hr-deadline').value.trim();
+        postObj.location = document.getElementById('input-hr-location').value.trim();
+        postObj.salary = document.getElementById('input-hr-salary').value.trim();
+        postObj.requirement = document.getElementById('input-hr-requirement').value.trim();
+        postObj.quantity = document.getElementById('input-hr-quantity').value.trim();
+        postObj.applyLink = document.getElementById('input-hr-applyLink').value.trim();
+      } else {
+        postObj.summary = document.getElementById('input-summary').value.trim();
+        postObj.image = document.getElementById('input-image').value.trim();
+        postObj.link = document.getElementById('input-link').value.trim();
+
+        if (currentFolder === 'projects') {
+          postObj.code = document.getElementById('input-code').value.trim();
+          postObj.scale = document.getElementById('input-scale').value.trim();
+          postObj.client = document.getElementById('input-client').value.trim();
+          postObj.location = document.getElementById('input-location').value.trim();
+          postObj.architect = document.getElementById('input-architect').value.trim();
+        } else if (currentFolder === 'services' || currentFolder === 'investors') {
+          postObj.code = document.getElementById('input-service-code').value.trim();
+          postObj.icon = document.getElementById('input-service-icon').value;
+        }
       }
 
       let posts = db[currentFolder] || [];
@@ -938,7 +1036,6 @@
     document.getElementById('btn-cancel-edit').addEventListener('click', resetForm);
     document.getElementById('btn-reset').addEventListener('click', resetForm);
 
-    // CHUYỂN TAB CÔNG VIỆC
     document.querySelectorAll('.nav-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.nav-tab').forEach(t => {
@@ -960,12 +1057,10 @@
       });
     });
 
-    // LỌC VÀ SẮP XẾP
     document.getElementById('sort-order').addEventListener('change', renderPostsList);
     document.getElementById('filter-category').addEventListener('change', renderPostsList);
     document.getElementById('filter-search').addEventListener('input', renderPostsList);
 
-    /* ĐÃ CẬP NHẬT 2: Sửa nút Backup chỉ xuất dữ liệu đang hiển thị trên màn hình hiện tại */
     document.getElementById('btn-export-backup').addEventListener('click', () => {
       const dataToExport = currentFilteredPosts || [];
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataToExport, null, 2));
@@ -978,7 +1073,6 @@
       showToast(`Đã xuất file sao lưu cho tab [${currentTitle}]!`);
     });
 
-    /* ĐÃ CẬP NHẬT 3: Sửa nút Nhập JSON để ghi đè mảng dữ liệu vào Tab hiện tại */
     document.getElementById('import-json-file').addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (!file) return;
@@ -1006,7 +1100,6 @@
     });
 
     document.getElementById('btn-copy').addEventListener('click', () => {
-      // Sao chép toàn bộ nội dung hiển thị hiện tại trong Cột 3
       const blocks = document.querySelectorAll('.json-block-item pre');
       let combinedJson = [];
       blocks.forEach(b => {
@@ -1014,16 +1107,13 @@
           combinedJson.push(JSON.parse(b.innerText));
         } catch (e) {}
       });
-      
+
       const textToCopy = JSON.stringify(combinedJson, null, 2);
       navigator.clipboard.writeText(textToCopy).then(() => {
         showToast('Đã sao chép mã JSON của danh sách hiện tại!');
       });
     });
 
-    // ==========================================
-    // TẢI TỪ GITHUB
-    // ==========================================
     document.getElementById('btn-sync-github').addEventListener('click', async () => {
       if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
         showToast('Vui lòng kiểm tra lại thông tin xác thực GitHub', 'error');
@@ -1075,9 +1165,6 @@
       }
     });
 
-    // ==========================================
-    // XUẤT BẢN LÊN GITHUB MAIN
-    // ==========================================
     document.getElementById('btn-publish-github').addEventListener('click', async () => {
       if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
         showToast('Vui lòng kiểm tra lại thông tin xác thực GitHub', 'error');
@@ -1139,7 +1226,6 @@
       }
     });
 
-    // KHỞI TẠO BAN ĐẦU
     updateFormCategoryOptions();
     updateTabCounts();
     renderPostsList();
