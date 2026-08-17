@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
                 <div class="p-2 pt-2 flex justify-between items-center border-t border-slate-200/60 mt-2">
-                    <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Q.Mô: ${p.scale || 'Đang cập nhật'}</span>
+                    <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Quy mô: ${p.scale || 'Đang cập nhật'}</span>
                     <a href="${p.link || '#'}" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors flex items-center h-full">
                         Chi tiết &rarr;
                     </a>
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
                 <div class="p-2 pt-2 flex justify-between items-center border-t border-slate-200/60 mt-2">
-                    <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Q.Mô: ${p.scale || 'Đang cập nhật'}</span>
+                    <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Quy mô: ${p.scale || 'Đang cập nhật'}</span>
                     <a href="${p.link || '#'}" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors flex items-center h-full">
                         Chi tiết &rarr;
                     </a>
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
                 <div class="p-2 pt-2 flex justify-between items-center border-t border-slate-200/60 mt-2">
-                    <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Q.Mô: ${p.scale || 'Đang cập nhật'}</span>
+                    <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Quy mô: ${p.scale || 'Đang cập nhật'}</span>
                     <a href="${p.link || '#'}" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors flex items-center h-full">
                         Chi tiết &rarr;
                     </a>

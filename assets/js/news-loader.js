@@ -48,8 +48,16 @@ function renderNewsPosts(posts) {
                         <!-- Mảng chữ và nội dung -->
                         <div class="w-[60%] sm:w-2/3 lg:w-3/5 p-3 sm:p-6 flex flex-col justify-between">
                             <div>
-                                <!-- Ngày đăng -->
-                                <span class="text-[10px] sm:text-sm text-brand-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i> ${post.date}</span>
+                              <!-- Ngày đăng & Xem chi tiết -->
+                                <div class="flex items-center justify-between">
+                                <span class="text-[10px] sm:text-sm text-brand-blue font-semibold">
+                                    <i class="fa-regular fa-calendar mr-1"></i> ${post.date}
+                                </span>
+
+                                <span class="text-brand-blue group-hover:text-brand-orange text-[10px] sm:text-xs font-bold flex items-center gap-1 sm:gap-1.5 transition-colors">
+                                    Xem <span class="hidden sm:inline">chi tiết</span> <i class="fa-solid fa-arrow-right text-[8px] sm:text-[10px]"></i>
+                                </span>
+                                </div>
                                 
                                 <!-- Tiêu đề -->
                                 <h3 class="font-bold text-[12px] leading-snug sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 group-hover:text-brand-blue transition-colors">
@@ -57,7 +65,7 @@ function renderNewsPosts(posts) {
                                 </h3>
 
                                 <!-- Đoạn mô tả tóm tắt -->
-                                <p class=" hidden sm:block text-slate-600 text-[10px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
+                                <p class="text-slate-600 text-[10px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
                                     ${post.summary || ''}
                                 </p>
                             </div>
