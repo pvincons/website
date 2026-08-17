@@ -10,16 +10,6 @@
     "link": "content/news/news_020.html"
   },
   {
-    "id": 19,
-    "category": "cong-ty",
-    "categoryLabel": "Công ty",
-    "title": "Khảo Sát Địa Hình Và Thổ Nhưỡng Dự Án Trọng Điểm Tại Cần Thơ",
-    "summary": "Đội ngũ PV INCONS tiến hành khoan trắc địa, phân tích địa chất để đưa ra phương án thiết kế móng tối ưu nhất cho Chủ đầu tư.",
-    "date": "01/06/2026",
-    "image": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_019.html"
-  },
-  {
     "id": 18,
     "category": "khach-hang-bao-chi",
     "categoryLabel": "Khách hàng & Báo chí",
@@ -158,16 +148,6 @@
     "date": "05/08/2026",
     "image": "https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=800&auto=format&fit=crop",
     "link": "content/news/news_004.html"
-  },
-  {
-    "id": 3,
-    "category": "cong-ty",
-    "categoryLabel": "Công ty",
-    "title": "Hoàn Thành Lập Dự Toán Báo Giá Cho Nhà Phố 5 Tầng Tại Bình Thủy",
-    "summary": "Dự án cải tạo nhà phố 5 tầng tại Bình Thủy, Cần Thơ đã hoàn tất hồ sơ bóc tách khối lượng chi tiết, sẵn sàng cho công tác đấu thầu thi công.",
-    "date": "10/08/2026",
-    "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_003.html"
   },
   {
     "id": 1,
