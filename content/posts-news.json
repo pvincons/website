@@ -70,16 +70,6 @@
     "link": "content/news/news_014.html"
   },
   {
-    "id": 13,
-    "category": "chuyen-gia",
-    "categoryLabel": "Chuyên gia",
-    "title": "Khác Biệt Giữa BIM 3D, 4D, 5D Và Tiềm Năng Ứng Dụng",
-    "summary": "Từ mô phỏng không gian 3D đến việc tích hợp tiến độ thi công (4D) và quản lý chi phí dự toán (5D) vào duy nhất một mô hình quản lý.",
-    "date": "28/06/2026",
-    "image": "https://images.unsplash.com/photo-1631545638286-9a25b2931215?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_013.html"
-  },
-  {
     "id": 12,
     "category": "tin-noi-bat",
     "categoryLabel": "Tin nổi bật",
