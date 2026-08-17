@@ -228,11 +228,11 @@
           <span class="hidden md:inline">Dịch vụ</span>
           <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-services">0</span>
         </button>
-        <button data-folder="investors" data-title="Quan hệ đầu tư"
+        <button data-folder="investment" data-title="Quan hệ đầu tư"
           class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
           <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
           <span class="hidden md:inline">Quan hệ đầu tư</span>
-          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-investors">0</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-investment">0</span>
         </button>
         <button data-folder="hr" data-title="Chính sách nhân sự"
           class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
@@ -356,7 +356,7 @@
             </div>
 
             <div id="wrapper-category-label" class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Nhãn Hiển Thị (<code class="text-rose-400">label</code>)</label>
+              <label class="block text-xs font-semibold text-gray-300">Nhãn Hiển Thị (<code class="text-rose-400">categoryLabel</code>)</label>
               <input type="text" id="input-category-label" value="" placeholder="Nhập nhãn hiển thị (VD: Tin nổi bật)" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-300 font-mono text-xs outline-none">
             </div>
 
@@ -388,7 +388,7 @@
                 <input type="text" id="input-code" placeholder="VD: PRJ-2026-01" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Quy mô (<code class="text-rose-400">GFA</code>)</label>
+                <label class="block text-xs font-semibold text-gray-300">Quy mô (<code class="text-rose-400">scale</code>)</label>
                 <input type="text" id="input-scale" placeholder="VD: 50.000 m2 - 25 tầng" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
             </div>
@@ -409,7 +409,7 @@
             </div>
           </div>
 
-          <!-- DỊCH VỤ & QUAN HỆ ĐẦU TƯ (SERVICES & INVESTORS) -->
+          <!-- DỊCH VỤ & QUAN HỆ ĐẦU TƯ (SERVICES & investment) -->
           <div id="service-extra-fields" class="hidden space-y-3">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div class="space-y-1.5">
@@ -469,7 +469,7 @@
             </div>
           </div>
 
-          <!-- TRƯỜNG CHUNG NEWS, PROJECTS, SERVICES, INVESTORS -->
+          <!-- TRƯỜNG CHUNG NEWS, PROJECTS, SERVICES, investment -->
           <div id="standard-common-fields" class="space-y-3">
             <div class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code class="text-rose-400">summary</code>)</label>
@@ -496,7 +496,7 @@
                   <i data-lucide="file-up" class="w-4 h-4 text-rose-500 shrink-0"></i>
                   <span>Kéo & thả file HTML /file PDF / URL liên kết vào khung này hoặc nhập bên dưới</span>
                 </div>
-                <input type="text" id="input-link" placeholder="Dán đường dẫn (content/investors/doc_001.pdf) hoặc kéo thả file vào đây" class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
+                <input type="text" id="input-link" placeholder="Dán đường dẫn (content/investment/doc_001.pdf) hoặc kéo thả file vào đây" class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
               </div>
             </div>
           </div>
@@ -547,7 +547,7 @@
         { value: 'pricing', label: 'Bảng giá dịch vụ' },
         { value: 'documents', label: 'Tài liệu mẫu' }
       ],
-      investors: [
+      investment: [
         { value: 'quan-he-co-dong', label: 'Quan hệ cổ đông' },
         { value: 'tai-chinh', label: 'Tài chính công ty' }
       ],
@@ -558,7 +558,7 @@
     };
 
     let authConfig = JSON.parse(localStorage.getItem('pv_github_auth')) || null;
-    let db = JSON.parse(localStorage.getItem('pv_studio_db')) || { news: [], projects: [], services: [], investors: [], hr: [] };
+    let db = JSON.parse(localStorage.getItem('pv_studio_db')) || { news: [], projects: [], services: [], investment: [], hr: [] };
 
     let currentFolder = "news";
     let currentTitle = "Tin tức";
@@ -697,7 +697,7 @@
 
       const isHr = currentFolder === 'hr';
       document.getElementById('project-extra-fields').classList.toggle('hidden', currentFolder !== 'projects');
-      document.getElementById('service-extra-fields').classList.toggle('hidden', currentFolder !== 'services' && currentFolder !== 'investors');
+      document.getElementById('service-extra-fields').classList.toggle('hidden', currentFolder !== 'services' && currentFolder !== 'investment');
       document.getElementById('hr-extra-fields').classList.toggle('hidden', !isHr);
       document.getElementById('standard-common-fields').classList.toggle('hidden', isHr);
 
@@ -814,13 +814,13 @@
       document.getElementById('input-service-code').value = '';
       document.getElementById('input-service-icon').value = 'file-text';
 
-      document.getElementById('input-hr-type').value = 'Toàn thời gian';
-      document.getElementById('input-hr-deadline').value = 'Hạn nộp: Đang tuyển';
-      document.getElementById('input-hr-location').value = 'Cần Thơ';
-      document.getElementById('input-hr-salary').value = 'Lương: Thỏa thuận theo năng lực';
+      document.getElementById('input-hr-type').value = '';
+      document.getElementById('input-hr-deadline').value = '';
+      document.getElementById('input-hr-location').value = '';
+      document.getElementById('input-hr-salary').value = '';
       document.getElementById('input-hr-requirement').value = '';
-      document.getElementById('input-hr-quantity').value = 'Số lượng: 01 Nhân viên';
-      document.getElementById('input-hr-applyLink').value = 'mailto:workspace.pvi@gmail.com';
+      document.getElementById('input-hr-quantity').value = '';
+      document.getElementById('input-hr-applyLink').value = '';
 
       lucide.createIcons();
     }
@@ -851,7 +851,7 @@
         document.getElementById('input-client').value = post.client || '';
         document.getElementById('input-location').value = post.location || '';
         document.getElementById('input-architect').value = post.architect || '';
-      } else if (currentFolder === 'services' || currentFolder === 'investors') {
+      } else if (currentFolder === 'services' || currentFolder === 'investment') {
         document.getElementById('input-service-code').value = post.code || '';
         document.getElementById('input-service-icon').value = post.icon || 'file-text';
       } else if (currentFolder === 'hr') {
@@ -914,7 +914,7 @@
           postObj.client = document.getElementById('input-client').value.trim();
           postObj.location = document.getElementById('input-location').value.trim();
           postObj.architect = document.getElementById('input-architect').value.trim();
-        } else if (currentFolder === 'services' || currentFolder === 'investors') {
+        } else if (currentFolder === 'services' || currentFolder === 'investment') {
           postObj.code = document.getElementById('input-service-code').value.trim();
           postObj.icon = document.getElementById('input-service-icon').value;
         }
