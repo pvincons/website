@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>PV INCONS Data Website Admin</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,9 +15,10 @@
       font-family: 'Inter', sans-serif;
     }
 
+    /* Tùy chỉnh Scrollbar */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 4px;
+      height: 4px;
     }
 
     ::-webkit-scrollbar-track {
@@ -33,16 +34,18 @@
       background: #3b4050;
     }
 
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
+    /* Ẩn scrollbar cho menu và cuộn mượt */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;  
+      scrollbar-width: none;  
+    }
 
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
     .toast-animate {
@@ -53,6 +56,7 @@
       color-scheme: dark;
     }
 
+    /* Font chữ nội dung nhập liệu theo file 2 */
     input,
     textarea,
     select,
@@ -60,6 +64,7 @@
       font-family: Arial, Helvetica, sans-serif !important;
     }
 
+    /* Font chữ nội dung chữ hướng dẫn (placeholder) theo file 2 */
     input::placeholder,
     textarea::placeholder {
       font-family: 'Inter', sans-serif !important;
@@ -117,10 +122,10 @@
   </style>
 </head>
 
-<body class="bg-[#0f1117] text-gray-200 h-screen overflow-hidden text-sm select-none">
+<body class="bg-[#0f1117] text-gray-200 h-screen overflow-hidden text-sm select-none flex flex-col">
 
   <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full">
+  <div id="toast-container" class="fixed top-4 right-4 left-4 lg:left-auto z-50 flex flex-col gap-2 pointer-events-none lg:max-w-sm w-auto">
   </div>
 
   <!-- 1. MÀN HÌNH ĐĂNG NHẬP -->
@@ -138,24 +143,24 @@
         <div class="space-y-1">
           <label class="text-[11px] font-semibold text-gray-400 uppercase">GitHub Owner / User</label>
           <input type="text" id="auth-owner" placeholder="VD: pv-incons"
-            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
         </div>
 
         <div class="space-y-1">
           <label class="text-[11px] font-semibold text-gray-400 uppercase">Repository Name</label>
           <input type="text" id="auth-repo" placeholder="VD: website"
-            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
         </div>
 
         <div class="space-y-1">
           <label class="text-[11px] font-semibold text-gray-400 uppercase">Personal Access Token (PAT)</label>
           <input type="password" id="auth-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
         </div>
       </div>
 
       <button id="btn-login"
-        class="w-full bg-rose-600 hover:bg-rose-500 text-white font-semibold py-2.5 rounded-lg text-xs transition shadow-lg shadow-rose-900/20 flex items-center justify-center gap-2">
+        class="w-full bg-rose-600 hover:bg-rose-500 text-white font-semibold py-3 lg:py-2.5 rounded-lg text-xs transition shadow-lg shadow-rose-900/20 flex items-center justify-center gap-2">
         <i data-lucide="key-round" class="w-4 h-4"></i>
         <span>Xác nhận & Vào Admin Website</span>
       </button>
@@ -166,7 +171,7 @@
   <div id="about-modal"
     class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-[#14171f] border border-[#2a2e3d] rounded-xl p-6 w-full max-w-lg shadow-2xl space-y-4">
-      <div class="flex items-center justify-between border-b border-[#222630] pb-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#222630] pb-3 gap-3">
         <div class="flex items-center gap-2.5">
           <img src="https://i.pinimg.com/736x/54/56/c7/5456c78c0aa3b2aea8d4b96fa5a500cf.jpg" alt="PV INCONS Logo"
             class="w-8 h-8 rounded-full object-cover border border-[#2a2e3d] shadow">
@@ -175,7 +180,7 @@
             <p class="text-[11px] text-rose-400 font-mono">Phiên bản ver. 1.3.1</p>
           </div>
         </div>
-        <button id="btn-close-about" class="text-gray-400 hover:text-white p-1 rounded-lg">
+        <button id="btn-close-about" class="text-gray-400 hover:text-white p-1 rounded-lg self-end sm:self-auto hidden sm:block">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -190,7 +195,7 @@
 
       <div class="flex justify-end pt-2">
         <button id="btn-close-about-2"
-          class="bg-[#222630] hover:bg-gray-700 text-gray-200 text-xs font-semibold px-4 py-2 rounded-lg transition">
+          class="w-full sm:w-auto bg-[#222630] hover:bg-gray-700 text-gray-200 text-xs font-semibold px-4 py-3 sm:py-2 rounded-lg transition">
           Đóng cửa sổ
         </button>
       </div>
@@ -198,96 +203,74 @@
   </div>
 
   <!-- 3. MAIN WORKSPACE -->
-  <div id="admin-workspace" class="h-full flex flex-col hidden">
+  <div id="admin-workspace" class="flex-1 flex flex-col hidden h-full overflow-hidden">
 
     <!-- TOP HEADER -->
-    <header class="h-12 border-b border-[#222630] bg-[#14171f] flex items-center justify-between shrink-0">
+    <header class="border-b border-[#222630] bg-[#14171f] flex flex-col lg:flex-row items-center justify-between shrink-0 h-auto lg:h-12 py-2 lg:py-0 px-3 lg:px-4 gap-2 lg:gap-0">
+      
+      <!-- Nav Tabs -->
+      <nav class="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full lg:w-auto pb-1 lg:pb-0" id="sidebar-nav">
+        <button data-folder="news" data-title="Tin tức"
+          class="nav-tab active flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg bg-rose-600/10 text-rose-400 font-medium border border-rose-500/20 transition text-xs">
+          <i data-lucide="newspaper" class="w-3.5 h-3.5 text-rose-500"></i>
+          <span class="hidden md:inline">Tin tức</span>
+          <span class="text-[10px] bg-rose-500/20 text-rose-300 px-1.5 py-0.2 rounded font-mono tab-count" id="count-news">0</span>
+        </button>
+        <button data-folder="projects" data-title="Dự án"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i data-lucide="folder-kanban" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Dự án</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-projects">0</span>
+        </button>
+        <button data-folder="services" data-title="Dịch vụ"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Dịch vụ</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-services">0</span>
+        </button>
+        <button data-folder="investors" data-title="Quan hệ đầu tư"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Quan hệ đầu tư</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-investors">0</span>
+        </button>
+        <button data-folder="hr" data-title="Chính sách nhân sự"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i data-lucide="users" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Chính sách nhân sự</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-hr">0</span>
+        </button>
+      </nav>
 
-      <div class="w-80 shrink-0 px-4 border-r border-[#222630] flex items-center justify-between h-full">
-        <div id="btn-open-about" class="flex items-center gap-2 cursor-pointer group"
-          title="Xem thông tin phiên bản & bản quyền">
-          <img src="https://i.pinimg.com/736x/54/56/c7/5456c78c0aa3b2aea8d4b96fa5a500cf.jpg" alt="PV INCONS Logo"
-            class="w-7 h-7 rounded-full object-cover border border-[#2a2e3d] group-hover:border-rose-500 transition shadow">
-          <span class="font-bold text-gray-100 group-hover:text-rose-400 transition text-xs">PV INCONS Admin</span>
-        </div>
-        <span
-          class="text-xs bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded font-mono font-bold">ver.
-          1.3.1</span>
-      </div>
+      <!-- Right Actions -->
+      <div class="flex items-center justify-between lg:justify-end gap-2.5 w-full lg:w-auto border-t lg:border-t-0 border-[#222630] pt-1.5 lg:pt-0">
+        <span class="text-[10px] sm:text-xs text-gray-400 font-mono flex items-center gap-1 shrink-0">
+          <i data-lucide="github" class="w-3 h-3 text-gray-300"></i>
+          <span id="display-repo-info" class="text-gray-200 font-semibold max-w-[110px] sm:max-w-max truncate">user/repo</span>
+        </span>
 
-      <div class="flex-1 px-4 flex items-center justify-between h-full">
-        <nav class="flex items-center gap-1.5" id="sidebar-nav">
-          <button data-folder="news" data-title="Tin tức"
-            class="nav-tab active flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-600/10 text-rose-400 font-medium border border-rose-500/20 transition text-xs">
-            <i data-lucide="newspaper" class="w-3.5 h-3.5 text-rose-500"></i>
-            <span>Tin tức</span>
-            <span class="text-[10px] bg-rose-500/20 text-rose-300 px-1.5 py-0.2 rounded font-mono tab-count"
-              id="count-news">0</span>
+        <div class="flex items-center gap-1.5">
+          <button id="btn-export-backup" class="text-gray-300 hover:text-emerald-400 text-[10px] bg-[#1c202b] hover:bg-emerald-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono">
+            <i data-lucide="download" class="w-3 h-3"></i> <span>Backup</span>
           </button>
 
-          <button data-folder="projects" data-title="Dự án"
-            class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-            <i data-lucide="folder-kanban" class="w-3.5 h-3.5"></i>
-            <span>Dự án</span>
-            <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count"
-              id="count-projects">0</span>
-          </button>
+          <label class="text-gray-300 hover:text-blue-400 text-[10px] bg-[#1c202b] hover:bg-blue-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono cursor-pointer">
+            <i data-lucide="upload" class="w-3 h-3"></i> <span>Nhập JSON</span>
+            <input type="file" id="import-json-file" accept=".json" class="hidden">
+          </label>
 
-          <button data-folder="services" data-title="Dịch vụ"
-            class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-            <span>Dịch vụ</span>
-            <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count"
-              id="count-services">0</span>
-          </button>
-
-          <button data-folder="investors" data-title="Quan hệ đầu tư"
-            class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
-            <span>Quan hệ đầu tư</span>
-            <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count"
-              id="count-investors">0</span>
-          </button>
-
-          <button data-folder="hr" data-title="Chính sách nhân sự"
-            class="nav-tab flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-            <i data-lucide="users" class="w-3.5 h-3.5"></i>
-            <span>Chính sách nhân sự</span>
-            <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count"
-              id="count-hr">0</span>
-          </button>
-        </nav>
-
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-1.5 border-r border-[#2a2e3d] pr-3">
-            <button id="btn-export-backup"
-              class="text-gray-400 hover:text-emerald-400 text-[11px] bg-[#1c202b] hover:bg-emerald-500/10 border border-[#2a2e3d] px-2.5 py-1 rounded transition flex items-center gap-1 font-mono">
-              <i data-lucide="download" class="w-3 h-3"></i> Backup
-            </button>
-            <label
-              class="text-gray-400 hover:text-blue-400 text-[11px] bg-[#1c202b] hover:bg-blue-500/10 border border-[#2a2e3d] px-2.5 py-1 rounded transition flex items-center gap-1 font-mono cursor-pointer">
-              <i data-lucide="upload" class="w-3 h-3"></i> Nhập JSON
-              <input type="file" id="import-json-file" accept=".json" class="hidden">
-            </label>
-          </div>
-
-          <span class="text-xs text-gray-400 font-mono flex items-center gap-1">
-            <i data-lucide="github" class="w-3.5 h-3.5 text-gray-300"></i>
-            <span id="display-repo-info" class="text-gray-200 font-semibold">user/repo</span>
-          </span>
-          <button id="btn-logout"
-            class="bg-[#222630] hover:bg-rose-600/20 hover:text-rose-400 text-gray-400 text-xs px-2.5 py-1 rounded transition flex items-center gap-1 font-medium">
-            <i data-lucide="log-out" class="w-3 h-3"></i> Đăng xuất
+          <button id="btn-logout" class="bg-[#222630] hover:bg-rose-600/20 hover:text-rose-400 text-gray-300 text-[10px] px-2 py-1 rounded transition flex items-center gap-1 font-medium whitespace-nowrap">
+            <i data-lucide="log-out" class="w-2.5 h-2.5"></i> <span>Đăng xuất</span>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- MAIN CONTENT (3 CỘT) -->
-    <div class="flex flex-1 overflow-hidden">
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 flex flex-row overflow-x-auto lg:overflow-hidden snap-x snap-mandatory h-full no-scrollbar">
 
-      <!-- CỘT 1: DANH SÁCH BÀI VIẾT (W-80) -->
-      <aside class="w-80 border-r border-[#222630] bg-[#12141c] flex flex-col shrink-0">
+      <!-- CỘT 1: DANH SÁCH BÀI VIẾT -->
+      <aside class="w-full min-w-full lg:min-w-0 lg:w-80 h-full border-r border-[#222630] bg-[#12141c] flex flex-col shrink-0 snap-start">
         <div class="h-12 px-3 border-b border-[#222630] bg-[#0f1117] flex items-center justify-between shrink-0">
           <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
             <i data-lucide="list" class="w-3.5 h-3.5 text-rose-500"></i>
@@ -295,33 +278,28 @@
           </span>
         </div>
 
-        <div class="p-2 border-b border-[#222630] bg-[#14171f] space-y-2">
-          <div
-            class="flex items-center justify-between gap-2 px-2 py-1.5 bg-[#0f1117] rounded-md border border-[#2a2e3d]">
-            <button id="btn-sync-github"
-              class="text-blue-400 hover:text-blue-300 text-[11px] font-medium flex items-center gap-1">
-              <i data-lucide="refresh-cw" class="w-3 h-3"></i> Tải từ GitHub
+        <div class="p-2 border-b border-[#222630] bg-[#14171f] space-y-2 shrink-0">
+          <div class="flex items-center justify-between gap-2 px-2 py-1.5 bg-[#0f1117] rounded-md border border-[#2a2e3d]">
+            <button id="btn-sync-github" class="text-blue-400 hover:text-blue-300 text-[11px] font-medium flex items-center gap-1">
+              <i data-lucide="refresh-cw" class="w-3 h-3"></i> Tải dữ liệu
             </button>
 
             <div class="flex items-center gap-1 text-[11px] text-gray-400">
-              <span>Sắp xếp:</span>
-              <select id="sort-order"
-                class="bg-[#14171f] border border-[#2a2e3d] rounded px-1.5 py-0.5 text-[10px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer font-mono">
-                <option value="id-desc">ID Mới nhất (Giảm)</option>
-                <option value="id-asc">ID Cũ nhất (Tăng)</option>
+              <select id="sort-order" class="bg-[#14171f] border border-[#2a2e3d] rounded px-1.5 py-1 lg:py-0.5 text-[10px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer font-mono">
+                <option value="id-desc">ID Mới nhất</option>
+                <option value="id-asc">ID Cũ nhất</option>
               </select>
             </div>
           </div>
 
-          <div class="flex gap-1.5">
-            <select id="filter-category"
-              class="w-1/2 bg-[#0f1117] border border-[#2a2e3d] rounded-md px-2 py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer">
+          <div class="flex gap-2">
+            <select id="filter-category" class="w-1/2 bg-[#0f1117] border border-[#2a2e3d] rounded-md px-2 py-1.5 lg:py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer">
               <option value="">Tất cả Category</option>
             </select>
             <div class="relative w-1/2">
               <input type="text" id="filter-search" placeholder="Lọc nhãn/tiêu đề..."
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-md pl-6 pr-2 py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500">
-              <i data-lucide="search" class="w-3 h-3 text-gray-500 absolute left-1.5 top-2"></i>
+                class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-md pl-7 pr-2 py-1.5 lg:py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500">
+              <i data-lucide="search" class="w-3.5 h-3.5 text-gray-500 absolute left-2 top-2 lg:top-1.5"></i>
             </div>
           </div>
         </div>
@@ -330,151 +308,117 @@
       </aside>
 
       <!-- CỘT 2: FORM SOẠN THẢO BÀI VIẾT -->
-      <main class="flex-1 flex flex-col bg-[#14171f] overflow-hidden border-r border-[#222630]">
-
-        <div class="h-12 border-b border-[#222630] px-6 flex items-center justify-between bg-[#12141c] shrink-0">
-          <div class="flex items-center gap-3">
+      <main class="w-full min-w-full lg:min-w-0 lg:flex-1 h-full flex flex-col bg-[#14171f] border-r border-[#222630] shrink-0 lg:shrink snap-start overflow-y-auto">
+        
+        <!-- Header Form -->
+        <div class="p-3 lg:h-12 lg:px-6 border-b border-[#222630] flex flex-col xl:flex-row xl:items-center justify-between bg-[#12141c] shrink-0 gap-3 xl:gap-0">
+          <div class="flex flex-wrap items-center gap-2">
             <i data-lucide="edit-3" class="w-4 h-4 text-rose-500"></i>
-            <span id="form-title" class="font-semibold text-gray-200">Soạn thảo bài viết cho [Tin tức]</span>
-
-            <span id="active-module-badge"
-              class="text-xs text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/20 font-mono">
-              content/posts-news.json Active
+            <span id="form-title" class="font-semibold text-gray-200 text-sm">Soạn thảo [Tin tức]</span>
+            <span id="active-module-badge" class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
+              posts-news.json
             </span>
-
-            <span id="edit-status-badge"
-              class="hidden text-[11px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20 font-mono">
-              Đang sửa bài ID: #<span id="editing-id-text"></span>
+            <span id="edit-status-badge" class="hidden text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20 font-mono">
+              Sửa ID: #<span id="editing-id-text"></span>
             </span>
           </div>
 
-          <div class="flex items-center gap-2">
-            <button id="btn-cancel-edit"
-              class="hidden px-2.5 py-1.5 text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded transition font-medium">
+          <!-- Các nút thao tác form -->
+          <div class="flex flex-wrap items-center gap-2 w-full xl:w-auto justify-end">
+            <button id="btn-cancel-edit" class="hidden px-2 py-1.5 text-[11px] text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded font-medium flex-1 lg:flex-none justify-center">
               Hủy sửa
             </button>
-
-            <button id="btn-reset" class="px-3 py-1.5 text-xs text-gray-400 hover:text-white transition font-medium">
-              Làm mới form
+            <button id="btn-reset" class="px-2 py-1.5 text-[11px] text-gray-400 bg-[#222630] lg:bg-transparent rounded lg:rounded-none flex-1 lg:flex-none justify-center">
+              Làm mới
             </button>
-
-            <button id="btn-add-to-list"
-              class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-blue-900/20">
+            <button id="btn-add-to-list" class="bg-blue-600 hover:bg-blue-500 text-white text-[11px] font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1 transition flex-1 lg:flex-none">
               <i id="btn-add-icon" data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
-              <span id="btn-add-text">Lưu vào danh sách</span>
+              <span id="btn-add-text">Lưu list</span>
             </button>
-
-            <button id="btn-publish-github"
-              class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition shadow-lg shadow-emerald-900/20">
+            <button id="btn-publish-github" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1 transition w-full lg:w-auto mt-1 lg:mt-0">
               <i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i>
-              Xuất bản lên GitHub Main
+              Xuất bản GitHub
             </button>
           </div>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-6 space-y-5">
-          <!-- DÒNG 1: GIỮ CỐ ĐỊNH 4 Ô TRÊN TẤT CẢ TAB -->
-          <div class="grid grid-cols-4 gap-3">
+        <div class="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4">
+          <div class="grid grid-cols-1 xl:grid-cols-4 gap-3">
             <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Mã ID (<code
-                  class="text-rose-400">id</code>)</label>
-              <input type="number" id="input-id" value="1"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 font-mono text-xs outline-none">
+              <label class="block text-xs font-semibold text-gray-300">Mã ID (<code class="text-rose-400">id</code>)</label>
+              <input type="number" id="input-id" value="1" placeholder="Nhập mã ID số (VD: 1)" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 font-mono text-xs outline-none">
             </div>
 
             <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Phân loại (<code
-                  class="text-rose-400">category</code>)</label>
-              <select id="select-category"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-2.5 py-2 text-gray-100 text-xs outline-none cursor-pointer">
+              <label class="block text-xs font-semibold text-gray-300">Phân loại (<code class="text-rose-400">category</code>)</label>
+              <select id="select-category" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-2.5 py-2 text-gray-100 text-xs outline-none cursor-pointer">
               </select>
             </div>
 
             <div id="wrapper-category-label" class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Nhãn Hiển Thị (<code
-                  class="text-rose-400">label</code>)</label>
-              <input type="text" id="input-category-label" value=""
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-300 font-mono text-xs outline-none">
+              <label class="block text-xs font-semibold text-gray-300">Nhãn Hiển Thị (<code class="text-rose-400">label</code>)</label>
+              <input type="text" id="input-category-label" value="" placeholder="Nhập nhãn hiển thị (VD: Tin nổi bật)" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-300 font-mono text-xs outline-none">
             </div>
 
             <div id="wrapper-date-picker" class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Ngày đăng (<code
-                  class="text-rose-400">date</code>)</label>
-              <input type="date" id="input-date-picker"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-200 text-xs outline-none cursor-pointer">
+              <label class="block text-xs font-semibold text-gray-300">Ngày đăng (<code class="text-rose-400">date</code>)</label>
+              <input type="date" id="input-date-picker" placeholder="Chọn hoặc nhập ngày (YYYY-MM-DD)" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-200 text-xs outline-none cursor-pointer">
             </div>
           </div>
 
           <div class="border-t border-[#222630] pt-1"></div>
 
-          <!-- TIÊU ĐỀ ĐỘNG PHÍA DƯỚI DÒNG GẠCH -->
           <div id="tab-detail-header" class="text-xs font-bold text-rose-400 uppercase tracking-wider">
             THÔNG TIN CHI TIẾT TIN TỨC
           </div>
 
-          <!-- DỜI TIÊU ĐỀ (TITLE) LÊN NẰM NGAY DƯỚI TIÊU ĐỀ PHẦN CHI TIẾT -->
           <div class="space-y-1.5">
             <label class="block text-xs font-semibold text-gray-300">
-              <span id="title-field-label">Tiêu đề bài viết / Vị trí tuyển dụng</span> (<code
-                class="text-rose-400">title</code>) <span class="text-rose-500">*</span>
+              <span id="title-field-label">Tiêu đề bài viết / Tên dịch vụ</span> (<code class="text-rose-400">title</code>) <span class="text-rose-500">*</span>
             </label>
             <input type="text" id="input-title" placeholder="VD: Kỹ Sư Triển Khai BIM / Revit (Kiến Trúc & Kết Cấu)"
               class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 outline-none transition text-sm">
           </div>
 
           <!-- DỰ ÁN (PROJECTS) -->
-          <div id="project-extra-fields" class="hidden space-y-4">
-            <div class="grid grid-cols-2 gap-4">
+          <div id="project-extra-fields" class="hidden space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Mã Dự Án / Ký hiệu (<code
-                    class="text-rose-400">code</code>)</label>
-                <input type="text" id="input-code" placeholder="VD: DA-CANTHO-01"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Mã Dự Án / Ký hiệu (<code class="text-rose-400">code</code>)</label>
+                <input type="text" id="input-code" placeholder="VD: PRJ-2026-01" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Quy mô (<code
-                    class="text-rose-400">GFA</code>)</label>
-                <input type="text" id="input-scale" placeholder="VD: 5 Tầng - Tổng diện tích 850m2"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Quy mô (<code class="text-rose-400">GFA</code>)</label>
+                <input type="text" id="input-scale" placeholder="VD: 50.000 m2 - 25 tầng" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
             </div>
 
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Chủ đầu tư (<code
-                    class="text-rose-400">client</code>)</label>
-                <input type="text" id="input-client" placeholder="VD: Tập đoàn ABC"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Chủ đầu tư (<code class="text-rose-400">client</code>)</label>
+                <input type="text" id="input-client" placeholder="VD: Tập đoàn PVN" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Địa điểm (<code
-                    class="text-rose-400">location</code>)</label>
-                <input type="text" id="input-location" placeholder="VD: Ninh Kiều, Cần Thơ"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Địa điểm (<code class="text-rose-400">location</code>)</label>
+                <input type="text" id="input-location" placeholder="VD: Quận 1, TP. Hồ Chí Minh" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Tổng thầu (<code
-                    class="text-rose-400">Main Contructor</code>)</label>
-                <input type="text" id="input-architect" placeholder="VD: PV INCONS"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Tổng thầu (<code class="text-rose-400">Main Contructor</code>)</label>
+                <input type="text" id="input-architect" placeholder="VD: PV INCONS / Partner" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
             </div>
           </div>
 
           <!-- DỊCH VỤ & QUAN HỆ ĐẦU TƯ (SERVICES & INVESTORS) -->
-          <div id="service-extra-fields" class="hidden space-y-4">
-            <div class="grid grid-cols-2 gap-4">
+          <div id="service-extra-fields" class="hidden space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Mã Dịch Vụ / Mã Tài Liệu (<code
-                    class="text-rose-400">code</code>)</label>
-                <input type="text" id="input-service-code" placeholder="VD: SERV-DESIGN / DOC-2026"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Mã Dịch Vụ / Tài Liệu (<code class="text-rose-400">code</code>)</label>
+                <input type="text" id="input-service-code" placeholder="VD: SVC-DOC-01" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Tên Icon Lucide (<code
-                    class="text-rose-400">icon</code>)</label>
-                <select id="input-service-icon"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 text-xs outline-none cursor-pointer font-mono">
+                <label class="block text-xs font-semibold text-gray-300">Tên Icon Lucide (<code class="text-rose-400">icon</code>)</label>
+                <select id="input-service-icon" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 text-xs outline-none cursor-pointer font-mono">
                   <option value="fa-file-contract">Hợp đồng / Văn bản</option>
                   <option value="fa-file-signature">Nghị quyết / Quy chế</option>
                   <option value="fa-file-circle-check">Biên bản / Thỏa thuận</option>
@@ -486,122 +430,94 @@
             </div>
           </div>
 
-          <!-- Ô NHẬP LIỆU RIÊNG CHO CHÍNH SÁCH NHÂN SỰ / TUYỂN DỤNG (HR) -->
-          <div id="hr-extra-fields" class="hidden space-y-4">
-            <div class="grid grid-cols-2 gap-4">
+          <!-- CHÍNH SÁCH NHÂN SỰ / TUYỂN DỤNG (HR) -->
+          <div id="hr-extra-fields" class="hidden space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Hình thức làm việc (<code
-                    class="text-rose-400">type</code>)</label>
-                <input type="text" id="input-hr-type" placeholder="VD: Toàn thời gian / Thực tập / Bán thời gian"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Hình thức làm việc (<code class="text-rose-400">type</code>)</label>
+                <input type="text" id="input-hr-type" placeholder="VD: Toàn thời gian" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Hạn nộp hồ sơ (<code
-                    class="text-rose-400">deadline</code>)</label>
-                <input type="text" id="input-hr-deadline" placeholder="VD: Hạn nộp: Đang tuyển / Hạn nộp: Liên tục"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Hạn nộp hồ sơ (<code class="text-rose-400">deadline</code>)</label>
+                <input type="text" id="input-hr-deadline" placeholder="VD: Hạn nộp: Đang tuyển" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
             </div>
 
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Địa điểm làm việc (<code
-                    class="text-rose-400">location</code>)</label>
-                <input type="text" id="input-hr-location" placeholder="VD: Cần Thơ & Các tỉnh ĐBSCL"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Địa điểm làm việc (<code class="text-rose-400">location</code>)</label>
+                <input type="text" id="input-hr-location" placeholder="VD: Cần Thơ / TP.HCM" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Mức lương (<code
-                    class="text-rose-400">salary</code>)</label>
-                <input type="text" id="input-hr-salary" placeholder="VD: Lương: Thỏa thuận theo năng lực"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Mức lương (<code class="text-rose-400">salary</code>)</label>
+                <input type="text" id="input-hr-salary" placeholder="VD: Lương: Thỏa thuận theo năng lực" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Số lượng tuyển (<code
-                    class="text-rose-400">quantity</code>)</label>
-                <input type="text" id="input-hr-quantity" placeholder="VD: Số lượng: 02 Nhân viên / Không giới hạn"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+                <label class="block text-xs font-semibold text-gray-300">Số lượng tuyển (<code class="text-rose-400">quantity</code>)</label>
+                <input type="text" id="input-hr-quantity" placeholder="VD: Số lượng: 01 Nhân viên" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
             </div>
 
             <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Yêu cầu công việc (<code
-                  class="text-rose-400">requirement</code>)</label>
-              <textarea id="input-hr-requirement" rows="2"
-                placeholder="VD: Sử dụng thành thạo Revit, AutoCAD (Biết Dynamo là lợi thế)"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-xs"></textarea>
+              <label class="block text-xs font-semibold text-gray-300">Yêu cầu công việc (<code class="text-rose-400">requirement</code>)</label>
+              <textarea id="input-hr-requirement" rows="2" placeholder="Nhập các yêu cầu về bằng cấp, kĩ năng, kinh nghiệm chuyên môn..." class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-xs"></textarea>
             </div>
 
             <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Liên kết / Mail ứng tuyển (<code
-                  class="text-rose-400">applyLink</code>)</label>
-              <input type="text" id="input-hr-applyLink"
-                placeholder="VD: mailto:workspace.pvi@gmail.com?subject=Ung tuyen Ky Su BIM"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
+              <label class="block text-xs font-semibold text-gray-300">Liên kết / Mail ứng tuyển (<code class="text-rose-400">applyLink</code>)</label>
+              <input type="text" id="input-hr-applyLink" placeholder="VD: mailto:workspace.pvi@gmail.com" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
             </div>
           </div>
 
-          <!-- CÁC TRƯỜNG CHUNG CHO NEWS, PROJECTS, SERVICES, INVESTORS (ẨN KHI Ở TAB HR) -->
-          <div id="standard-common-fields" class="space-y-4">
+          <!-- TRƯỜNG CHUNG NEWS, PROJECTS, SERVICES, INVESTORS -->
+          <div id="standard-common-fields" class="space-y-3">
             <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code
-                  class="text-rose-400">summary</code>)</label>
-              <textarea id="input-summary" rows="2" placeholder="VD: Tóm tắt nội dung chính của bài viết."
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-sm"></textarea>
+              <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code class="text-rose-400">summary</code>)</label>
+              <textarea id="input-summary" rows="3" placeholder="VD: Tóm tắt nội dung chính của bài viết." class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-sm"></textarea>
             </div>
 
             <!-- KÉO THẢ DÀNH CHO HÌNH ẢNH -->
             <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code
-                  class="text-rose-400">image</code>)</label>
-              <div id="drop-zone-image"
-                class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code class="text-rose-400">image</code>)</label>
+              <div id="drop-zone-image" class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
                 <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-400 transition">
-                  <i data-lucide="image-plus" class="w-4 h-4 text-rose-500"></i>
+                  <i data-lucide="image-plus" class="w-4 h-4 text-rose-500 shrink-0"></i>
                   <span>Kéo & thả file ảnh / URL vào khung này hoặc nhập bên dưới</span>
                 </div>
-                <input type="text" id="input-image"
-                  placeholder="Dán URL hình ảnh (https://...) hoặc kéo thả file ảnh vào đây"
-                  class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-1.5 text-gray-100 outline-none transition text-xs font-mono">
+                <input type="text" id="input-image" placeholder="Dán URL hình ảnh (https://...) hoặc kéo thả file ảnh vào đây" class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
               </div>
             </div>
 
-            <!-- KÉO THẢ DÀNH CHO FILE HTML / LINK -->
+            <!-- KÉO THẢ FILE HTML/PDF -->
             <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML /file PDF/ Chi tiết (<code
-                  class="text-rose-400">link</code>)</label>
-              <div id="drop-zone-link"
-                class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML /file PDF/ Chi tiết (<code class="text-rose-400">link</code>)</label>
+              <div id="drop-zone-link" class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
                 <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-400 transition">
-                  <i data-lucide="file-up" class="w-4 h-4 text-rose-500"></i>
+                  <i data-lucide="file-up" class="w-4 h-4 text-rose-500 shrink-0"></i>
                   <span>Kéo & thả file HTML /file PDF / URL liên kết vào khung này hoặc nhập bên dưới</span>
                 </div>
-                <input type="text" id="input-link"
-                  placeholder="Dán đường dẫn (content/investors/doc_001.pdf) hoặc kéo thả file vào đây"
-                  class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-1.5 text-gray-100 outline-none transition text-xs font-mono">
+                <input type="text" id="input-link" placeholder="Dán đường dẫn (content/investors/doc_001.pdf) hoặc kéo thả file vào đây" class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
               </div>
             </div>
           </div>
-
         </div>
       </main>
 
       <!-- CỘT 3: PREVIEW JSON -->
-      <aside class="w-96 bg-[#0c0d12] flex flex-col shrink-0">
+      <aside class="w-full min-w-full lg:min-w-0 lg:w-96 h-full bg-[#0c0d12] flex flex-col shrink-0 snap-start">
         <div class="h-12 border-b border-[#222630] px-3 flex items-center justify-between bg-[#12141c] shrink-0">
           <div class="flex items-center gap-2 text-xs font-semibold text-gray-300 font-mono truncate">
             <i data-lucide="code-2" class="w-4 h-4 text-emerald-400 shrink-0"></i>
             <span id="json-header-filename" class="truncate">content/posts-news.json</span>
           </div>
-          <button id="btn-copy" class="text-[11px] text-rose-400 hover:underline flex items-center gap-1 font-mono">
+          <button id="btn-copy" class="text-[11px] bg-[#1e222d] px-2 py-1 rounded text-rose-400 hover:text-white flex items-center gap-1 font-mono transition">
             <i data-lucide="copy" class="w-3 h-3"></i> Copy
           </button>
         </div>
 
         <div id="json-output-container" class="flex-1 p-4 overflow-y-auto font-mono text-xs"></div>
 
-        <div
-          class="p-3 border-t border-[#222630] bg-[#12141c] text-[11px] text-gray-500 flex justify-between items-center font-mono">
+        <div class="p-3 border-t border-[#222630] bg-[#12141c] text-[10px] sm:text-[11px] text-gray-500 flex justify-between items-center font-mono">
           <span>Tác giả: Ks. Trần Hoàng Phước</span>
           <span class="text-emerald-500">Mảng JSON Tab Hiện Tại</span>
         </div>
@@ -610,7 +526,6 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
   <script>
     lucide.createIcons();
 
@@ -675,7 +590,6 @@
       setTimeout(() => { toast.remove(); }, 3000);
     }
 
-    document.getElementById('btn-open-about').addEventListener('click', () => document.getElementById('about-modal').classList.remove('hidden'));
     document.getElementById('btn-close-about').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
     document.getElementById('btn-close-about-2').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
 
@@ -720,13 +634,13 @@
       });
 
       ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener(eventName, () => {
+        dropZone.addEventListener('dragover', () => {
           dropZone.classList.add('border-rose-500', 'bg-rose-500/10');
         }, false);
       });
 
       ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, () => {
+        dropZone.addEventListener('dragleave', () => {
           dropZone.classList.remove('border-rose-500', 'bg-rose-500/10');
         }, false);
       });
@@ -751,7 +665,6 @@
       const filterCat = document.getElementById('filter-category');
       const cats = CATEGORIES[currentFolder] || [];
 
-      // Cập nhật tiêu đề động phía dưới đường gạch ngang theo Tab
       const detailHeader = document.getElementById('tab-detail-header');
       if (detailHeader) {
         detailHeader.innerText = `THÔNG TIN CHI TIẾT ${currentTitle.toUpperCase()}`;
@@ -782,7 +695,6 @@
         if (selected) inputCategoryLabel.value = selected.label;
       };
 
-      // Tự động bật/tắt các ô nhập liệu tùy theo Tab được chọn
       const isHr = currentFolder === 'hr';
       document.getElementById('project-extra-fields').classList.toggle('hidden', currentFolder !== 'projects');
       document.getElementById('service-extra-fields').classList.toggle('hidden', currentFolder !== 'services' && currentFolder !== 'investors');
@@ -807,7 +719,7 @@
       container.innerHTML = '';
 
       document.getElementById('json-header-filename').innerText = `content/posts-${currentFolder}.json`;
-      document.getElementById('active-module-badge').innerText = `content/posts-${currentFolder}.json Active`;
+      document.getElementById('active-module-badge').innerText = `posts-${currentFolder}.json`;
 
       if (!currentFilteredPosts || currentFilteredPosts.length === 0) {
         container.innerHTML = `<pre class="text-emerald-400 leading-relaxed bg-[#08090c] p-4 rounded-lg border border-[#1e222d]">[]</pre>`;
@@ -865,8 +777,8 @@
           <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1 border-t border-[#1e222d]">
             <span>${post.type || post.date || ''}</span>
             <div class="flex items-center gap-1">
-              <button onclick="editPost(${post.id})" class="p-1 hover:text-amber-400" title="Sửa"><i data-lucide="edit-2" class="w-3 h-3"></i></button>
-              <button onclick="deletePost(${post.id})" class="p-1 hover:text-rose-400" title="Xóa"><i data-lucide="trash-2" class="w-3 h-3"></i></button>
+              <button onclick="editPost(${post.id})" class="p-1 hover:text-amber-400" title="Sửa"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i></button>
+              <button onclick="deletePost(${post.id})" class="p-1 hover:text-rose-400" title="Xóa"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
             </div>
           </div>
         `;
@@ -880,7 +792,7 @@
       editingPostId = null;
       document.getElementById('edit-status-badge').classList.add('hidden');
       document.getElementById('btn-cancel-edit').classList.add('hidden');
-      document.getElementById('btn-add-text').innerText = 'Lưu vào danh sách';
+      document.getElementById('btn-add-text').innerText = 'Lưu list';
       document.getElementById('btn-add-icon').setAttribute('data-lucide', 'plus-circle');
 
       const posts = db[currentFolder] || [];
@@ -902,7 +814,6 @@
       document.getElementById('input-service-code').value = '';
       document.getElementById('input-service-icon').value = 'file-text';
 
-      // Reset các trường thuộc HR
       document.getElementById('input-hr-type').value = 'Toàn thời gian';
       document.getElementById('input-hr-deadline').value = 'Hạn nộp: Đang tuyển';
       document.getElementById('input-hr-location').value = 'Cần Thơ';
@@ -1048,7 +959,7 @@
         currentTitle = tab.dataset.title;
 
         document.getElementById('current-tab-label').innerText = currentTitle;
-        document.getElementById('form-title').innerText = `Soạn thảo bài viết cho [${currentTitle}]`;
+        document.getElementById('form-title').innerText = `Soạn thảo [${currentTitle}]`;
 
         updateFormCategoryOptions();
         resetForm();
@@ -1088,7 +999,7 @@
             resetForm();
             showToast(`Đã ghi đè dữ liệu mới lên tab [${currentTitle}] thành công!`);
           } else {
-            showToast('Lỗi: File JSON phải là một mảng dữ liệu (Array) bắt đầu bằng dấu [ ]', 'error');
+            showToast('Lỗi: File JSON phải là một mảng dữ liệu (Array)', 'error');
           }
         } catch (err) {
           showToast('Định dạng file JSON không hợp lệ!', 'error');
@@ -1159,7 +1070,7 @@
         showToast(err.message || 'Không thể tải file từ GitHub', 'error');
       } finally {
         btnSync.disabled = false;
-        btnSync.innerHTML = `<i data-lucide="refresh-cw" class="w-3 h-3"></i> Tải từ GitHub`;
+        btnSync.innerHTML = `<i data-lucide="refresh-cw" class="w-3 h-3"></i> Tải dữ liệu`;
         lucide.createIcons();
       }
     });
@@ -1220,7 +1131,7 @@
         showToast(`Xuất bản thất bại: ${err.message}`, 'error');
       } finally {
         btnPublish.disabled = false;
-        btnPublish.innerHTML = `<i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i> Xuất bản lên GitHub Main`;
+        btnPublish.innerHTML = `<i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i> Xuất bản GitHub`;
         lucide.createIcons();
       }
     });
