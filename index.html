@@ -1,424 +1,1146 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS - TRANG CHỦ</title>
-    <meta name="description"
-        content="Cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp.">
-    <link rel="icon" type="image/webp" href="assets/pic/LOGO_PVI.webp">
-
-    <!-- Preload Font nội bộ giúp tải giao diện mượt khi dùng AJAX -->
-    <link rel="preload" href="assets/fonts/Inter_18pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="assets/fonts/Inter_18pt-Bold.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="assets/fonts/Oswald-Bold.ttf" as="font" type="font/ttf" crossorigin>
-
-    <!-- Thư viện Icon Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- File CSS dùng chung -->
-    <link rel="stylesheet" href="output.css">
-
-    <!-- Thẻ Canonical chuẩn SEO -->
-    <link rel="canonical" href="https://pvincons.com/">
-
-    <!-- Open Graph Meta Tags (Dành cho Zalo, Facebook, Messenger) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pvincons.com/" />
-    <meta property="og:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
-    <meta property="og:description"
-        content="Cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp." />
-    <meta property="og:image" content="https://pvincons.com/assets/pic/logo.webp" />
-    <meta property="og:image:secure_url" content="https://pvincons.com/assets/pic/logo.webp" />
-    <meta property="og:image:type" content="image/webp" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
-    <meta name="twitter:description"
-        content="Cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp." />
-    <meta name="twitter:image" content="https://pvincons.com/assets/pic/logo.webp" />
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "PV INCONS",
-      "url": "https://pvincons.com",
-      "logo": "https://pvincons.com/assets/pic/logo.webp",
-      "image": "https://pvincons.com/assets/pic/logo.webp",
-      "description": "Cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án.",
-      "telephone": "+84-909-751-194",
-      "priceRange": "VND",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "08:00",
-        "closes": "17:00"
-      },
-      "sameAs": [
-        "https://www.facebook.com/profile.php?id=100080462977449",
-        "https://www.linkedin.com/in/pv-incons-company-363b95414/",
-        "https://www.youtube.com/@pvinconscompany8614/videos/"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "292/30 đường Phan Văn Quân, phường Bình Minh",
-        "addressLocality": "Vĩnh Long",
-        "addressRegion": "Vĩnh Long",
-        "addressCountry": "VN"
-      },
-      "department": [
-        {
-          "@type": "LocalBusiness",
-          "name": "PV INCONS - Trụ sở chính",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "292/30 đường Phan Văn Quân, phường Bình Minh",
-            "addressLocality": "Vĩnh Long",
-            "addressCountry": "VN"
-          }
-        },
-        {
-          "@type": "LocalBusiness",
-          "name": "PV INCONS - Văn phòng Cần Thơ",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "P007 Lý Thái Tổ, phường Hưng Phú",
-            "addressLocality": "Cần Thơ",
-            "addressCountry": "VN"
-          }
-        }
-      ]
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PV INCONS Data Website Admin</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Inter & Lucide Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
     }
-    </script>
+
+    /* Tùy chỉnh Scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #13151b;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #2a2e39;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3b4050;
+    }
+
+    /* Ẩn scrollbar cho menu và cuộn mượt */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;  
+      scrollbar-width: none;  
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .toast-animate {
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    input[type="date"] {
+      color-scheme: dark;
+    }
+
+    /* Font chữ nội dung nhập liệu theo file 2 */
+    input,
+    textarea,
+    select,
+    button {
+      font-family: Arial, Helvetica, sans-serif !important;
+    }
+
+    /* Font chữ nội dung chữ hướng dẫn (placeholder) theo file 2 */
+    input::placeholder,
+    textarea::placeholder {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      color: #6b7280 !important;
+      opacity: 0.6 !important;
+    }
+
+    input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      color: #6b7280 !important;
+      opacity: 0.6 !important;
+    }
+
+    input::-moz-placeholder,
+    textarea::-moz-placeholder {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      color: #6b7280 !important;
+      opacity: 0.6 !important;
+    }
+
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 10px !important;
+      color: #6b7280 !important;
+      opacity: 0.6 !important;
+    }
+
+    .json-block-item {
+      background-color: #08090c;
+      border: 1px solid #1e222d;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .json-block-item::before {
+      content: "ID: " attr(data-id);
+      position: absolute;
+      top: -9px;
+      left: 12px;
+      background: #12141c;
+      padding: 0 6px;
+      font-size: 10px;
+      color: #10b981;
+      border-radius: 4px;
+      border: 1px solid #1e222d;
+      font-family: monospace;
+    }
+  </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-blue selection:text-white">
+<body class="bg-[#0f1117] text-gray-200 h-screen overflow-hidden text-sm select-none flex flex-col">
 
-    <div id="header-placeholder"></div>
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed top-4 right-4 left-4 lg:left-auto z-50 flex flex-col gap-2 pointer-events-none lg:max-w-sm w-auto">
+  </div>
 
-    <main>
-        <!-- BANNER CHÍNH (SỬ DỤNG VIDEO BACKGROUND) -->
-        <section
-            class="hero relative w-full h-[20vh] min-h-[200px] sm:h-[45vh] lg:h-[85vh] bg-slate-900 !p-0 flex items-center justify-center overflow-hidden">
+  <!-- 1. MÀN HÌNH ĐĂNG NHẬP -->
+  <div id="login-modal"
+    class="fixed inset-0 bg-[#090a0f]/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="bg-[#14171f] border border-[#262a36] rounded-xl p-6 w-full max-w-md shadow-2xl space-y-5">
+      <div class="text-center space-y-2">
+        <img src="https://i.pinimg.com/736x/54/56/c7/5456c78c0aa3b2aea8d4b96fa5a500cf.jpg" alt="PV INCONS Logo"
+          class="mx-auto h-16 w-16 rounded-full object-cover border border-[#2a2e3d] shadow-lg shadow-rose-900/10">
+        <h2 class="text-lg font-bold text-gray-100">PV INCONS Data Website</h2>
+        <p class="text-xs text-gray-400">Xác thực Quản trị dữ liệu. Phiên bản v1.3.1</p>
+      </div>
 
-            <!-- Ảnh nền chuyển động (Zoom in/out mượt mà) -->
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop"
-                alt="Banner PV INCONS" class="absolute inset-0 w-full h-full object-cover animate-bg-pan">
+      <div class="space-y-3">
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-gray-400 uppercase">GitHub Owner / User</label>
+          <input type="text" id="auth-owner" placeholder="VD: pv-incons"
+            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+        </div>
 
-            <!-- Khối chứa chữ căn giữa tuyệt đối -->
-            <div
-                class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 flex flex-col items-center justify-center text-center text-white">
-                <!-- Tiêu đề chính -->
-                <h1
-                    class="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold tracking-wide uppercase !m-0 !mb-2 drop-shadow-lg text-center leading-tight">
-                    Kiến Tạo Tương Lai Vững Bền
-                </h1>
-                <!-- Phụ đề -->
-                <p
-                    class="hero-subtitle text-base sm:text-xlg md:text-3xl lg:text-4xl text-slate-100 max-w-3xl mx-auto font-normal tracking-wide leading-relaxed !m-0 drop-shadow-md">
-                    Đầu tư - Xây dựng - Pháp lý
-                </p>
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-gray-400 uppercase">Repository Name</label>
+          <input type="text" id="auth-repo" placeholder="VD: website"
+            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-gray-400 uppercase">Personal Access Token (PAT)</label>
+          <input type="password" id="auth-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+        </div>
+      </div>
+
+      <button id="btn-login"
+        class="w-full bg-rose-600 hover:bg-rose-500 text-white font-semibold py-3 lg:py-2.5 rounded-lg text-xs transition shadow-lg shadow-rose-900/20 flex items-center justify-center gap-2">
+        <i data-lucide="key-round" class="w-4 h-4"></i>
+        <span>Xác nhận & Vào Admin Website</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. MODAL BẢN QUYỀN -->
+  <div id="about-modal"
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-[#14171f] border border-[#2a2e3d] rounded-xl p-6 w-full max-w-lg shadow-2xl space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#222630] pb-3 gap-3">
+        <div class="flex items-center gap-2.5">
+          <img src="https://i.pinimg.com/736x/54/56/c7/5456c78c0aa3b2aea8d4b96fa5a500cf.jpg" alt="PV INCONS Logo"
+            class="w-8 h-8 rounded-full object-cover border border-[#2a2e3d] shadow">
+          <div>
+            <h3 class="text-sm font-bold text-gray-100">PV INCONS Data Website Admin</h3>
+            <p class="text-[11px] text-rose-400 font-mono">Phiên bản ver. 1.3.1</p>
+          </div>
+        </div>
+        <button id="btn-close-about" class="text-gray-400 hover:text-white p-1 rounded-lg self-end sm:self-auto hidden sm:block">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs text-gray-300 leading-relaxed">
+        <div class="bg-[#0f1117] p-3 rounded-lg border border-[#222630] space-y-1.5">
+          <div class="font-semibold text-gray-200">🏢 Đơn vị chủ quản: PV INCONS</div>
+          <div>© 2026 PV INCONS. Tất cả các quyền được bảo lưu. Phần mềm quản trị dữ liệu website này được xây dựng độc
+            quyền phục vụ công tác vận hành nội bộ.</div>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button id="btn-close-about-2"
+          class="w-full sm:w-auto bg-[#222630] hover:bg-gray-700 text-gray-200 text-xs font-semibold px-4 py-3 sm:py-2 rounded-lg transition">
+          Đóng cửa sổ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. MAIN WORKSPACE -->
+  <div id="admin-workspace" class="flex-1 flex flex-col hidden h-full overflow-hidden">
+
+    <!-- TOP HEADER -->
+    <header class="border-b border-[#222630] bg-[#14171f] flex flex-col lg:flex-row items-center justify-between shrink-0 h-auto lg:h-12 py-2 lg:py-0 px-3 lg:px-4 gap-2 lg:gap-0">
+      
+      <!-- Nav Tabs -->
+      <nav class="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full lg:w-auto pb-1 lg:pb-0" id="sidebar-nav">
+        <button data-folder="news" data-title="Tin tức"
+          class="nav-tab active flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg bg-rose-600/10 text-rose-400 font-medium border border-rose-500/20 transition text-xs">
+          <i data-lucide="newspaper" class="w-3.5 h-3.5 text-rose-500"></i>
+          <span class="hidden md:inline">Tin tức</span>
+          <span class="text-[10px] bg-rose-500/20 text-rose-300 px-1.5 py-0.2 rounded font-mono tab-count" id="count-news">0</span>
+        </button>
+        <button data-folder="projects" data-title="Dự án"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i data-lucide="folder-kanban" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Dự án</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-projects">0</span>
+        </button>
+        <button data-folder="services" data-title="Dịch vụ"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Dịch vụ</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-services">0</span>
+        </button>
+        <button data-folder="investment" data-title="Quan hệ đầu tư"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Quan hệ đầu tư</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-investment">0</span>
+        </button>
+        <button data-folder="hr" data-title="Chính sách nhân sự"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i data-lucide="users" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Chính sách nhân sự</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.2 rounded font-mono tab-count" id="count-hr">0</span>
+        </button>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="flex items-center justify-between lg:justify-end gap-2.5 w-full lg:w-auto border-t lg:border-t-0 border-[#222630] pt-1.5 lg:pt-0">
+        <span class="text-[10px] sm:text-xs text-gray-400 font-mono flex items-center gap-1 shrink-0">
+          <i data-lucide="github" class="w-3 h-3 text-gray-300"></i>
+          <span id="display-repo-info" class="text-gray-200 font-semibold max-w-[110px] sm:max-w-max truncate">user/repo</span>
+        </span>
+
+        <div class="flex items-center gap-1.5">
+          <button id="btn-export-backup" class="text-gray-300 hover:text-emerald-400 text-[10px] bg-[#1c202b] hover:bg-emerald-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono">
+            <i data-lucide="download" class="w-3 h-3"></i> <span>Backup</span>
+          </button>
+
+          <label class="text-gray-300 hover:text-blue-400 text-[10px] bg-[#1c202b] hover:bg-blue-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono cursor-pointer">
+            <i data-lucide="upload" class="w-3 h-3"></i> <span>Nhập JSON</span>
+            <input type="file" id="import-json-file" accept=".json" class="hidden">
+          </label>
+
+          <button id="btn-logout" class="bg-[#222630] hover:bg-rose-600/20 hover:text-rose-400 text-gray-300 text-[10px] px-2 py-1 rounded transition flex items-center gap-1 font-medium whitespace-nowrap">
+            <i data-lucide="log-out" class="w-2.5 h-2.5"></i> <span>Đăng xuất</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 flex flex-row overflow-x-auto lg:overflow-hidden snap-x snap-mandatory h-full no-scrollbar">
+
+      <!-- CỘT 1: DANH SÁCH BÀI VIẾT -->
+      <aside class="w-full min-w-full lg:min-w-0 lg:w-80 h-full border-r border-[#222630] bg-[#12141c] flex flex-col shrink-0 snap-start">
+        <div class="h-12 px-3 border-b border-[#222630] bg-[#0f1117] flex items-center justify-between shrink-0">
+          <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="list" class="w-3.5 h-3.5 text-rose-500"></i>
+            Bài viết: <span id="current-tab-label" class="text-rose-400">Tin tức</span>
+          </span>
+        </div>
+
+        <div class="p-2 border-b border-[#222630] bg-[#14171f] space-y-2 shrink-0">
+          <div class="flex items-center justify-between gap-2 px-2 py-1.5 bg-[#0f1117] rounded-md border border-[#2a2e3d]">
+            <button id="btn-sync-github" class="text-blue-400 hover:text-blue-300 text-[11px] font-medium flex items-center gap-1">
+              <i data-lucide="refresh-cw" class="w-3 h-3"></i> Tải dữ liệu
+            </button>
+
+            <div class="flex items-center gap-1 text-[11px] text-gray-400">
+              <select id="sort-order" class="bg-[#14171f] border border-[#2a2e3d] rounded px-1.5 py-1 lg:py-0.5 text-[10px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer font-mono">
+                <option value="id-desc">ID Mới nhất</option>
+                <option value="id-asc">ID Cũ nhất</option>
+              </select>
             </div>
-        </section>
+          </div>
 
-        <!-- Slide Dự án điển hình (6 Slide) -->
-        <section class="py-12 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-center mb-8">
-                    <div class="h-[1px] bg-slate-300 w-16 sm:w-36"></div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-[#8c6239] uppercase px-4 text-center tracking-widest">
-                        DỰ ÁN ĐIỂN HÌNH
-                    </h2>
-                    <div class="h-[1px] bg-slate-300 w-16 sm:w-36"></div>
-                </div>
-
-                <div class="relative max-w-4xl mx-auto group">
-                    <!-- Nút chuyển trái -->
-                    <button type="button" onclick="prevLatestProject()" aria-label="Dự án trước"
-                        class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all z-10 cursor-pointer">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </button>
-
-                    <!-- Nút chuyển phải -->
-                    <button type="button" onclick="nextLatestProject()" aria-label="Dự án tiếp theo"
-                        class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all z-10 cursor-pointer">
-                        <i class="fa-solid fa-chevron-right text-sm"></i>
-                    </button>
-
-                    <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                        <div id="latestProjectsTrack" class="flex transition-transform duration-700 ease-in-out">
-                            <a href="projects.html" class="w-full flex-shrink-0 block">
-                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
-                                    <img src="assets/pic/PC_05.webp"
-                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
-                                        alt="RESORT">
-                                </div>
-                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
-                                    <h3
-                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
-                                        RESORT
-                                    </h3>
-                                </div>
-                            </a>
-                            <a href="projects.html" class="w-full flex-shrink-0 block">
-                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
-                                    <img src="assets/pic/PC_02.webp"
-                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
-                                        alt="BIỆT THỰ">
-                                </div>
-                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
-                                    <h3
-                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
-                                        BIỆT THỰ
-                                    </h3>
-                                </div>
-                            </a>
-                            <a href="projects.html" class="w-full flex-shrink-0 block">
-                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
-                                    <img src="assets/pic/PC_03.webp"
-                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
-                                        alt="NHÀ HIỆN ĐẠI">
-                                </div>
-                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
-                                    <h3
-                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
-                                        NHÀ HIỆN ĐẠI
-                                    </h3>
-                                </div>
-                            </a>
-                            <a href="projects.html" class="w-full flex-shrink-0 block">
-                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
-                                    <img src="assets/pic/PC_06.webp"
-                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
-                                        alt="KHÁCH SẠN">
-                                </div>
-                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
-                                    <h3
-                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
-                                        KHÁCH SẠN
-                                    </h3>
-                                </div>
-                            </a>
-                            <a href="projects.html" class="w-full flex-shrink-0 block">
-                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
-                                    <img src="assets/pic/PC_04.webp"
-                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
-                                        alt="NHÀ THÉP CÔNG NGHIỆP">
-                                </div>
-                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
-                                    <h3
-                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
-                                        NHÀ THÉP CÔNG NGHIỆP
-                                    </h3>
-                                </div>
-                            </a>
-                            <a href="projects.html" class="w-full flex-shrink-0 block">
-                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
-                                    <img src="assets/pic/PC_01.webp"
-                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
-                                        alt="NHÀ PHỐ LIỀN KỀ">
-                                </div>
-                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
-                                    <h3
-                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
-                                        NHÀ PHỐ LIỀN KỀ
-                                    </h3>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center space-x-2 mt-4">
-                        <button type="button" aria-label="Slide 1" onclick="setLatestProject(0)"
-                            class="latest-dot w-6 h-2.5 rounded-full bg-[#8c6239] transition-all cursor-pointer"></button>
-                        <button type="button" aria-label="Slide 2" onclick="setLatestProject(1)"
-                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                        <button type="button" aria-label="Slide 3" onclick="setLatestProject(2)"
-                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                        <button type="button" aria-label="Slide 4" onclick="setLatestProject(3)"
-                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                        <button type="button" aria-label="Slide 5" onclick="setLatestProject(4)"
-                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                        <button type="button" aria-label="Slide 6" onclick="setLatestProject(5)"
-                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all cursor-pointer"></button>
-                    </div>
-                </div>
+          <div class="flex gap-2">
+            <select id="filter-category" class="w-1/2 bg-[#0f1117] border border-[#2a2e3d] rounded-md px-2 py-1.5 lg:py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer">
+              <option value="">Tất cả Category</option>
+            </select>
+            <div class="relative w-1/2">
+              <input type="text" id="filter-search" placeholder="Lọc nhãn/tiêu đề..."
+                class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-md pl-7 pr-2 py-1.5 lg:py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500">
+              <i data-lucide="search" class="w-3.5 h-3.5 text-gray-500 absolute left-2 top-2 lg:top-1.5"></i>
             </div>
-        </section>
+          </div>
+        </div>
 
-        <!-- Quick Summary -->
-        <section class="py-8 sm:py-12 bg-white border-y border-slate-100">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div id="posts-list-container" class="flex-1 overflow-y-auto p-2 space-y-1.5"></div>
+      </aside>
 
-                <!-- 1. Tiêu đề chính -->
-                <h2
-                    class="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase text-slate-600 tracking-wide leading-snug mb-2 sm:mb-3">
-                    CHÀO MỪNG BẠN ĐẾN VỚI
-                    <span class="block mt-1 text-3xl sm:text-4xl lg:text-5xl text-brand-blue font-black uppercase tracking-wide">
-                        PV INCONS
-                    </span>
-                </h2>
+      <!-- CỘT 2: FORM SOẠN THẢO BÀI VIẾT -->
+      <main class="w-full min-w-full lg:min-w-0 lg:flex-1 h-full flex flex-col bg-[#14171f] border-r border-[#222630] shrink-0 lg:shrink snap-start overflow-y-auto">
+        
+        <!-- Header Form -->
+        <div class="p-3 lg:h-12 lg:px-6 border-b border-[#222630] flex flex-col xl:flex-row xl:items-center justify-between bg-[#12141c] shrink-0 gap-3 xl:gap-0">
+          <div class="flex flex-wrap items-center gap-2">
+            <i data-lucide="edit-3" class="w-4 h-4 text-rose-500"></i>
+            <span id="form-title" class="font-semibold text-gray-200 text-sm">Soạn thảo [Tin tức]</span>
+            <span id="active-module-badge" class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
+              posts-news.json
+            </span>
+            <span id="edit-status-badge" class="hidden text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20 font-mono">
+              Sửa ID: #<span id="editing-id-text"></span>
+            </span>
+          </div>
 
-                <!-- 2. Dòng mô tả -->
-                <p class="text-slate-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-5 sm:mb-6">
-                    Đối tác chiến lược toàn diện trong lĩnh vực
-                </p>
+          <!-- Các nút thao tác form -->
+          <div class="flex flex-wrap items-center gap-2 w-full xl:w-auto justify-end">
+            <button id="btn-cancel-edit" class="hidden px-2 py-1.5 text-[11px] text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded font-medium flex-1 lg:flex-none justify-center">
+              Hủy sửa
+            </button>
+            <button id="btn-reset" class="px-2 py-1.5 text-[11px] text-gray-400 bg-[#222630] lg:bg-transparent rounded lg:rounded-none flex-1 lg:flex-none justify-center">
+              Làm mới
+            </button>
+            <button id="btn-add-to-list" class="bg-blue-600 hover:bg-blue-500 text-white text-[11px] font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1 transition flex-1 lg:flex-none">
+              <i id="btn-add-icon" data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+              <span id="btn-add-text">Lưu list</span>
+            </button>
+            <button id="btn-publish-github" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1 transition w-full lg:w-auto mt-1 lg:mt-0">
+              <i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i>
+              Xuất bản GitHub
+            </button>
+          </div>
+        </div>
 
-                <!-- 3. Khối 3 Trụ cột -->
-                <div
-                    class="grid grid-cols-3 gap-2 sm:gap-4 max-w-2xl mx-auto py-3 sm:py-4 mb-6 sm:mb-7 border-y border-slate-200/80">
-                    <div class="text-center sm:border-r border-slate-200/80 sm:px-2">
-                        <span
-                            class="block text-[10px] sm:text-[11px] font-bold text-slate-500 tracking-widest uppercase mb-0.5">ĐẦU
-                            TƯ</span>
-                        <span class="text-xs sm:text-sm font-semibold text-slate-800">Tư vấn Đầu tư</span>
-                    </div>
-                    <div class="text-center sm:border-r border-slate-200/80 sm:px-2">
-                        <span
-                            class="block text-[10px] sm:text-[11px] font-bold text-slate-500 tracking-widest uppercase mb-0.5">XÂY
-                            DỰNG</span>
-                        <span class="text-xs sm:text-sm font-semibold text-slate-800">Thiết kế & Thi công</span>
-                    </div>
-                    <div class="text-center sm:px-2">
-                        <span
-                            class="block text-[10px] sm:text-[11px] font-bold text-slate-500 tracking-widest uppercase mb-0.5">PHÁP
-                            LÝ</span>
-                        <span class="text-xs sm:text-sm font-semibold text-slate-800">Phương án Pháp lý</span>
-                    </div>
-                </div>
-
-                <!-- 4. Khối Nút Bấm -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3">
-                    <a href="about.html"
-                        class="w-full sm:w-auto px-6 py-3 bg-brand-blue hover:bg-slate-700 text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                        <span>Tìm hiểu thêm</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-
-                    <div class="grid grid-cols-2 gap-2 w-full sm:w-auto">
-                        <a href="services.html"
-                            class="px-5 py-2.5 border border-slate-300 hover:border-amber-500 hover:bg-amber-600 hover:text-white text-slate-700 font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 text-center">
-                            Xem dịch vụ
-                        </a>
-                        <a href="services.html#bang-gia-dich-vu"
-                            class="px-5 py-2.5 border border-slate-300 hover:border-amber-500 hover:bg-amber-600 hover:text-white text-slate-700 font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 text-center">
-                            Tải báo giá
-                        </a>
-                    </div>
-                </div>
-
+        <div class="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4">
+          <div class="grid grid-cols-1 xl:grid-cols-4 gap-3">
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Mã ID (<code class="text-rose-400">id</code>)</label>
+              <input type="number" id="input-id" value="1" placeholder="Nhập mã ID số (VD: 1)" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 font-mono text-xs outline-none">
             </div>
-        </section>
 
-        <!-- News Section -->
-        <section class="py-6 sm:py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-4 sm:mb-10">
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-[#8c6239] tracking-wide uppercase block">
-                        tin tức mới
-                    </h2>
-                    <div
-                        class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
-                    </div>
-                </div>
-                <div id="news-container" data-category="tin-noi-bat"
-                    class="flex flex-col gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
-                </div>
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Phân loại (<code class="text-rose-400">category</code>)</label>
+              <select id="select-category" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-2.5 py-2 text-gray-100 text-xs outline-none cursor-pointer">
+              </select>
             </div>
-        </section>
-    </main>
 
-    <!-- SCRIPT SLIDER -->
-    <script>
-        window.latestProjectIndex = window.latestProjectIndex || 0;
-        window.totalLatestProjects = 6;
+            <div id="wrapper-category-label" class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Nhãn Hiển Thị (<code class="text-rose-400">categoryLabel</code>)</label>
+              <input type="text" id="input-category-label" value="" placeholder="Nhập nhãn hiển thị (VD: Tin nổi bật)" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-300 font-mono text-xs outline-none">
+            </div>
 
-        window.setLatestProject = function (index) {
-            window.latestProjectIndex = index;
-            const latestTrack = document.getElementById('latestProjectsTrack');
-            const latestDots = document.querySelectorAll('.latest-dot');
+            <div id="wrapper-date-picker" class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Ngày đăng (<code class="text-rose-400">date</code>)</label>
+              <input type="date" id="input-date-picker" placeholder="Chọn hoặc nhập ngày (YYYY-MM-DD)" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-200 text-xs outline-none cursor-pointer">
+            </div>
+          </div>
 
-            if (latestTrack) {
-                latestTrack.style.transform = `translateX(-${window.latestProjectIndex * 100}%)`;
-            }
-            latestDots.forEach((dot, i) => {
-                if (i === window.latestProjectIndex) {
-                    dot.classList.remove('bg-slate-300', 'w-2.5');
-                    dot.classList.add('bg-[#8c6239]', 'w-6');
-                } else {
-                    dot.classList.remove('bg-[#8c6239]', 'w-6');
-                    dot.classList.add('bg-slate-300', 'w-2.5');
-                }
-            });
-        };
+          <div class="border-t border-[#222630] pt-1"></div>
 
-        window.nextLatestProject = function () {
-            window.latestProjectIndex = (window.latestProjectIndex + 1) % window.totalLatestProjects;
-            window.setLatestProject(window.latestProjectIndex);
-        };
+          <div id="tab-detail-header" class="text-xs font-bold text-rose-400 uppercase tracking-wider">
+            THÔNG TIN CHI TIẾT TIN TỨC
+          </div>
 
-        window.prevLatestProject = function () {
-            window.latestProjectIndex = (window.latestProjectIndex - 1 + window.totalLatestProjects) % window.totalLatestProjects;
-            window.setLatestProject(window.latestProjectIndex);
-        };
+          <div class="space-y-1.5">
+            <label class="block text-xs font-semibold text-gray-300">
+              <span id="title-field-label">Tiêu đề bài viết / Tên dịch vụ</span> (<code class="text-rose-400">title</code>) <span class="text-rose-500">*</span>
+            </label>
+            <input type="text" id="input-title" placeholder="VD: Kỹ Sư Triển Khai BIM / Revit (Kiến Trúc & Kết Cấu)"
+              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 outline-none transition text-sm">
+          </div>
 
-        window.initHomeSlider = function () {
-            const track = document.getElementById('latestProjectsTrack');
-            if (!track) return;
+          <!-- DỰ ÁN (PROJECTS) -->
+          <div id="project-extra-fields" class="hidden space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Mã Dự Án / Ký hiệu (<code class="text-rose-400">code</code>)</label>
+                <input type="text" id="input-code" placeholder="VD: PRJ-2026-01" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Quy mô (<code class="text-rose-400">scale</code>)</label>
+                <input type="text" id="input-scale" placeholder="VD: 50.000 m2 - 25 tầng" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+            </div>
 
-            if (!track._hasSwipeListener) {
-                track._hasSwipeListener = true;
-                let touchStartX = 0;
-                let touchEndX = 0;
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Chủ đầu tư (<code class="text-rose-400">client</code>)</label>
+                <input type="text" id="input-client" placeholder="VD: Tập đoàn PVN" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Địa điểm (<code class="text-rose-400">location</code>)</label>
+                <input type="text" id="input-location" placeholder="VD: Quận 1, TP. Hồ Chí Minh" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Tổng thầu (<code class="text-rose-400">Main Contructor</code>)</label>
+                <input type="text" id="input-architect" placeholder="VD: PV INCONS / Partner" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+            </div>
+          </div>
 
-                track.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                }, { passive: true });
+          <!-- DỊCH VỤ & QUAN HỆ ĐẦU TƯ (SERVICES & investment) -->
+          <div id="service-extra-fields" class="hidden space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Mã Dịch Vụ / Tài Liệu (<code class="text-rose-400">code</code>)</label>
+                <input type="text" id="input-service-code" placeholder="VD: SVC-DOC-01" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Tên Icon Lucide (<code class="text-rose-400">icon</code>)</label>
+                <select id="input-service-icon" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 text-xs outline-none cursor-pointer font-mono">
+                  <option value="fa-file-contract">Hợp đồng / Văn bản</option>
+                  <option value="fa-file-signature">Nghị quyết / Quy chế</option>
+                  <option value="fa-file-circle-check">Biên bản / Thỏa thuận</option>
+                  <option value="fa-circle-question"> RFI / RFA / RFQ</option>
+                  <option value="fa-tag">Báo giá / Phụ lục</option>
+                  <option value="fa-list-check">Liệt kê / Danh mục</option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-                track.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    const swipeThreshold = 70;
-                    const diffX = touchStartX - touchEndX;
+          <!-- CHÍNH SÁCH NHÂN SỰ / TUYỂN DỤNG (HR) -->
+          <div id="hr-extra-fields" class="hidden space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Hình thức làm việc (<code class="text-rose-400">type</code>)</label>
+                <input type="text" id="input-hr-type" placeholder="VD: Toàn thời gian" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Hạn nộp hồ sơ (<code class="text-rose-400">deadline</code>)</label>
+                <input type="text" id="input-hr-deadline" placeholder="VD: Hạn nộp: Đang tuyển" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+            </div>
 
-                    if (diffX > swipeThreshold) {
-                        window.nextLatestProject();
-                    } else if (diffX < -swipeThreshold) {
-                        window.prevLatestProject();
-                    }
-                }, { passive: true });
-            }
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Địa điểm làm việc (<code class="text-rose-400">location</code>)</label>
+                <input type="text" id="input-hr-location" placeholder="VD: Cần Thơ / TP.HCM" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Mức lương (<code class="text-rose-400">salary</code>)</label>
+                <input type="text" id="input-hr-salary" placeholder="VD: Lương: Thỏa thuận theo năng lực" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-gray-300">Số lượng tuyển (<code class="text-rose-400">quantity</code>)</label>
+                <input type="text" id="input-hr-quantity" placeholder="VD: Số lượng: 01 Nhân viên" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
+              </div>
+            </div>
 
-            if (window.homeSliderInterval) {
-                clearInterval(window.homeSliderInterval);
-            }
-            window.homeSliderInterval = setInterval(() => {
-                if (document.getElementById('latestProjectsTrack')) {
-                    window.nextLatestProject();
-                } else {
-                    clearInterval(window.homeSliderInterval);
-                }
-            }, 4000);
-        };
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Yêu cầu công việc (<code class="text-rose-400">requirement</code>)</label>
+              <textarea id="input-hr-requirement" rows="2" placeholder="Nhập các yêu cầu về bằng cấp, kĩ năng, kinh nghiệm chuyên môn..." class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-xs"></textarea>
+            </div>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            window.initHomeSlider();
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Liên kết / Mail ứng tuyển (<code class="text-rose-400">applyLink</code>)</label>
+              <input type="text" id="input-hr-applyLink" placeholder="VD: mailto:workspace.pvi@gmail.com" class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
+            </div>
+          </div>
+
+          <!-- TRƯỜNG CHUNG NEWS, PROJECTS, SERVICES, investment -->
+          <div id="standard-common-fields" class="space-y-3">
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code class="text-rose-400">summary</code>)</label>
+              <textarea id="input-summary" rows="3" placeholder="VD: Tóm tắt nội dung chính của bài viết." class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-sm"></textarea>
+            </div>
+
+            <!-- KÉO THẢ DÀNH CHO HÌNH ẢNH -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code class="text-rose-400">image</code>)</label>
+              <div id="drop-zone-image" class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
+                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-400 transition">
+                  <i data-lucide="image-plus" class="w-4 h-4 text-rose-500 shrink-0"></i>
+                  <span>Kéo & thả file ảnh / URL vào khung này hoặc nhập bên dưới</span>
+                </div>
+                <input type="text" id="input-image" placeholder="Dán URL hình ảnh (https://...) hoặc kéo thả file ảnh vào đây" class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
+              </div>
+            </div>
+
+            <!-- KÉO THẢ FILE HTML/PDF -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML /file PDF/ Chi tiết (<code class="text-rose-400">link</code>)</label>
+              <div id="drop-zone-link" class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
+                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-400 transition">
+                  <i data-lucide="file-up" class="w-4 h-4 text-rose-500 shrink-0"></i>
+                  <span>Kéo & thả file HTML /file PDF / URL liên kết vào khung này hoặc nhập bên dưới</span>
+                </div>
+                <input type="text" id="input-link" placeholder="Dán đường dẫn (content/investment/doc_001.pdf) hoặc kéo thả file vào đây" class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- CỘT 3: PREVIEW JSON -->
+      <aside class="w-full min-w-full lg:min-w-0 lg:w-96 h-full bg-[#0c0d12] flex flex-col shrink-0 snap-start">
+        <div class="h-12 border-b border-[#222630] px-3 flex items-center justify-between bg-[#12141c] shrink-0">
+          <div class="flex items-center gap-2 text-xs font-semibold text-gray-300 font-mono truncate">
+            <i data-lucide="code-2" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+            <span id="json-header-filename" class="truncate">content/posts-news.json</span>
+          </div>
+          <button id="btn-copy" class="text-[11px] bg-[#1e222d] px-2 py-1 rounded text-rose-400 hover:text-white flex items-center gap-1 font-mono transition">
+            <i data-lucide="copy" class="w-3 h-3"></i> Copy
+          </button>
+        </div>
+
+        <div id="json-output-container" class="flex-1 p-4 overflow-y-auto font-mono text-xs"></div>
+
+        <div class="p-3 border-t border-[#222630] bg-[#12141c] text-[10px] sm:text-[11px] text-gray-500 flex justify-between items-center font-mono">
+          <span>Tác giả: Ks. Trần Hoàng Phước</span>
+          <span class="text-emerald-500">Mảng JSON Tab Hiện Tại</span>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const CATEGORIES = {
+      news: [
+        { value: 'tin-noi-bat', label: 'Tin nổi bật' },
+        { value: 'cong-ty', label: 'Công ty' },
+        { value: 'chuyen-gia', label: 'Chuyên gia' },
+        { value: 'thi-truong', label: 'Thị trường' },
+        { value: 'phap-luat', label: 'Pháp luật' },
+        { value: 'khach-hang-bao-chi', label: 'Khách hàng & báo chí' }
+      ],
+      projects: [
+        { value: 'dang-trien-khai', label: 'Đang triển khai' },
+        { value: 'da-hoan-thanh', label: 'Đã hoàn thành' },
+        { value: 'moi-nha-dau-tu', label: 'Danh sách mời nhà đầu tư' }
+      ],
+      services: [
+        { value: 'pricing', label: 'Bảng giá dịch vụ' },
+        { value: 'documents', label: 'Tài liệu mẫu' }
+      ],
+      investment: [
+        { value: 'quan-he-co-dong', label: 'Quan hệ cổ đông' },
+        { value: 'tai-chinh', label: 'Tài chính công ty' }
+      ],
+      hr: [
+        { value: 'tuyen-dung', label: 'Tuyển dụng' },
+        { value: 'chinh-sach', label: 'Chính sách' }
+      ]
+    };
+
+    let authConfig = JSON.parse(localStorage.getItem('pv_github_auth')) || null;
+    let db = JSON.parse(localStorage.getItem('pv_studio_db')) || { news: [], projects: [], services: [], investment: [], hr: [] };
+
+    let currentFolder = "news";
+    let currentTitle = "Tin tức";
+    let editingPostId = null;
+    let currentFilteredPosts = [];
+
+    function utf8_to_b64(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
+    }
+
+    function b64_to_utf8(str) {
+      return decodeURIComponent(Array.prototype.map.call(atob(str.replace(/\s/g, '')), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+    }
+
+    function showToast(message, type = 'success') {
+      const toastContainer = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const isSuccess = type === 'success';
+      const isError = type === 'error';
+      const bgColor = isSuccess ? 'bg-[#14231e]' : isError ? 'bg-[#2a171a]' : 'bg-[#1e2330]';
+      const borderColor = isSuccess ? 'border-emerald-500/50' : isError ? 'border-rose-500/50' : 'border-blue-500/50';
+      const textColor = isSuccess ? 'text-emerald-300' : isError ? 'text-rose-300' : 'text-blue-300';
+      const iconName = isSuccess ? 'check-circle' : isError ? 'alert-circle' : 'info';
+
+      toast.className = `toast-animate border ${borderColor} ${bgColor} ${textColor} p-3 rounded-lg shadow-xl flex items-center gap-2.5 text-xs font-medium pointer-events-auto`;
+      toast.innerHTML = `<i data-lucide="${iconName}" class="w-4 h-4 shrink-0"></i><span>${message}</span>`;
+      toastContainer.appendChild(toast);
+      lucide.createIcons();
+      setTimeout(() => { toast.remove(); }, 3000);
+    }
+
+    document.getElementById('btn-close-about').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
+    document.getElementById('btn-close-about-2').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
+
+    if (authConfig) {
+      document.getElementById('login-modal').classList.add('hidden');
+      document.getElementById('admin-workspace').classList.remove('hidden');
+      document.getElementById('display-repo-info').innerText = `${authConfig.owner}/${authConfig.repo}`;
+    }
+
+    document.getElementById('btn-login').addEventListener('click', () => {
+      const owner = document.getElementById('auth-owner').value.trim();
+      const repo = document.getElementById('auth-repo').value.trim();
+      const token = document.getElementById('auth-token').value.trim();
+      if (!owner || !repo || !token) {
+        showToast('Vui lòng điền đầy đủ thông tin xác thực GitHub', 'error');
+        return;
+      }
+      authConfig = { owner, repo, token };
+      localStorage.setItem('pv_github_auth', JSON.stringify(authConfig));
+      document.getElementById('login-modal').classList.add('hidden');
+      document.getElementById('admin-workspace').classList.remove('hidden');
+      document.getElementById('display-repo-info').innerText = `${owner}/${repo}`;
+      showToast('Đã xác thực thành công!');
+    });
+
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      localStorage.removeItem('pv_github_auth');
+      location.reload();
+    });
+
+    function setupDragAndDrop(dropZoneId, inputId, defaultPathPrefix = '') {
+      const dropZone = document.getElementById(dropZoneId);
+      const input = document.getElementById(inputId);
+
+      if (!dropZone || !input) return;
+
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }, false);
+      });
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener('dragover', () => {
+          dropZone.classList.add('border-rose-500', 'bg-rose-500/10');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener('dragleave', () => {
+          dropZone.classList.remove('border-rose-500', 'bg-rose-500/10');
+        }, false);
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files && files.length > 0) {
+          input.value = (defaultPathPrefix ? defaultPathPrefix : '') + files[0].name;
+        } else {
+          const url = dt.getData('text/plain');
+          if (url) input.value = url;
+        }
+      }, false);
+    }
+
+    setupDragAndDrop('drop-zone-image', 'input-image', 'images/');
+    setupDragAndDrop('drop-zone-link', 'input-link', 'content/');
+
+    function updateFormCategoryOptions() {
+      const selectCat = document.getElementById('select-category');
+      const filterCat = document.getElementById('filter-category');
+      const cats = CATEGORIES[currentFolder] || [];
+
+      const detailHeader = document.getElementById('tab-detail-header');
+      if (detailHeader) {
+        detailHeader.innerText = `THÔNG TIN CHI TIẾT ${currentTitle.toUpperCase()}`;
+      }
+
+      selectCat.innerHTML = '';
+      filterCat.innerHTML = '<option value="">Tất cả Category</option>';
+
+      cats.forEach(c => {
+        const opt1 = document.createElement('option');
+        opt1.value = c.value;
+        opt1.textContent = `${c.label} (${c.value})`;
+        selectCat.appendChild(opt1);
+
+        const opt2 = document.createElement('option');
+        opt2.value = c.value;
+        opt2.textContent = c.label;
+        filterCat.appendChild(opt2);
+      });
+
+      const inputCategoryLabel = document.getElementById('input-category-label');
+      if (cats.length > 0) {
+        inputCategoryLabel.value = cats[0].label;
+      }
+
+      selectCat.onchange = () => {
+        const selected = cats.find(c => c.value === selectCat.value);
+        if (selected) inputCategoryLabel.value = selected.label;
+      };
+
+      const isHr = currentFolder === 'hr';
+      document.getElementById('project-extra-fields').classList.toggle('hidden', currentFolder !== 'projects');
+      document.getElementById('service-extra-fields').classList.toggle('hidden', currentFolder !== 'services' && currentFolder !== 'investment');
+      document.getElementById('hr-extra-fields').classList.toggle('hidden', !isHr);
+      document.getElementById('standard-common-fields').classList.toggle('hidden', isHr);
+
+      const titleLabel = document.getElementById('title-field-label');
+      if (titleLabel) {
+        titleLabel.innerText = isHr ? 'Tiêu đề vị trí tuyển dụng' : 'Tiêu đề bài viết / Tên dịch vụ';
+      }
+    }
+
+    function updateTabCounts() {
+      Object.keys(db).forEach(key => {
+        const el = document.getElementById(`count-${key}`);
+        if (el) el.innerText = (db[key] || []).length;
+      });
+    }
+
+    function updateJsonPreview() {
+      const container = document.getElementById('json-output-container');
+      container.innerHTML = '';
+
+      document.getElementById('json-header-filename').innerText = `content/posts-${currentFolder}.json`;
+      document.getElementById('active-module-badge').innerText = `posts-${currentFolder}.json`;
+
+      if (!currentFilteredPosts || currentFilteredPosts.length === 0) {
+        container.innerHTML = `<pre class="text-emerald-400 leading-relaxed bg-[#08090c] p-4 rounded-lg border border-[#1e222d]">[]</pre>`;
+        return;
+      }
+
+      currentFilteredPosts.forEach(post => {
+        const blockDiv = document.createElement('div');
+        blockDiv.className = 'json-block-item';
+        blockDiv.setAttribute('data-id', post.id || 'N/A');
+
+        const pre = document.createElement('pre');
+        pre.className = 'text-emerald-400 leading-relaxed whitespace-pre-wrap break-all m-0';
+        pre.textContent = JSON.stringify(post, null, 2);
+
+        blockDiv.appendChild(pre);
+        container.appendChild(blockDiv);
+      });
+    }
+
+    function renderPostsList() {
+      const container = document.getElementById('posts-list-container');
+      container.innerHTML = '';
+
+      let posts = [...(db[currentFolder] || [])];
+      const sortVal = document.getElementById('sort-order').value;
+      const catVal = document.getElementById('filter-category').value;
+      const searchVal = document.getElementById('filter-search').value.toLowerCase().trim();
+
+      if (catVal) posts = posts.filter(p => p.category === catVal);
+      if (searchVal) posts = posts.filter(p => (p.title && p.title.toLowerCase().includes(searchVal)) || (p.label && p.label.toLowerCase().includes(searchVal)));
+
+      if (sortVal === 'id-desc') posts.sort((a, b) => b.id - a.id);
+      else posts.sort((a, b) => a.id - b.id);
+
+      currentFilteredPosts = posts;
+
+      if (posts.length === 0) {
+        container.innerHTML = `<div class="p-4 text-center text-xs text-gray-500 italic">Không tìm thấy bài viết nào</div>`;
+        updateJsonPreview();
+        return;
+      }
+
+      posts.forEach(post => {
+        const div = document.createElement('div');
+        const isEditing = editingPostId === post.id;
+        div.className = `p-2.5 rounded-lg border transition cursor-pointer flex flex-col gap-1.5 ${isEditing ? 'bg-rose-500/10 border-rose-500/50' : 'bg-[#14171f] border-[#222630] hover:border-[#3a3f52]'}`;
+
+        div.innerHTML = `
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="font-mono text-rose-400 font-bold">#${post.id}</span>
+            <span class="bg-[#1e222d] text-gray-300 px-1.5 py-0.5 rounded font-mono text-[10px]">${post.category || 'N/A'}</span>
+          </div>
+          <div class="text-xs font-semibold text-gray-200 line-clamp-2 leading-snug">${post.title || 'Chưa có tiêu đề'}</div>
+          <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1 border-t border-[#1e222d]">
+            <span>${post.type || post.date || ''}</span>
+            <div class="flex items-center gap-1">
+              <button onclick="editPost(${post.id})" class="p-1 hover:text-amber-400" title="Sửa"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i></button>
+              <button onclick="deletePost(${post.id})" class="p-1 hover:text-rose-400" title="Xóa"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+            </div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+      lucide.createIcons();
+      updateJsonPreview();
+    }
+
+    function resetForm() {
+      editingPostId = null;
+      document.getElementById('edit-status-badge').classList.add('hidden');
+      document.getElementById('btn-cancel-edit').classList.add('hidden');
+      document.getElementById('btn-add-text').innerText = 'Lưu list';
+      document.getElementById('btn-add-icon').setAttribute('data-lucide', 'plus-circle');
+
+      const posts = db[currentFolder] || [];
+      const nextId = posts.length > 0 ? Math.max(...posts.map(p => p.id || 0)) + 1 : 1;
+
+      document.getElementById('input-id').value = nextId;
+      document.getElementById('input-title').value = '';
+      document.getElementById('input-summary').value = '';
+      document.getElementById('input-image').value = '';
+      document.getElementById('input-link').value = '';
+      document.getElementById('input-date-picker').value = new Date().toISOString().split('T')[0];
+
+      document.getElementById('input-code').value = '';
+      document.getElementById('input-scale').value = '';
+      document.getElementById('input-client').value = '';
+      document.getElementById('input-location').value = '';
+      document.getElementById('input-architect').value = '';
+
+      document.getElementById('input-service-code').value = '';
+      document.getElementById('input-service-icon').value = 'file-text';
+
+      document.getElementById('input-hr-type').value = '';
+      document.getElementById('input-hr-deadline').value = '';
+      document.getElementById('input-hr-location').value = '';
+      document.getElementById('input-hr-salary').value = '';
+      document.getElementById('input-hr-requirement').value = '';
+      document.getElementById('input-hr-quantity').value = '';
+      document.getElementById('input-hr-applyLink').value = '';
+
+      lucide.createIcons();
+    }
+
+    window.editPost = function (id) {
+      const posts = db[currentFolder] || [];
+      const post = posts.find(p => p.id === id);
+      if (!post) return;
+
+      editingPostId = id;
+      document.getElementById('editing-id-text').innerText = id;
+      document.getElementById('edit-status-badge').classList.remove('hidden');
+      document.getElementById('btn-cancel-edit').classList.remove('hidden');
+      document.getElementById('btn-add-text').innerText = 'Cập nhật bài';
+
+      document.getElementById('input-id').value = post.id;
+      document.getElementById('select-category').value = post.category || '';
+      document.getElementById('input-category-label').value = post.label || '';
+      document.getElementById('input-date-picker').value = post.date || '';
+      document.getElementById('input-title').value = post.title || '';
+      document.getElementById('input-summary').value = post.summary || '';
+      document.getElementById('input-image').value = post.image || '';
+      document.getElementById('input-link').value = post.link || '';
+
+      if (currentFolder === 'projects') {
+        document.getElementById('input-code').value = post.code || '';
+        document.getElementById('input-scale').value = post.scale || '';
+        document.getElementById('input-client').value = post.client || '';
+        document.getElementById('input-location').value = post.location || '';
+        document.getElementById('input-architect').value = post.architect || '';
+      } else if (currentFolder === 'services' || currentFolder === 'investment') {
+        document.getElementById('input-service-code').value = post.code || '';
+        document.getElementById('input-service-icon').value = post.icon || 'file-text';
+      } else if (currentFolder === 'hr') {
+        document.getElementById('input-hr-type').value = post.type || '';
+        document.getElementById('input-hr-deadline').value = post.deadline || '';
+        document.getElementById('input-hr-location').value = post.location || '';
+        document.getElementById('input-hr-salary').value = post.salary || '';
+        document.getElementById('input-hr-requirement').value = post.requirement || '';
+        document.getElementById('input-hr-quantity').value = post.quantity || '';
+        document.getElementById('input-hr-applyLink').value = post.applyLink || '';
+      }
+
+      renderPostsList();
+    };
+
+    window.deletePost = function (id) {
+      if (!confirm(`Bạn có chắc muốn xóa bài viết ID #${id}?`)) return;
+      db[currentFolder] = db[currentFolder].filter(p => p.id !== id);
+      localStorage.setItem('pv_studio_db', JSON.stringify(db));
+
+      if (editingPostId === id) resetForm();
+      updateTabCounts();
+      renderPostsList();
+      showToast(`Đã xóa bài viết ID #${id}`);
+    };
+
+    document.getElementById('btn-add-to-list').addEventListener('click', () => {
+      const id = parseInt(document.getElementById('input-id').value);
+      const title = document.getElementById('input-title').value.trim();
+
+      if (!id || !title) {
+        showToast('Vui lòng nhập ID và Tiêu đề bài viết!', 'error');
+        return;
+      }
+
+      let postObj = {
+        id: id,
+        category: document.getElementById('select-category').value,
+        label: document.getElementById('input-category-label').value.trim(),
+        date: document.getElementById('input-date-picker').value,
+        title: title
+      };
+
+      if (currentFolder === 'hr') {
+        postObj.type = document.getElementById('input-hr-type').value.trim();
+        postObj.deadline = document.getElementById('input-hr-deadline').value.trim();
+        postObj.location = document.getElementById('input-hr-location').value.trim();
+        postObj.salary = document.getElementById('input-hr-salary').value.trim();
+        postObj.requirement = document.getElementById('input-hr-requirement').value.trim();
+        postObj.quantity = document.getElementById('input-hr-quantity').value.trim();
+        postObj.applyLink = document.getElementById('input-hr-applyLink').value.trim();
+      } else {
+        postObj.summary = document.getElementById('input-summary').value.trim();
+        postObj.image = document.getElementById('input-image').value.trim();
+        postObj.link = document.getElementById('input-link').value.trim();
+
+        if (currentFolder === 'projects') {
+          postObj.code = document.getElementById('input-code').value.trim();
+          postObj.scale = document.getElementById('input-scale').value.trim();
+          postObj.client = document.getElementById('input-client').value.trim();
+          postObj.location = document.getElementById('input-location').value.trim();
+          postObj.architect = document.getElementById('input-architect').value.trim();
+        } else if (currentFolder === 'services' || currentFolder === 'investment') {
+          postObj.code = document.getElementById('input-service-code').value.trim();
+          postObj.icon = document.getElementById('input-service-icon').value;
+        }
+      }
+
+      let posts = db[currentFolder] || [];
+      const existingIdx = posts.findIndex(p => p.id === id);
+
+      if (editingPostId !== null) {
+        posts = posts.map(p => p.id === editingPostId ? postObj : p);
+        showToast(`Đã cập nhật bài viết #${id}`);
+      } else if (existingIdx >= 0) {
+        if (!confirm(`ID #${id} đã tồn tại. Bạn có muốn ghi đè bài viết này?`)) return;
+        posts[existingIdx] = postObj;
+        showToast(`Đã ghi đè bài viết #${id}`);
+      } else {
+        posts.push(postObj);
+        showToast(`Đã thêm bài viết mới #${id}`);
+      }
+
+      db[currentFolder] = posts;
+      localStorage.setItem('pv_studio_db', JSON.stringify(db));
+
+      resetForm();
+      updateTabCounts();
+      renderPostsList();
+    });
+
+    document.getElementById('btn-cancel-edit').addEventListener('click', resetForm);
+    document.getElementById('btn-reset').addEventListener('click', resetForm);
+
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab').forEach(t => {
+          t.classList.remove('active', 'bg-rose-600/10', 'text-rose-400', 'border-rose-500/20');
+          t.classList.add('text-gray-400', 'border-transparent');
         });
-    </script>
-    <div id="footer-placeholder"></div>
+        tab.classList.add('active', 'bg-rose-600/10', 'text-rose-400', 'border-rose-500/20');
+        tab.classList.remove('text-gray-400', 'border-transparent');
 
-    <script src="layout.js"></script>
+        currentFolder = tab.dataset.folder;
+        currentTitle = tab.dataset.title;
 
-    <script>
-        loadLayout('index');
-    </script>
+        document.getElementById('current-tab-label').innerText = currentTitle;
+        document.getElementById('form-title').innerText = `Soạn thảo [${currentTitle}]`;
 
-    <!-- Nhúng file tự động nạp tin tức -->
-    <script src="assets/js/news-loader.js"></script>
+        updateFormCategoryOptions();
+        resetForm();
+        renderPostsList();
+      });
+    });
+
+    document.getElementById('sort-order').addEventListener('change', renderPostsList);
+    document.getElementById('filter-category').addEventListener('change', renderPostsList);
+    document.getElementById('filter-search').addEventListener('input', renderPostsList);
+
+    document.getElementById('btn-export-backup').addEventListener('click', () => {
+      const dataToExport = currentFilteredPosts || [];
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataToExport, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `PV_INCONS_${currentFolder}_Backup_${new Date().toISOString().split('T')[0]}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast(`Đã xuất file sao lưu cho tab [${currentTitle}]!`);
+    });
+
+    document.getElementById('import-json-file').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const imported = JSON.parse(event.target.result);
+          if (Array.isArray(imported)) {
+            db[currentFolder] = imported;
+            localStorage.setItem('pv_studio_db', JSON.stringify(db));
+            updateTabCounts();
+            renderPostsList();
+            resetForm();
+            showToast(`Đã ghi đè dữ liệu mới lên tab [${currentTitle}] thành công!`);
+          } else {
+            showToast('Lỗi: File JSON phải là một mảng dữ liệu (Array)', 'error');
+          }
+        } catch (err) {
+          showToast('Định dạng file JSON không hợp lệ!', 'error');
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    });
+
+    document.getElementById('btn-copy').addEventListener('click', () => {
+      const blocks = document.querySelectorAll('.json-block-item pre');
+      let combinedJson = [];
+      blocks.forEach(b => {
+        try {
+          combinedJson.push(JSON.parse(b.innerText));
+        } catch (e) { }
+      });
+
+      const textToCopy = JSON.stringify(combinedJson, null, 2);
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast('Đã sao chép mã JSON của danh sách hiện tại!');
+      });
+    });
+
+    document.getElementById('btn-sync-github').addEventListener('click', async () => {
+      if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
+        showToast('Vui lòng kiểm tra lại thông tin xác thực GitHub', 'error');
+        return;
+      }
+
+      const filePath = `content/posts-${currentFolder}.json`;
+      const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
+
+      const btnSync = document.getElementById('btn-sync-github');
+      btnSync.disabled = true;
+      btnSync.innerHTML = `<i data-lucide="refresh-cw" class="w-3 h-3 animate-spin"></i> Đang tải...`;
+      lucide.createIcons();
+
+      try {
+        const response = await fetch(url, {
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error(`File ${filePath} chưa tồn tại trên GitHub`);
+          }
+          throw new Error(`Lỗi kết nối GitHub (HTTP ${response.status})`);
+        }
+
+        const data = await response.json();
+        const contentUtf8 = b64_to_utf8(data.content);
+        const jsonParsed = JSON.parse(contentUtf8);
+
+        db[currentFolder] = Array.isArray(jsonParsed) ? jsonParsed : [];
+        localStorage.setItem('pv_studio_db', JSON.stringify(db));
+
+        updateTabCounts();
+        renderPostsList();
+        resetForm();
+
+        showToast(`Đã đồng bộ file ${filePath} từ GitHub!`);
+      } catch (err) {
+        console.error('Lỗi sync GitHub:', err);
+        showToast(err.message || 'Không thể tải file từ GitHub', 'error');
+      } finally {
+        btnSync.disabled = false;
+        btnSync.innerHTML = `<i data-lucide="refresh-cw" class="w-3 h-3"></i> Tải dữ liệu`;
+        lucide.createIcons();
+      }
+    });
+
+    document.getElementById('btn-publish-github').addEventListener('click', async () => {
+      if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
+        showToast('Vui lòng kiểm tra lại thông tin xác thực GitHub', 'error');
+        return;
+      }
+
+      const filePath = `content/posts-${currentFolder}.json`;
+      const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
+
+      const btnPublish = document.getElementById('btn-publish-github');
+      btnPublish.disabled = true;
+      btnPublish.innerHTML = `<i data-lucide="refresh-cw" class="w-3.5 h-3.5 animate-spin"></i> Đang xuất bản...`;
+      lucide.createIcons();
+
+      try {
+        let sha = "";
+        const getRes = await fetch(url, {
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          sha = fileData.sha;
+        }
+
+        const jsonString = JSON.stringify(db[currentFolder] || [], null, 2);
+        const contentBase64 = utf8_to_b64(jsonString);
+
+        const putRes = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: `Update ${filePath} via PV INCONS Studio Admin`,
+            content: contentBase64,
+            sha: sha || undefined
+          })
+        });
+
+        if (!putRes.ok) {
+          const errBody = await putRes.json();
+          throw new Error(errBody.message || `HTTP ${putRes.status}`);
+        }
+
+        showToast(`Đã xuất bản thành công ${filePath} lên GitHub!`);
+      } catch (err) {
+        console.error('Lỗi publish GitHub:', err);
+        showToast(`Xuất bản thất bại: ${err.message}`, 'error');
+      } finally {
+        btnPublish.disabled = false;
+        btnPublish.innerHTML = `<i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i> Xuất bản GitHub`;
+        lucide.createIcons();
+      }
+    });
+
+    updateFormCategoryOptions();
+    updateTabCounts();
+    renderPostsList();
+    resetForm();
+  </script>
 </body>
 
 </html>
