@@ -23,7 +23,7 @@
     <!-- Thẻ Canonical chuẩn SEO -->
     <link rel="canonical" href="https://pvincons.com/">
 
-    <!-- Open Graph Meta Tags (Dành cho Zalo, Facebook, Messenger) -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pvincons.com/" />
     <meta property="og:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
@@ -173,7 +173,7 @@
                 <span class="text-slate-300 font-normal shrink-0">/</span>
 
                 <a id="nav-cam-ket" href="#tai-lieu-mau"
-                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">HỢP ĐỒNG ĐÃ THỰC 
+                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">HỢP ĐỒNG ĐÃ THỰC
                     HIỆN</a>
             </div>
         </nav>
@@ -366,6 +366,7 @@
                     <p class="text-slate-600 text-sm mt-3 text-center">
                         Tổng hợp thông tin, quy mô và hồ sơ nghiệm thu các công trình đã hoàn thành bàn giao bởi PV INCONS; 
                         Đảm bảo tính minh bạch, chuẩn hóa và sẵn sàng cung cấp cho Chủ đầu tư.
+                    </p>
                 </div>
 
                 <!-- KHU VỰC RENDER DỮ LIỆU TỪ JSON BỞI JAVASCRIPT -->
@@ -378,7 +379,7 @@
 
     <!-- POPUP MODAL YÊU CẦU THÔNG TIN -->
     <div id="requestModal"
-        class="fixed inset-0 z-[99999] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto transition-all">
+        class="fixed inset-0 z-[50] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto transition-all">
         <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 relative my-auto">
             <button onclick="closeRequestModal()"
                 class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer">
@@ -397,8 +398,9 @@
                 </p>
             </div>
 
+            <!-- ĐÃ ĐỔI TÊN HÀM Ở ONSUBMIT DỂ TRÁNH TRÙNG VỚI LAYOUT.JS -->
             <form id="downloadForm" action="https://formspree.io/f/xzdnldga" method="POST"
-                onsubmit="submitContactForm(event)" class="space-y-4">
+                onsubmit="submitDownloadForm(event)" class="space-y-4">
                 <input type="hidden" name="Dịch_vụ" id="modalServiceInput">
                 <input type="hidden" name="Loại_yêu_cầu" id="modalTypeInput">
 
@@ -424,6 +426,7 @@
     <script>
         function openRequestModal(serviceName, requestType) {
             const modal = document.getElementById('requestModal');
+            if (!modal) return;
             document.getElementById('modalServiceInput').value = serviceName;
             document.getElementById('modalTypeInput').value = requestType;
             document.getElementById('modalTitle').innerText = requestType + ' - ' + serviceName;
@@ -440,7 +443,8 @@
             }
         }
 
-        async function submitContactForm(event) {
+        // HÀM XỬ LÝ FORM ĐÃ ĐỔI TÊN & TÍNH NĂNG GỌI MODAL CÁM ƠN DÙNG CHUNG
+        async function submitDownloadForm(event) {
             event.preventDefault();
             const form = event.target;
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -458,9 +462,9 @@
                     headers: { 'Accept': 'application/json' }
                 });
                 if (response.ok) {
-                    alert('Cảm ơn bạn! Yêu cầu đã được gửi thành công.');
                     form.reset();
-                    closeRequestModal();
+                    closeRequestModal();   // 1. Tắt bảng nhập thông tin
+                    showThankYouModal();  // 2. Bật bảng Cám ơn chuẩn dùng chung
                 } else {
                     alert('Có lỗi xảy ra, vui lòng thử lại sau.');
                 }
@@ -545,7 +549,7 @@
     <script src="layout.js"></script>
 
     <script>
-    loadLayout('services');
+        loadLayout('services');
     </script>
 
     <!-- KẾT NỐI SCRIPT RENDER DỮ LIỆU JSON -->

@@ -129,7 +129,6 @@ async function loadLayout(pageId) {
             if (footerPlaceholder) footerPlaceholder.innerHTML = footerHtml;
         }
 
-        // Đảm bảo gán sự kiện Toggle Mobile Menu bất kể Header được fetch hay có sẵn
         initMobileMenu();
         updateActiveTab(pageId);
 
@@ -145,7 +144,7 @@ function initMobileMenu() {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        mobileMenuBtn._hasListener = true; // Tránh gán lặp sự kiện
+        mobileMenuBtn._hasListener = true;
     }
 }
 
@@ -233,8 +232,25 @@ function showThankYouModal() {
     }
 }
 
+// ==========================================
+// ĐÓNG TẤT CẢ CÁC POPUP MODAL (FIX LỖI KẸT MODAL)
+// ==========================================
 function closeModal() {
+    // 1. Đóng contactModal
     closeContactModal();
+
+    // 2. Đóng requestModal (nếu đang mở ở trang services.html)
+    if (typeof closeRequestModal === 'function') {
+        closeRequestModal();
+    } else {
+        const reqModal = document.getElementById('requestModal');
+        if (reqModal) {
+            reqModal.classList.add('hidden');
+            reqModal.classList.remove('flex');
+        }
+    }
+
+    // 3. Đóng thankYouModal
     const thankYouModal = document.getElementById('thankYouModal');
     if (thankYouModal) {
         thankYouModal.classList.add('hidden');
@@ -292,13 +308,9 @@ function initVisitorCounter() {
 
     if (!totalVisitsEl && !onlineVisitorsEl) return;
 
-    // 1. Xử lý Tổng lượt truy cập (Total Visits)
-    const BASE_VISITS = 12450; // Số đếm nền ban đầu bạn muốn hiển thị
-    
-    // Lấy số lượt cộng thêm đã lưu trong máy người dùng
+    const BASE_VISITS = 12450;
     let addedVisits = parseInt(localStorage.getItem('pv_simulated_visits') || '0', 10);
 
-    // Nếu là phiên truy cập mới (mới mở lại web), cộng thêm +1
     if (!sessionStorage.getItem('pv_counted_session')) {
         addedVisits += 1;
         localStorage.setItem('pv_simulated_visits', addedVisits.toString());
@@ -311,18 +323,16 @@ function initVisitorCounter() {
         totalVisitsEl.innerText = finalTotal.toLocaleString('vi-VN');
     }
 
-    // 2. Xử lý Số người đang Online (Online Visitors)
     if (onlineVisitorsEl) {
-        // Khởi tạo số online ngẫu nhiên từ 3 đến 20 người
         const getRandomOnline = () => Math.floor(Math.random() * 18) + 3;
         onlineVisitorsEl.innerText = getRandomOnline();
 
-        // Cập nhật nhảy số tự nhiên mỗi 8 giây cho giống thật
         setInterval(() => {
             onlineVisitorsEl.innerText = getRandomOnline();
         }, 8000);
     }
 }
+
 // ==========================================
 // KHỞI TẠO TỰ ĐỘNG KHI TẢI TRANG
 // ==========================================
