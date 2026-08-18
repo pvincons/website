@@ -131,6 +131,9 @@ async function loadLayout(pageId) {
 
         initMobileMenu();
         updateActiveTab(pageId);
+        
+        // Gọi hàm đếm lượt truy cập ngay khi Footer đã được nạp vào DOM
+        initVisitorCounter();
 
     } catch (error) {
         console.error('Lỗi khi nạp Header/Footer:', error);
@@ -236,10 +239,8 @@ function showThankYouModal() {
 // ĐÓNG TẤT CẢ CÁC POPUP MODAL (FIX LỖI KẸT MODAL)
 // ==========================================
 function closeModal() {
-    // 1. Đóng contactModal
     closeContactModal();
 
-    // 2. Đóng requestModal (nếu đang mở ở trang services.html)
     if (typeof closeRequestModal === 'function') {
         closeRequestModal();
     } else {
@@ -250,7 +251,6 @@ function closeModal() {
         }
     }
 
-    // 3. Đóng thankYouModal
     const thankYouModal = document.getElementById('thankYouModal');
     if (thankYouModal) {
         thankYouModal.classList.add('hidden');
@@ -306,6 +306,7 @@ function initVisitorCounter() {
     const totalVisitsEl = document.getElementById('totalVisits');
     const onlineVisitorsEl = document.getElementById('onlineVisitors');
 
+    // Nếu cả 2 đều không có trong DOM thì mới thoát
     if (!totalVisitsEl && !onlineVisitorsEl) return;
 
     const BASE_VISITS = 12450;
