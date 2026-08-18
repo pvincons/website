@@ -208,8 +208,31 @@
     <!-- TOP HEADER -->
     <header class="border-b border-[#222630] bg-[#14171f] flex flex-col lg:flex-row items-center justify-between shrink-0 h-auto lg:h-12 py-2 lg:py-0 px-3 lg:px-4 gap-2 lg:gap-0">
       
-      <!-- Nav Tabs -->
-      <nav class="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full lg:w-auto pb-1 lg:pb-0" id="sidebar-nav">
+      <!-- Right Actions (Nằm trên ở mobile, nằm bên phải ở desktop) -->
+      <div class="flex items-center justify-between lg:justify-end gap-2.5 w-full lg:w-auto order-1 lg:order-2 border-b lg:border-b-0 border-[#222630] pb-1.5 lg:pb-0">
+        <span class="text-[10px] sm:text-xs text-gray-400 font-mono flex items-center gap-1 shrink-0">
+          <i data-lucide="github" class="w-3 h-3 text-gray-300"></i>
+          <span id="display-repo-info" class="text-gray-200 font-semibold max-w-[110px] sm:max-w-max truncate">user/repo</span>
+        </span>
+
+        <div class="flex items-center gap-1.5">
+          <button id="btn-export-backup" class="text-gray-300 hover:text-emerald-400 text-[10px] bg-[#1c202b] hover:bg-emerald-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono">
+            <i data-lucide="download" class="w-3 h-3"></i> <span>Backup</span>
+          </button>
+
+          <label class="text-gray-300 hover:text-blue-400 text-[10px] bg-[#1c202b] hover:bg-blue-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono cursor-pointer">
+            <i data-lucide="upload" class="w-3 h-3"></i> <span>Nhập JSON</span>
+            <input type="file" id="import-json-file" accept=".json" class="hidden">
+          </label>
+
+          <button id="btn-logout" class="bg-[#222630] hover:bg-rose-600/20 hover:text-rose-400 text-gray-300 text-[10px] px-2 py-1 rounded transition flex items-center gap-1 font-medium whitespace-nowrap">
+            <i data-lucide="log-out" class="w-2.5 h-2.5"></i> <span>Đăng xuất</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Nav Tabs (Nằm dưới ở mobile, nằm bên trái ở desktop) -->
+      <nav class="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full lg:w-auto order-2 lg:order-1 pt-1.5 lg:pt-0 pb-1 lg:pb-0" id="sidebar-nav">
         <button data-folder="news" data-title="Tin tức"
           class="nav-tab active flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg bg-rose-600/10 text-rose-400 font-medium border border-rose-500/20 transition text-xs">
           <i data-lucide="newspaper" class="w-3.5 h-3.5 text-rose-500"></i>
@@ -242,28 +265,6 @@
         </button>
       </nav>
 
-      <!-- Right Actions -->
-      <div class="flex items-center justify-between lg:justify-end gap-2.5 w-full lg:w-auto border-t lg:border-t-0 border-[#222630] pt-1.5 lg:pt-0">
-        <span class="text-[10px] sm:text-xs text-gray-400 font-mono flex items-center gap-1 shrink-0">
-          <i data-lucide="github" class="w-3 h-3 text-gray-300"></i>
-          <span id="display-repo-info" class="text-gray-200 font-semibold max-w-[110px] sm:max-w-max truncate">user/repo</span>
-        </span>
-
-        <div class="flex items-center gap-1.5">
-          <button id="btn-export-backup" class="text-gray-300 hover:text-emerald-400 text-[10px] bg-[#1c202b] hover:bg-emerald-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono">
-            <i data-lucide="download" class="w-3 h-3"></i> <span>Backup</span>
-          </button>
-
-          <label class="text-gray-300 hover:text-blue-400 text-[10px] bg-[#1c202b] hover:bg-blue-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono cursor-pointer">
-            <i data-lucide="upload" class="w-3 h-3"></i> <span>Nhập JSON</span>
-            <input type="file" id="import-json-file" accept=".json" class="hidden">
-          </label>
-
-          <button id="btn-logout" class="bg-[#222630] hover:bg-rose-600/20 hover:text-rose-400 text-gray-300 text-[10px] px-2 py-1 rounded transition flex items-center gap-1 font-medium whitespace-nowrap">
-            <i data-lucide="log-out" class="w-2.5 h-2.5"></i> <span>Đăng xuất</span>
-          </button>
-        </div>
-      </div>
     </header>
 
     <!-- MAIN CONTENT -->
