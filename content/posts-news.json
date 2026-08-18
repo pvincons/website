@@ -2,10 +2,10 @@
   {
     "id": 20,
     "category": "tin-noi-bat",
-    "categoryLabel": "Tin nổi bật",
-    "title": "Công Bố Thư Viện Mẫu Hợp Đồng Thi Công Tiêu Chuẩn Cho Khách Hàng",
+    "label": "",
+    "date": "",
+    "title": "Hợp Đồng Thi Công Tiêu Chuẩn Cho Khách Hàng",
     "summary": "Bộ tài liệu mẫu hợp đồng thi công pháp lý khép kín, minh bạch bảo vệ quyền lợi song phương giữa Chủ đầu tư và Nhà thầu do PV INCONS biên soạn.",
-    "date": "25/05/2026",
     "image": "https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=800&auto=format&fit=crop",
     "link": "content/news/news_020.html"
   },
