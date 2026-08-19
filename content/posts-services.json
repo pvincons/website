@@ -126,5 +126,17 @@
     "summary": "Mẫu biên bản bàn giao bản vẽ, hồ sơ pháp lý & chứng từ công trình",
     "icon": "fa-box-archive",
     "link": ""
+  },
+  {
+    "id": 15,
+    "category": "pricing",
+    "label": "",
+    "date": "2026-08-19",
+    "title": "Thiết kế và xây dựng nhà thép tiền chế",
+    "summary": "Đơn giá: Liên hệ để được báo giá chính xác",
+    "image": "",
+    "link": "",
+    "code": "",
+    "icon": ""
   }
 ]
