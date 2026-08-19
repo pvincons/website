@@ -92,12 +92,12 @@
   {
     "id": 9,
     "category": "cong-ty",
-    "categoryLabel": "Công ty",
-    "title": "Nghiệm Thu Bàn Giao Phần Thô Biệt Thự Nghỉ Dưỡng Tại Cần Thơ",
+    "label": "",
+    "date": "",
+    "title": "Nghiệm Thu Bàn Giao Phần Thô Biệt Thự",
     "summary": "Đội ngũ giám sát vừa hoàn tất biên bản nghiệm thu chuyển giai đoạn phần thô, chuẩn bị bước vào công tác hoàn thiện nội thất.",
-    "date": "15/07/2026",
     "image": "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_009.html"
+    "link": "/content/notlink/notlink.html"
   },
   {
     "id": 8,
