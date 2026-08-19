@@ -2,34 +2,50 @@
   {
     "id": 1,
     "category": "pricing",
-    "title": "Thiết kế Kiến trúc, Kết cấu & M&E (Mô phỏng 3D BIM)",
-    "summary": "Đơn giá: 150.000 - 550.000 VNĐ/m²",
-    "icon": "fa-tag",
-    "link": "#dich-vu-chinh"
+    "label": "",
+    "date": "",
+    "title": "Thiết kế Kiến trúc công trình",
+    "summary": "Đơn giá: 120.000 - 550.000 VNĐ/m²",
+    "image": "",
+    "link": "#dich-vu-chinh",
+    "code": "",
+    "icon": "fa-tag"
   },
   {
     "id": 2,
     "category": "pricing",
-    "title": "Thi công xây dựng phần thô & Trọn gói công trình",
-    "summary": "Đơn giá: 6.000.000 - 11.000.000 VNĐ/m²",
-    "icon": "fa-tag",
-    "link": "#dich-vu-chinh"
+    "label": "",
+    "date": "",
+    "title": "Thi công xây dựng công trình",
+    "summary": "Đơn giá: 7.000.000 - 11.000.000 VNĐ/m²",
+    "image": "",
+    "link": "#dich-vu-chinh",
+    "code": "",
+    "icon": "fa-tag"
   },
   {
     "id": 3,
     "category": "pricing",
+    "label": "",
+    "date": "",
     "title": "Tư vấn báo cáo tiền khả thi & Bảng tính dòng tiền dự án",
     "summary": "Đơn giá: Từ 15.000.000 VNĐ / Hồ sơ",
-    "icon": "fa-tag",
-    "link": "#dich-vu-chinh"
+    "image": "",
+    "link": "#dich-vu-chinh",
+    "code": "",
+    "icon": "fa-tag"
   },
   {
     "id": 4,
     "category": "pricing",
-    "title": "Trích đo hiện trạng VN-2000, Xin phép XD & Hoàn công",
+    "label": "",
+    "date": "",
+    "title": "Dịch vụ hỗ trợ Cấp phép và Hoàn công xây dựng",
     "summary": "Đơn giá: Từ 5.000.000 - 35.000.000 VNĐ / Trọn gói",
-    "icon": "fa-tag",
-    "link": "#dich-vu-chinh"
+    "image": "",
+    "link": "#dich-vu-chinh",
+    "code": "",
+    "icon": "fa-tag"
   },
   {
     "id": 5,
