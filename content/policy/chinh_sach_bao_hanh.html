@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chính Sách Đổi Trả & Bảo Hành - PV INCONS</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #0f172a;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --accent-bg: #eff6ff;
+            --accent-border: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .meta-info {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--accent-border);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .toc {
+            background-color: #f1f5f9;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 15px;
+        }
+
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            font-size: 19px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 span.num {
+            background: var(--primary-color);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: #1e293b;
+            margin: 18px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .highlight-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--accent-border);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #1e3a8a;
+        }
+
+        .warning-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f1f5f9;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .contact-card {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-card p {
+            margin-bottom: 8px;
+        }
+
+        .contact-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            background-color: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .content { padding: 20px 15px; }
+            .header { padding: 30px 15px; }
+            .header h1 { font-size: 22px; }
+            .toc ul { grid-template-columns: 1fr; }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; }
+            .toc { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>CHÍNH SÁCH ĐỔI TRẢ & BẢO HÀNH</h1>
+        <p>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+    </div>
+
+    <div class="content">
+        <div class="meta-info">
+            <strong>Đơn vị chủ quản:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS<br>
+            <strong>Mã số doanh nghiệp:</strong> 1501112147<br>
+            <strong>Phạm vi áp dụng:</strong> Hồ sơ Tư vấn thiết kế, Công trình Thi công xây dựng và Vật liệu / Thiết bị do PV INCONS cung cấp.<br>
+            <strong>Ngày áp dụng:</strong> 21 tháng 08 năm 2026<br>
+            <em>Chính sách này quy định chi tiết các điều kiện, thời hạn, quy trình xử lý đổi trả hàng hóa và bảo hành công trình, dịch vụ cho Khách hàng / Chủ đầu tư.</em>
+        </div>
+
+        <div class="toc">
+            <h3>MỤC LỤC TỔNG QUAN</h3>
+            <ul>
+                <li><a href="#sec1">1. Phạm vi & Điều kiện chung</a></li>
+                <li><a href="#sec2">2. Chính sách Bảo hành Công trình Thi công Xây dựng</a></li>
+                <li><a href="#sec3">3. Chính sách Hỗ trợ & Bảo hành Hồ sơ Thiết kế</a></li>
+                <li><a href="#sec4">4. Chính sách Đổi trả Vật tư & Thiết bị Xây dựng</a></li>
+                <li><a href="#sec5">5. Quy trình Tiếp nhận & Xử lý Yêu cầu</a></li>
+                <li><a href="#sec6">6. Các trường hợp Từ chối Bảo hành / Đổi trả</a></li>
+                <li><a href="#sec7">7. Thông tin liên hệ Bộ phận Bảo hành</a></li>
+            </ul>
+        </div>
+
+        <section id="sec1">
+            <h2><span class="num">1</span> Phạm vi & Điều kiện chung</h2>
+            <p><strong>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</strong> cam kết chất lượng cho mọi sản phẩm và dịch vụ cung cấp. Mọi yêu cầu bảo hành, sửa chữa hoặc đổi trả sản phẩm đều phải tuân thủ các điều kiện chung dưới đây:</p>
+            <ul>
+                <li>Sản phẩm, vật tư hoặc công trình thi công còn trong <strong>Thời hạn bảo hành</strong> được ghi nhận trên Hợp đồng, Biên bản nghiệm thu hoặc Phiếu bảo hành.</li>
+                <li>Khách hàng cung cấp đầy đủ chứng từ: Hợp đồng mua bán/thi công, Biên bản bàn giao/nghiệm thu, Hóa đơn GTGT hoặc Phiếu xuất kho chính thức của PV INCONS.</li>
+                <li>Lỗi phát sinh được xác định do nguyên nhân kỹ thuật thi công, sai sót trong hồ sơ thiết kế hoặc do lỗi quy trình sản xuất của vật tư, thiết bị.</li>
+            </ul>
+        </section>
+
+        <section id="sec2">
+            <h2><span class="num">2</span> Chính sách Bảo hành Công trình Thi công Xây dựng</h2>
+            <p>Đối với các công trình thi công trọn gói hoặc thi công phần thô do PV INCONS trực tiếp đảm nhận:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Hạng mục Bảo hành</th>
+                        <th style="width: 25%;">Thời hạn Bảo hành</th>
+                        <th style="width: 50%;">Nội dung Bảo hành & Cam kết xử lý</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kết cấu chịu lực chính</strong></td>
+                        <td><strong>05 - 10 Năm</strong></td>
+                        <td>Bảo hành khung dầm, cột, sàn bê tông cốt thép, móng công trình khỏi hiện tượng lún nứt bất thường, nứt gãy chịu lực hoặc sự cố kết cấu ngoài dự toán.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phần hoàn thiện & Chống thấm</strong></td>
+                        <td><strong>12 - 24 Tháng</strong></td>
+                        <td>Sửa chữa miễn phí các sự cố thấm dầm, thấm sàn vệ sinh, mái, ban công; nứt dăm tường gạch, bong tróc sơn bả hoặc rộp gạch ốp lát do lỗi kỹ thuật thi công.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hệ thống M&E (Điện, Nước, Cấp thoát)</strong></td>
+                        <td><strong>12 - 24 Tháng</strong></td>
+                        <td>Khắc phục sự cố rò rỉ đường ống âm tường, lỗi đấu nối tủ điện, thiết bị chiếu sáng và hạ tầng kỹ thuật do PV INCONS thi công lắp đặt.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thiết bị hoàn thiện đi kèm</strong></td>
+                        <td>Theo NSX (12 - 36 Th)</td>
+                        <td>Hỗ trợ kết nối và gửi bảo hành chính hãng đối với thiết bị vệ sinh, bếp, khóa cửa, điều hòa... theo đúng tem chứng nhận nhà sản xuất.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <strong>Cam kết ứng cứu sự cố khẩn cấp:</strong> Với các sự cố nghiêm trọng (rò rỉ nước lớn, sự cố điện nguy hiểm, thấm dột nặng), đội ngũ kỹ thuật PV INCONS sẽ có mặt trực tiếp khảo sát hiện trường trong vòng <strong>24 giờ</strong> (tại khu vực Cần Thơ, Vĩnh Long) và tối đa <strong>48 giờ</strong> đối với các tỉnh lân cận.
+            </div>
+        </section>
+
+        <section id="sec3">
+            <h2><span class="num">3</span> Chính sách Hỗ trợ & Bảo hành Hồ sơ Thiết kế</h2>
+            <p>Đối với dịch vụ Tư vấn thiết kế kiến trúc, kết cấu và bản vẽ thi công BIM (Revit/Dynamo):</p>
+            <ul>
+                <li><strong>Giám sát tác giả xuyên suốt:</strong> PV INCONS hỗ trợ giải đáp, làm rõ các chi tiết kỹ thuật trên bản vẽ trong suốt quá trình Khách hàng triển khai thi công xây dựng thực tế.</li>
+                <li><strong>Chỉnh sửa sai sót bản vẽ miễn phí 100%:</strong> Nếu phát hiện xung đột giữa các bộ môn (Kiến trúc - Kết cấu - Điện nước) hoặc sai sót tính toán kỹ thuật do PV INCONS thực hiện, chúng tôi cam kết cập nhật và hiệu chỉnh hồ sơ trong vòng 03 - 05 ngày làm việc.</li>
+                <li><strong>Hỗ trợ điều chỉnh nhỏ:</strong> Miễn phí điều chỉnh các chi tiết hoàn thiện nội/ngoại thất nhẹ không làm thay đổi phương án kết cấu chịu lực chính và quy hoạch tổng thể đã được duyệt.</li>
+            </ul>
+        </section>
+
+        <section id="sec4">
+            <h2><span class="num">4</span> Chính sách Đổi trả Vật tư & Thiết bị Xây dựng</h2>
+            <p>Đối với hoạt động thương mại và cung ứng vật liệu xây dựng (thép, gạch, xi măng, thiết bị vệ sinh, sơn...):</p>
+
+            <h3>a) Điều kiện được Đổi / Trả hàng:</h3>
+            <ul>
+                <li>Sản phẩm bị giao sai quy cách, chủng loại, mã màu hoặc số lượng so với Đơn đặt hàng / Hợp đồng.</li>
+                <li>Sản phẩm bị nứt vỡ, móp méo, hư hỏng trong quá trình PV INCONS vận chuyển đến công trình.</li>
+                <li>Sản phẩm gặp lỗi kỹ thuật từ phía Nhà sản xuất (được xác nhận qua biên bản kiểm tra).</li>
+                <li>Thời gian phản hồi đổi trả: Trong vòng <strong>07 ngày</strong> kể từ ngày ký Biên bản giao nhận hàng hóa.</li>
+            </ul>
+
+            <h3>b) Quy định về tình trạng sản phẩm đổi trả:</h3>
+            <p>Sản phẩm đổi trả phải còn nguyên tem nhãn, bao bì đóng gói, không bị dính bẩn hay biến dạng do lưu kho sai quy cách tại công trường của Khách hàng và chưa qua lắp đặt/sử dụng.</p>
+        </section>
+
+        <section id="sec5">
+            <h2><span class="num">5</span> Quy trình Tiếp nhận & Xử lý Yêu cầu</h2>
+            <p>Quy trình bảo hành và đổi trả sản phẩm được thực hiện theo 04 bước chuẩn hóa:</p>
+            <ol>
+                <li><strong>Bước 1 - Tiếp nhận thông tin:</strong> Khách hàng gửi yêu cầu qua Hotline/Zalo <code>0939.751.194</code> hoặc Email <code>pvincons@gmail.com</code> kèm mô tả sự cố và hình ảnh/video thực tế.</li>
+                <li><strong>Bước 2 - Khảo sát & Đánh giá:</strong> Trong vòng 24 - 48 giờ, Kỹ sư/Đại diện PV INCONS sẽ liên hệ xác nhận và trực tiếp đến khảo sát công trình hoặc kiểm tra lô hàng bị lỗi.</li>
+                <li><strong>Bước 3 - Lập phương án & Tiến hành xử lý:</strong> Đạt thỏa thuận về phương án bảo hành (sửa chữa, thay thế hoặc đổi mới 1:1), PV INCONS triển khai đội ngũ kỹ thuật thi công khắc phục theo đúng cam kết.</li>
+                <li><strong>Bước 4 - Nghiệm thu bảo hành:</strong> Hai bên ký Biên bản nghiệm thu hoàn thành công tác bảo hành / đổi trả.</li>
+            </ol>
+        </section>
+
+        <section id="sec6">
+            <h2><span class="num">6</span> Các trường hợp Từ chối Bảo hành / Đổi trả</h2>
+            <div class="warning-box">
+                <strong>Các trường hợp PV INCONS không chịu trách nhiệm bảo hành miễn phí:</strong>
+                <ul>
+                    <li>Công trình hoặc sản phẩm hư hỏng do thiên tai, hỏa hoạn, sạt lở đất, lũ lụt hoặc động đất (Sự kiện Bất khả kháng).</li>
+                    <li>Chủ đầu tư hoặc bên thứ ba tự ý thay đổi kết cấu chịu lực, cải tạo nâng tầng, đục phá tường dầm mà không có sự đồng ý bằng văn bản của PV INCONS.</li>
+                    <li>Công trình bị hư hỏng do sử dụng quá tải trọng thiết kế hoặc sử dụng sai công năng đăng ký.</li>
+                    <li>Sản phẩm vật tư bị hư hỏng do Khách hàng bảo quản sai kỹ thuật tại công trường (để xi măng ướt, gạch đá va đập mạnh...).</li>
+                    <li>Hết thời hạn bảo hành ghi trên Hợp đồng và Biên bản nghiệm thu bàn giao.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="sec7">
+            <h2><span class="num">7</span> Thông tin liên hệ Bộ phận Bảo hành</h2>
+            <p>Quý Khách hàng có nhu cầu gửi yêu cầu bảo hành công trình, phản ánh dịch vụ hoặc đổi trả vật tư, vui lòng liên hệ trực tiếp:</p>
+
+            <div class="contact-card">
+                <p><strong>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</strong></p>
+                <p><strong>Mã số doanh nghiệp:</strong> 1501112147</p>
+                <p><strong>Bộ phận Chăm sóc Khách hàng & Bảo hành Công trình</strong></p>
+                <p><strong>Địa chỉ trụ sở chính:</strong> Số 292/30 đường Phan Văn Quân, tổ 8, khóm 4, Phường Thành Phước, Thị xã Bình Minh, Tỉnh Vĩnh Long, Việt Nam</p>
+                <p><strong>Địa điểm kinh doanh (Cần Thơ):</strong> Căn hộ Tầng trệt số P.007, Chung cư Hưng Phú 5 tầng lô B, đường Lý Thái Tổ, KDC Hưng Phú 1, Phường Hưng Phú, Quận Cái Răng, Thành phố Cần Thơ, Việt Nam</p>
+                <p><strong>Hotline / Zalo tiếp nhận sự cố (24/7):</strong> 0939.751.194</p>
+                <p><strong>Email tiếp nhận hồ sơ:</strong> pvincons@gmail.com</p>
+                <p><strong>Thời gian tiếp nhận khảo sát:</strong> 08:00 - 17:30 (Thứ 2 đến Thứ 7)</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS. Tất cả các quyền được bảo lưu.
+    </div>
+</div>
+
+</body>
+</html>
