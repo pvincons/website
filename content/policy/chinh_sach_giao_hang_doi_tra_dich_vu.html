@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chính Sách Giao Hàng, Đổi Trả, Hoàn Tiền & Cung Cấp, Chấm Dứt Dịch Vụ - PV INCONS</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #0f172a;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --accent-bg: #eff6ff;
+            --accent-border: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .meta-info {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--accent-border);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .toc {
+            background-color: #f1f5f9;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 15px;
+        }
+
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            font-size: 19px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 span.num {
+            background: var(--primary-color);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: #1e293b;
+            margin: 18px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .highlight-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f1f5f9;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .contact-card {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-card p {
+            margin-bottom: 8px;
+        }
+
+        .contact-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            background-color: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .header {
+                padding: 30px 15px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .toc {
+                display: none;
+            }
+        }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>CHÍNH SÁCH GIAO HÀNG, ĐỔI TRẢ VÀ HOÀN TIỀN (ÁP DỤNG CHO HÀNG HÓA) HOẶC PHƯƠNG THỨC CUNG CẤP DỊCH VỤ, CHẤM DỨT DỊCH VỤ VÀ HOÀN TIỀN (ÁP DỤNG CHO DỊCH VỤ)</h1>
+        <p>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+    </div>
+
+    <div class="content">
+        
+        <div class="meta-info">
+            <strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS<br>
+            <strong>Tên tiếng Anh:</strong> PV INCONS CONSTRUCTION AND TRADING COMPANY LIMITED<br>
+            <strong>Mã số doanh nghiệp:</strong> 1501112147<br>
+            <strong>Đăng ký lần đầu:</strong> Ngày 12/03/2020<br>
+            <strong>Cập nhật lần cuối:</strong> Ngày 22 tháng 08 năm 2026<br>
+            <em>Văn bản này được ban hành theo quy định của Luật Doanh nghiệp, Luật Xây dựng và các quy định pháp luật thương mại hiện hành tại Việt Nam.</em>
+        </div>
+    
+
+        <div class="toc">
+            <h3>MỤC LỤC TỔNG QUAN</h3>
+            <ul>
+                <li><a href="#sec1">1. Phương thức cung cấp dịch vụ thiết kế & thi công</a></li>
+                <li><a href="#sec2">2. Phương thức giao nhận hàng hóa & vật tư</a></li>
+                <li><a href="#sec3">3. Chính sách đổi trả & hoàn tiền áp dụng cho Hàng hóa</a></li>
+                <li><a href="#sec4">4. Điều kiện chấm dứt dịch vụ & hoàn tiền áp dụng cho Dịch vụ</a></li>
+                <li><a href="#sec5">5. Quy trình quyết toán tài chính & Thông tin liên hệ</a></li>
+            </ul>
+        </div>
+
+        <section id="sec1">
+            <h2><span class="num">1</span> Phương thức cung cấp dịch vụ thiết kế & thi công</h2>
+            <p><strong>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</strong> thực hiện cung cấp dịch vụ theo tiến độ thỏa thuận trong Hợp đồng giao nhận thầu:</p>
+            <ul>
+                <li><strong>Dịch vụ Tư vấn Thiết kế:</strong> Bàn giao cho Khách hàng dưới 02 hình thức:
+                    <ul>
+                        <li><em>Hồ sơ bản cứng:</em> Từ 02 - 03 bộ hồ sơ in màu/trắng đen khổ A3/A4 có ký tên và đóng dấu pháp lý của PV INCONS.</li>
+                        <li><em>Hồ sơ bản mềm:</em> File định dạng PDF / CAD gửi qua Email hoặc USB lưu trữ.</li>
+                    </ul>
+                </li>
+                <li><strong>Dịch vụ Thi công Xây dựng & Giám sát:</strong> Triển khai trực tiếp tại mặt bằng công trình của Khách hàng dưới sự điều hành của Chỉ huy trưởng và Kỹ sư giám sát. Nghiệm thu theo từng giai đoạn chuyển bước thi công.</li>
+            </ul>
+        </section>
+
+        <section id="sec2">
+            <h2><span class="num">2</span> Phương thức giao nhận hàng hóa & vật tư</h2>
+            <ul>
+                <li><strong>Địa điểm giao hàng:</strong> Vật tư, thiết bị xây dựng được giao trực tiếp tới chân công trình hoặc kho bãi do Khách hàng chỉ định.</li>
+                <li><strong>Kiểm đếm & Nghiệm thu:</strong> Ngay khi giao hàng, hai bên tiến hành kiểm đếm số lượng, chủng loại, tem nhãn và lập <em>Biên bản giao nhận vật tư</em>. Khách hàng có trách nhiệm cử đại diện ký nhận.</li>
+            </ul>
+        </section>
+
+        <section id="sec3">
+            <h2><span class="num">3</span> Chính sách đổi trả & hoàn tiền áp dụng cho Hàng hóa</h2>
+
+            <h3>a) Điều kiện được đổi trả / Hoàn tiền:</h3>
+            <ul>
+                <li>Hàng hóa không đúng chủng loại, mã sản phẩm hoặc thông số kỹ thuật đã thỏa thuận trong báo giá/hợp đồng.</li>
+                <li>Hàng hóa bị biến dạng, hỏng hóc, nứt vỡ do quá trình vận chuyển của PV INCONS.</li>
+                <li>Hàng hóa phát hiện lỗi kỹ thuật từ nhà sản xuất trong vòng <strong>07 ngày</strong> kể từ ngày bàn giao.</li>
+            </ul>
+
+            <h3>b) Quy trình hoàn tiền hàng hóa:</h3>
+            <p>Nếu không có sản phẩm cùng loại để thay thế, PV INCONS sẽ thực hiện hoàn lại tiền trong vòng <strong>03 - 05 ngày làm việc</strong> thông qua hình thức chuyển khoản ngân hàng.</p>
+        </section>
+
+        <section id="sec4">
+            <h2><span class="num">4</span> Điều kiện chấm dứt dịch vụ & hoàn tiền áp dụng cho Dịch vụ</h2>
+            
+            <div class="highlight-box">
+                <strong>Quyền đơn phương chấm dứt hợp đồng:</strong> Mỗi bên có quyền chấm dứt Hợp đồng dịch vụ nếu bên còn lại vi phạm nghiêm trọng các nghĩa vụ đã cam kết mà không khắc phục trong vòng 14 ngày kể từ khi nhận được thông báo bằng văn bản.
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 35%;">Trường hợp chấm dứt</th>
+                        <th>Quy định hoàn tiền / Bồi thường</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Chấm dứt do lỗi của PV INCONS</strong><br>(Tự ý bỏ dở công trình, vi phạm nghiêm trọng chất lượng)</td>
+                        <td>PV INCONS hoàn trả toàn bộ số tiền tạm ứng cho các phần việc chưa thực hiện, đồng thời chịu phạt vi phạm hợp đồng theo thỏa thuận.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chấm dứt do lỗi của Khách hàng</strong><br>(Chậm thanh toán kéo dài, không bàn giao mặt bằng)</td>
+                        <td>Khách hàng phải thanh toán đầy đủ chi phí cho khối lượng công việc PV INCONS đã thực hiện thực tế đến thời điểm dừng, và chịu phí vi phạm (nếu có).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chấm dứt do Bất khả kháng</strong><br>(Giải tỏa, thiên tai...)</td>
+                        <td>Hai bên nghiệm thu khối lượng thực tế đã làm để thanh toán quyết toán, không bên nào chịu phạt vi phạm.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="sec5">
+            <h2><span class="num">5</span> Quy trình quyết toán tài chính & Thông tin liên hệ</h2>
+            <p>Trong vòng 15 ngày kể từ ngày thông báo chấm dứt dịch vụ, hai bên sẽ tiến hành lập Biên bản thanh lý hợp đồng và hoàn tất nghĩa vụ thanh toán/hoàn tiền tài chính tồn đọng.</p>
+
+            
+            <div class="contact-card">
+                <p><strong>BỘ PHẬN TIẾP NHẬN & BẢO HÀNH - PV INCONS</strong></p>
+                <p><strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+                <p><strong>Tên tiếng Anh:</strong> PV INCONS CONSTRUCTION AND TRADING COMPANY LIMITED</p>
+                <p><strong>Tên viết tắt:</strong> PV INCONS CO., LTD</p>
+                <p><strong>Mã số doanh nghiệp:</strong> 1501112147 (Đăng ký lần đầu ngày 12/03/2020)</p>
+                <p><strong>Người đại diện theo pháp luật:</strong> TRẦN HOÀNG PHƯỚC - Giám đốc</p>
+                <p><strong>Chứng chỉ năng lực HĐXD:</strong> Số VIL-00050772 do Sở Xây dựng tỉnh Vĩnh Long cấp</p>
+                <p><strong>Địa chỉ trụ sở chính:</strong> Số 292/30 đường Phan Văn Quân, tổ 8, khóm 4, Phường Thành Phước, Thị xã Bình Minh, Tỉnh Vĩnh Long, Việt Nam</p>
+                <p><strong>Địa điểm kinh doanh (Cần Thơ):</strong> Căn hộ Tầng trệt số P.007, Chung cư Hưng Phú 5 tầng lô B, đường Lý Thái Tổ, KDC Hưng Phú 1, Phường Hưng Phú, Quận Cái Răng, Thành phố Cần Thơ, Việt Nam</p>
+                <p><strong>Điện thoại:</strong> 0939.751.194</p>
+                <p><strong>Email tiếp nhận:</strong> pvincons@gmail.com</p>
+                <p><strong>Thời gian làm việc:</strong> 08:00 - 17:30 (Thứ 2 đến Thứ 7)</p>
+            </div>
+    
+        </section>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS. Tất cả các quyền được bảo lưu.
+    </div>
+</div>
+
+</body>
+</html>

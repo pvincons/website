@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chính Sách Giá - PV INCONS</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #0f172a;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --accent-bg: #eff6ff;
+            --accent-border: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .meta-info {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--accent-border);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .toc {
+            background-color: #f1f5f9;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 15px;
+        }
+
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            font-size: 19px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 span.num {
+            background: var(--primary-color);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: #1e293b;
+            margin: 18px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .highlight-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f1f5f9;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .contact-card {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-card p {
+            margin-bottom: 8px;
+        }
+
+        .contact-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            background-color: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .header {
+                padding: 30px 15px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .toc {
+                display: none;
+            }
+        }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>CHÍNH SÁCH GIÁ</h1>
+        <p>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+    </div>
+
+    <div class="content">
+        
+        <div class="meta-info">
+            <strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS<br>
+            <strong>Tên tiếng Anh:</strong> PV INCONS CONSTRUCTION AND TRADING COMPANY LIMITED<br>
+            <strong>Mã số doanh nghiệp:</strong> 1501112147<br>
+            <strong>Đăng ký lần đầu:</strong> Ngày 12/03/2020<br>
+            <strong>Cập nhật lần cuối:</strong> Ngày 22 tháng 08 năm 2026<br>
+            <em>Văn bản này được ban hành theo quy định của Luật Doanh nghiệp, Luật Xây dựng và các quy định pháp luật thương mại hiện hành tại Việt Nam.</em>
+        </div>
+    
+
+        <div class="toc">
+            <h3>MỤC LỤC TỔNG QUAN</h3>
+            <ul>
+                <li><a href="#sec1">1. Nguyên tắc niêm yết & Xây dựng giá</a></li>
+                <li><a href="#sec2">2. Cơ cấu giá dịch vụ tư vấn & Thi công xây dựng</a></li>
+                <li><a href="#sec3">3. Giá hàng hóa & Vật tư xây dựng</a></li>
+                <li><a href="#sec4">4. Quy định điều chỉnh giá & Chi phí phát sinh</a></li>
+                <li><a href="#sec5">5. Ưu đãi & Thông tin liên hệ báo giá</a></li>
+            </ul>
+        </div>
+
+        <section id="sec1">
+            <h2><span class="num">1</span> Nguyên tắc niêm yết & Xây dựng giá</h2>
+            <p><strong>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</strong> tuân thủ nguyên tắc công khai, minh bạch, chính xác và cạnh tranh trong việc niêm yết và cung cấp báo giá dịch vụ xây dựng, thiết kế cũng như thương mại hàng hóa.</p>
+            
+            <div class="highlight-box">
+                <strong>Cam kết đơn giá:</strong> Giá dịch vụ và hàng hóa do PV INCONS cung cấp được tính toán dựa trên khối lượng thực tế, định mức kỹ thuật chuyên ngành xây dựng và mặt bằng giá thị trường.
+            </div>
+
+            <ul>
+                <li>Tất cả đơn giá báo cho Khách hàng đều được thể hiện bằng đơn vị tiền tệ <strong>Việt Nam Đồng (VND)</strong>.</li>
+                <li>Báo giá công khai rõ ràng trạng thái đã bao gồm hoặc chưa bao gồm Thuế giá trị gia tăng (VAT 8% hoặc 10% tùy thời điểm pháp luật quy định).</li>
+            </ul>
+        </section>
+
+        <section id="sec2">
+            <h2><span class="num">2</span> Cơ cấu giá dịch vụ tư vấn & Thi công xây dựng</h2>
+            <p>Tùy thuộc vào quy mô, cấp công trình (Cấp III theo Chứng chỉ năng lực số VIL-00050772) và yêu cầu kỹ thuật, đơn giá được quy định cụ thể như sau:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Hạng mục dịch vụ</th>
+                        <th style="width: 35%;">Căn cứ tính giá</th>
+                        <th>Ghi chú đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tư vấn & Thiết kế kiến trúc, kết cấu</strong></td>
+                        <td>Đơn giá theo m² sàn xây dựng (VND/m²) hoặc tỷ lệ % tổng mức đầu tư công trình.</td>
+                        <td>Bao gồm thiết kế kiến trúc, 3D, kết cấu, điện nước (MEP) và hồ sơ xin phép xây dựng.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thẩm tra thiết kế xây dựng</strong></td>
+                        <td>Theo quy chuẩn chi phí quản lý dự án & tư vấn đầu tư xây dựng của Bộ Xây dựng.</td>
+                        <td>Áp dụng cho công trình dân dụng, công nghiệp, hạ tầng kỹ thuật Hạng III.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thi công xây dựng phần thô</strong></td>
+                        <td>Đơn giá theo m² sàn hoặc Dự toán chi tiết theo Tiên lượng khối lượng (BOQ).</td>
+                        <td>Bao gồm vật tư phần thô đạt chuẩn và nhân công hoàn thiện.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thi công trọn gói (Chìa khóa trao tay)</strong></td>
+                        <td>Báo giá trọn gói theo hồ sơ thiết kế kỹ thuật thi công được duyệt.</td>
+                        <td>Cam kết không phát sinh nếu không thay đổi thiết kế ban đầu.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Giám sát thi công xây dựng</strong></td>
+                        <td>Tính theo tháng, theo ca làm việc hoặc tỷ lệ % giá trị gói thầu thi công.</td>
+                        <td>Đảm bảo sự có mặt của kỹ sư giám sát có chứng chỉ hành nghề.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="sec3">
+            <h2><span class="num">3</span> Giá hàng hóa & Vật tư xây dựng</h2>
+            <p>Đối với hoạt động kinh doanh thương mại vật liệu và thiết bị xây dựng:</p>
+            <ul>
+                <li><strong>Giá niêm yết:</strong> Đơn giá được niêm yết tại Bảng báo giá vật tư chính thức của PV INCONS hoặc cập nhật trên hệ thống thông tin của công ty.</li>
+                <li><strong>Giá theo đơn hàng số lượng lớn:</strong> Chiết khấu thương mại sẽ được áp dụng trực tiếp đối với các đơn hàng cung cấp vật tư công trình lớn theo thỏa thuận cụ thể.</li>
+                <li><strong>Chi phí vận chuyển:</strong> Giá hàng hóa có thể đã bao gồm hoặc chưa bao gồm chi phí vận chuyển, bốc xếp tới chân công trình (được ghi rõ trong Báo giá/Hợp đồng).</li>
+            </ul>
+        </section>
+
+        <section id="sec4">
+            <h2><span class="num">4</span> Quy định điều chỉnh giá & Chi phí phát sinh</h2>
+            <p>Đơn giá trong Hợp đồng đã ký kết là cố định, trừ các trường hợp sau:</p>
+            <ul>
+                <li><strong>Khách hàng thay đổi yêu cầu:</strong> Khách hàng chủ động yêu cầu thay đổi phương án thiết kế, bổ sung hạng mục thi công ngoài phạm vi Hợp đồng ban đầu. Chi phí phát sinh sẽ được tính theo Đơn giá bổ sung ký bằng Phụ lục hợp đồng.</li>
+                <li><strong>Biến động giá nguyên vật liệu Nhà nước:</strong> Đối với hợp đồng thi công dài hạn có điều khoản điều chỉnh giá, nếu giá nguyên vật liệu đầu vào (thép, xi măng, cát, đá...) biến động trên ±10% theo công bố giá của Sở Xây dựng địa phương, hai bên sẽ bàn bạc điều chỉnh theo thực tế.</li>
+                <li><strong>Sự cố địa chất ngoài dự báo:</strong> Phát sinh xử lý nền móng đặc biệt ngoài phạm vi khảo sát ban đầu.</li>
+            </ul>
+        </section>
+
+        <section id="sec5">
+            <h2><span class="num">5</span> Ưu đãi & Thông tin liên hệ báo giá</h2>
+            <p>PV INCONS thường xuyên áp dụng chính sách giảm chi phí thiết kế (từ 50% - 100%) đối với Khách hàng ký Hợp đồng thi công xây dựng trọn gói.</p>
+
+            
+            <div class="contact-card">
+                <p><strong>BỘ PHẬN TIẾP NHẬN & BẢO HÀNH - PV INCONS</strong></p>
+                <p><strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+                <p><strong>Tên tiếng Anh:</strong> PV INCONS CONSTRUCTION AND TRADING COMPANY LIMITED</p>
+                <p><strong>Tên viết tắt:</strong> PV INCONS CO., LTD</p>
+                <p><strong>Mã số doanh nghiệp:</strong> 1501112147 (Đăng ký lần đầu ngày 12/03/2020)</p>
+                <p><strong>Người đại diện theo pháp luật:</strong> TRẦN HOÀNG PHƯỚC - Giám đốc</p>
+                <p><strong>Chứng chỉ năng lực HĐXD:</strong> Số VIL-00050772 do Sở Xây dựng tỉnh Vĩnh Long cấp</p>
+                <p><strong>Địa chỉ trụ sở chính:</strong> Số 292/30 đường Phan Văn Quân, tổ 8, khóm 4, Phường Thành Phước, Thị xã Bình Minh, Tỉnh Vĩnh Long, Việt Nam</p>
+                <p><strong>Địa điểm kinh doanh (Cần Thơ):</strong> Căn hộ Tầng trệt số P.007, Chung cư Hưng Phú 5 tầng lô B, đường Lý Thái Tổ, KDC Hưng Phú 1, Phường Hưng Phú, Quận Cái Răng, Thành phố Cần Thơ, Việt Nam</p>
+                <p><strong>Điện thoại:</strong> 0939.751.194</p>
+                <p><strong>Email tiếp nhận:</strong> pvincons@gmail.com</p>
+                <p><strong>Thời gian làm việc:</strong> 08:00 - 17:30 (Thứ 2 đến Thứ 7)</p>
+            </div>
+    
+        </section>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS. Tất cả các quyền được bảo lưu.
+    </div>
+</div>
+
+</body>
+</html>
