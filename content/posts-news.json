@@ -142,11 +142,11 @@
   {
     "id": 1,
     "category": "tin-noi-bat",
-    "label": "Công nghệ",
+    "categoryLabel": "",
     "date": "2026-08-01",
     "title": "PV INCONS Xây dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC",
     "summary": "Thực hiện quy trình kỹ thuật tiên tiến, tối ưu hóa phối hợp nhóm bằng mô hình thông tin công trình BIM trên nền tảng đám mây.",
-    "image": "https://pin.it/cHDUKPwaf",
-    "link": "content/notlink/notlink.html"
+    "link": "content/notlink/waiting.html",
+    "image": "https://pin.it/cHDUKPwaf"
   }
 ]
