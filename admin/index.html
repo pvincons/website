@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>PV INCONS Data Website Admin</title>
-  <!-- Favicon chống loop loading favicon -->
+  <!-- Favicon đường dẫn tương đối gốc -->
   <link rel="icon" type="image/webp" href="../assets/pic/LOGO_PVI.webp">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -77,30 +77,6 @@
     /* Font chữ nội dung chữ hướng dẫn (placeholder) */
     input::placeholder,
     textarea::placeholder {
-      font-family: 'Inter', sans-serif !important;
-      font-size: 10px !important;
-      color: #6b7280 !important;
-      opacity: 0.6 !important;
-    }
-
-    input::-webkit-input-placeholder,
-    textarea::-webkit-input-placeholder {
-      font-family: 'Inter', sans-serif !important;
-      font-size: 10px !important;
-      color: #6b7280 !important;
-      opacity: 0.6 !important;
-    }
-
-    input::-moz-placeholder,
-    textarea::-moz-placeholder {
-      font-family: 'Inter', sans-serif !important;
-      font-size: 10px !important;
-      color: #6b7280 !important;
-      opacity: 0.6 !important;
-    }
-
-    input:-ms-input-placeholder,
-    textarea:-ms-input-placeholder {
       font-family: 'Inter', sans-serif !important;
       font-size: 10px !important;
       color: #6b7280 !important;
@@ -459,8 +435,8 @@
                   class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
               <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Tổng thầu (<code
-                    class="text-rose-400">Main Contractor</code>)</label>
+                <label class="block text-xs font-semibold text-gray-300">Thiết kế / Tổng thầu (<code
+                    class="text-rose-400">architect</code>)</label>
                 <input type="text" id="input-architect" placeholder="VD: PV INCONS / Partner"
                   class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
               </div>
@@ -668,12 +644,42 @@
     };
 
     let authConfig = JSON.parse(localStorage.getItem('pv_github_auth')) || null;
-    let db = JSON.parse(localStorage.getItem('pv_studio_db')) || { news: [], projects: [], services: [], investment: [], hr: [] };
+
+    // Cách ly dữ liệu LocalStorage theo Repository để tránh xung đột
+    function getDbStorageKey() {
+      if (authConfig && authConfig.owner && authConfig.repo) {
+        return `pv_studio_db_${authConfig.owner}_${authConfig.repo}`;
+      }
+      return 'pv_studio_db_default';
+    }
+
+    function loadLocalDB() {
+      const key = getDbStorageKey();
+      return JSON.parse(localStorage.getItem(key)) || { news: [], projects: [], services: [], investment: [], hr: [] };
+    }
+
+    function saveLocalDB() {
+      const key = getDbStorageKey();
+      localStorage.setItem(key, JSON.stringify(db));
+    }
+
+    let db = loadLocalDB();
 
     let currentFolder = "news";
     let currentTitle = "Tin tức";
     let editingPostId = null;
     let currentFilteredPosts = [];
+
+    // Hàm chống lỗi XSS mã hóa dữ liệu đầu ra HTML
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
 
     function utf8_to_b64(str) {
       return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
@@ -694,7 +700,7 @@
       const iconClass = isSuccess ? 'fa-circle-check' : isError ? 'fa-circle-exclamation' : 'fa-circle-info';
 
       toast.className = `toast-animate border ${borderColor} ${bgColor} ${textColor} p-3 rounded-lg shadow-xl flex items-center gap-2.5 text-xs font-medium pointer-events-auto`;
-      toast.innerHTML = `<i class="fa-solid ${iconClass} shrink-0 text-sm"></i><span>${message}</span>`;
+      toast.innerHTML = `<i class="fa-solid ${iconClass} shrink-0 text-sm"></i><span>${escapeHtml(message)}</span>`;
       toastContainer.appendChild(toast);
       setTimeout(() => { toast.remove(); }, 3000);
     }
@@ -718,10 +724,13 @@
       }
       authConfig = { owner, repo, token };
       localStorage.setItem('pv_github_auth', JSON.stringify(authConfig));
+      db = loadLocalDB();
       document.getElementById('login-modal').classList.add('hidden');
       document.getElementById('admin-workspace').classList.remove('hidden');
       document.getElementById('display-repo-info').innerText = `${owner}/${repo}`;
       showToast('Đã xác thực thành công!');
+      updateTabCounts();
+      renderPostsList();
     });
 
     document.getElementById('btn-logout').addEventListener('click', () => {
@@ -770,26 +779,25 @@
     setupDragAndDrop('drop-zone-image', 'input-image', 'images/');
     setupDragAndDrop('drop-zone-link', 'input-link', 'content/');
 
-    /* HÀM CẬP NHẬT GIAO DIỆN XEM TRƯỚC (LIVE PREVIEW) - FIX LỖI TẢI ẢNH LẶP VÔ HẠN */
     const DEFAULT_FALLBACK_IMG = "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=600&q=80";
 
     function updateLivePreview() {
       const container = document.getElementById('live-preview-box');
       if (!container) return;
 
-      const title = document.getElementById('input-title').value.trim() || 'Tiêu đề bài viết / Nội dung mẫu...';
-      const catLabel = document.getElementById('input-category-label').value.trim() || document.getElementById('select-category').value || 'Danh mục';
-      const date = document.getElementById('input-date-picker').value || new Date().toISOString().split('T')[0];
-      const summary = document.getElementById('input-summary').value.trim() || 'Mô tả tóm tắt nội dung bài viết sẽ hiển thị tại đây trên giao diện trang chủ website...';
-      const image = document.getElementById('input-image').value.trim() || DEFAULT_FALLBACK_IMG;
-      const link = document.getElementById('input-link').value.trim() || '#';
+      const title = escapeHtml(document.getElementById('input-title').value.trim() || 'Tiêu đề bài viết / Nội dung mẫu...');
+      const catLabel = escapeHtml(document.getElementById('input-category-label').value.trim() || document.getElementById('select-category').value || 'Danh mục');
+      const date = escapeHtml(document.getElementById('input-date-picker').value || new Date().toISOString().split('T')[0]);
+      const summary = escapeHtml(document.getElementById('input-summary').value.trim() || 'Mô tả tóm tắt nội dung bài viết sẽ hiển thị tại đây trên giao diện trang chủ website...');
+      const image = escapeHtml(document.getElementById('input-image').value.trim() || DEFAULT_FALLBACK_IMG);
+      const link = escapeHtml(document.getElementById('input-link').value.trim() || '#');
 
       if (currentFolder === 'hr') {
-        const type = document.getElementById('input-hr-type').value.trim() || 'Toàn thời gian';
-        const salary = document.getElementById('input-hr-salary').value.trim() || 'Lương: Thỏa thuận';
-        const location = document.getElementById('input-hr-location').value.trim() || 'Cần Thơ';
-        const deadline = document.getElementById('input-hr-deadline').value.trim() || 'Đang tuyển';
-        const req = document.getElementById('input-hr-requirement').value.trim() || 'Yêu cầu chuyên môn kĩ thuật, bằng cấp & kinh nghiệm thực tế...';
+        const type = escapeHtml(document.getElementById('input-hr-type').value.trim() || 'Toàn thời gian');
+        const salary = escapeHtml(document.getElementById('input-hr-salary').value.trim() || 'Lương: Thỏa thuận');
+        const location = escapeHtml(document.getElementById('input-hr-location').value.trim() || 'Cần Thơ');
+        const deadline = escapeHtml(document.getElementById('input-hr-deadline').value.trim() || 'Đang tuyển');
+        const req = escapeHtml(document.getElementById('input-hr-requirement').value.trim() || 'Yêu cầu chuyên môn kĩ thuật, bằng cấp & kinh nghiệm thực tế...');
 
         container.innerHTML = `
           <div class="bg-[#141722] border border-[#2a2e3d] rounded-lg p-4 space-y-3 hover:border-rose-500/40 transition shadow-md">
@@ -815,7 +823,7 @@
             ${req ? `<p class="text-xs text-gray-400 line-clamp-2 bg-[#0d0f14] p-2.5 rounded border border-[#1e222d] leading-relaxed">${req}</p>` : ''}
 
             <div class="flex items-center justify-between pt-1 text-xs">
-              <span class="text-[10px] text-gray-500 font-mono">ID #${document.getElementById('input-id').value || '1'}</span>
+              <span class="text-[10px] text-gray-500 font-mono">ID #${escapeHtml(document.getElementById('input-id').value || '1')}</span>
               <button class="bg-rose-600 hover:bg-rose-500 text-white text-[11px] px-3 py-1 rounded font-medium transition flex items-center gap-1">
                 <span>Ứng tuyển ngay</span>
                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -824,9 +832,9 @@
           </div>
         `;
       } else if (currentFolder === 'projects') {
-        const code = document.getElementById('input-code').value.trim() || 'PRJ-2026';
-        const scale = document.getElementById('input-scale').value.trim() || 'Chưa cập nhật quy mô';
-        const client = document.getElementById('input-client').value.trim() || 'PV INCONS Client';
+        const code = escapeHtml(document.getElementById('input-code').value.trim() || 'PRJ-2026');
+        const scale = escapeHtml(document.getElementById('input-scale').value.trim() || 'Chưa cập nhật quy mô');
+        const client = escapeHtml(document.getElementById('input-client').value.trim() || 'PV INCONS Client');
 
         container.innerHTML = `
           <div class="bg-[#141722] border border-[#2a2e3d] rounded-lg overflow-hidden flex flex-col sm:flex-row hover:border-rose-500/40 transition shadow-md group">
@@ -858,9 +866,8 @@
           </div>
         `;
       } else {
-        // News, Services, Investment
         const iconClass = (currentFolder === 'services' || currentFolder === 'investment')
-          ? document.getElementById('input-service-icon').value
+          ? escapeHtml(document.getElementById('input-service-icon').value)
           : 'fa-newspaper';
 
         container.innerHTML = `
@@ -987,7 +994,8 @@
       const searchVal = document.getElementById('filter-search').value.toLowerCase().trim();
 
       if (catVal) posts = posts.filter(p => p.category === catVal);
-      if (searchVal) posts = posts.filter(p => (p.title && p.title.toLowerCase().includes(searchVal)) || (p.label && p.label.toLowerCase().includes(searchVal)));
+      // Đã thống nhất tra cứu theo categoryLabel
+      if (searchVal) posts = posts.filter(p => (p.title && p.title.toLowerCase().includes(searchVal)) || (p.categoryLabel && p.categoryLabel.toLowerCase().includes(searchVal)));
 
       if (sortVal === 'id-desc') posts.sort((a, b) => b.id - a.id);
       else posts.sort((a, b) => a.id - b.id);
@@ -1007,12 +1015,12 @@
 
         div.innerHTML = `
           <div class="flex items-center justify-between text-[11px]">
-            <span class="font-mono text-rose-400 font-bold">#${post.id}</span>
-            <span class="bg-[#1e222d] text-gray-300 px-1.5 py-0.5 rounded font-mono text-[10px]">${post.category || 'N/A'}</span>
+            <span class="font-mono text-rose-400 font-bold">#${escapeHtml(post.id)}</span>
+            <span class="bg-[#1e222d] text-gray-300 px-1.5 py-0.5 rounded font-mono text-[10px]">${escapeHtml(post.category || 'N/A')}</span>
           </div>
-          <div class="text-xs font-semibold text-gray-200 line-clamp-2 leading-snug">${post.title || 'Chưa có tiêu đề'}</div>
+          <div class="text-xs font-semibold text-gray-200 line-clamp-2 leading-snug">${escapeHtml(post.title || 'Chưa có tiêu đề')}</div>
           <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1 border-t border-[#1e222d]">
-            <span>${post.type || post.date || ''}</span>
+            <span>${escapeHtml(post.type || post.date || '')}</span>
             <div class="flex items-center gap-1">
               <button onclick="editPost(${post.id})" class="p-1 hover:text-amber-400" title="Sửa"><i class="fa-solid fa-pen-to-square"></i></button>
               <button onclick="deletePost(${post.id})" class="p-1 hover:text-rose-400" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
@@ -1067,6 +1075,13 @@
       updateLivePreview();
     }
 
+    // Kiểm tra xem người dùng có dữ liệu chưa lưu trên Form không
+    function isFormDirty() {
+      const title = document.getElementById('input-title').value.trim();
+      const summary = document.getElementById('input-summary').value.trim();
+      return title !== '' || summary !== '';
+    }
+
     window.editPost = function (id) {
       const posts = db[currentFolder] || [];
       const post = posts.find(p => p.id === id);
@@ -1081,7 +1096,8 @@
 
       document.getElementById('input-id').value = post.id;
       document.getElementById('select-category').value = post.category || '';
-      document.getElementById('input-category-label').value = post.label || '';
+      // Đã thống nhất key categoryLabel
+      document.getElementById('input-category-label').value = post.categoryLabel || '';
       document.getElementById('input-date-picker').value = post.date || '';
       document.getElementById('input-title').value = post.title || '';
       document.getElementById('input-summary').value = post.summary || '';
@@ -1114,7 +1130,7 @@
     window.deletePost = function (id) {
       if (!confirm(`Bạn có chắc muốn xóa bài viết ID #${id}?`)) return;
       db[currentFolder] = db[currentFolder].filter(p => p.id !== id);
-      localStorage.setItem('pv_studio_db', JSON.stringify(db));
+      saveLocalDB();
 
       if (editingPostId === id) resetForm();
       updateTabCounts();
@@ -1180,7 +1196,7 @@
       }
 
       db[currentFolder] = posts;
-      localStorage.setItem('pv_studio_db', JSON.stringify(db));
+      saveLocalDB();
 
       resetForm();
       updateTabCounts();
@@ -1192,6 +1208,12 @@
 
     document.querySelectorAll('.nav-tab').forEach(tab => {
       tab.addEventListener('click', () => {
+        if (isFormDirty()) {
+          if (!confirm('Bạn có thông tin chưa lưu trên form. Chuyển tab sẽ làm mất dữ liệu vừa nhập, bạn có chắc chắn?')) {
+            return;
+          }
+        }
+
         document.querySelectorAll('.nav-tab').forEach(t => {
           t.classList.remove('active', 'bg-rose-600/10', 'text-rose-400', 'border-rose-500/20');
           t.classList.add('text-gray-400', 'border-transparent');
@@ -1215,7 +1237,6 @@
     document.getElementById('filter-category').addEventListener('change', renderPostsList);
     document.getElementById('filter-search').addEventListener('input', renderPostsList);
 
-    /* TỰ ĐỘNG CẬP NHẬT LIVE PREVIEW CÓ DEBOUNCE CHỐNG LAG NETWORK */
     let previewTimer = null;
     function debouncedPreview() {
       clearTimeout(previewTimer);
@@ -1260,8 +1281,15 @@
         try {
           const imported = JSON.parse(event.target.result);
           if (Array.isArray(imported)) {
+            // Kiểm tra cấu trúc cơ bản của file JSON trước khi nạp
+            const isValidStructure = imported.every(item => typeof item === 'object' && item !== null && 'id' in item);
+            if (!isValidStructure && imported.length > 0) {
+              showToast('Lỗi: File JSON không khớp cấu trúc bài viết (thiếu mã id)!', 'error');
+              return;
+            }
+
             db[currentFolder] = imported;
-            localStorage.setItem('pv_studio_db', JSON.stringify(db));
+            saveLocalDB();
             updateTabCounts();
             renderPostsList();
             resetForm();
@@ -1317,7 +1345,7 @@
         const jsonParsed = JSON.parse(contentUtf8);
 
         db[currentFolder] = Array.isArray(jsonParsed) ? jsonParsed : [];
-        localStorage.setItem('pv_studio_db', JSON.stringify(db));
+        saveLocalDB();
 
         updateTabCounts();
         renderPostsList();
