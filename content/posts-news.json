@@ -2,9 +2,9 @@
   {
     "id": 18,
     "category": "khach-hang-bao-chi",
-    "label": "Công nghệ",
+    "categoryLabel": "Công nghệ",
     "date": "2026-08-22",
-    "title": "Đánh Giá Của Chủ Đầu Tư Về Chất Lượng Dịch Vụ Thiết Kế Trọn Gói",
+    "title": "Đánh Giá Của Chủ Đầu Tư Về Chất Lượng Dịch Vụ",
     "summary": "Lắng nghe những chia sẻ thực tế từ các đối tác và khách hàng sau khi hoàn thành dự án bàn giao nhà phố và biệt thự.",
     "image": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?q=80&w=800&auto=format&fit=crop",
     "link": "content/news/news_018.html"
@@ -13,9 +13,9 @@
     "id": 17,
     "category": "phap-luat",
     "categoryLabel": "Pháp luật",
+    "date": "",
     "title": "Quy Trình Chuyển Đổi Mục Đích Sử Dụng Đất Lên Thổ Cư Tỉnh Vĩnh Long",
     "summary": "Chi phí, hạn mức và quy trình các bước pháp lý nộp hồ sơ xin chuyển mục đích sử dụng đất nông nghiệp chi tiết nhất.",
-    "date": "10/06/2026",
     "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop",
     "link": "content/news/news_017.html"
   },
