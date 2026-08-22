@@ -1,15 +1,5 @@
 [
   {
-    "id": 20,
-    "category": "tin-noi-bat",
-    "label": "",
-    "date": "",
-    "title": "Hợp Đồng Thi Công Tiêu Chuẩn Cho Khách Hàng",
-    "summary": "Bộ tài liệu mẫu hợp đồng thi công pháp lý khép kín, minh bạch bảo vệ quyền lợi song phương giữa Chủ đầu tư và Nhà thầu do PV INCONS biên soạn.",
-    "image": "https://images.unsplash.com/photo-1618090584176-7132b9911657?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_020.html"
-  },
-  {
     "id": 18,
     "category": "khach-hang-bao-chi",
     "categoryLabel": "Khách hàng & Báo chí",
@@ -152,11 +142,11 @@
   {
     "id": 1,
     "category": "tin-noi-bat",
-    "categoryLabel": "Tin nổi bật",
-    "title": "PV INCONS Xây Dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC",
+    "label": "Công nghệ",
+    "date": "2026-08-01",
+    "title": "PV INCONS Xây dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC",
     "summary": "Thực hiện quy trình kỹ thuật tiên tiến, tối ưu hóa phối hợp nhóm bằng mô hình thông tin công trình BIM trên nền tảng đám mây.",
-    "date": "14/08/2026",
-    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_001.html"
+    "image": "https://pin.it/cHDUKPwaf",
+    "link": "content/notlink/notlink.html"
   }
 ]
