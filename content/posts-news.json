@@ -131,13 +131,13 @@
   },
   {
     "id": 4,
-    "category": "chuyen-gia",
-    "categoryLabel": "Chuyên gia",
+    "category": "tin-noi-bat",
+    "categoryLabel": "Thiết kế",
+    "date": "",
     "title": "Ứng Dụng Tiêu Chuẩn AIA & MasterFormat Trong Quản Lý Hồ Sơ",
     "summary": "Tìm hiểu cách hệ thống hóa hồ sơ thiết kế, thiết lập Kế hoạch thực thi BIM (BEP) chuẩn mực dựa trên bảng phân loại của AIA.",
-    "date": "05/08/2026",
-    "image": "https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_004.html"
+    "link": "content/news/news_004.html",
+    "image": "https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=800&auto=format&fit=crop"
   },
   {
     "id": 1,
