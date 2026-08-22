@@ -240,8 +240,7 @@
 
 <!-- FLOATING CHAT BUTTON -->
 <a href="javascript:void(0)"
-    
-    onclick="var p = confirm('Chọn [Hotline] để chọn 0909751194, chọn [CSKH] để chọn 0772194789') ? '0909751194' : '0772194789'; if(window.innerWidth < 768){ window.location.href='tel:' + p; } else { window.open('https://zalo.me/0772194789', '_blank'); }"
+    onclick="if(window.innerWidth < 768){ window.location.href='tel:0909751194'; } else { window.open('https://zalo.me/0772194789', '_blank'); }"
     class="chat-float-btn" title="Liên hệ tư vấn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
         class="chat-icon hidden md:block w-6 h-6">
