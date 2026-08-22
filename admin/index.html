@@ -528,12 +528,12 @@
             <div class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code
                   class="text-rose-400">summary</code>)</label>
-              <textarea id="input-summary" rows="3" placeholder="VD: Tóm tắt nội dung chính của bài viết."
+              <textarea id="input-summary" rows="3" placeholder="VD: Tóm tắt nội dung chính hoặc đơn giá tham khảo..."
                 class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-sm"></textarea>
             </div>
 
-            <!-- KÉO THẢ DÀNH CHO HÌNH ẢNH -->
-            <div class="space-y-1.5">
+            <!-- KÉO THẢ DÀNH CHO HÌNH ẢNH (ẨN KHI Ở TAB DỊCH VỤ & QUAN HỆ ĐẦU TƯ) -->
+            <div id="wrapper-image-field" class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code
                   class="text-rose-400">image</code>)</label>
               <div id="drop-zone-image"
@@ -788,7 +788,7 @@
       const title = escapeHtml(document.getElementById('input-title').value.trim() || 'Tiêu đề bài viết / Nội dung mẫu...');
       const catLabel = escapeHtml(document.getElementById('input-category-label').value.trim() || document.getElementById('select-category').value || 'Danh mục');
       const date = escapeHtml(document.getElementById('input-date-picker').value || new Date().toISOString().split('T')[0]);
-      const summary = escapeHtml(document.getElementById('input-summary').value.trim() || 'Mô tả tóm tắt nội dung bài viết sẽ hiển thị tại đây trên giao diện trang chủ website...');
+      const summary = escapeHtml(document.getElementById('input-summary').value.trim() || '');
       const image = escapeHtml(document.getElementById('input-image').value.trim() || DEFAULT_FALLBACK_IMG);
       const link = escapeHtml(document.getElementById('input-link').value.trim() || '#');
 
@@ -849,7 +849,7 @@
                   <span><i class="fa-solid fa-calendar text-[9px] mr-1"></i>${date}</span>
                 </div>
                 <h4 class="text-xs font-bold text-gray-100 line-clamp-1 group-hover:text-rose-400 transition">${title}</h4>
-                <p class="text-[11px] text-gray-400 line-clamp-2 mt-1 leading-snug">${summary}</p>
+                <p class="text-[11px] text-gray-400 line-clamp-2 mt-1 leading-snug">${summary || 'Mô tả dự án...'}</p>
               </div>
 
               <div class="space-y-1 text-[10px] text-gray-300 border-t border-[#222630] pt-2">
@@ -865,11 +865,57 @@
             </div>
           </div>
         `;
+      } else if (currentFolder === 'investment') {
+        /* PREVIEW CHUẨN MẪU KHÔNG CÓ ANH CHO QUAN HỆ ĐẦU TƯ */
+        container.innerHTML = `
+          <div class="bg-[#141722] border border-[#2a2e3d] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-rose-500/40 transition shadow-md group">
+            <div class="space-y-1.5 flex-1 min-w-0">
+              <h4 class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-rose-400 transition leading-snug">
+                ${title}
+              </h4>
+              <p class="text-[11px] text-gray-400 flex items-center gap-1.5">
+                <i class="fa-regular fa-clock text-[10px] text-rose-400"></i>
+                <span>Đăng tải ngày: ${date}</span>
+              </p>
+              ${summary ? `<p class="text-[11px] text-gray-400 line-clamp-2 leading-relaxed pt-0.5">${summary}</p>` : ''}
+            </div>
+            <div class="shrink-0">
+              <a href="${link}" onclick="return false;" class="bg-[#1b2333] hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold px-4 py-2 rounded-lg transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-download text-xs"></i>
+                <span>Tải về</span>
+              </a>
+            </div>
+          </div>
+        `;
+      } else if (currentFolder === 'services') {
+        /* PREVIEW CHUẨN MẪU KHÔNG CÓ ANH CHO TAB DỊCH VỤ */
+        container.innerHTML = `
+          <div class="bg-[#141722] border border-[#2a2e3d] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-rose-500/40 transition shadow-md group">
+            <div class="space-y-1.5 flex-1 min-w-0">
+              <h4 class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-rose-400 transition leading-snug">
+                ${title}
+              </h4>
+              ${summary ? `
+                <p class="text-[11px] text-amber-300/90 font-medium flex items-center gap-1">
+                  <i class="fa-solid fa-tag text-[10px] text-amber-400"></i>
+                  <span>${summary}</span>
+                </p>
+              ` : ''}
+            </div>
+            <div class="flex sm:flex-col gap-2 shrink-0">
+              <a href="${link}" onclick="return false;" class="bg-[#1b2333] hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center justify-center gap-1.5 shadow">
+                <i class="fa-solid fa-download text-xs"></i>
+                <span>Tải báo giá</span>
+              </a>
+              <button class="bg-[#1e222d] hover:bg-gray-700 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center justify-center gap-1.5 border border-[#2a2e3d]">
+                <i class="fa-solid fa-eye text-xs"></i>
+                <span>Xem quy trình</span>
+              </button>
+            </div>
+          </div>
+        `;
       } else {
-        const iconClass = (currentFolder === 'services' || currentFolder === 'investment')
-          ? escapeHtml(document.getElementById('input-service-icon').value)
-          : 'fa-newspaper';
-
+        // TIN TỨC (NEWS)
         container.innerHTML = `
           <div class="bg-[#141722] border border-[#2a2e3d] rounded-lg overflow-hidden flex flex-col sm:flex-row hover:border-rose-500/40 transition shadow-md group">
             <div class="sm:w-1/3 h-32 sm:h-auto relative overflow-hidden bg-[#0d0f14] shrink-0 flex items-center justify-center">
@@ -879,13 +925,13 @@
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between text-[10px]">
                   <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded font-semibold flex items-center gap-1">
-                    <i class="fa-solid ${iconClass} text-[10px]"></i>
+                    <i class="fa-solid fa-newspaper text-[10px]"></i>
                     ${catLabel}
                   </span>
                   <span class="text-gray-400 font-mono"><i class="fa-solid fa-clock text-[9px] mr-1"></i>${date}</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-gray-100 line-clamp-2 group-hover:text-rose-400 transition leading-snug">${title}</h4>
-                <p class="text-[11px] text-gray-400 line-clamp-2 leading-relaxed">${summary}</p>
+                <p class="text-[11px] text-gray-400 line-clamp-2 leading-relaxed">${summary || 'Mô tả tóm tắt nội dung bài viết sẽ hiển thị tại đây...'}</p>
               </div>
 
               <div class="flex items-center justify-between pt-2 border-t border-[#222630] text-[11px]">
@@ -938,10 +984,15 @@
       };
 
       const isHr = currentFolder === 'hr';
+      const isNoImageTab = currentFolder === 'services' || currentFolder === 'investment';
+
       document.getElementById('project-extra-fields').classList.toggle('hidden', currentFolder !== 'projects');
-      document.getElementById('service-extra-fields').classList.toggle('hidden', currentFolder !== 'services' && currentFolder !== 'investment');
+      document.getElementById('service-extra-fields').classList.toggle('hidden', !isNoImageTab);
       document.getElementById('hr-extra-fields').classList.toggle('hidden', !isHr);
       document.getElementById('standard-common-fields').classList.toggle('hidden', isHr);
+
+      // Ẩn/Hiện ô nhập đường dẫn hình ảnh cho Tab Dịch vụ và Quan hệ đầu tư
+      document.getElementById('wrapper-image-field').classList.toggle('hidden', isNoImageTab);
 
       const titleLabel = document.getElementById('title-field-label');
       if (titleLabel) {
@@ -994,7 +1045,6 @@
       const searchVal = document.getElementById('filter-search').value.toLowerCase().trim();
 
       if (catVal) posts = posts.filter(p => p.category === catVal);
-      // Đã thống nhất tra cứu theo categoryLabel
       if (searchVal) posts = posts.filter(p => (p.title && p.title.toLowerCase().includes(searchVal)) || (p.categoryLabel && p.categoryLabel.toLowerCase().includes(searchVal)));
 
       if (sortVal === 'id-desc') posts.sort((a, b) => b.id - a.id);
@@ -1075,7 +1125,6 @@
       updateLivePreview();
     }
 
-    // Kiểm tra xem người dùng có dữ liệu chưa lưu trên Form không
     function isFormDirty() {
       const title = document.getElementById('input-title').value.trim();
       const summary = document.getElementById('input-summary').value.trim();
@@ -1096,7 +1145,6 @@
 
       document.getElementById('input-id').value = post.id;
       document.getElementById('select-category').value = post.category || '';
-      // Đã thống nhất key categoryLabel
       document.getElementById('input-category-label').value = post.categoryLabel || '';
       document.getElementById('input-date-picker').value = post.date || '';
       document.getElementById('input-title').value = post.title || '';
@@ -1165,8 +1213,12 @@
         postObj.applyLink = document.getElementById('input-hr-applyLink').value.trim();
       } else {
         postObj.summary = document.getElementById('input-summary').value.trim();
-        postObj.image = document.getElementById('input-image').value.trim();
         postObj.link = document.getElementById('input-link').value.trim();
+
+        // Chỉ lưu thông tin ảnh cho tab news và projects
+        if (currentFolder !== 'services' && currentFolder !== 'investment') {
+          postObj.image = document.getElementById('input-image').value.trim();
+        }
 
         if (currentFolder === 'projects') {
           postObj.code = document.getElementById('input-code').value.trim();
@@ -1281,7 +1333,6 @@
         try {
           const imported = JSON.parse(event.target.result);
           if (Array.isArray(imported)) {
-            // Kiểm tra cấu trúc cơ bản của file JSON trước khi nạp
             const isValidStructure = imported.every(item => typeof item === 'object' && item !== null && 'id' in item);
             if (!isValidStructure && imported.length > 0) {
               showToast('Lỗi: File JSON không khớp cấu trúc bài viết (thiếu mã id)!', 'error');
