@@ -107,7 +107,7 @@
             class="hero relative w-full h-[20vh] min-h-[200px] sm:h-[45vh] lg:h-[85vh] bg-slate-900 !p-0 flex items-center justify-center overflow-hidden">
 
             <!-- Ảnh nền chuyển động (Zoom in/out mượt mà) -->
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop"
+            <img src="/assets/pic/baner.avif"
                 alt="Banner PV INCONS" class="absolute inset-0 w-full h-full object-cover animate-bg-pan">
 
             <!-- Khối chứa chữ căn giữa tuyệt đối -->
@@ -259,39 +259,79 @@
                 <h2
                     class="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase text-slate-600 tracking-wide leading-snug mb-2 sm:mb-3">
                     CHÀO MỪNG BẠN ĐẾN VỚI
-                    <span class="block mt-1 text-3xl sm:text-4xl lg:text-5xl text-brand-blue font-black uppercase tracking-wide">
+                    <span
+                        class="block mt-1 text-3xl sm:text-4xl lg:text-5xl text-brand-blue font-black uppercase tracking-wide">
                         PV INCONS
                     </span>
                 </h2>
 
                 <!-- 2. Dòng mô tả -->
-                <p class="text-slate-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-5 sm:mb-6">
+                <p class="text-slate-600 text-xs sm:text-sm font-medium tracking-wider uppercase mb-5 sm:mb-6">
                     Đối tác chiến lược toàn diện trong lĩnh vực
                 </p>
 
-                <!-- 3. Khối 3 Trụ cột -->
-                <div
-                    class="grid grid-cols-3 gap-2 sm:gap-4 max-w-2xl mx-auto py-3 sm:py-4 mb-6 sm:mb-7 border-y border-slate-200/80">
-                    <div class="text-center sm:border-r border-slate-200/80 sm:px-2">
-                        <span
-                            class="block text-[10px] sm:text-[11px] font-bold text-slate-500 tracking-widest uppercase mb-0.5">ĐẦU
-                            TƯ</span>
-                        <span class="text-xs sm:text-sm font-semibold text-slate-800">Tư vấn Đầu tư</span>
+                <!-- 3. Khối 4 Lĩnh vực hoạt động -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-6 max-w-5xl mx-auto mb-8">
+                    <!-- 1. Đầu tư Bất động sản -->
+                    <div
+                        class="relative overflow-hidden rounded-lg group aspect-[4/3] sm:aspect-[16/10] cursor-pointer shadow-sm bg-slate-900">
+                        <!-- 1. Lớp Ảnh nền (Đưa lên đầu) -->
+                        <img src="/assets/pic/du_an.webp"
+                            alt="Đầu tư Bất động sản"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block">
+                        <div class="absolute inset-0 flex items-end justify-center p-3 sm:p-5 text-center z-10">
+                            <h3
+                                class="text-xs sm:text-xl md:text-2xl font-extrabold tracking-wide text-white leading-tight">
+                                Đầu tư Bất động sản
+                            </h3>
+                        </div>
                     </div>
-                    <div class="text-center sm:border-r border-slate-200/80 sm:px-2">
-                        <span
-                            class="block text-[10px] sm:text-[11px] font-bold text-slate-500 tracking-widest uppercase mb-0.5">XÂY
-                            DỰNG</span>
-                        <span class="text-xs sm:text-sm font-semibold text-slate-800">Thiết kế & Thi công</span>
+
+                    <!-- 2. Thiết kế Kiến trúc -->
+                    <div
+                        class="relative overflow-hidden rounded-lg group aspect-[4/3] sm:aspect-[16/10] cursor-pointer shadow-sm bg-slate-900">
+                        <!-- 1. Lớp Ảnh nền (Đưa lên đầu) -->
+                        <img src="/assets/pic/thiet_ke.webp"
+                            alt="Tư vấn thiết kế"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block">
+                        <div class="absolute inset-0 flex items-end justify-center p-3 sm:p-5 text-center z-10">
+                            <h3
+                                class="text-xs sm:text-xl md:text-2xl font-extrabold tracking-wide text-white leading-tight">
+                                Tư vấn Thiết kế
+                            </h3>
+                        </div>
                     </div>
-                    <div class="text-center sm:px-2">
-                        <span
-                            class="block text-[10px] sm:text-[11px] font-bold text-slate-500 tracking-widest uppercase mb-0.5">PHÁP
-                            LÝ</span>
-                        <span class="text-xs sm:text-sm font-semibold text-slate-800">Phương án Pháp lý</span>
+
+                    <!-- 3. Thi công Xây dựng -->
+                    <div
+                        class="relative overflow-hidden rounded-lg group aspect-[4/3] sm:aspect-[16/10] cursor-pointer shadow-sm bg-slate-900">
+                        <!-- 1. Lớp Ảnh nền (Đưa lên đầu) -->
+                        <img src="/assets/pic/xay_dung.webp"
+                            alt="Thi công xây dựng"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block">
+                        <div class="absolute inset-0 flex items-end justify-center p-3 sm:p-5 text-center z-10">
+                            <h3
+                                class="text-xs sm:text-xl md:text-2xl font-extrabold tracking-wide text-white leading-tight">
+                                Thi công Xây dựng
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- 4. Tư vấn Pháp lý -->
+                    <div
+                        class="relative overflow-hidden rounded-lg group aspect-[4/3] sm:aspect-[16/10] cursor-pointer shadow-sm bg-slate-900">
+                        <!-- 1. Lớp Ảnh nền (Đưa lên đầu) -->
+                        <img src="/assets/pic/phap_ly.webp"
+                            alt="Dịch vụ pháp lý"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block">
+                        <div class="absolute inset-0 flex items-end justify-center p-3 sm:p-5 text-center z-10">
+                            <h3
+                                class="text-xs sm:text-xl md:text-2xl font-extrabold tracking-wide text-white leading-tight">
+                                Dịch vụ Pháp lý
+                            </h3>
+                        </div>
                     </div>
                 </div>
-
                 <!-- 4. Khối Nút Bấm -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3">
                     <a href="about.html"
