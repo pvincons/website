@@ -1,23 +1,13 @@
 [
   {
-    "id": 18,
-    "category": "khach-hang-bao-chi",
-    "categoryLabel": "Công nghệ",
-    "date": "22/08/2026",
-    "title": "Đánh Giá Của Chủ Đầu Tư Về Chất Lượng Dịch Vụ",
-    "summary": "Lắng nghe những chia sẻ thực tế từ các đối tác và khách hàng sau khi hoàn thành dự án bàn giao nhà phố và biệt thự.",
-    "link": "content/notlink/waiting.html",
-    "image": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?q=80&w=800&auto=format&fit=crop"
-  },
-  {
     "id": 17,
     "category": "phap-luat",
     "categoryLabel": "Pháp luật",
     "date": "",
-    "title": "Quy Trình Chuyển Đổi Mục Đích Sử Dụng Đất Lên Thổ Cư Tỉnh Vĩnh Long",
+    "title": "Quy Trình Chuyển Đổi Mục Đích Sử Dụng Đất Lên Thổ Cư Tại Cần Thơ",
     "summary": "Chi phí, hạn mức và quy trình các bước pháp lý nộp hồ sơ xin chuyển mục đích sử dụng đất nông nghiệp chi tiết nhất.",
-    "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_017.html"
+    "link": "content/notlink/notlink.html",
+    "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop"
   },
   {
     "id": 16,
@@ -51,13 +41,13 @@
   },
   {
     "id": 12,
-    "category": "tin-noi-bat",
-    "categoryLabel": "Tin nổi bật",
+    "category": "chuyen-gia",
+    "categoryLabel": "Chuyên gia",
+    "date": "01/07/2026",
     "title": "Clash Detection: Loại Bỏ 100% Xung Đột Trước Khi Đổ Bê Tông",
     "summary": "Ứng dụng các công cụ kiểm tra xung đột giữa hệ MEP và Kiến trúc, Kết cấu để tiết kiệm hàng trăm triệu đồng chi phí sửa chữa hiện trường.",
-    "date": "01/07/2026",
-    "image": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_012.html"
+    "link": "content/news/news_012.html",
+    "image": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800&auto=format&fit=crop"
   },
   {
     "id": 11,
@@ -111,13 +101,13 @@
   },
   {
     "id": 6,
-    "category": "chuyen-gia",
-    "categoryLabel": "Chuyên gia",
+    "category": "tin-noi-bat",
+    "categoryLabel": "BIM",
+    "date": "28/06/2026",
     "title": "Phân Loại Dữ Liệu Công Trình Bằng Bảng Mã OmniClass",
     "summary": "Phân tích cấu trúc dữ liệu OmniClass và cách gán mã định danh thông minh cho các cấu kiện trong mô hình 3D Revit.",
-    "date": "28/07/2026",
-    "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_006.html"
+    "link": "content/news/news_006.html",
+    "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop"
   },
   {
     "id": 5,
@@ -136,7 +126,7 @@
     "date": "",
     "title": "Ứng Dụng Tiêu Chuẩn AIA & MasterFormat Trong Quản Lý Hồ Sơ",
     "summary": "Tìm hiểu cách hệ thống hóa hồ sơ thiết kế, thiết lập Kế hoạch thực thi BIM (BEP) chuẩn mực dựa trên bảng phân loại của AIA.",
-    "link": "content/notlink/waiting.html",
+    "link": "content/notlink/notlink.html",
     "image": "https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=800&auto=format&fit=crop"
   },
   {
