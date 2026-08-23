@@ -3,7 +3,7 @@
     "id": 18,
     "category": "khach-hang-bao-chi",
     "categoryLabel": "Công nghệ",
-    "date": "2026-08-22",
+    "date": "22/08/2026",
     "title": "Đánh Giá Của Chủ Đầu Tư Về Chất Lượng Dịch Vụ",
     "summary": "Lắng nghe những chia sẻ thực tế từ các đối tác và khách hàng sau khi hoàn thành dự án bàn giao nhà phố và biệt thự.",
     "link": "content/notlink/waiting.html",
@@ -82,12 +82,12 @@
   {
     "id": 9,
     "category": "cong-ty",
-    "label": "Đất đai",
-    "date": "2026-08-22",
+    "categoryLabel": "",
+    "date": "22/08/2026",
     "title": "Nghiệm Thu Bàn Giao Phần Thô Biệt Thự",
     "summary": "Đội ngũ giám sát vừa hoàn tất biên bản nghiệm thu chuyển giai đoạn phần thô, chuẩn bị bước vào công tác hoàn thiện nội thất.",
-    "image": "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=800&auto=format&fit=crop",
-    "link": "/content/notlink/notlink.html"
+    "link": "/content/notlink/notlink.html",
+    "image": "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=800&auto=format&fit=crop"
   },
   {
     "id": 8,
@@ -143,10 +143,10 @@
     "id": 1,
     "category": "tin-noi-bat",
     "categoryLabel": "Công nghệ",
-    "date": "2026-08-01",
+    "date": "01/08/2026",
     "title": "PV INCONS Xây dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC",
     "summary": "Thực hiện quy trình kỹ thuật tiên tiến, tối ưu hóa phối hợp nhóm bằng mô hình thông tin công trình BIM trên nền tảng đám mây.",
-    "link": "content/notlink/waiting.html",
+    "link": "content/notlink/notlink.html",
     "image": "https://i.pinimg.com/1200x/f5/51/b1/f551b1c55e4e543ea0657239bc82860a.jpg?q=80&w=800&auto=format&fit=crop"
   }
 ]
