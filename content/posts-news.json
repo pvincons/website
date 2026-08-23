@@ -1,36 +1,16 @@
 [
   {
-    "id": 16,
-    "category": "thi-truong",
-    "categoryLabel": "Thị trường",
-    "title": "Báo Cáo Tiền Khả Thi (Pre-FS): Lá Chắn Rủi Ro Cho Nhà Đầu Tư",
-    "summary": "Những chỉ số tài chính quan trọng cần xem xét trong Pre-FS để ra quyết định rót vốn an toàn vào dự án xây dựng thương mại.",
-    "date": "15/06/2026",
-    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_016.html"
-  },
-  {
-    "id": 10,
-    "category": "thi-truong",
-    "categoryLabel": "Thị trường",
-    "title": "Cập Nhật Bảng Giá Dịch Vụ Thiết Kế - Thi Công Quý 3/2026",
-    "summary": "Công bố báo giá thi công xây dựng trọn gói và dịch vụ pháp lý với nhiều chính sách tối ưu chi phí nguyên vật liệu mới nhất.",
-    "date": "10/07/2026",
-    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_010.html"
-  },
-  {
-    "id": 8,
-    "category": "cong-ty",
-    "categoryLabel": "Công ty",
+    "id": 1,
+    "category": "tin-noi-bat",
+    "categoryLabel": "BIM",
+    "date": "20/06/2026",
     "title": "Tổ Chức Đào Tạo Lập Kế Hoạch Thực Thi BIM (BEP) Nội Bộ",
     "summary": "Nâng cao năng lực đội ngũ kỹ sư PV INCONS thông qua khóa huấn luyện chuyên sâu về cách triển khai BIM Execution Plan cho dự án lớn.",
-    "date": "20/07/2026",
-    "image": "https://images.unsplash.com/photo-1507208773393-40d9fc670acf?q=80&w=800&auto=format&fit=crop",
-    "link": "content/news/news_008.html"
+    "link": "content/news/news_008.html",
+    "image": "https://images.unsplash.com/photo-1507208773393-40d9fc670acf?q=80&w=800&auto=format&fit=crop"
   },
   {
-    "id": 6,
+    "id": 2,
     "category": "tin-noi-bat",
     "categoryLabel": "BIM",
     "date": "28/06/2026",
@@ -43,17 +23,17 @@
     "id": 4,
     "category": "tin-noi-bat",
     "categoryLabel": "Thiết kế",
-    "date": "23/08/2026",
+    "date": "12/08/2026",
     "title": "Ứng Dụng Tiêu Chuẩn AIA & MasterFormat Trong Quản Lý Hồ Sơ",
     "summary": "Tìm hiểu cách hệ thống hóa hồ sơ thiết kế, thiết lập Kế hoạch thực thi BIM (BEP) chuẩn mực dựa trên bảng phân loại của AIA.",
     "link": "content/notlink/notlink.html",
     "image": "https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=800&auto=format&fit=crop"
   },
   {
-    "id": 1,
+    "id": 3,
     "category": "tin-noi-bat",
     "categoryLabel": "Công nghệ",
-    "date": "01/08/2026",
+    "date": "01/07/2026",
     "title": "PV INCONS Xây dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC",
     "summary": "Thực hiện quy trình kỹ thuật tiên tiến, tối ưu hóa phối hợp nhóm bằng mô hình thông tin công trình BIM trên nền tảng đám mây.",
     "link": "content/notlink/notlink.html",
