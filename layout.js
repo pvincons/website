@@ -115,9 +115,14 @@ async function loadLayout(pageId) {
     try {
         if (!document.querySelector('header')) {
             const [headerRes, footerRes] = await Promise.all([
-                fetch('header.html'),
-                fetch('footer.html')
+                fetch('/header.html'),
+                fetch('/footer.html')
             ]);
+
+            // Kiểm tra nếu file không tồn tại (lỗi 404)
+            if (!headerRes.ok || !footerRes.ok) {
+                throw new Error(`Không thể tải layout (Header: ${headerRes.status}, Footer: ${footerRes.status})`);
+            }
 
             const headerHtml = await headerRes.text();
             const footerHtml = await footerRes.text();
@@ -126,13 +131,11 @@ async function loadLayout(pageId) {
             if (headerPlaceholder) headerPlaceholder.outerHTML = headerHtml;
 
             const footerPlaceholder = document.getElementById('footer-placeholder');
-            if (footerPlaceholder) footerPlaceholder.innerHTML = footerHtml;
+            if (footerPlaceholder) footerPlaceholder.outerHTML = footerHtml; // Thống nhất dùng outerHTML
         }
 
         initMobileMenu();
         updateActiveTab(pageId);
-        
-        // Gọi hàm đếm lượt truy cập ngay khi Footer đã được nạp vào DOM
         initVisitorCounter();
 
     } catch (error) {
