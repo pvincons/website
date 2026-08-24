@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổ Chức Đào Tạo Lập Kế Hoạch Thực Thi BIM (BEP) Nội Bộ - PV INCONS</title>
+    <style>
+        :root {
+            --primary-color: #0284c7;
+            --primary-dark: #0369a1;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --accent-bg: #f0f9ff;
+            --highlight-bg: #f1f5f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.75;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .article-container {
+            max-width: 860px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 48px;
+            border: 1px solid var(--border-color);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .badge-bim {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .article-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        h1.article-title {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.35;
+            margin: 0 0 16px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .article-subtitle {
+            font-size: 1.12rem;
+            color: #475569;
+            font-weight: 400;
+            line-height: 1.65;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #0f172a;
+            margin-top: 40px;
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 22px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: #1e293b;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.02rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .callout-box {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 28px 0;
+        }
+
+        .callout-box p {
+            margin: 0;
+            color: #0c4a6e;
+            font-size: 0.98rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 28px 0;
+            font-size: 0.95rem;
+        }
+
+        .data-table th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+            text-align: left;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        code {
+            font-family: "Fira Code", Consolas, Monaco, monospace;
+            background-color: #f1f5f9;
+            color: #0284c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 44px;
+            margin-bottom: 20px;
+        }
+
+        .step-list li::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 28px;
+            height: 28px;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+            .article-container {
+                padding: 24px 18px;
+            }
+            h1.article-title {
+                font-size: 1.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="article-container">
+        <div class="article-meta">
+            <span class="badge-bim">BIM</span>
+            <span class="article-date">📅 20/06/2026</span>
+        </div>
+
+        <h1 class="article-title">Tổ Chức Đào Tạo Lập Kế Hoạch Thực Thi BIM (BEP) Nội Bộ</h1>
+        <div class="article-subtitle">
+            Nâng cao năng lực đội ngũ kỹ sư PV INCONS thông qua khóa huấn luyện chuyên sâu về cách triển khai BIM Execution Plan cho dự án lớn.
+        </div>
+
+        <h2>1. Đặt vấn đề & Mục tiêu đào tạo</h2>
+        <p>
+            Trong bối cảnh áp dụng Mô hình Thông tin Công trình (BIM) ngày càng trở thành yêu cầu bắt buộc tại các dự án xây dựng quy mô lớn, việc trang bị cho đội ngũ kỹ sư không chỉ kỹ năng phần mềm mà cả năng lực quản lý và triển khai là yếu tố sống còn. Nhằm chuẩn hóa quy trình làm việc và tối ưu hóa hiệu quả phối hợp liên bộ môn, <strong>PV INCONS</strong> đã chính thức tổ chức chương trình đào tạo nội bộ chuyên sâu: <em>"Lập Kế Hoạch Thực Thi BIM (BIM Execution Plan - BEP)"</em>.
+        </p>
+        <p>
+            Khóa đào tạo hướng tới mục tiêu nâng cao năng lực cho toàn bộ nhân sự kỹ thuật, giúp kỹ sư làm chủ quy trình xây dựng, kiểm soát và thực thi bản tài liệu BEP theo chuẩn quốc tế (ISO 19650) cũng như các quy định hiện hành của Bộ Xây dựng.
+        </p>
+
+        <h2>2. Tầm quan trọng của Kế hoạch Thực thi BIM (BEP) trong Dự án lớn</h2>
+        <p>
+            Kế hoạch Thực thi BIM (BEP) đóng vai trò là "kim chỉ nam" cho toàn bộ hoạt động BIM trong suốt vòng đời dự án. Một tài liệu BEP được lập chuẩn xác sẽ giúp giải quyết triệt để các vấn đề thường gặp:
+        </p>
+        <ul>
+            <li><strong>Thống nhất quy chuẩn và tiêu chuẩn:</strong> Định hình rõ ràng hệ tọa độ, phần mềm sử dụng, định dạng tệp trao đổi (IFC, BCF) và quy tắc đặt tên đối tượng.</li>
+            <li><strong>Phân định rõ vai trò và trách nhiệm:</strong> Xác định cụ thể trách nhiệm của từng vị trí (BIM Manager, BIM Coordinator, BIM Modeler) và sự tương tác giữa Chủ đầu tư, Tư vấn thiết kế và Nhà thầu.</li>
+            <li><strong>Tối ưu hóa môi trường dữ liệu chung (CDE):</strong> Quy định luồng luân chuyển thông tin, phê duyệt và lưu trữ dữ liệu tập trung, hạn chế sai sót do mất mát thông tin.</li>
+            <li><strong>Tăng cường hiệu quả kiểm soát xung đột (Clash Detection):</strong> Xây dựng kịch bản kiểm tra xung đột định kỳ, phát hiện xung đột từ giai đoạn thiết kế nhằm giảm thiểu rủi ro phát sinh chi phí ngoài công trường.</li>
+        </ul>
+
+        <div class="callout-box">
+            <p><strong>Thông điệp từ Ban Giám đốc PV INCONS:</strong> "Một dự án áp dụng BIM thành công không nằm ở chỗ phần mềm đắt tiền hay mô hình đẹp mắt, mà nằm ở một Kế hoạch Thực thi BIM (BEP) chặt chẽ, thực tế và được toàn bộ nhân sự tuân thủ nghiêm ngặt."</p>
+        </div>
+
+        <h2>3. Nội dung trọng tâm của Khóa Đào Tạo Nội Bộ</h2>
+        <p>
+            Chương trình đào tạo được thiết kế bài bản với sự kết hợp giữa lý luận tiêu chuẩn và bài tập tình huống thực tế từ các dự án thực chiến của PV INCONS.
+        </p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Chuyên đề</th>
+                    <th>Nội dung chi tiết</th>
+                    <th>Mục tiêu đầu ra</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Chuyên đề 1</strong></td>
+                    <td>Tổng quan ISO 19650 & Cấu trúc tài liệu BEP (Pre-BEP & Post-BEP)</td>
+                    <td>Hiểu rõ bản chất và sự khác biệt giữa BEP trước và sau hợp đồng</td>
+                </tr>
+                <tr>
+                    <td><strong>Chuyên đề 2</strong></td>
+                    <td>Xác định Mục tiêu BIM (BIM Goals) & Các ứng dụng BIM (BIM Uses)</td>
+                    <td>Lựa chọn đúng các BIM Uses cho dự án (3D Design, 4D Timeline, 5D Cost)</td>
+                </tr>
+                <tr>
+                    <td><strong>Chuyên đề 3</strong></td>
+                    <td>Quản lý Môi trường Dữ liệu Chung (CDE) & Luồng công việc (Workflow)</td>
+                    <td>Thiết lập quy trình chia sẻ dữ liệu (Work in Progress, Shared, Published, Archived)</td>
+                </tr>
+                <tr>
+                    <td><strong>Chuyên đề 4</strong></td>
+                    <td>Quy định LOD/LOI & Bảng Phân công Ma trận Dữ liệu (MPDT)</td>
+                    <td>Xác định độ chi tiết hình học (LOD) và thông tin (LOI) cho từng giai đoạn</td>
+                </tr>
+                <tr>
+                    <td><strong>Chuyên đề 5</strong></td>
+                    <td>Thực hành lập BEP hoàn chỉnh cho Dự án Nhà cao tầng & Đô thị</td>
+                    <td>Hoàn thiện 01 bộ tài liệu BEP hoàn chỉnh sẵn sàng ứng dụng cho dự án mới</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Quy trình 4 bước Triển khai BEP Chuẩn hóa tại PV INCONS</h2>
+        <p>
+            Thông qua khóa huấn luyện, đội ngũ kỹ sư PV INCONS được hướng dẫn thực hành quy trình 4 bước chuẩn hóa để lập và phê duyệt BEP cho bất kỳ dự án nào:
+        </p>
+
+        <ol class="step-list">
+            <li>
+                <strong>Phân tích Yêu cầu Thông tin của Chủ đầu tư (EIR):</strong> Nghiên cứu kỹ lưỡng hồ sơ yêu cầu EIR để trích xuất các mục tiêu BIM cốt lõi và các mốc bàn giao bắt buộc.
+            </li>
+            <li>
+                <strong>Khảo sát năng lực & Cơ sở hạ tầng kỹ thuật:</strong> Đánh giá năng lực phần cứng, bản quyền phần mềm, đường truyền mạng và nhân sự hiện có để đề xuất giải pháp phù hợp.
+            </li>
+            <li>
+                <strong>Soạn thảo & Thống nhất Tài liệu BEP:</strong> Xây dựng dự thảo BEP, tổ chức hội thảo làm việc (BIM Kick-off Meeting) với các bên liên quan để thống nhất quy trình phối hợp.
+            </li>
+            <li>
+                <strong>Cập nhật & Đánh giá định kỳ:</strong> BEP là tài liệu sống (Living Document); do đó cần liên tục theo dõi, đánh giá và cập nhật khi dự án bước sang các giai đoạn mới.
+            </li>
+        </ol>
+
+        <h2>5. Kết quả đạt được & Định hướng tiếp theo</h2>
+        <p>
+            Sau khóa học, 100% kỹ sư tham gia đã hoàn thành bài thu hoạch là bản thảo BEP chi tiết cho dự án thực tế. Khóa đào tạo nội bộ này đánh dấu bước tiến quan trọng trong chiến lược chuẩn hóa quy trình công nghệ của PV INCONS, khẳng định vị thế dẫn đầu trong việc áp dụng BIM vào tư vấn thiết kế, quản lý dự án và thi công xây dựng.
+        </p>
+        <p>
+            Trong thời gian tới, PV INCONS sẽ tiếp tục mở rộng các chuỗi đào tạo chuyên sâu về <strong>Dynamo Automation</strong>, <strong>Phối hợp BIM 4D/5D</strong> và <strong>Quản lý vận hành COBie</strong> nhằm chuẩn hóa toàn diện bộ bộ máy kỹ thuật theo các tiêu chuẩn quốc tế tiên tiến nhất.
+        </p>
+    </article>
+</body>
+</html>
