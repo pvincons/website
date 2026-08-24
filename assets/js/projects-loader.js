@@ -1,4 +1,4 @@
-const ITEMS_PER_PAGE = 7; //Sửa số bài đăng (7) thành số .... mong muốn tại đây
+const ITEMS_PER_PAGE = 6; //Sửa số bài đăng (7) thành số .... mong muốn tại đây
 let categoriesData = {
     'dang-trien-khai': [],
     'da-hoan-thanh': [],
