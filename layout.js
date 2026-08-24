@@ -325,7 +325,7 @@ function initVisitorCounter() {
     }
 
     if (onlineVisitorsEl) {
-        const getRandomOnline = () => Math.floor(Math.random() * 18) + 3;
+        const getRandomOnline = () => Math.floor(Math.random() * 12) + 5;
         onlineVisitorsEl.innerText = getRandomOnline();
 
         setInterval(() => {
