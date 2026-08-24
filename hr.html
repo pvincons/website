@@ -23,6 +23,9 @@
     <!-- File CSS dùng chung -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Tải Hero picture -->
+    <link rel="preload" as="image" href="/assets/pic/hr.webp" fetchpriority="high">
+
     <!-- Thẻ Canonical chuẩn SEO -->
     <link rel="canonical" href="https://pvincons.com/">
 
@@ -107,10 +110,9 @@
         <!-- HERO SECTION TAB -->
         <section class="relative w-full">
             <div
-                class="relative w-full h-[20vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] bg-slate-800 flex items-center justify-center overflow-hidden">
-                <img src="/assets/pic/hr.webp" alt="Chính Sách Nhân Sự"
+                class="relative w-full h-[20vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] bg-white flex items-center justify-center overflow-hidden">
+                <img src="/assets/pic/hr.webp" alt="Chính Sách Nhân Sự" fetchpriority="high"
                     class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
-
                 <div class="relative z-10 text-center px-4">
                     <h1
                         class="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-wider drop-shadow-md">
