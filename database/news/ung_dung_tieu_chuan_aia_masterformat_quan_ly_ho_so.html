@@ -105,6 +105,21 @@
 </script>
 
     <style>
+        /* Khai báo Font nội bộ */
+        @font-face {
+            font-family: 'Inter-Regular';
+            src: url('/assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Inter-Bold';
+            src: url('/assets/fonts/Inter_18pt-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
         :root {
             /* Brand Colors */
             --brand-blue: #1e68a8;
@@ -120,11 +135,11 @@
             --accent-gold: #8c6239;
             --accent-bg: #f4efe6;
 
-            /* Tone màu vàng kem dịu mắt chuẩn VnExpress */
-            --bg-body: #fcfaf6;
-            --bg-card: #fcfaf6;
-            --text-main: #222222;
-            /* Màu đen chuẩn VnExpress */
+            /* Tone màu chuẩn */
+            --bg-body: white;
+            --bg-card: white;
+            --text-main: #202020;
+            /* Màu đen chuẩn */
             --text-muted: #64748b;
             --border-color: #e5e0d8;
 
@@ -133,14 +148,16 @@
             --slide-x: 100px;
         }
 
-        /* Phần thân dùng Font Arial / Helvetica chuẩn VnExpress */
+        /* Phần thân áp dụng Inter-Regular làm font mặc định */
         body {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-            line-height: 1.75;
-            color: var(--text-main);
-            background-color: var(--bg-body);
-            margin: 0;
+            font-family: 'Inter-Regular', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #202020;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         /* Container Bài Viết: Phẳng, không viền, không bóng */
@@ -209,23 +226,22 @@
             gap: 12px;
         }
 
-        /* ===== TIÊU ĐỀ BÀI VIẾT (Times New Roman & Style VnExpress) ===== */
+        /* ===== TIÊU ĐỀ BÀI VIẾT  ===== */
         h1.article-title {
-            font-family: "Times New Roman", Times, Georgia, serif;
+            font-family: 'Times New Roman', Times, serif;
             font-size: 2.25rem;
-            /* ~36px */
             font-weight: 700;
-            color: #222222;
+            color: #000000;
             line-height: 1.7;
             margin: 0 0 16px 0;
             letter-spacing: -0.01em;
         }
 
-        /* ===== MÔ TẢ NỘI DUNG / SAPO (Times New Roman & Style VnExpress) ===== */
+        /* ===== MÔ TẢ NỘI DUNG / SAPO (Times New Roman) ===== */
         .article-subtitle {
             font-family: "Times New Roman", Times, Georgia, serif;
-            font-size: 1.0rem;
-            color: #4f4f4f;
+            font-size: 1.25rem;
+            color: #222222;
             font-weight: 400;
             line-height: 1.7;
             margin-bottom: 28px;
@@ -233,11 +249,11 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* ===== THÂN BÀI VIẾT (Giao diện báo VnExpress) ===== */
+        /* ===== THÂN BÀI VIẾT (Inter_18pt-Regular) ===== */
         .article-content {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-family: 'Inter-Regular', sans-serif;
             font-size: 1.1rem;
-            color: #222222;
+            color: #202020;
             line-height: 1.7;
         }
 
@@ -245,13 +261,13 @@
             margin-bottom: 1.25rem;
         }
 
-        /* ===== ĐỀ MỤC BÀI VIẾT H2 (In đậm tuyệt đối, không bị CSS Reset ghi đè) ===== */
+        /* ===== ĐỀ MỤC BÀI VIẾT H2, H3 (Inter_18pt-Bold) ===== */
         .article-content h2,
         h2 {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-            font-size: 1.25rem;
+            font-family: 'Inter-Bold', sans-serif;
+            font-size: 1.3rem;
             /* ~20px */
-            color: #222222;
+            color: #202020;
             margin-top: 32px;
             margin-bottom: 14px;
             font-weight: 700 !important;
@@ -260,9 +276,9 @@
 
         .article-content h3,
         h3 {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-family: 'Inter-Bold', sans-serif;
             font-size: 1.125rem;
-            color: #222222;
+            color: #202020;
             margin-top: 24px;
             margin-bottom: 10px;
             font-weight: 700 !important;
@@ -279,7 +295,7 @@
 
         .callout-box p {
             margin: 0;
-            color: #222222;
+            color: #202020;
             font-size: 1rem;
         }
 
@@ -311,11 +327,12 @@
 
         .data-table th {
             background-color: #ede7dc;
-            color: #222222;
+            color: #202020;
             font-weight: 700;
             text-align: left;
             padding: 12px 16px;
             border: 1px solid var(--border-color);
+            font-family: 'Inter-Bold', sans-serif;
         }
 
         .data-table td {
@@ -365,6 +382,7 @@
             align-items: center;
             justify-content: center;
             font-size: 0.85rem;
+            font-family: 'Inter-Bold', sans-serif;
         }
 
         /* Images & Figures */
@@ -414,32 +432,33 @@
 
         /* ===== TỐI ƯU GIAO DIỆN DI ĐỘNG (MOBILE RESPONSIVE) ===== */
         @media (max-width: 640px) {
+
             .article-container {
                 padding: 0 16px;
                 margin: 12px auto;
             }
 
             h1.article-title {
-                font-size: 1.4rem;
+                font-size: 1.55rem;
                 line-height: 1.7;
                 margin-bottom: 12px;
             }
 
             .article-subtitle {
-                font-size: 1rem;
+                font-size: 1.13rem;
                 line-height: 1.7;
                 margin-bottom: 20px;
                 padding-bottom: 16px;
             }
 
             .article-content {
-                font-size: 1.1rem;
+                font-size: 1.13rem;
                 line-height: 1.7;
             }
 
             .article-content h2,
             h2 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-top: 24px;
                 margin-bottom: 10px;
             }

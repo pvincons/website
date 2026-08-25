@@ -33,21 +33,26 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://pvincons.com/database/news/phan_loai_du_lieu_omniclass_revit.html" />
-    <meta property="og:title" content="Phân Loại Dữ Liệu OmniClass Cho Revit: Hướng Dẫn Tối Ưu Công Nghệ BIM | PV INCONS" />
+    <meta property="og:title"
+        content="Phân Loại Dữ Liệu OmniClass Cho Revit: Hướng Dẫn Tối Ưu Công Nghệ BIM | PV INCONS" />
     <meta property="og:description"
         content="Tìm hiểu chi tiết hệ thống phân loại dữ liệu OmniClass trong Revit, ứng dụng công nghệ BIM cho ngành xây dựng và kiến trúc hiện đại." />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" />
-    <meta property="og:image:secure_url" content="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" />
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" />
+    <meta property="og:image:secure_url"
+        content="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Phân Loại Dữ Liệu OmniClass Cho Revit: Hướng Dẫn Tối Ưu Công Nghệ BIM | PV INCONS" />
+    <meta name="twitter:title"
+        content="Phân Loại Dữ Liệu OmniClass Cho Revit: Hướng Dẫn Tối Ưu Công Nghệ BIM | PV INCONS" />
     <meta name="twitter:description"
         content="Tìm hiểu chi tiết hệ thống phân loại dữ liệu OmniClass trong Revit, ứng dụng công nghệ BIM cho ngành xây dựng và kiến trúc hiện đại." />
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" />
+    <meta name="twitter:image"
+        content="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" />
 
     <!-- Schema JSON-LD -->
     <script type="application/ld+json">
@@ -82,6 +87,21 @@
 </script>
 
     <style>
+        /* Khai báo Font nội bộ */
+        @font-face {
+            font-family: 'Inter-Regular';
+            src: url('/assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Inter-Bold';
+            src: url('/assets/fonts/Inter_18pt-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
         :root {
             /* Brand Colors */
             --brand-blue: #1e68a8;
@@ -97,11 +117,11 @@
             --accent-gold: #8c6239;
             --accent-bg: #f4efe6;
 
-            /* Tone màu vàng kem dịu mắt chuẩn VnExpress */
-            --bg-body: #fcfaf6;
-            --bg-card: #fcfaf6;
-            --text-main: #222222;
-            /* Màu đen chuẩn VnExpress */
+            /* Tone màu chuẩn */
+            --bg-body: white;
+            --bg-card: white;
+            --text-main: #202020;
+            /* Màu đen chuẩn */
             --text-muted: #64748b;
             --border-color: #e5e0d8;
 
@@ -110,14 +130,16 @@
             --slide-x: 100px;
         }
 
-        /* Phần thân dùng Font Arial / Helvetica chuẩn VnExpress */
+        /* Phần thân áp dụng Inter-Regular làm font mặc định */
         body {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-            line-height: 1.75;
-            color: var(--text-main);
-            background-color: var(--bg-body);
-            margin: 0;
+            font-family: 'Inter-Regular', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #202020;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         /* Container Bài Viết: Phẳng, không viền, không bóng */
@@ -186,23 +208,22 @@
             gap: 12px;
         }
 
-        /* ===== TIÊU ĐỀ BÀI VIẾT (Times New Roman & Style VnExpress) ===== */
+        /* ===== TIÊU ĐỀ BÀI VIẾT  ===== */
         h1.article-title {
-            font-family: "Times New Roman", Times, Georgia, serif;
+            font-family: 'Times New Roman', Times, serif;
             font-size: 2.25rem;
-            /* ~36px */
             font-weight: 700;
-            color: #222222;
+            color: #000000;
             line-height: 1.7;
             margin: 0 0 16px 0;
             letter-spacing: -0.01em;
         }
 
-        /* ===== MÔ TẢ NỘI DUNG / SAPO (Times New Roman & Style VnExpress) ===== */
+        /* ===== MÔ TẢ NỘI DUNG / SAPO (Times New Roman) ===== */
         .article-subtitle {
             font-family: "Times New Roman", Times, Georgia, serif;
-            font-size: 1.0rem;
-            color: #4f4f4f;
+            font-size: 1.25rem;
+            color: #222222;
             font-weight: 400;
             line-height: 1.7;
             margin-bottom: 28px;
@@ -210,11 +231,11 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* ===== THÂN BÀI VIẾT (Giao diện báo VnExpress) ===== */
+        /* ===== THÂN BÀI VIẾT (Inter_18pt-Regular) ===== */
         .article-content {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-family: 'Inter-Regular', sans-serif;
             font-size: 1.1rem;
-            color: #222222;
+            color: #202020;
             line-height: 1.7;
         }
 
@@ -222,13 +243,13 @@
             margin-bottom: 1.25rem;
         }
 
-        /* ===== ĐỀ MỤC BÀI VIẾT H2 (In đậm tuyệt đối, không bị CSS Reset ghi đè) ===== */
+        /* ===== ĐỀ MỤC BÀI VIẾT H2, H3 (Inter_18pt-Bold) ===== */
         .article-content h2,
         h2 {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-            font-size: 1.25rem;
+            font-family: 'Inter-Bold', sans-serif;
+            font-size: 1.3rem;
             /* ~20px */
-            color: #222222;
+            color: #202020;
             margin-top: 32px;
             margin-bottom: 14px;
             font-weight: 700 !important;
@@ -237,9 +258,9 @@
 
         .article-content h3,
         h3 {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-family: 'Inter-Bold', sans-serif;
             font-size: 1.125rem;
-            color: #222222;
+            color: #202020;
             margin-top: 24px;
             margin-bottom: 10px;
             font-weight: 700 !important;
@@ -256,7 +277,7 @@
 
         .callout-box p {
             margin: 0;
-            color: #222222;
+            color: #202020;
             font-size: 1rem;
         }
 
@@ -288,11 +309,12 @@
 
         .data-table th {
             background-color: #ede7dc;
-            color: #222222;
+            color: #202020;
             font-weight: 700;
             text-align: left;
             padding: 12px 16px;
             border: 1px solid var(--border-color);
+            font-family: 'Inter-Bold', sans-serif;
         }
 
         .data-table td {
@@ -342,6 +364,7 @@
             align-items: center;
             justify-content: center;
             font-size: 0.85rem;
+            font-family: 'Inter-Bold', sans-serif;
         }
 
         /* Images & Figures */
@@ -391,32 +414,33 @@
 
         /* ===== TỐI ƯU GIAO DIỆN DI ĐỘNG (MOBILE RESPONSIVE) ===== */
         @media (max-width: 640px) {
+
             .article-container {
                 padding: 0 16px;
                 margin: 12px auto;
             }
 
             h1.article-title {
-                font-size: 1.4rem;
+                font-size: 1.55rem;
                 line-height: 1.7;
                 margin-bottom: 12px;
             }
 
             .article-subtitle {
-                font-size: 1rem;
+                font-size: 1.13rem;
                 line-height: 1.7;
                 margin-bottom: 20px;
                 padding-bottom: 16px;
             }
 
             .article-content {
-                font-size: 1.1rem;
+                font-size: 1.13rem;
                 line-height: 1.7;
             }
 
             .article-content h2,
             h2 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-top: 24px;
                 margin-bottom: 10px;
             }
@@ -446,10 +470,14 @@
             </nav>
 
             <!-- Tiêu đề bài viết (Times New Roman) -->
-            <h1 class="article-title">Phân Loại Dữ Liệu OmniClass Cho Revit: Hướng Dẫn Tối Ưu Công Nghệ BIM Trong Xây Dựng Và Kiến Trúc</h1>
+            <h1 class="article-title">Phân Loại Dữ Liệu OmniClass Cho Revit: Hướng Dẫn Tối Ưu Công Nghệ BIM Trong Xây
+                Dựng Và Kiến Trúc</h1>
 
             <!-- Mô tả ngắn / Sapo (Times New Roman) -->
-            <p class="article-subtitle">Trong sự phát triển của công nghệ BIM, việc chuẩn hóa phân loại dữ liệu OmniClass cho Revit đóng vai trò bản nền giúp đồng bộ thông tin kiến trúc, kết cấu và cơ điện. Bài viết phân tích sâu quy chuẩn OmniClass, cơ chế thiết lập trong Autodesk Revit và các giải pháp tối ưu giúp nâng cao chất lượng quản lý dự án xây dựng hiện đại.</p>
+            <p class="article-subtitle">Trong sự phát triển của công nghệ BIM, việc chuẩn hóa phân loại dữ liệu
+                OmniClass cho Revit đóng vai trò bản nền giúp đồng bộ thông tin kiến trúc, kết cấu và cơ điện. Bài viết
+                phân tích sâu quy chuẩn OmniClass, cơ chế thiết lập trong Autodesk Revit và các giải pháp tối ưu giúp
+                nâng cao chất lượng quản lý dự án xây dựng hiện đại.</p>
 
             <!-- Thông tin tác giả & Ngày đăng -->
             <div class="article-meta">
@@ -469,30 +497,50 @@
             <!-- Nội dung chi tiết bài viết -->
             <section class="article-content">
                 <h2>1. Tổng Quan Về Hệ Thống Phân Loại OmniClass Trong Công Nghệ BIM</h2>
-                <p>Trong thời đại số hóa ngành <strong>xây dựng</strong> và <strong>kiến trúc</strong>, mô hình hóa thông tin công trình (<strong>Công Nghệ BIM</strong>) không chỉ đơn thuần là việc tạo ra các mô hình 3D trực quan. Điều tạo nên sức mạnh thực sự của BIM chính là phần "I" (Information) – tức nguồn dữ liệu thuộc tính phong phú được gắn kết chặt chẽ với từng cấu kiện. Để dữ liệu này có thể trao đổi mượt mà giữa các bên liên quan, hệ thống phân loại tiêu chuẩn là điều bắt buộc.</p>
-                
-                <p>Hệ thống phân loại <strong>OmniClass</strong> (OmniClass Construction Classification System - OCCSS) là bộ tiêu chuẩn quốc tế được phát triển bởi Viện Tiêu chuẩn Xây dựng Hoa Kỳ (CSI). OmniClass cấu thành từ 15 bảng mã hóa phân loại khác nhau, bao phủ toàn bộ vòng đời của công trình từ khâu lập dự án, thiết kế <strong>kiến trúc</strong>, thi công <strong>xây dựng</strong> cho đến giai đoạn vận hành và khai thác tòa nhà.</p>
+                <p>Trong thời đại số hóa ngành <strong>xây dựng</strong> và <strong>kiến trúc</strong>, mô hình hóa
+                    thông tin công trình (<strong>Công Nghệ BIM</strong>) không chỉ đơn thuần là việc tạo ra các mô hình
+                    3D trực quan. Điều tạo nên sức mạnh thực sự của BIM chính là phần "I" (Information) – tức nguồn dữ
+                    liệu thuộc tính phong phú được gắn kết chặt chẽ với từng cấu kiện. Để dữ liệu này có thể trao đổi
+                    mượt mà giữa các bên liên quan, hệ thống phân loại tiêu chuẩn là điều bắt buộc.</p>
+
+                <p>Hệ thống phân loại <strong>OmniClass</strong> (OmniClass Construction Classification System - OCCSS)
+                    là bộ tiêu chuẩn quốc tế được phát triển bởi Viện Tiêu chuẩn Xây dựng Hoa Kỳ (CSI). OmniClass cấu
+                    thành từ 15 bảng mã hóa phân loại khác nhau, bao phủ toàn bộ vòng đời của công trình từ khâu lập dự
+                    án, thiết kế <strong>kiến trúc</strong>, thi công <strong>xây dựng</strong> cho đến giai đoạn vận
+                    hành và khai thác tòa nhà.</p>
 
                 <figure>
-                    <img src="https://i.pinimg.com/736x/5f/e9/ca/5fe9ca0f2fc7d407366f7a8a8de28ab3.jpg?auto=format&fit=crop&w=1200&q=80" alt="Ứng dụng Công Nghệ BIM và phân loại OmniClass cho Revit trong kiến trúc và xây dựng">
-                    <figcaption>Hình 1: Áp dụng chuẩn dữ liệu OmniClass giúp mô hình hóa BIM đạt độ chính xác cao trong quản lý dự án xây dựng.</figcaption>
+                    <img src="https://i.pinimg.com/736x/5f/e9/ca/5fe9ca0f2fc7d407366f7a8a8de28ab3.jpg?auto=format&fit=crop&w=1200&q=80"
+                        alt="Ứng dụng Công Nghệ BIM và phân loại OmniClass cho Revit trong kiến trúc và xây dựng">
+                    <figcaption>Hình 1: Áp dụng chuẩn dữ liệu OmniClass giúp mô hình hóa BIM đạt độ chính xác cao trong
+                        quản lý dự án xây dựng.</figcaption>
                 </figure>
 
                 <div class="callout-box">
-                    <p><strong>Điểm cốt lõi:</strong> Phân loại dữ liệu OmniClass giúp nhất quán ngôn ngữ kỹ thuật giữa Kiến trúc sư, Kỹ sư kết cấu, Kỹ sư MEP và Đơn vị quản lý vận hành (FM), loại bỏ sự bất đồng về tên gọi cấu kiện trong quy trình BIM multi-disciplinary.</p>
+                    <p><strong>Điểm cốt lõi:</strong> Phân loại dữ liệu OmniClass giúp nhất quán ngôn ngữ kỹ thuật giữa
+                        Kiến trúc sư, Kỹ sư kết cấu, Kỹ sư MEP và Đơn vị quản lý vận hành (FM), loại bỏ sự bất đồng về
+                        tên gọi cấu kiện trong quy trình BIM multi-disciplinary.</p>
                 </div>
 
                 <h2>2. Vai Trò Của OmniClass Trong Phần Mềm Autodesk Revit</h2>
-                <p>Autodesk Revit – công cụ hàng đầu trong triển khai <strong>Công Nghệ BIM</strong> – tích hợp sẵn bộ dữ liệu mã hóa OmniClass cho các đối tượng Family (đặc biệt là Family thuộc tính System và Component). Hai tham số chính mà Revit sử dụng để định danh cấu kiện theo chuẩn OmniClass bao gồm:</p>
+                <p>Autodesk Revit – công cụ hàng đầu trong triển khai <strong>Công Nghệ BIM</strong> – tích hợp sẵn bộ
+                    dữ liệu mã hóa OmniClass cho các đối tượng Family (đặc biệt là Family thuộc tính System và
+                    Component). Hai tham số chính mà Revit sử dụng để định danh cấu kiện theo chuẩn OmniClass bao gồm:
+                </p>
                 <ul>
-                    <li><code>OmniClass Number</code>: Mã số phân loại chuẩn gồm các chữ số đại diện cho phân cấp cấu kiện.</li>
+                    <li><code>OmniClass Number</code>: Mã số phân loại chuẩn gồm các chữ số đại diện cho phân cấp cấu
+                        kiện.</li>
                     <li><code>OmniClass Title</code>: Tên gọi định danh chính thức đi kèm tương ứng với mã số.</li>
                 </ul>
 
-                <p>Mặc định trong Revit, bảng phân loại được ưa chuộng nhất là <strong>OmniClass Table 23 (Products)</strong>. Bảng này quản lý chi tiết các sản phẩm và vật liệu cấu thành nên công trình như cửa, cửa sổ, thiết bị chiếu sáng, cột, dầm, vách ngăn và nội thất <strong>kiến trúc</strong>.</p>
+                <p>Mặc định trong Revit, bảng phân loại được ưa chuộng nhất là <strong>OmniClass Table 23
+                        (Products)</strong>. Bảng này quản lý chi tiết các sản phẩm và vật liệu cấu thành nên công trình
+                    như cửa, cửa sổ, thiết bị chiếu sáng, cột, dầm, vách ngăn và nội thất <strong>kiến trúc</strong>.
+                </p>
 
                 <h2>3. So Sánh OmniClass Với UniFormat Và MasterFormat Trong Xây Dựng</h2>
-                <p>Để triển khai dự án <strong>xây dựng</strong> hiệu quả, người làm BIM cần phân biệt rõ ba hệ thống phân loại phổ biến nhất hiện nay:</p>
+                <p>Để triển khai dự án <strong>xây dựng</strong> hiệu quả, người làm BIM cần phân biệt rõ ba hệ thống
+                    phân loại phổ biến nhất hiện nay:</p>
 
                 <div class="table-wrapper">
                     <table class="data-table">
@@ -528,39 +576,60 @@
                 </div>
 
                 <h2>4. Quy Trình Gán Mã Dữ Liệu OmniClass Cho Revit Chuẩn Kỹ Thuật</h2>
-                <p>Dưới đây là các bước chuẩn hóa dữ liệu OmniClass cho Family trong Autodesk Revit giúp tối ưu hóa luồng làm việc <strong>Công Nghệ BIM</strong>:</p>
+                <p>Dưới đây là các bước chuẩn hóa dữ liệu OmniClass cho Family trong Autodesk Revit giúp tối ưu hóa
+                    luồng làm việc <strong>Công Nghệ BIM</strong>:</p>
 
                 <ol class="step-list">
-                    <li><strong>Mở môi trường Family Editor:</strong> Chọn Family kiến trúc hoặc thiết bị xây dựng cần gán mã OmniClass.</li>
-                    <li><strong>Truy cập cửa sổ Family Category and Parameters:</strong> Tại thanh công cụ Ribbon, chọn biểu tượng folder vàng để mở bảng thông số thiết lập chung.</li>
-                    <li><strong>Tìm kiếm tham số Identity Data:</strong> Cuộn xuống nhóm tham số `Identity Data`, bạn sẽ thấy hai ô `OmniClass Number` và `OmniClass Title`.</li>
-                    <li><strong>Tra cứu trong tập tin OmniClassTaxonomy.txt:</strong> Nhấp vào nút ba chấm `...` bên phải mã OmniClass. Một hộp thoại cây phân loại sẽ xuất hiện, cho phép bạn chọn đúng nhóm sản phẩm (ví dụ: <code>23.30.10.00 - Openings</code> cho hệ cửa).</li>
-                    <li><strong>Lưu và Tải vào Dự Án:</strong> Nhấn OK để xác nhận, sau đó load Family trở lại dự án Revit chính để đồng bộ dữ liệu.</li>
+                    <li><strong>Mở môi trường Family Editor:</strong> Chọn Family kiến trúc hoặc thiết bị xây dựng cần
+                        gán mã OmniClass.</li>
+                    <li><strong>Truy cập cửa sổ Family Category and Parameters:</strong> Tại thanh công cụ Ribbon, chọn
+                        biểu tượng folder vàng để mở bảng thông số thiết lập chung.</li>
+                    <li><strong>Tìm kiếm tham số Identity Data:</strong> Cuộn xuống nhóm tham số `Identity Data`, bạn sẽ
+                        thấy hai ô `OmniClass Number` và `OmniClass Title`.</li>
+                    <li><strong>Tra cứu trong tập tin OmniClassTaxonomy.txt:</strong> Nhấp vào nút ba chấm `...` bên
+                        phải mã OmniClass. Một hộp thoại cây phân loại sẽ xuất hiện, cho phép bạn chọn đúng nhóm sản
+                        phẩm (ví dụ: <code>23.30.10.00 - Openings</code> cho hệ cửa).</li>
+                    <li><strong>Lưu và Tải vào Dự Án:</strong> Nhấn OK để xác nhận, sau đó load Family trở lại dự án
+                        Revit chính để đồng bộ dữ liệu.</li>
                 </ol>
 
                 <figure>
-                    <img src="https://i.pinimg.com/736x/be/4d/88/be4d886e5aa001012f80273a6c3ec595.jpg?auto=format&fit=crop&w=1200&q=80" alt="Công nghệ BIM trong quản lý công trình kiến trúc và thi công xây dựng">
-                    <figcaption>Hình 2: Kiểm soát dữ liệu đầu vào chuẩn hóa giúp rút ngắn thời gian bóc tách khối lượng và kiểm tra xung đột trong dự án.</figcaption>
+                    <img src="https://i.pinimg.com/736x/be/4d/88/be4d886e5aa001012f80273a6c3ec595.jpg?auto=format&fit=crop&w=1200&q=80"
+                        alt="Công nghệ BIM trong quản lý công trình kiến trúc và thi công xây dựng">
+                    <figcaption>Hình 2: Kiểm soát dữ liệu đầu vào chuẩn hóa giúp rút ngắn thời gian bóc tách khối lượng
+                        và kiểm tra xung đột trong dự án.</figcaption>
                 </figure>
 
                 <h2>5. Lợi Ích Lớn Cho Doanh Nghiệp Kiến Trúc Và Xây Dựng Khi Chuẩn Hóa OmniClass</h2>
-                <p>Sử dụng nhất quán phân loại dữ liệu OmniClass cho Revit đem lại nhiều lợi thế cạnh tranh vượt trội cho các đơn vị tư vấn <strong>kiến trúc</strong> và nhà thầu <strong>xây dựng</strong>:</p>
+                <p>Sử dụng nhất quán phân loại dữ liệu OmniClass cho Revit đem lại nhiều lợi thế cạnh tranh vượt trội
+                    cho các đơn vị tư vấn <strong>kiến trúc</strong> và nhà thầu <strong>xây dựng</strong>:</p>
 
                 <h3>a. Tự Động Hóa Xuất Báo Cáo COBie Vận Hành Công Trình</h3>
-                <p>Tiêu chuẩn trao đổi dữ liệu vận hành COBie (Construction-Operations Building Information Exchange) đòi hỏi mã hóa cấu kiện chính xác. Việc phân loại dữ liệu OmniClass đúng từ khâu thiết kế giúp xuất file COBie tự động từ Revit chỉ bằng vài thao tác nhấp chuột.</p>
+                <p>Tiêu chuẩn trao đổi dữ liệu vận hành COBie (Construction-Operations Building Information Exchange)
+                    đòi hỏi mã hóa cấu kiện chính xác. Việc phân loại dữ liệu OmniClass đúng từ khâu thiết kế giúp xuất
+                    file COBie tự động từ Revit chỉ bằng vài thao tác nhấp chuột.</p>
 
                 <h3>b. Tối Ưu Bóc Tách Khối Lượng Và Dự Toán (QTO)</h3>
-                <p>Khi các phần tử trong mô hình BIM được mã hóa theo OmniClass, bộ phận dự toán có thể lập bảng thống kê khối lượng tự động theo từng nhóm cấu kiện cụ thể, loại bỏ sai sót do đặt tên Family tự do.</p>
+                <p>Khi các phần tử trong mô hình BIM được mã hóa theo OmniClass, bộ phận dự toán có thể lập bảng thống
+                    kê khối lượng tự động theo từng nhóm cấu kiện cụ thể, loại bỏ sai sót do đặt tên Family tự do.</p>
 
                 <h3>c. Tuân Thủ Chuẩn BIM Quốc Tế ISO 19650</h3>
-                <p>Nhiều chủ đầu tư lớn và các dự án đấu thầu quốc tế đòi hỏi hồ sơ BIM phải đáp ứng chuẩn ISO 19650. Việc áp dụng OmniClass chính là bước đệm then chốt giúp hồ sơ năng lực <strong>xây dựng</strong> đạt chuẩn quốc tế.</p>
+                <p>Nhiều chủ đầu tư lớn và các dự án đấu thầu quốc tế đòi hỏi hồ sơ BIM phải đáp ứng chuẩn ISO 19650.
+                    Việc áp dụng OmniClass chính là bước đệm then chốt giúp hồ sơ năng lực <strong>xây dựng</strong> đạt
+                    chuẩn quốc tế.</p>
 
                 <div class="callout-box">
-                    <p><strong>Khuyến nghị từ PV INCONS:</strong> Các doanh nghiệp nên chủ động xây dựng bộ thư viện Family mẫu (Revit Template) đã gán sẵn mã OmniClass chuẩn nhằm đảm bảo tính đồng bộ và tiết kiệm thời gian cho các dự án sau.</p>
+                    <p><strong>Khuyến nghị từ PV INCONS:</strong> Các doanh nghiệp nên chủ động xây dựng bộ thư viện
+                        Family mẫu (Revit Template) đã gán sẵn mã OmniClass chuẩn nhằm đảm bảo tính đồng bộ và tiết kiệm
+                        thời gian cho các dự án sau.</p>
                 </div>
 
                 <h2>6. Kết Luận</h2>
-                <p>Chuẩn hóa phân loại dữ liệu OmniClass cho Revit là mắt xích không thể thiếu để phát huy tối đa sức mạnh của <strong>Công Nghệ BIM</strong> trong ngành <strong>xây dựng</strong> và <strong>kiến trúc</strong>. Bằng cách áp dụng đúng quy trình mã hóa dữ liệu ngay từ giai đoạn thiết kế sơ bộ, doanh nghiệp không chỉ nâng cao chất lượng hồ sơ mà còn tạo tiền đề vững chắc cho công tác quản lý thi công và vận hành công trình thông minh trong tương lai.</p>
+                <p>Chuẩn hóa phân loại dữ liệu OmniClass cho Revit là mắt xích không thể thiếu để phát huy tối đa sức
+                    mạnh của <strong>Công Nghệ BIM</strong> trong ngành <strong>xây dựng</strong> và <strong>kiến
+                        trúc</strong>. Bằng cách áp dụng đúng quy trình mã hóa dữ liệu ngay từ giai đoạn thiết kế sơ bộ,
+                    doanh nghiệp không chỉ nâng cao chất lượng hồ sơ mà còn tạo tiền đề vững chắc cho công tác quản lý
+                    thi công và vận hành công trình thông minh trong tương lai.</p>
             </section>
 
             <!-- Thẻ Bài viết (Tags) -->
