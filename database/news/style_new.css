@@ -319,20 +319,20 @@
        }
 
        .article-subtitle {
-           font-size: 1.05rem;
+           font-size: 1.1rem;
            line-height: 1.7;
            margin-bottom: 20px;
            padding-bottom: 16px;
        }
 
        .article-content {
-           font-size: 1.05rem;
+           font-size: 1.1rem;
            line-height: 1.7;
        }
 
        .article-content h2,
        h2 {
-           font-size: 1.1rem;
+           font-size: 1.15rem;
            margin-top: 24px;
            margin-bottom: 10px;
        }
