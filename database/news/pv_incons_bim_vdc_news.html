@@ -1,529 +1,588 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PV INCONS Xây Dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC</title>
+    <title>PV INCONS Xây Dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC | PV INCONS</title>
+    <meta name="description"
+        content="PV INCONS tiên phong xây dựng hạ tầng số chuẩn hóa cho công nghệ BIM/VDC, tối ưu hóa thiết kế kiến trúc và quản lý thi công xây dựng hiện đại.">
+
+    <!-- Favicon chuẩn cho Google Search & Trình duyệt -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://pvincons.com/assets/pic/favicon.png">
+    <link rel="shortcut icon" href="https://pvincons.com/favicon.ico">
+    <link rel="apple-touch-icon" href="https://pvincons.com/assets/pic/favicon.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Preload Font nội bộ -->
+    <link rel="preload" href="assets/fonts/Inter_18pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Inter_18pt-Bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Oswald-Bold.ttf" as="font" type="font/ttf" crossorigin>
+
+    <!-- Thư viện Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- File CSS dùng chung -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Thẻ Canonical chuẩn SEO -->
+    <link rel="canonical" href="https://pvincons.com/database/news/pv_incons_bim_vdc_news.html">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://pvincons.com/database/news/pv_incons_bim_vdc_news.html" />
+    <meta property="og:title" content="PV INCONS Xây Dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC" />
+    <meta property="og:description"
+        content="PV INCONS tiên phong xây dựng hạ tầng số chuẩn hóa cho công nghệ BIM/VDC, tối ưu hóa thiết kế kiến trúc và quản lý thi công xây dựng hiện đại." />
+    <meta property="og:image" content="https://pvincons.com/assets/pic/logo.webp" />
+    <meta property="og:image:secure_url" content="https://pvincons.com/assets/pic/logo.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PV INCONS Xây Dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC" />
+    <meta name="twitter:description"
+        content="PV INCONS tiên phong xây dựng hạ tầng số chuẩn hóa cho công nghệ BIM/VDC, tối ưu hóa thiết kế kiến trúc và quản lý thi công xây dựng hiện đại." />
+    <meta name="twitter:image" content="https://pvincons.com/assets/pic/logo.webp" />
+
+    <!-- Schema JSON-LD -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "PV INCONS - Hạ Tầng Số Công Nghệ BIM/VDC",
+  "url": "https://pvincons.com/database/news/pv_incons_bim_vdc_news.html",
+  "logo": "https://pvincons.com/assets/pic/logo.webp",
+  "description": "PV INCONS tiên phong xây dựng hạ tầng số chuẩn hóa cho công nghệ BIM/VDC, giúp tối ưu hóa toàn bộ chuỗi giá trị từ thiết kế kiến trúc đến thi công xây dựng.",
+  "telephone": "+84909751194",
+  "image": "https://pvincons.com/assets/pic/logo.webp",
+  "priceRange": "10,000,000 VND - 10,000,000,000 VND",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "292/30 đường Phan Văn Quân, phường Bình Minh",
+    "addressLocality": "Vĩnh Long",
+    "addressRegion": "Vĩnh Long",
+    "postalCode": "850000",
+    "addressCountry": "VN"
+  },
+  "department": [
+    {
+      "@type": "LocalBusiness",
+      "name": "PV INCONS - Trụ sở chính",
+      "telephone": "+84909751194",
+      "image": "https://pvincons.com/assets/pic/logo.webp",
+      "priceRange": "1,000,000 VND - 10,000,000 VND",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "292/30 đường Phan Văn Quân, phường Bình Minh",
+        "addressLocality": "Vĩnh Long",
+        "addressRegion": "Vĩnh Long",
+        "postalCode": "850000",
+        "addressCountry": "VN"
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "PV INCONS - Văn phòng Cần Thơ",
+      "telephone": "+84772194789",
+      "image": "https://pvincons.com/assets/pic/logo.webp",
+      "priceRange": "5,000,000 VND - 100,000,000 VND",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "P007 Lý Thái Tổ, phường Hưng Phú",
+        "addressLocality": "Cần Thơ",
+        "addressRegion": "Cần Thơ",
+        "postalCode": "900000",
+        "addressCountry": "VN"
+      }
+    }
+  ]
+}
+</script>
+
     <style>
         :root {
-            --primary: #1e3a8a;
-            --primary-light: #2563eb;
-            --primary-dark: #0f172a;
-            --accent: #0284c7;
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #1e293b;
+            /* Brand Colors */
+            --brand-blue: #1e68a8;
+            --brand-darkblue: #0d3d6b;
+            --brand-orange: #e87e23;
+            --brand-gold: #8c6239;
+
+            /* Theme & System Colors */
+            --primary-color: var(--brand-blue);
+            --primary-dark: #071728;
+            --primary-blue: #1e68a8;
+            --accent-orange: #e87e23;
+            --accent-gold: #8c6239;
+            --accent-bg: #f4efe6;
+
+            /* Tone màu vàng kem dịu mắt chuẩn VnExpress */
+            --bg-body: #fcfaf6;
+            --bg-card: #fcfaf6;
+            --text-main: #222222;
+            /* Màu đen chuẩn VnExpress */
             --text-muted: #64748b;
-            --border: #e2e8f0;
-            --radius: 12px;
-            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+            --border-color: #e5e0d8;
+
+            /* Spacing */
+            --slide-y: 22px;
+            --slide-x: 100px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* Phần thân dùng Font Arial / Helvetica chuẩn VnExpress */
         body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-body);
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            line-height: 1.75;
             color: var(--text-main);
-            line-height: 1.7;
+            background-color: var(--bg-body);
+            margin: 0;
             -webkit-font-smoothing: antialiased;
-            padding: 1rem 0;
         }
 
-        /* Container */
-        .container {
-            max-width: 1140px;
-            margin: 1.5rem auto;
-            padding: 0 1.5rem;
+        /* Container Bài Viết: Phẳng, không viền, không bóng */
+        .article-container {
+            max-width: 760px;
+            margin: 24px auto;
+            background-color: var(--bg-card);
+            box-shadow: none;
+            padding: 0 20px;
+            border-radius: 0;
+            border: none;
         }
 
-        /* Article Header */
-        .article-header {
-            margin-bottom: 2rem;
-        }
-
-        .meta-top {
+        /* Breadcrumb Điều Hướng */
+        .breadcrumb {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 1rem;
-        }
-
-        .category-badge {
-            background-color: #0284c7;
-            color: #ffffff;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .pub-date {
+            gap: 8px;
             font-size: 0.875rem;
             color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 500;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        .article-title {
-            font-size: 2.25rem;
-            line-height: 1.25;
-            font-weight: 800;
-            color: var(--primary-dark);
-            margin-bottom: 1.25rem;
-            letter-spacing: -0.02em;
-        }
-
-        .article-lead {
-            font-size: 1.18rem;
-            line-height: 1.6;
-            color: #475569;
-            font-weight: 400;
-            border-left: 4px solid var(--primary-light);
-            padding-left: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Featured Banner Card */
-        .hero-card {
-            background: #ffffff;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06);
-            margin-bottom: 3rem;
-            border: 1px solid var(--border);
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-        }
-
-        @media (max-width: 800px) {
-            .hero-card {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .hero-visual {
-            background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2.5rem 1.5rem;
-            border-right: 1px solid var(--border);
-            position: relative;
-        }
-
-        .bim-3d-box {
-            text-align: center;
-        }
-
-        .bim-main-title {
-            font-size: 3.8rem;
-            font-weight: 900;
-            color: #1e3a8a;
-            line-height: 0.85;
-            letter-spacing: -1.5px;
-        }
-
-        .bim-sub-title {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: #334155;
-            letter-spacing: 2.5px;
-            margin-top: 6px;
-        }
-
-        .bim-desc-title {
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: #64748b;
-            letter-spacing: 3.5px;
-            margin-top: 4px;
-            text-transform: uppercase;
-        }
-
-        .hero-content {
-            padding: 2.25rem 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: #f8fafc;
-        }
-
-        .hero-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.85rem;
-            font-size: 0.85rem;
-        }
-
-        .hero-date {
-            color: #0284c7;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .hero-link {
-            color: #0284c7;
+        .breadcrumb a {
+            color: var(--primary-color);
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
+            transition: color 0.2s;
         }
 
-        .hero-link:hover {
+        .breadcrumb a:hover {
             text-decoration: underline;
         }
 
-        .hero-heading {
-            font-size: 1.45rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            margin-bottom: 0.85rem;
-            line-height: 1.35;
-        }
-
-        .hero-text {
-            font-size: 0.975rem;
-            color: #475569;
-            line-height: 1.6;
-        }
-
-        /* Layout Grid */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2.7fr 1.3fr;
-            gap: 3rem;
-        }
-
-        @media (max-width: 900px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Article Main Content */
-        .article-body {
-            font-size: 1.05rem;
-            color: #334155;
-            line-height: 1.8;
-        }
-
-        .article-body h2 {
-            font-size: 1.45rem;
-            color: var(--primary-dark);
-            margin: 2.2rem 0 1rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e2e8f0;
-            position: relative;
-            font-weight: 800;
-        }
-
-        .article-body h2::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 70px;
-            height: 2px;
-            background-color: var(--primary-light);
-        }
-
-        .article-body h3 {
-            font-size: 1.18rem;
-            color: #1e293b;
-            margin: 1.5rem 0 0.75rem 0;
-            font-weight: 700;
-        }
-
-        .article-body p {
-            margin-bottom: 1.25rem;
-            text-align: justify;
-        }
-
-        .article-body ul {
-            margin: 0 0 1.5rem 1.5rem;
-        }
-
-        .article-body li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Stat Highlight Grid */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .metric-card {
-            background-color: #ffffff;
-            border: 1px solid var(--border);
-            padding: 1.25rem;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            border-top: 3px solid var(--primary-light);
-        }
-
-        .metric-val {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            line-height: 1.2;
-        }
-
-        .metric-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin-top: 0.35rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Quote Callout */
-        .quote-box {
-            background-color: #f1f5f9;
-            border-left: 4px solid var(--primary-light);
-            padding: 1.5rem 1.75rem;
-            margin: 2.2rem 0;
-            border-radius: 0 var(--radius) var(--radius) 0;
-        }
-
-        .quote-box p {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #0f172a;
-            margin-bottom: 0.75rem;
-            line-height: 1.65;
-        }
-
-        .quote-author {
-            font-weight: 700;
-            font-size: 0.875rem;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .quote-title {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Sidebar Widgets */
-        .sidebar {
+        /* Article Meta & Author */
+        .article-meta {
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
         }
 
-        .widget-box {
-            background-color: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .widget-title {
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            padding-bottom: 0.6rem;
-            border-bottom: 2px solid var(--bg-body);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: whitesmoke !important;
+            object-fit: cover;
         }
 
-        .takeaways-list {
-            list-style: none;
+        .article-date-time {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .takeaways-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.85rem;
-            font-size: 0.925rem;
-            color: #475569;
+        /* ===== TIÊU ĐỀ BÀI VIẾT (Times New Roman & Style VnExpress) ===== */
+        h1.article-title {
+            font-family: "Times New Roman", Times, Georgia, serif;
+            font-size: 2.25rem;
+            /* ~36px */
+            font-weight: 700;
+            color: #222222;
+            line-height: 1.3;
+            margin: 0 0 16px 0;
+            letter-spacing: -0.01em;
+        }
+
+        /* ===== MÔ TẢ NỘI DUNG / SAPO (Times New Roman & Style VnExpress) ===== */
+        .article-subtitle {
+            font-family: "Times New Roman", Times, Georgia, serif;
+            font-size: 1.2rem;
+            /* ~19px */
+            color: #4f4f4f;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* ===== THÂN BÀI VIẾT (Giao diện báo VnExpress) ===== */
+        .article-content {
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 1.0625rem;
+            /* ~17px */
+            color: #222222;
             line-height: 1.5;
         }
 
-        .takeaways-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary-light);
-            font-weight: bold;
+        .article-content p {
+            margin-bottom: 1.25rem;
         }
 
-        .tech-stack-tag {
-            display: inline-block;
-            background-color: #f1f5f9;
-            color: var(--primary-dark);
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-            margin-right: 6px;
-            margin-bottom: 8px;
-            border: 1px solid var(--border);
+        /* ===== ĐỀ MỤC BÀI VIẾT H2 (In đậm tuyệt đối, không bị CSS Reset ghi đè) ===== */
+        .article-content h2,
+        h2 {
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 1.25rem;
+            /* ~20px */
+            color: #222222;
+            margin-top: 32px;
+            margin-bottom: 14px;
+            font-weight: 700 !important;
+            /* Bắt buộc in đậm */
+            line-height: 1.4;
+        }
+
+        .article-content h3,
+        h3 {
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 1.125rem;
+            color: #222222;
+            margin-top: 24px;
+            margin-bottom: 10px;
+            font-weight: 700 !important;
+            line-height: 1.4;
+        }
+
+        /* Callout Box */
+        .callout-box {
+            background-color: #f3eee3;
+            border-left: 4px solid var(--primary-color);
+            padding: 18px 22px;
+            margin: 24px 0;
+        }
+
+        .callout-box p {
+            margin: 0;
+            color: #222222;
+            font-size: 0.98rem;
+        }
+
+        /* Trích dẫn Blockquote */
+        blockquote {
+            margin: 24px 0;
+            padding: 16px 20px;
+            border-left: 3px solid var(--brand-orange);
+            background-color: #f5efe4;
+            font-style: italic;
+            color: #333333;
+        }
+
+        /* Responsive Table Container */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 24px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            background-color: #fff;
+        }
+
+        .data-table th {
+            background-color: #ede7dc;
+            color: #222222;
+            font-weight: 700;
+            text-align: left;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f9f6f0;
+        }
+
+        /* Formats */
+        code {
+            font-family: "Fira Code", Consolas, Monaco, monospace;
+            background-color: #eee8dd;
+            color: var(--brand-orange);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 16px;
+        }
+
+        .step-list li::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 26px;
+            height: 26px;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        /* Images & Figures */
+        figure {
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Article Tags */
+        .article-tags {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .tag-item {
+            background-color: #eee7dc;
+            color: #333333;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .tag-item:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* ===== TỐI ƯU GIAO DIỆN DI ĐỘNG (MOBILE RESPONSIVE) ===== */
+        @media (max-width: 640px) {
+            .article-container {
+                padding: 0 16px;
+                margin: 12px auto;
+            }
+
+            h1.article-title {
+                font-size: 1.4rem;
+                line-height: 1.5;
+                margin-bottom: 12px;
+            }
+
+            .article-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.5;
+                margin-bottom: 20px;
+                padding-bottom: 16px;
+            }
+
+            .article-content {
+                font-size: 1.0rem;
+                line-height: 1.5;
+            }
+
+            .article-content h2,
+            h2 {
+                font-size: 1.1rem;
+                margin-top: 24px;
+                margin-bottom: 10px;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
         }
     </style>
 </head>
-<body>
 
-    <!-- Main Content Container -->
-    <main class="container">
+<body class="selection:bg-brand-blue selection:text-white">
 
-        <!-- Article Header -->
-        <header class="article-header">
-            <div class="meta-top">
-                <span class="category-badge">CÔNG NGỆ</span>
-                <span class="pub-date">📅 01/07/2026</span>
-                <span class="pub-date">⏱️ 5 phút đọc</span>
+    <div id="header-placeholder"></div>
+
+    <main class="py-4 md:py-8">
+        <article class="article-container">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="/"><i class="fa-solid fa-house"></i> Trang chủ</a>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+                <a href="/news.html">Tin tức</a>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+                <span>Công Nghệ BIM/VDC</span>
+            </nav>
+
+            <!-- Tiêu đề bài viết (Times New Roman) -->
+            <h1 class="article-title">PV INCONS Xây Dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC Trong Ngành Xây Dựng Và Kiến Trúc</h1>
+
+            <!-- Mô tả ngắn / Sapo (Times New Roman) -->
+            <p class="article-subtitle">Trước làn sóng chuyển đổi số toàn cầu, PV INCONS tiên phong đầu tư và chuẩn hóa hạ tầng số chuyên sâu cho công nghệ BIM/VDC. Đột phá này không chỉ tối ưu hóa quy trình thiết kế kiến trúc và quản lý thi công xây dựng mà còn gia tăng giá trị bền vững cho các dự án bất động sản và hạ tầng hiện đại.</p>
+
+            <!-- Thông tin tác giả & Ngày đăng -->
+            <div class="article-meta">
+                <div class="author-info">
+                    <img src="https://pvincons.com/assets/pic/favicon.png" alt="PV INCONS" class="author-avatar">
+                    <div>
+                        <span class="block text-sm font-bold text-slate-800">Ban Biên Tập PV INCONS</span>
+                        <span class="text-xs text-slate-500">Chuyên mục: Công Nghệ & Xây Dựng</span>
+                    </div>
+                </div>
+                <div class="article-date-time">
+                    <span><i class="fa-regular fa-calendar-check mr-1"></i> 25/08/2026</span>
+                    <span><i class="fa-regular fa-clock mr-1"></i> 6 phút đọc</span>
+                </div>
             </div>
-            <h1 class="article-title" style="font-family: 'Times New Roman', Times, serif;">PV INCONS XÂY DỰNG HẠ TẦNG SỐ CHO CÔNG NGHỆ BIM/VDC: ĐỘT PHÁ QUẢN LÝ VÀ THI CÔNG CÔNG TRÌNH TƯƠNG LAI</h1>
-            <p class="article-lead" style="font-family: 'Times New Roman', Times, serif;">
-                Nhằm nâng cao năng lực cạnh tranh và đón đầu xu hướng chuyển đổi số toàn cầu trong ngành xây dựng, Công ty TNHH Thương Mại và Xây dựng PV INCONS đã chính thức hoàn thiện và đưa vào vận hành hệ thống hạ tầng số chuyên dụng cho mô hình BIM (Building Information Modeling) và VDC (Virtual Design and Construction) trên nền tảng đám mây.
-            </p>
-        </header>
 
-        <!-- Featured Banner Card -->
-        <div class="hero-card">
-            <div class="hero-visual">
-                <div class="bim-3d-box">
-                    <div class="bim-main-title">BIM</div>
-                    <div class="bim-sub-title">BUILDING</div>
-                    <div class="bim-desc-title">INFORMATION MODELLING</div>
+            <!-- Nội dung chi tiết bài viết -->
+            <section class="article-content">
+                <h2>Cấp thiết chuyển đổi số trong thiết kế kiến trúc và thi công xây dựng</h2>
+                <p>Trong bối cảnh ngành xây dựng đang đối mặt với những thách thức lớn về chi phí nguyên vật liệu, yêu cầu khắt khe về tiến độ và tiêu chuẩn kỹ thuật ngày càng cao, việc áp dụng các công nghệ tiên tiến đã trở thành yếu tố sống còn. Trước đây, phương pháp làm việc truyền thống dựa trên bản vẽ 2D rải rác thường dẫn đến xung đột hệ thống kỹ thuật, sai lệch khối lượng và lãng phí nguồn lực trong quá trình thi công thực địa.</p>
+                
+                <p>Sự ra đời của <strong>công nghệ BIM</strong> (Building Information Modeling) và VDC (Virtual Design and Construction) đã tạo ra cuộc cách mạng thực sự trong ngành <strong>xây dựng</strong> và <strong>kiến trúc</strong>. Bằng cách mô hình hóa thông tin công trình dưới dạng 3D tích hợp dữ liệu thời gian (4D), chi phí (5D) và quản lý vận hành (6D), BIM/VDC giúp trực quan hóa toàn bộ vòng đời công trình ngay từ khâu phác thảo ý tưởng ban đầu.</p>
+
+                <div class="callout-box">
+                    <p><strong>Thông điệp chiến lược từ PV INCONS:</strong> "Chuyển đổi số không đơn thuần là mua sắm phần mềm, mà là việc xây dựng một hạ tầng số đồng bộ, chuẩn hóa quy trình dữ liệu và kết nối con người để hiện thực hóa các công trình kiến trúc đạt chất lượng tối ưu."</p>
                 </div>
+
+                <h2>PV INCONS kiến tạo hạ tầng số toàn diện cho công nghệ BIM/VDC</h2>
+                <p>Xác định công nghệ là trụ cột phát triển dài hạn, PV INCONS đã đầu tư mạnh mẽ vào hệ thống hạ tầng số chuyên biệt. Hạ tầng này đóng vai trò như "ngương xương sống" kết nối các bộ môn từ tư vấn thiết kế <strong>kiến trúc</strong>, tính toán kết cấu, cơ điện (MEP) cho đến điều phối công trường <strong>xây dựng</strong>.</p>
+
+                <p>Một số nền tảng hạ tầng số nổi bật được PV INCONS triển khai bao gồm:</p>
+                <p>1. <strong>Môi trường dữ liệu chung CDE (Common Data Environment):</strong> Tích hợp điện toán đám mây cho phép các kiến trúc sư, kỹ sư và chủ đầu tư truy cập, phản hồi và phê duyệt dữ liệu theo thời gian thực mọi lúc, mọi nơi.</p>
+                <p>2. <strong>Thư viện chuẩn hóa quốc tế và TCVN:</strong> Hệ thống dữ liệu đối tượng BIM (Revit Families, Templates) được biên soạn chuẩn hóa theo các tiêu chuẩn Việt Nam hiện hành và tiêu chuẩn quốc tế ISO 19650, rút ngắn 35% thời gian dựng mô hình.</p>
+                <p>3. <strong>Tự động hóa nâng cao với Dynamo Script:</strong> Đội ngũ kỹ sư PV INCONS làm chủ các kịch bản Dynamo giúp tự động hóa quá trình gán thông tin, đánh mã định danh thiết bị và kiểm tra xung đột tự động.</p>
+
+                <h2>Bảng so sánh hiệu quả giữa phương pháp truyền thống và hạ tầng số BIM/VDC</h2>
+                <p>Nhờ ứng dụng hạ tầng số BIM/VDC chuẩn hóa, các dự án do PV INCONS đảm nhận ghi nhận sự cải thiện rõ rệt ở tất cả các chỉ số hiệu suất quan trọng:</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tiêu Chí So Sánh</th>
+                                <th>Phương Pháp Truyền Thống</th>
+                                <th>Hạ Tầng Số BIM/VDC Tại PV INCONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Phối hợp Kiến trúc & Kết cấu</td>
+                                <td>Phát hiện xung đột tại công trường</td>
+                                <td>Kiểm tra xung đột tự động 100% trên mô hình số</td>
+                            </tr>
+                            <tr>
+                                <td>Độ chính xác bóc tách khối lượng</td>
+                                <td>Sai số trung bình từ 8% - 15%</td>
+                                <td>Chính xác tuyệt đối dựa trên thông tin thuộc tính LOD 400</td>
+                            </tr>
+                            <tr>
+                                <td>Thời gian phê duyệt thiết kế</td>
+                                <td>Tốn nhiều tuần qua bản vẽ giấy 2D</td>
+                                <td>Tương tác 3D trực quan, phê duyệt tức thì qua CDE</td>
+                            </tr>
+                            <tr>
+                                <td>Quản lý rủi ro thi công</td>
+                                <td>Phụ thuộc vào kinh nghiệm cá nhân</td>
+                                <td>Mô phỏng tiến độ thi công 4D chính xác từng giai đoạn</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Quy trình 5 bước triển khai ứng dụng BIM/VDC tiêu chuẩn tại PV INCONS</h2>
+                <p>Nhằm đảm bảo tính thống nhất và chất lượng đầu ra cho mọi công trình <strong>xây dựng</strong> và sản phẩm <strong>kiến trúc</strong>, PV INCONS áp dụng quy trình 5 bước chuẩn hóa:</p>
+
+                <ol class="step-list">
+                    <li><strong>Lập Kế Hoạch Thực Hiện BIM (BEP):</strong> Khảo sát nhu cầu chủ đầu tư, xác định Mức độ chi tiết mô hình (LOD) và thiết lập quy ước làm việc trên môi trường dữ liệu chung CDE.</li>
+                    <li><strong>Mô Hình Hóa Kiến Trúc & Kết Cấu:</strong> Triển khai phương án ý tưởng kiến trúc sang không gian 3D, tích hợp đầy đủ thông tin vật liệu, quy cách kỹ thuật và thông số chịu lực.</li>
+                    <li><strong>Tổng Hợp & Giải Quyết Xung Đột (Clash Detection):</strong> Chạy mô phỏng phối hợp đa bộ môn bằng phần mềm chuyên dụng Navisworks, loại bỏ triệt để các điểm chồng chéo đường ống MEP và cấu kiện dầm sàn.</li>
+                    <li><strong>Bóc Tách Khối Lượng Auto-QS & Xuất Hồ Sơ Thi Công:</strong> Rút trích tự động bảng thống kê khối lượng nguyên vật liệu (5D BIM) và xuất bản vẽ kỹ thuật chất lượng cao.</li>
+                    <li><strong>Nghiệm Thu & Chuyển Giao Mô Hình As-Built (6D):</strong> Cập nhật thông tin thực tế thi công để bàn giao cho công tác quản lý vận hành tòa nhà thông minh sau khi hoàn thành.</li>
+                </ol>
+
+                <h2>Cam kết nâng tầm chất lượng cho ngành kiến trúc và xây dựng</h2>
+                <p>Việc PV INCONS đẩy mạnh phát triển hạ tầng số cho <strong>công nghệ BIM</strong> không chỉ dừng lại ở mục tiêu tối ưu hiệu quả hoạt động nội bộ mà còn hướng đến nâng cao chuẩn mực chung cho các công trình <strong>xây dựng</strong> tại Việt Nam. Sự kết hợp giữa tư duy thiết kế <strong>kiến trúc</strong> độc đáo và năng lực làm chủ công nghệ VDC hiện đại giúp PV INCONS khẳng định vị thế là đối tác tin cậy hàng đầu cho các dự án nhà ở, thương mại và hạ tầng kỹ thuật.</p>
+                
+                <p>Trong thời gian tới, PV INCONS sẽ tiếp tục mở rộng nghiên cứu tích hợp trí tuệ nhân tạo (AI) và công nghệ quét Laser 3D (Point Cloud) vào hạ tầng số BIM/VDC, mang lại những bước tiến vượt bậc hơn nữa cho ngành xây dựng Việt Nam.</p>
+            </section>
+
+            <!-- Thẻ Bài viết (Tags) -->
+            <div class="article-tags">
+                <span class="font-semibold text-sm text-slate-600"><i class="fa-solid fa-tags mr-1"></i> Thẻ:</span>
+                <a href="#" class="tag-item">#CongNgheBim</a>
+                <a href="#" class="tag-item">#XayDung</a>
+                <a href="#" class="tag-item">#KienTruc</a>
+                <a href="#" class="tag-item">#PVINCONS</a>
+                <a href="#" class="tag-item">#HaTangSo</a>
+                <a href="#" class="tag-item">#VDC</a>
             </div>
-            <div class="hero-content">
-                <div class="hero-meta">
-                    <span class="hero-date">📅 01/07/2026</span>
-                    <a href="#" class="hero-link">Xem chi tiết &rarr;</a>
-                </div>
-                <h2 class="hero-heading">PV INCONS Xây dựng Hạ Tầng Số Cho Công Nghệ BIM/VDC</h2>
-                <p class="hero-text">
-                    Thực hiện quy trình kỹ thuật tiên tiến, tối ưu hóa phối hợp nhóm bằng mô hình thông tin công trình BIM trên nền tảng đám mây.
-                </p>
-            </div>
-        </div>
-
-        <!-- Content Grid Layout -->
-        <div class="content-grid">
-
-            <!-- Main Body Column -->
-            <article class="article-body">
-                <h2>1. Bối Cảnh Và Yêu Cầu Cấp Thiết Về Chuyển Đổi Số</h2>
-                <p>
-                    Trong bối cảnh quy mô các dự án xây dựng hạ tầng, công nghiệp và dân dụng ngày càng phức tạp, việc áp dụng phương thức quản lý truyền thống dựa trên bản vẽ 2D phẳng và giao tiếp thủ công đã bộc lộ nhiều hạn chế. Xung đột giữa các bộ môn (Kiến trúc, Kết cấu, M&E), sai lệch khối lượng vật tư và nguy cơ trễ tiến độ là những thách thức thường gặp.
-                </p>
-                <p>
-                    Nhận thức rõ tầm quan trọng của việc hiện đại hóa quy trình, <strong>PV INCONS</strong> đã coi ứng dụng mô hình thông tin công trình (BIM) và thiết kế & thi công ảo (VDC) là trụ cột chiến lược trong kế hoạch phát triển bền vững giai đoạn 2026-2030.
-                </p>
-
-                <!-- Key Metrics Grid -->
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-val">-35%</div>
-                        <div class="metric-label">Xung đột thiết kế</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-val">+25%</div>
-                        <div class="metric-label">Hiệu quả phối hợp</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-val">100%</div>
-                        <div class="metric-label">Đồng bộ đám mây</div>
-                    </div>
-                </div>
-
-                <h2>2. Kiến Trúc Hạ Tầng Số BIM/VDC Trọng Tâm</h2>
-                <p>
-                    Hạ tầng số mới của PV INCONS được xây dựng dựa trên tiêu chuẩn quốc tế ISO 19650 về quản lý thông tin trong vòng đời công trình xây dựng. Các thành phần chính của hệ thống bao gồm:
-                </p>
-                <ul>
-                    <li><strong>Môi trường Dữ liệu Chung (CDE - Common Data Environment):</strong> Lưu trữ và quản lý tập trung toàn bộ dữ liệu dự án trên nền tảng điện toán đám mây bảo mật cao, đảm bảo các bên liên quan (Chủ đầu tư, Ban quản lý, Nhà thầu, Đơn vị tư vấn) truy cập đúng phiên bản thông tin theo thời gian thực.</li>
-                    <li><strong>Mô phỏng Tiến độ 4D & Chi phí 5D:</strong> Tích hợp dữ liệu tiến độ và ngân sách trực tiếp vào mô hình 3D, giúp ban dự án dự báo chính xác dòng tiền và kiểm soát rủi ro phát sinh ngay từ giai đoạn chuẩn bị.</li>
-                    <li><strong>Giải pháp Kiểm tra Xung đột Tự động (Clash Detection):</strong> Sử dụng trí tuệ nhân tạo (AI) và các thuật toán nâng cao để phát hiện sớm các va chạm hạ tầng kỹ thuật trước khi triển khai ngoài hiện trường.</li>
-                </ul>
-
-                <div class="quote-box">
-                    <p>
-                        "Chuyển đổi số không đơn thuần là việc trang bị phần mềm mới, mà là việc tái cấu trúc toàn bộ tư tư duy quản lý công trình. Hạ tầng đám mây BIM/VDC giúp PV INCONS xóa bỏ rào cản địa lý giữa văn phòng và công trường, đem lại sự minh bạch và chính xác tối đa cho mỗi dự án."
-                    </p>
-                    <div class="quote-author">Ban Giám Đốc Công Nghệ</div>
-                    <div class="quote-title">Công ty Cổ phần Đầu tư và Xây dựng PV INCONS</div>
-                </div>
-
-                <h2>3. Tối Ưu Hóa Phối Hợp Nhóm Và Vận Hành Tương Tác</h2>
-                <p>
-                    Sự kết hợp giữa công nghệ BIM/VDC và hạ tầng đám mây tạo ra môi trường làm việc cộng tác đa chiều. Đội ngũ kỹ sư tại hiện trường có thể sử dụng máy tính bảng hoặc thiết bị di động để đối chiếu mô hình 3D trực tiếp với thực địa, cập nhật nhật ký thi công và gửi báo cáo sự cố ngay lập tức.
-                </p>
-                <p>
-                    Nhờ đó, thời gian phê duyệt yêu cầu thay đổi (RFI) được rút ngắn từ vài ngày xuống chỉ còn vài giờ, giảm thiểu tối đa thời gian chờ đợi và lãng phí nguồn lực tại công trường.
-                </p>
-
-                <h2>4. Lợi Ích Dài Hạn Và Định Hướng Tương Lai</h2>
-                <p>
-                    Việc đầu tư bài bản vào hạ tầng số BIM/VDC khẳng định vị thế tiên phong của PV INCONS trong xu hướng "Xây dựng Xanh" và "Xây dựng Thông minh". Không chỉ dừng lại ở giai đoạn thiết kế và thi công, mô hình dữ liệu tích hợp BIM/VDC sẽ là nền tảng cốt lõi phục vụ công tác quản lý tài sản và vận hành công trình (Digital Twin / 6D BIM) trong tương lai.
-                </p>
-            </article>
-
-            <!-- Sidebar Column -->
-            <aside class="sidebar">
-
-                <div class="widget-box">
-                    <h3 class="widget-title">Điểm Tóm Tắt Chính</h3>
-                    <ul class="takeaways-list">
-                        <li>Hạ tầng số đám mây chuẩn ISO 19650.</li>
-                        <li>Đồng bộ dữ liệu thời gian thực giữa Văn phòng và Công trường.</li>
-                        <li>Áp dụng thành công mô phỏng 4D (Tiến độ) & 5D (Chi phí).</li>
-                        <li>Tối ưu hóa quy trình kiểm tra xung đột kỹ thuật tự động.</li>
-                        <li>Sẵn sàng cho mô hình Bản sao số (Digital Twin) trong vận hành.</li>
-                    </ul>
-                </div>
-
-                <div class="widget-box">
-                    <h3 class="widget-title">Công Nghệ Tích Hợp</h3>
-                    <div style="margin-top: 0.5rem;">
-                        <span class="tech-stack-tag">Cloud CDE</span>
-                        <span class="tech-stack-tag">BIM 4D/5D</span>
-                        <span class="tech-stack-tag">ISO 19650</span>
-                        <span class="tech-stack-tag">Clash Detection</span>
-                        <span class="tech-stack-tag">Digital Twin</span>
-                        <span class="tech-stack-tag">VR/AR Review</span>
-                    </div>
-                </div>
-
-                <div class="widget-box">
-                    <h3 class="widget-title">Liên Hệ & Tin Tức</h3>
-                    <p style="font-size: 0.875rem; color: #64748b; line-height: 1.6;">
-                        Để biết thêm thông tin chi tiết về các giải pháp kỹ thuật số và năng lực thi công của PV INCONS, vui lòng truy cập tin tức chính thức hoặc liên hệ Bộ phận Truyền thông.
-                    </p>
-                </div>
-
-            </aside>
-
-        </div>
-
+        </article>
     </main>
 
+    <div id="footer-placeholder"></div>
+
+    <script src="/layout.js"></script>
+    <script>
+        loadLayout('news');
+    </script>
 </body>
+
 </html>
