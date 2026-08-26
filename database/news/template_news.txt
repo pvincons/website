@@ -1,0 +1,224 @@
+Hãy đóng vai một Chuyên gia Lập trình Web Front-End và SEO. 
+
+Tôi sẽ cung cấp cho bạn một file HTML mẫu (Template). Nhiệm vụ của bạn là:
+1. GIỮ NGUYÊN 100% CẤU TRÚC: Không sửa đổi, xóa bỏ hay thêm bớt bất kỳ quy tắc CSS (<style>), class, ID, thẻ HTML khung, CDN hay script nào từ file gốc.
+2. THAY THẾ NỘI DUNG & TỐI ƯU SEO: Đổi toàn bộ văn bản và thẻ meta SEO để phù hợp với chủ đề bài viết mới bên dưới.
+
+Các vị trí bắt buộc cập nhật SEO & Nội dung:
+- Thẻ SEO Head: <title>, <meta name="description">, <link rel="canonical">.
+- Social Meta Tags: các thẻ Open Graph (og:title, og:description...) và Twitter Card.
+- Schema JSON-LD: Cập nhật trường "description" và "name" phù hợp với bài viết mới nhưng giữ nguyên thông tin doanh nghiệp.
+- Khung bài viết:
+  + <h1 class="article-title">: Tiêu đề bài viết mới (chứa từ khóa chính).
+  + <p class="article-subtitle">: Sapo tóm tắt bài viết.
+  + <div class="article-meta">: Cập nhật ngày đăng và chuyên mục.
+  + <section class="article-content">: Thay toàn bộ <h2>, <p>, .callout-box, .table-wrapper (nếu có), .step-list bằng nội dung bài viết mới, giữ nguyên các class chuẩn này.
+  + <div class="article-tags">: Cập nhật các thẻ #tag liên quan.
+
+Chủ đề bài viết mới:
+[Nhập chủ đề]
+
+File HTML mẫu gốc:
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIN TỨC & SỰ KIỆN | PV INCONS</title>
+    <meta name="description"
+        content="Cập nhật tin tức mới nhất về xu hướng kiến trúc, công nghệ BIM/VDC, pháp lý xây dựng và các hoạt động nổi bật của PV INCONS.">
+
+    <!-- Favicon chuẩn cho Google Search & Trình duyệt -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://pvincons.com/assets/pic/favicon.png">
+    <link rel="shortcut icon" href="https://pvincons.com/favicon.ico">
+    <link rel="apple-touch-icon" href="https://pvincons.com/assets/pic/favicon.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Thư viện Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- File CSS dùng chung -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/database/news/style_news.css">
+
+    <!-- Thẻ Canonical chuẩn SEO -->
+    <link rel="canonical" href="https://pvincons.com/">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pvincons.com/" />
+    <meta property="og:title" content="Tin Tức | PV INCONS" />
+    <meta property="og:description"
+        content="Cập nhật tin tức ngành xây dựng, xu hướng thị trường & công nghệ mới nhất từ Công ty." />
+    <meta property="og:image" content="https://pvincons.com/assets/pic/logo.webp" />
+    <meta property="og:image:secure_url" content="https://pvincons.com/assets/pic/logo.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tin Tức | PV INCONS" />
+    <meta name="twitter:description"
+        content="Cập nhật tin tức ngành xây dựng, xu hướng thị trường & công nghệ mới nhất từ Công ty." />
+    <meta name="twitter:image" content="https://pvincons.com/assets/pic/logo.webp" />
+
+    <!-- Schema JSON-LD -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "PV INCONS",
+  "url": "https://pvincons.com",
+  "logo": "https://pvincons.com/assets/pic/logo.webp",
+  "description": "Cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án.",
+  "telephone": "+84909751194",
+  "image": "https://pvincons.com/assets/pic/logo.webp",
+  "priceRange": "10,000,000 VND - 10,000,000,000 VND",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "292/30 đường Phan Văn Quân, phường Bình Minh",
+    "addressLocality": "Vĩnh Long",
+    "addressRegion": "Vĩnh Long",
+    "postalCode": "850000",
+    "addressCountry": "VN"
+  },
+  "department": [
+    {
+      "@type": "LocalBusiness",
+      "name": "PV INCONS - Trụ sở chính",
+      "telephone": "+84909751194",
+      "image": "https://pvincons.com/assets/pic/logo.webp",
+      "priceRange": "1,000,000 VND - 10,000,000 VND",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "292/30 đường Phan Văn Quân, phường Bình Minh",
+        "addressLocality": "Vĩnh Long",
+        "addressRegion": "Vĩnh Long",
+        "postalCode": "850000",
+        "addressCountry": "VN"
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "PV INCONS - Văn phòng Cần Thơ",
+      "telephone": "+84772194789",
+      "image": "https://pvincons.com/assets/pic/logo.webp",
+      "priceRange": "5,000,000 VND - 100,000,000 VND",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "P007 Lý Thái Tổ, phường Hưng Phú",
+        "addressLocality": "Cần Thơ",
+        "addressRegion": "Cần Thơ",
+        "postalCode": "900000",
+        "addressCountry": "VN"
+      }
+    }
+  ]
+}
+</script>
+</head>
+
+<body class="selection:bg-brand-blue selection:text-white">
+
+    <div id="header-placeholder"></div>
+
+    <main class="py-4 md:py-8">
+        <article class="article-container">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="/"><i class="fa-solid fa-house"></i> Trang chủ</a>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+                <a href="/news.html">Tin tức</a>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+                <span>Chi tiết bài viết</span>
+            </nav>
+
+            <!-- Tiêu đề bài viết (Times New Roman) -->
+            <h1 class="article-title">Tiêu Đề Bài Viết Mẫu PV INCONS</h1>
+
+            <!-- Mô tả ngắn / Sapo (Times New Roman) -->
+            <p class="article-subtitle">Mô tả ngắn hoặc tóm tắt nội dung chính của bài viết cung cấp thông tin tổng quan
+                cho độc giả.</p>
+
+            <!-- Thông tin tác giả & Ngày đăng -->
+            <div class="article-meta">
+                <div class="author-info">
+                    <img src="https://pvincons.com/assets/pic/favicon.png" alt="PV INCONS" class="author-avatar">
+                    <div>
+                        <span class="block text-sm font-bold text-slate-800">Ban Biên Tập PV INCONS</span>
+                        <span class="text-xs text-slate-500">Chuyên mục: Công Nghệ & Xây Dựng</span>
+                    </div>
+                </div>
+                <div class="article-date-time">
+                    <span><i class="fa-regular fa-calendar-check mr-1"></i> 25/08/2026</span>
+                    <span><i class="fa-regular fa-clock mr-1"></i> 5 phút đọc</span>
+                </div>
+            </div>
+
+            <!-- Nội dung chi tiết bài viết -->
+            <section class="article-content">
+                <h2>Tiêu đề heading 2 của bài viết</h2>
+                <p>Nội dung chi tiết diễn giải bên dưới đề mục được trình bày liền mạch, rõ ràng và dễ đọc.</p>
+
+                <div class="callout-box">
+                    <p><strong>Lưu ý quan trọng:</strong> Đây là điểm cần chú ý trong quá trình triển khai dự án thực
+                        tế.</p>
+                </div>
+
+                <h2>Bảng so sánh và thông số kỹ thuật</h2>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Hạng Mục</th>
+                                <th>Tiêu Chuẩn Chính</th>
+                                <th>Ghi Chú</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mô hình BIM</td>
+                                <td>LOD 300 - 400</td>
+                                <td>Áp dụng Revit & Dynamo</td>
+                            </tr>
+                            <tr>
+                                <td>Hồ sơ Pháp lý</td>
+                                <td>TCVN & Quy chuẩn hiện hành</td>
+                                <td>Đầy đủ chứng nhận</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Các bước thực hiện dự án</h2>
+                <ol class="step-list">
+                    <li>Khảo sát hiện trạng và thu thập thông tin dự án.</li>
+                    <li>Lập quy hoạch và phương án thiết kế sơ bộ.</li>
+                    <li>Triển khai chi tiết và xuất hồ sơ thi công.</li>
+                </ol>
+            </section>
+
+            <!-- Thẻ Bài viết (Tags) -->
+            <div class="article-tags">
+                <span class="font-semibold text-sm text-slate-600"><i class="fa-solid fa-tags mr-1"></i> Thẻ:</span>
+                <a href="#" class="tag-item">#thietke</a>
+                <a href="#" class="tag-item">#xaydung</a>
+                <a href="#" class="tag-item">#phaply</a>
+
+            </div>
+        </article>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/layout.js"></script>
+    <script>
+        loadLayout('news');
+    </script>
+</body>
+
+</html>
