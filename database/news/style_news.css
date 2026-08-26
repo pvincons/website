@@ -1,345 +1,353 @@
-  /* ==========================================
-   PV INCONS -  STYLESHEET TIN TỨC (style_news.css)
+/* ==========================================
+   PV INCONS - STYLESHEET TIN TỨC - MAIN (style_news.css)
    ========================================== */
-  
-  :root {
-       /* Brand Colors */
-       --brand-blue: #1e68a8;
-       --brand-darkblue: #0d3d6b;
-       --brand-orange: #e87e23;
-       --brand-gold: #8c6239;
 
-       /* Theme & System Colors */
-       --primary-color: var(--brand-blue);
-       --primary-dark: #071728;
-       --primary-blue: #1e68a8;
-       --accent-orange: #e87e23;
-       --accent-gold: #8c6239;
-       --accent-bg: #f4efe6;
+/* 1. Đưa :root và body ra NGOÀI main để biến CSS và font trang hoạt động đúng */
+:root {
+    /* Brand Colors */
+    --brand-blue: #1e68a8;
+    --brand-darkblue: #0d3d6b;
+    --brand-orange: #e87e23;
+    --brand-gold: #8c6239;
 
-       /* Tone màu chuẩn */
-       --bg-body: white;
-       --bg-card: white;
-       --text-main: #202020;
-       --text-muted: #64748b;
-       --border-color: #e5e0d8;
+    /* Theme & System Colors */
+    --primary-color: var(--brand-blue);
+    --primary-dark: #071728;
+    --primary-blue: #1e68a8;
+    --accent-orange: #e87e23;
+    --accent-gold: #8c6239;
+    --accent-bg: #f4efe6;
 
-       /* Spacing */
-       --slide-y: 22px;
-       --slide-x: 100px;
-   }
+    /* Tone màu chuẩn */
+    --bg-body: white;
+    --bg-card: white;
+    --text-main: #202020;
+    --text-muted: #64748b;
+    --border-color: #e5e0d8;
 
-   /* Áp dụng font hệ thống cho toàn bộ trang */
-   body {
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-       line-height: 1.7;
-       color: var(--text-color);
-       background-color: var(--bg-color);
-   }
+    /* Spacing */
+    --slide-y: 22px;
+    --slide-x: 100px;
+}
 
-   /* Container Bài Viết: Phẳng, không viền, không bóng */
-   .article-container {
-       max-width: 760px;
-       margin: 20px auto;
-       background-color: var(--bg-card);
-       box-shadow: none;
-       border: none;
-   }
+main {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.7;
+    color: var(--text-main);
+    background-color: var(--bg-body);
+}
 
-   /* Breadcrumb Điều Hướng */
-   .breadcrumb {
-       display: flex;
-       align-items: center;
-       gap: 8px;
-       font-size: 0.875rem;
-       color: var(--text-muted);
-       margin-bottom: 20px;
-       flex-wrap: wrap;
-   }
+/* 2. Toàn bộ CSS bên dưới được giới hạn scope riêng cho thẻ <main> */
+main {
 
-   .breadcrumb a {
-       color: var(--primary-color);
-       text-decoration: none;
-       transition: color 0.2s;
-   }
+    /* Container Bài Viết: Phẳng, không viền, không bóng */
+    .article-container {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.7;
+        color: var(--text-main);
+        background-color: var(--bg-body);
+        max-width: 760px;
+        margin: 20px auto;
+        background-color: var(--bg-card);
+        box-shadow: none;
+        border: none;
+    }
 
-   .breadcrumb a:hover {
-       text-decoration: underline;
-   }
+    /* Breadcrumb Điều Hướng */
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
 
-   /* Article Meta & Author */
-   .article-meta {
-       display: flex;
-       align-items: center;
-       justify-content: space-between;
-       gap: 14px;
-       margin-bottom: 24px;
-       padding-bottom: 16px;
-       border-bottom: 1px solid var(--border-color);
-       flex-wrap: wrap;
-   }
+    .breadcrumb a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
 
-   .author-info {
-       display: flex;
-       align-items: center;
-       gap: 10px;
-   }
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
 
-   .author-avatar {
-       width: 40px;
-       height: 40px;
-       border-radius: 50%;
-       background-color: whitesmoke !important;
-       object-fit: cover;
-   }
+    /* Article Meta & Author */
+    .article-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border-color);
+        flex-wrap: wrap;
+    }
 
-   .article-date-time {
-       color: var(--text-muted);
-       font-size: 0.875rem;
-       display: flex;
-       align-items: center;
-       gap: 12px;
-   }
+    .author-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-   /* ===== TIÊU ĐỀ BÀI VIẾT ===== */
-   h1.article-title {
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-       font-size: 2.25rem;
-       font-weight: 700;
-       color: #000000;
-       line-height: 1.7;
-       margin: 0 0 16px 0;
-       letter-spacing: -0.01em;
-   }
+    .author-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: whitesmoke !important;
+        object-fit: cover;
+    }
 
-   /* ===== MÔ TẢ NỘI DUNG / SAPO ===== */
-   .article-subtitle {
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-       font-size: 1.1rem;
-       color: #222222;
-       font-weight: 400;
-       line-height: 1.7;
-       margin-bottom: 28px;
-       padding-bottom: 20px;
-       border-bottom: 1px solid var(--border-color);
-   }
+    .article-date-time {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
-   /* ===== THÂN BÀI VIẾT ===== */
-   .article-content {
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-       font-size: 1.1rem;
-       color: #202020;
-       line-height: 1.7;
-   }
+    /* ===== TIÊU ĐỀ BÀI VIẾT ===== */
+    h1.article-title {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: #000000;
+        line-height: 1.7;
+        margin: 0 0 16px 0;
+        letter-spacing: -0.01em;
+    }
 
-   .article-content p {
-       margin-bottom: 1.25rem;
-   }
+    /* ===== MÔ TẢ NỘI DUNG / SAPO ===== */
+    .article-subtitle {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.1rem;
+        color: #222222;
+        font-weight: 400;
+        line-height: 1.7;
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+    }
 
-   /* ===== ĐỀ MỤC BÀI VIẾT H2, H3 ===== */
-   .article-content h2,
-   h2 {
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-       font-size: 1.3rem;
-       color: #202020;
-       margin-top: 32px;
-       margin-bottom: 14px;
-       font-weight: 700 !important;
-       line-height: 1.7;
-   }
+    /* ===== THÂN BÀI VIẾT ===== */
+    .article-content {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.1rem;
+        color: #202020;
+        line-height: 1.7;
+    }
 
-   .article-content h3,
-   h3 {
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-       font-size: 1.125rem;
-       color: #202020;
-       margin-top: 24px;
-       margin-bottom: 10px;
-       font-weight: 700 !important;
-       line-height: 1.7;
-   }
+    .article-content p {
+        margin-bottom: 1.25rem;
+    }
 
-   /* Callout Box */
-   .callout-box {
-       background-color: #f3eee3;
-       border-left: 4px solid var(--primary-color);
-       padding: 18px 22px;
-       margin: 24px 0;
-   }
+    /* ===== ĐỀ MỤC BÀI VIẾT H2, H3 ===== */
+    .article-content h2,
+    h2 {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.3rem;
+        color: #202020;
+        margin-top: 32px;
+        margin-bottom: 14px;
+        font-weight: 700 !important;
+        line-height: 1.7;
+    }
 
-   .callout-box p {
-       margin: 0;
-       color: #202020;
-       font-size: 1rem;
-   }
+    .article-content h3,
+    h3 {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.125rem;
+        color: #202020;
+        margin-top: 24px;
+        margin-bottom: 10px;
+        font-weight: 700 !important;
+        line-height: 1.7;
+    }
 
-   /* Trích dẫn Blockquote */
-   blockquote {
-       margin: 24px 0;
-       padding: 16px 20px;
-       border-left: 3px solid var(--brand-orange);
-       background-color: #f5efe4;
-       font-style: italic;
-       color: #333333;
-   }
+    /* Callout Box */
+    .callout-box {
+        background-color: #f3eee3;
+        border-left: 4px solid var(--primary-color);
+        padding: 18px 22px;
+        margin: 24px 0;
+    }
 
-   /* Responsive Table Container */
-   .table-wrapper {
-       width: 100%;
-       overflow-x: auto;
-       margin: 24px 0;
-       -webkit-overflow-scrolling: touch;
-   }
+    .callout-box p {
+        margin: 0;
+        color: #202020;
+        font-size: 1rem;
+    }
 
-   .data-table {
-       width: 100%;
-       border-collapse: collapse;
-       font-size: 1rem;
-       white-space: nowrap;
-       background-color: #fff;
-   }
+    /* Trích dẫn Blockquote */
+    blockquote {
+        margin: 24px 0;
+        padding: 16px 20px;
+        border-left: 3px solid var(--brand-orange);
+        background-color: #f5efe4;
+        font-style: italic;
+        color: #333333;
+    }
 
-   .data-table th {
-       background-color: #ede7dc;
-       color: #202020;
-       font-weight: 700;
-       text-align: left;
-       padding: 12px 16px;
-       border: 1px solid var(--border-color);
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-   }
+    /* Responsive Table Container */
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin: 24px 0;
+        -webkit-overflow-scrolling: touch;
+    }
 
-   .data-table td {
-       padding: 12px 16px;
-       border: 1px solid var(--border-color);
-   }
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1rem;
+        white-space: nowrap;
+        background-color: #fff;
+    }
 
-   .data-table tr:nth-child(even) {
-       background-color: #f9f6f0;
-   }
+    .data-table th {
+        background-color: #ede7dc;
+        color: #202020;
+        font-weight: 700;
+        text-align: left;
+        padding: 12px 16px;
+        border: 1px solid var(--border-color);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
 
-   /* Formats */
-   code {
-       font-family: "Fira Code", Consolas, Monaco, monospace;
-       background-color: #eee8dd;
-       color: var(--brand-orange);
-       padding: 2px 6px;
-       border-radius: 4px;
-       font-size: 1rem;
-   }
+    .data-table td {
+        padding: 12px 16px;
+        border: 1px solid var(--border-color);
+    }
 
-   .step-list {
-       list-style: none;
-       counter-reset: step-counter;
-       padding-left: 0;
-   }
+    .data-table tr:nth-child(even) {
+        background-color: #f9f6f0;
+    }
 
-   .step-list li {
-       position: relative;
-       padding-left: 40px;
-       margin-bottom: 16px;
-   }
+    /* Formats */
+    code {
+        font-family: "Fira Code", Consolas, Monaco, monospace;
+        background-color: #eee8dd;
+        color: var(--brand-orange);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
 
-   .step-list li::before {
-       counter-increment: step-counter;
-       content: counter(step-counter);
-       position: absolute;
-       left: 0;
-       top: 2px;
-       width: 26px;
-       height: 26px;
-       background-color: var(--primary-color);
-       color: white;
-       font-weight: bold;
-       border-radius: 50%;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       font-size: 0.85rem;
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-   }
+    .step-list {
+        list-style: none;
+        counter-reset: step-counter;
+        padding-left: 0;
+    }
 
-   /* Images & Figures */
-   figure {
-       margin: 24px 0;
-       text-align: center;
-   }
+    .step-list li {
+        position: relative;
+        padding-left: 40px;
+        margin-bottom: 16px;
+    }
 
-   figure img {
-       max-width: 100%;
-       height: auto;
-       border-radius: 4px;
-   }
+    .step-list li::before {
+        counter-increment: step-counter;
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 26px;
+        height: 26px;
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
 
-   figcaption {
-       margin-top: 8px;
-       font-size: 0.875rem;
-       color: var(--text-muted);
-       font-style: italic;
-   }
+    /* Images & Figures */
+    figure {
+        margin: 24px 0;
+        text-align: center;
+    }
 
-   /* Article Tags */
-   .article-tags {
-       display: flex;
-       align-items: center;
-       gap: 8px;
-       flex-wrap: wrap;
-       margin-top: 36px;
-       padding-top: 20px;
-       border-top: 1px solid var(--border-color);
-   }
+    figure img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
 
-   .tag-item {
-       background-color: #eee7dc;
-       color: #333333;
-       padding: 4px 12px;
-       border-radius: 16px;
-       font-size: 0.85rem;
-       text-decoration: none;
-       transition: all 0.2s;
-   }
+    figcaption {
+        margin-top: 8px;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-style: italic;
+    }
 
-   .tag-item:hover {
-       background-color: var(--primary-color);
-       color: #ffffff;
-   }
+    /* Article Tags */
+    .article-tags {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 36px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+    }
 
-   /* ===== TỐI ƯU GIAO DIỆN DI ĐỘNG (MOBILE RESPONSIVE) ===== */
-   @media (max-width: 640px) {
+    .tag-item {
+        background-color: #eee7dc;
+        color: #333333;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
 
-       .article-container {
-           padding: 0 16px;
-           margin: 12px auto;
-       }
+    .tag-item:hover {
+        background-color: var(--primary-color);
+        color: #ffffff;
+    }
 
-       h1.article-title {
-           font-size: 1.5rem;
-           line-height: 1.7;
-           margin-bottom: 12px;
-       }
+    /* ===== TỐI ƯU GIAO DIỆN DI ĐỘNG (MOBILE RESPONSIVE) ===== */
+    @media (max-width: 640px) {
 
-       .article-subtitle {
-           font-size: 1.05rem;
-           line-height: 1.7;
-           margin-bottom: 20px;
-           padding-bottom: 16px;
-       }
+        .article-container {
+            padding: 0 16px;
+            margin: 12px auto;
+        }
 
-       .article-content {
-           font-size: 1.05rem;
-           line-height: 1.7;
-       }
+        h1.article-title {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
 
-       .article-content h2,
-       h2 {
-           font-size: 1.1rem;
-           margin-top: 24px;
-           margin-bottom: 10px;
-       }
+        .article-subtitle {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+        }
 
-       .article-meta {
-           flex-direction: column;
-           align-items: flex-start;
-           gap: 8px;
-       }
-   }
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .article-content h2,
+        h2 {
+            font-size: 1.1rem;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+
+        .article-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+    }
+}
