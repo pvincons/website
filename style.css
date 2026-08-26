@@ -4631,6 +4631,7 @@ main {
   display: inline-block;
   background: #475569;
   color: var(--accent-orange);
+  font-family: 'Segoe UI', sans-serif;
   font-weight: 800;
   font-size: 14px;
   padding: 4px 10px;
@@ -4639,6 +4640,7 @@ main {
 }
 
 .policy-title {
+  font-family: 'Segoe UI', sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
@@ -4747,6 +4749,7 @@ main {
 .node-director {
   background: linear-gradient(135deg, var(--primary-blue), #0d3d6b);
   color: var(--surface-white);
+  font-family: 'Segoe UI', sans-serif;
   font-weight: 800;
   font-size: 15px;
   padding: 14px 36px;
@@ -4825,6 +4828,7 @@ main {
 .division-header {
   background-color: var(--primary-dark);
   color: var(--surface-white);
+  font-family: 'Segoe UI', sans-serif;
   font-size: 12px;
   font-weight: 700;
   padding: 10px;
