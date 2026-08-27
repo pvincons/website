@@ -5,8 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(posts => {
-            // Sắp xếp bài viết mới nhất lên đầu (tùy chọn)
-            posts.sort((a, b) => b.id - a.id);
+            // Sắp xếp bài viết theo ngày tháng giảm dần (dd/mm/yyyy)
+            posts.sort((a, b) => {
+                const [dayA, monthA, yearA] = a.date.split('/').map(Number);
+                const [dayB, monthB, yearB] = b.date.split('/').map(Number);
+                
+                const dateA = new Date(yearA, monthA - 1, dayA);
+                const dateB = new Date(yearB, monthB - 1, dayB);
+                
+                return dateB - dateA;
+            });
+            
             renderInvestmentPosts(posts);
         })
         .catch(error => console.error('Lỗi nạp dữ liệu:', error));
