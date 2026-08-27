@@ -1,6 +1,4 @@
-// Biến toàn cục lưu trữ đường dẫn file báo giá
-let currentFileUrl = '';
-
+// Chỉ giữ lại logic Fetch API và Render DOM
 document.addEventListener('DOMContentLoaded', () => {
     fetch('content/posts-services.json')
         .then(response => {
@@ -31,12 +29,11 @@ function renderServices(posts) {
         }
     });
 
-    // 3. Lặp qua các nhóm category và nạp vào DOM bằng map().join('')
+    // 3. Lặp qua các nhóm category và nạp vào DOM
     Object.keys(categoriesData).forEach(categoryKey => {
         const container = document.querySelector(`[data-category="${categoryKey}"]`);
         
         if (container && categoriesData[categoryKey].length > 0) {
-            
             // Render toàn bộ mảng thành một chuỗi HTML duy nhất
             container.innerHTML = categoriesData[categoryKey].map(post => {
                 
@@ -70,53 +67,7 @@ function renderServices(posts) {
                     `;
                 }
                 return '';
-            }).join(''); // Ép toàn bộ cấu trúc thành một chuỗi duy nhất trước khi đưa vào DOM
+            }).join('');
         }
     });
-}
-
-// 1. Hàm mở Modal nhập thông tin và lưu đường dẫn file
-function openRequestModal(title, actionType, fileUrl) {
-    currentFileUrl = fileUrl || ''; // Lưu vết link file
-
-    const modal = document.getElementById('requestModal');
-    if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex'); // Bật flex để căn giữa trung tâm
-    }
-}
-
-// 2. Hàm xử lý khi bấm nút "Gửi Yêu Cầu Tải Tài Liệu"
-function handleModalSubmit(event) {
-    if (event) event.preventDefault(); // Ngăn reload trang
-
-    // Đóng Popup Form nhập liệu
-    const requestModal = document.getElementById('requestModal');
-    if (requestModal) {
-        requestModal.classList.add('hidden');
-        requestModal.classList.remove('flex');
-    }
-
-    // Mở Popup Thông Báo Thành Công
-    const successModal = document.getElementById('successModal') || document.getElementById('notificationPopup');
-    if (successModal) {
-        successModal.classList.remove('hidden');
-        successModal.classList.add('flex'); // Bật flex để căn giữa trung tâm
-    }
-}
-
-// 3. Hàm đóng Popup Thông Báo Thành Công và MỞ FILE LINK (Gán cho nút Đóng)
-function closeSuccessModal() {
-    // Ẩn Popup Thông Báo Thành Công
-    const successModal = document.getElementById('successModal') || document.getElementById('notificationPopup');
-    if (successModal) {
-        successModal.classList.add('hidden');
-        successModal.classList.remove('flex');
-    }
-
-    // Chuyển hướng sang file link báo giá trong tab mới
-    if (currentFileUrl) {
-        window.open(currentFileUrl, '_blank');
-        currentFileUrl = ''; // Reset biến lưu trữ
-    }
 }
