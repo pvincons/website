@@ -5,16 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(posts => {
-            // Sắp xếp bài viết theo ngày tháng giảm dần (dd/mm/yyyy)
-            posts.sort((a, b) => {
-                const [dayA, monthA, yearA] = a.date.split('/').map(Number);
-                const [dayB, monthB, yearB] = b.date.split('/').map(Number);
-                
-                const dateA = new Date(yearA, monthA - 1, dayA);
-                const dateB = new Date(yearB, monthB - 1, dayB);
-                
-                return dateB - dateA;
-            });
+            // Sắp xếp bài viết theo thứ tự id từ nhỏ đến lớn
+            posts.sort((a, b) => a.id - b.id); 
 
             // Vẽ giao diện bài viết
             renderServices(posts);
