@@ -123,7 +123,7 @@
         <img src="https://i.pinimg.com/736x/54/56/c7/5456c78c0aa3b2aea8d4b96fa5a500cf.jpg" alt="PV INCONS Logo"
           class="mx-auto h-16 w-16 rounded-full object-cover border border-[#2a2e3d] shadow-lg shadow-rose-900/10">
         <h2 class="text-lg font-bold text-gray-100">PV INCONS Data Website</h2>
-        <p class="text-xs text-gray-400">Xác thực Quản trị dữ liệu. Phiên bản ver: 1.5.1</p>
+        <p class="text-xs text-gray-400">Xác thực Quản trị dữ liệu. Phiên bản v1.5.1</p>
       </div>
 
       <div class="space-y-3">
@@ -188,13 +188,13 @@
     <header
       class="border-b border-[#222630] bg-[#14171f] flex flex-col lg:flex-row items-center justify-between shrink-0 h-auto lg:h-12 py-2 lg:py-0 px-3 lg:px-4 gap-2 lg:gap-0">
       
-      <!-- Left Actions (Thêm Logo, phiên bản, modal bản quyền - ẩn trên di động) -->
+      <!-- Left Actions -->
       <div class="hidden lg:flex items-center gap-2.5">
         <img src="../assets/pic/LOGO_PVI.webp" alt="PV INCONS Logo"
           class="h-6 w-6 rounded-full object-cover border border-[#2a2e3d]">
         <div class="flex items-center gap-2">
           <span class="font-bold text-xs text-gray-200 tracking-wide">PV INCONS web</span>
-          <span class="font-medium text-xs text-gray-600 tracking-wide">Phiên bản: v1.3.1</span>
+          <span class="font-medium text-xs text-gray-600 tracking-wide">Phiên bản: v1.5.1</span>
         </div>
         <button onclick="document.getElementById('about-modal').classList.remove('hidden')"
           class="text-xs text-gray-400 hover:text-rose-500 transition ml-1 px-2 py-1 rounded bg-[#1c202b] border border-[#2a2e3d] flex items-center gap-1.5"
@@ -548,15 +548,15 @@
                 class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
                 <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-500 transition">
                   <i class="fa-solid fa-file-image text-rose-500 text-sm shrink-0"></i>
-                  <span>Kéo & thả file ảnh / URL vào khung này hoặc nhập bên dưới</span>
+                  <span>Kéo & thả file ảnh / URL vào đây (Tự động lưu vào /database)</span>
                 </div>
                 <input type="text" id="input-image"
-                  placeholder="Dán URL hình ảnh (https://...) hoặc kéo thả file ảnh vào đây"
+                  placeholder="Dán URL hình ảnh hoặc kéo thả file vào đây (Tự động lưu vào /database)"
                   class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
               </div>
             </div>
 
-            <!-- KÉO THẢ FILE HTML/PDF -->
+            <!-- KÉO THẢ FILE HTML/PDF TỰ ĐỘNG LƯU VÀO /database -->
             <div class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML /file PDF/ Chi tiết (<code
                   class="text-rose-500">link</code>)</label>
@@ -564,10 +564,26 @@
                 class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
                 <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-500 transition">
                   <i class="fa-solid fa-file-arrow-up text-rose-500 text-sm shrink-0"></i>
-                  <span>Kéo & thả file HTML /file PDF / URL liên kết vào khung này hoặc nhập bên dưới</span>
+                  <span>Kéo & thả file HTML / PDF vào đây (Tự động lưu vào /database)</span>
                 </div>
                 <input type="text" id="input-link"
-                  placeholder="Dán đường dẫn (content/investment/doc_001.pdf) hoặc kéo thả file vào đây"
+                  placeholder="Dán đường dẫn (database/doc_001.pdf) hoặc kéo thả file vào đây"
+                  class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
+              </div>
+            </div>
+
+            <!-- KÉO THẢ FILE EYELINK TỰ ĐỘNG LƯU VÀO /database (CHỈ HIỂN THỊ TRONG TAB DỊCH VỤ) -->
+            <div id="wrapper-eyelink-field" class="space-y-1.5 hidden">
+              <label class="block text-xs font-semibold text-gray-300">Đường dẫn EyeLink (<code
+                  class="text-rose-500">eyelink</code>)</label>
+              <div id="drop-zone-eyelink"
+                class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
+                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-500 transition">
+                  <i class="fa-solid fa-file-arrow-up text-rose-500 text-sm shrink-0"></i>
+                  <span>Kéo & thả file HTML / PDF vào đây (Tự động lưu vào /database)</span>
+                </div>
+                <input type="text" id="input-eyelink"
+                  placeholder="Dán đường dẫn (database/doc_001.pdf) hoặc kéo thả file vào đây"
                   class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
               </div>
             </div>
@@ -590,7 +606,6 @@
             <!-- Container thẻ mô phỏng -->
             <div id="live-preview-box"
               class="bg-[#0b0c10] border border-[#262a36] rounded-xl p-3 sm:p-4 shadow-2xl transition-all">
-              <!-- JS tự render giao diện tại đây -->
             </div>
           </div>
 
@@ -653,12 +668,17 @@
 
     let authConfig = JSON.parse(localStorage.getItem('pv_github_auth')) || null;
 
-    // HÀM BỔ TRỢ CHUẨN HÓA ĐỊNH DẠNG NGÀY THÀNH DD/MM/YYYY VÀ XỬ LÝ SẮP XẾP
+    // Chuẩn hóa & đồng bộ ngày tháng
     function formatDateToDDMMYYYY(dateStr) {
-      if (!dateStr || typeof dateStr !== 'string') return '';
+      if (!dateStr || typeof dateStr !== 'string') {
+        const today = new Date();
+        return `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+      }
       dateStr = dateStr.trim();
-      if (!dateStr) return '';
-      // Đệm số 0 vào chuẩn DD/MM/YYYY
+      if (!dateStr) {
+        const today = new Date();
+        return `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+      }
       if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
         let [day, month, year] = dateStr.split('/');
         return `${day.padStart(2, '0')}/${month.padStart(2, '0')}/${year}`;
@@ -677,10 +697,10 @@
       return dateStr;
     }
 
-    // HÀM CHUẨN HÓA INPUT TYPE="DATE" (BẮT BUỘC YYYY-MM-DD)
     function parseDateForPicker(dateStr) {
-      if (!dateStr || typeof dateStr !== 'string') return '';
+      if (!dateStr || typeof dateStr !== 'string') return new Date().toISOString().split('T')[0];
       dateStr = dateStr.trim();
+      if (!dateStr) return new Date().toISOString().split('T')[0];
       if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
         let [day, month, year] = dateStr.split('/');
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
@@ -689,7 +709,11 @@
         let [year, month, day] = dateStr.split('-');
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
       }
-      return dateStr;
+      const d = new Date(dateStr);
+      if (!isNaN(d.getTime())) {
+        return d.toISOString().split('T')[0];
+      }
+      return new Date().toISOString().split('T')[0];
     }
 
     function parseDateToTimestamp(dateStr) {
@@ -710,7 +734,20 @@
       return isNaN(time) ? 0 : time;
     }
 
-    // Cách ly dữ liệu LocalStorage theo Repository để tránh xung đột
+    // Hàm tự động cấp ID nhỏ nhất còn thiếu
+    function getSmallestMissingId(posts, ignoreId = null) {
+      const usedIds = new Set(
+        posts
+          .filter(p => p.id !== ignoreId && typeof p.id === 'number' && !isNaN(p.id))
+          .map(p => p.id)
+      );
+      let candidate = 1;
+      while (usedIds.has(candidate)) {
+        candidate++;
+      }
+      return candidate;
+    }
+
     function getDbStorageKey() {
       if (authConfig && authConfig.owner && authConfig.repo) {
         return `pv_studio_db_${authConfig.owner}_${authConfig.repo}`;
@@ -718,9 +755,19 @@
       return 'pv_studio_db_default';
     }
 
+    // Tự động chuẩn hóa ép kiểu ID dạng số (Number) khi load
     function loadLocalDB() {
       const key = getDbStorageKey();
-      return JSON.parse(localStorage.getItem(key)) || { news: [], projects: [], services: [], investment: [], hr: [] };
+      const raw = JSON.parse(localStorage.getItem(key)) || { news: [], projects: [], services: [], investment: [], hr: [] };
+      Object.keys(raw).forEach(k => {
+        if (Array.isArray(raw[k])) {
+          raw[k] = raw[k].map(item => ({
+            ...item,
+            id: Number(item.id) || item.id
+          }));
+        }
+      });
+      return raw;
     }
 
     function saveLocalDB() {
@@ -735,7 +782,6 @@
     let editingPostId = null;
     let currentFilteredPosts = [];
 
-    // Hàm chống lỗi XSS mã hóa dữ liệu đầu ra HTML
     function escapeHtml(str) {
       if (str === null || str === undefined) return '';
       return String(str)
@@ -754,6 +800,19 @@
       return decodeURIComponent(Array.prototype.map.call(atob(str.replace(/\s/g, '')), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
     }
 
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = reader.result;
+          const base64 = result.split(',')[1];
+          resolve(base64);
+        };
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+      });
+    }
+
     function showToast(message, type = 'success') {
       const toastContainer = document.getElementById('toast-container');
       const toast = document.createElement('div');
@@ -767,7 +826,7 @@
       toast.className = `toast-animate border ${borderColor} ${bgColor} ${textColor} p-3 rounded-lg shadow-xl flex items-center gap-2.5 text-xs font-medium pointer-events-auto`;
       toast.innerHTML = `<i class="fa-solid ${iconClass} shrink-0 text-sm"></i><span>${escapeHtml(message)}</span>`;
       toastContainer.appendChild(toast);
-      setTimeout(() => { toast.remove(); }, 3000);
+      setTimeout(() => { toast.remove(); }, 3500);
     }
 
     document.getElementById('btn-close-about').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
@@ -803,6 +862,69 @@
       location.reload();
     });
 
+    // Hàm tải file trực tiếp lên thư mục /database trong Repository GitHub
+    async function uploadFileToDatabase(file, targetPath) {
+      if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
+        showToast(`Đã chọn tệp: ${file.name}. (Vui lòng đăng nhập GitHub để tự động đồng bộ lên /database)`, 'info');
+        return;
+      }
+
+      showToast(`Đang tải tệp ${file.name} lên thư mục /database...`, 'info');
+
+      try {
+        const base64Content = await fileToBase64(file);
+        const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${targetPath}`;
+
+        let sha = null;
+        let isOverwrite = false;
+
+        // Kiểm tra xem tệp đã tồn tại trong /database chưa
+        const checkRes = await fetch(url, {
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (checkRes.ok) {
+          const existingData = await checkRes.json();
+          sha = existingData.sha;
+          isOverwrite = true;
+          showToast(`CẢNH BÁO: Tệp "${file.name}" đã tồn tại trong /database. Đang tiến hành ghi đè!`, 'error');
+        }
+
+        // Đẩy/Ghi đè file lên GitHub
+        const putRes = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: `Upload ${file.name} to /database via PV INCONS Admin`,
+            content: base64Content,
+            sha: sha || undefined
+          })
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json();
+          throw new Error(errData.message || `HTTP ${putRes.status}`);
+        }
+
+        if (isOverwrite) {
+          showToast(`Đã GHI ĐÈ thành công tệp ${file.name} vào /database!`, 'success');
+        } else {
+          showToast(`Đã lưu tệp ${file.name} thành công vào /database!`, 'success');
+        }
+      } catch (err) {
+        console.error('Lỗi khi tải tệp lên /database:', err);
+        showToast(`Lỗi lưu tệp lên /database: ${err.message}`, 'error');
+      }
+    }
+
+    // CỬA SỔ KÉO THẢ FILE: Lấy đúng đường dẫn URL / Tên file theo Prefix & Tự động upload nếu vào /database
     function setupDragAndDrop(dropZoneId, inputId, defaultPathPrefix = '') {
       const dropZone = document.getElementById(dropZoneId);
       const input = document.getElementById(inputId);
@@ -823,29 +945,51 @@
       });
 
       ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, () => {
+        dropZone.addEventListener('dragleave', () => {
           dropZone.classList.remove('border-rose-500', 'bg-rose-500/10');
         }, false);
       });
 
-      dropZone.addEventListener('drop', (e) => {
+      dropZone.addEventListener('drop', async (e) => {
+        dropZone.classList.remove('border-rose-500', 'bg-rose-500/10');
         const dt = e.dataTransfer;
         const files = dt.files;
+        
         if (files && files.length > 0) {
-          input.value = (defaultPathPrefix ? defaultPathPrefix : '') + files[0].name;
+          // Xử lý kéo thả tất cả các file vào ô nhập liệu
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const targetPath = (defaultPathPrefix ? defaultPathPrefix : '') + file.name;
+            
+            // Cập nhật đường dẫn vào ô input (lấy tệp đầu tiên hoặc tệp đang xử lý)
+            if (i === 0 || files.length === 1) {
+              input.value = targetPath;
+            }
+
+            // Nếu kéo thả vào trường link/eyelink/image có prefix 'database/' -> Tự động upload & ghi đè lên /database
+            if (defaultPathPrefix === 'database/') {
+              await uploadFileToDatabase(file, targetPath);
+            }
+          }
         } else {
-          const url = dt.getData('text/plain');
-          if (url) input.value = url;
+          // Kéo URL hoặc liên kết từ trình duyệt / tab khác
+          let url = dt.getData('text/uri-list') || dt.getData('text/plain') || dt.getData('URL');
+          if (url) {
+            url = url.trim().split('\n')[0];
+            input.value = url;
+          }
         }
         updateLivePreview();
       }, false);
     }
 
-    setupDragAndDrop('drop-zone-image', 'input-image', 'images/');
-    setupDragAndDrop('drop-zone-link', 'input-link', 'content/');
+    setupDragAndDrop('drop-zone-image', 'input-image', 'database/');
+    setupDragAndDrop('drop-zone-link', 'input-link', 'database/');
+    setupDragAndDrop('drop-zone-eyelink', 'input-eyelink', 'database/');
 
     const DEFAULT_FALLBACK_IMG = "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=600&q=80";
 
+    // Cập nhật Live Preview
     function updateLivePreview() {
       const container = document.getElementById('live-preview-box');
       if (!container) return;
@@ -857,6 +1001,9 @@
       const summary = escapeHtml(document.getElementById('input-summary').value.trim() || '');
       const image = escapeHtml(document.getElementById('input-image').value.trim() || DEFAULT_FALLBACK_IMG);
       const link = escapeHtml(document.getElementById('input-link').value.trim() || '#');
+      const eyelink = escapeHtml(document.getElementById('input-eyelink').value.trim() || '');
+      const svcIcon = escapeHtml(document.getElementById('input-service-icon').value || 'fa-file-contract');
+      const svcCode = escapeHtml(document.getElementById('input-service-code').value.trim() || '');
 
       if (currentFolder === 'hr') {
         const type = escapeHtml(document.getElementById('input-hr-type').value.trim() || 'Toàn thời gian');
@@ -935,16 +1082,20 @@
         container.innerHTML = `
           <div class="bg-[#141722] border border-[#2a2e3d] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-rose-500/40 transition shadow-md group">
             <div class="space-y-1.5 flex-1 min-w-0">
-              <h4 class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-rose-500 transition leading-snug">
-                ${title}
-              </h4>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid ${svcIcon} text-rose-500 text-sm"></i>
+                <h4 class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-rose-500 transition leading-snug">
+                  ${title}
+                </h4>
+              </div>
               <p class="text-[11px] text-gray-400 flex items-center gap-1.5">
                 <i class="fa-regular fa-clock text-[10px] text-rose-500"></i>
                 <span>Đăng tải ngày: ${date}</span>
+                ${svcCode ? `<span class="bg-[#1a202c] text-emerald-400 font-mono text-[9px] px-1.5 py-0.5 rounded border border-emerald-500/20">${svcCode}</span>` : ''}
               </p>
               ${summary ? `<p class="text-[11px] text-gray-400 line-clamp-2 leading-relaxed pt-0.5">${summary}</p>` : ''}
             </div>
-            <div class="shrink-0">
+            <div class="shrink-0 flex items-center gap-2">
               <a href="${link}" onclick="return false;" class="bg-[#1b2333] hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold px-4 py-2 rounded-lg transition flex items-center gap-1.5 shadow">
                 <i class="fa-solid fa-download text-xs"></i>
                 <span>Tải về</span>
@@ -956,9 +1107,13 @@
         container.innerHTML = `
           <div class="bg-[#141722] border border-[#2a2e3d] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-rose-500/40 transition shadow-md group">
             <div class="space-y-1.5 flex-1 min-w-0">
-              <h4 class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-rose-500 transition leading-snug">
-                ${title}
-              </h4>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid ${svcIcon} text-rose-500 text-base shrink-0"></i>
+                <h4 class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-rose-500 transition leading-snug">
+                  ${title}
+                </h4>
+              </div>
+              ${svcCode ? `<span class="inline-block bg-[#1a202c] text-emerald-400 font-mono text-[9px] px-1.5 py-0.5 rounded border border-emerald-500/20">${svcCode}</span>` : ''}
               ${summary ? `
                 <p class="text-[11px] text-amber-300/90 font-medium flex items-center gap-1">
                   <i class="fa-solid fa-tag text-[10px] text-amber-400"></i>
@@ -971,15 +1126,16 @@
                 <i class="fa-solid fa-download text-xs"></i>
                 <span>Tải báo giá</span>
               </a>
-              <button class="bg-[#1e222d] hover:bg-gray-700 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center justify-center gap-1.5 border border-[#2a2e3d]">
+              ${eyelink ? `
+              <a href="${eyelink}" onclick="return false;" class="bg-[#1e222d] hover:bg-gray-700 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center justify-center gap-1.5 border border-[#2a2e3d]">
                 <i class="fa-solid fa-eye text-xs"></i>
                 <span>Xem quy trình</span>
-              </button>
+              </a>
+              ` : ''}
             </div>
           </div>
         `;
       } else {
-        // TIN TỨC (NEWS)
         container.innerHTML = `
           <div class="bg-[#141722] border border-[#2a2e3d] rounded-lg overflow-hidden flex flex-col sm:flex-row hover:border-rose-500/40 transition shadow-md group">
             <div class="sm:w-1/3 h-32 sm:h-auto relative overflow-hidden bg-[#0d0f14] shrink-0 flex items-center justify-center">
@@ -1011,6 +1167,7 @@
       }
     }
 
+    // Cập nhật hiển thị trường EyeLink & các trường phụ thuộc theo đúng Tab
     function updateFormCategoryOptions() {
       const selectCat = document.getElementById('select-category');
       const filterCat = document.getElementById('filter-category');
@@ -1056,6 +1213,12 @@
       document.getElementById('standard-common-fields').classList.toggle('hidden', isHr);
 
       document.getElementById('wrapper-image-field').classList.toggle('hidden', isNoImageTab);
+      
+      // Hiển thị EyeLink ở tab Dịch vụ
+      const wrapperEyelink = document.getElementById('wrapper-eyelink-field');
+      if (wrapperEyelink) {
+        wrapperEyelink.classList.toggle('hidden', currentFolder !== 'services');
+      }
 
       const titleLabel = document.getElementById('title-field-label');
       if (titleLabel) {
@@ -1098,6 +1261,7 @@
       });
     }
 
+    // Lọc, tìm kiếm, sắp xếp danh sách và đếm số lượng bài
     function renderPostsList() {
       const container = document.getElementById('posts-list-container');
       container.innerHTML = '';
@@ -1108,21 +1272,28 @@
       const searchVal = document.getElementById('filter-search').value.toLowerCase().trim();
 
       if (catVal) posts = posts.filter(p => p.category === catVal);
-      if (searchVal) posts = posts.filter(p => (p.title && p.title.toLowerCase().includes(searchVal)) || (p.categoryLabel && p.categoryLabel.toLowerCase().includes(searchVal)));
+      if (searchVal) {
+        posts = posts.filter(p => 
+          (p.title && p.title.toLowerCase().includes(searchVal)) || 
+          (p.categoryLabel && p.categoryLabel.toLowerCase().includes(searchVal)) ||
+          (p.code && p.code.toLowerCase().includes(searchVal)) ||
+          String(p.id).includes(searchVal)
+        );
+      }
 
       posts.sort((a, b) => {
         if (sortVal === 'id-desc') {
-          return (b.id || 0) - (a.id || 0);
+          return (Number(b.id) || 0) - (Number(a.id) || 0);
         }
         if (sortVal === 'id-asc') {
-          return (a.id || 0) - (b.id || 0);
+          return (Number(a.id) || 0) - (Number(a.id) || 0);
         }
         const timeA = parseDateToTimestamp(a.date);
         const timeB = parseDateToTimestamp(b.date);
         if (timeA !== timeB) {
           return timeB - timeA;
         }
-        return (b.id || 0) - (a.id || 0);
+        return (Number(b.id) || 0) - (Number(a.id) || 0);
       });
 
       currentFilteredPosts = posts;
@@ -1159,46 +1330,63 @@
       updateJsonPreview();
     }
 
+    // XỬ LÝ LỖI HÀM resetForm CHUẨN XÁC, KHÔNG LỖI NULL ELEMENT & ĐỒNG BỘ TRẠNG THÁI
     function resetForm() {
       editingPostId = null;
-      document.getElementById('edit-status-badge').classList.add('hidden');
-      document.getElementById('btn-cancel-edit').classList.add('hidden');
-      document.getElementById('btn-add-text').innerText = 'Lưu list';
-      document.getElementById('btn-add-icon').className = 'fa-solid fa-circle-plus text-xs';
+      
+      const editStatusBadge = document.getElementById('edit-status-badge');
+      const btnCancelEdit = document.getElementById('btn-cancel-edit');
+      const btnAddText = document.getElementById('btn-add-text');
+      const btnAddIcon = document.getElementById('btn-add-icon');
+
+      if (editStatusBadge) editStatusBadge.classList.add('hidden');
+      if (btnCancelEdit) btnCancelEdit.classList.add('hidden');
+      if (btnAddText) btnAddText.innerText = 'Lưu list';
+      if (btnAddIcon) btnAddIcon.className = 'fa-solid fa-circle-plus text-xs';
 
       const posts = db[currentFolder] || [];
-      const nextId = posts.length > 0 ? Math.max(...posts.map(p => p.id || 0)) + 1 : 1;
+      const nextId = posts.length > 0 ? getSmallestMissingId(posts) : 1;
 
       const cats = CATEGORIES[currentFolder] || [];
+      const selectCat = document.getElementById('select-category');
+      const inputCatLabel = document.getElementById('input-category-label');
+
       if (cats.length > 0) {
-        document.getElementById('select-category').value = cats[0].value;
-        document.getElementById('input-category-label').value = cats[0].label;
+        if (selectCat) selectCat.value = cats[0].value;
+        if (inputCatLabel) inputCatLabel.value = cats[0].label;
       }
 
-      document.getElementById('input-id').value = nextId;
-      document.getElementById('input-title').value = '';
-      document.getElementById('input-summary').value = '';
-      document.getElementById('input-image').value = '';
-      document.getElementById('input-link').value = '';
-      document.getElementById('input-date-picker').value = new Date().toISOString().split('T')[0];
+      const setVal = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+      };
 
-      document.getElementById('input-code').value = '';
-      document.getElementById('input-scale').value = '';
-      document.getElementById('input-client').value = '';
-      document.getElementById('input-location').value = '';
-      document.getElementById('input-architect').value = '';
+      setVal('input-id', nextId);
+      setVal('input-title', '');
+      setVal('input-summary', '');
+      setVal('input-image', '');
+      setVal('input-link', '');
+      setVal('input-eyelink', '');
+      setVal('input-date-picker', new Date().toISOString().split('T')[0]);
 
-      document.getElementById('input-service-code').value = '';
-      document.getElementById('input-service-icon').value = 'fa-file-contract';
+      setVal('input-code', '');
+      setVal('input-scale', '');
+      setVal('input-client', '');
+      setVal('input-location', '');
+      setVal('input-architect', '');
 
-      document.getElementById('input-hr-type').value = '';
-      document.getElementById('input-hr-deadline').value = '';
-      document.getElementById('input-hr-location').value = '';
-      document.getElementById('input-hr-salary').value = '';
-      document.getElementById('input-hr-requirement').value = '';
-      document.getElementById('input-hr-quantity').value = '';
-      document.getElementById('input-hr-applyLink').value = '';
+      setVal('input-service-code', '');
+      setVal('input-service-icon', 'fa-file-contract');
 
+      setVal('input-hr-type', '');
+      setVal('input-hr-deadline', '');
+      setVal('input-hr-location', '');
+      setVal('input-hr-salary', '');
+      setVal('input-hr-requirement', '');
+      setVal('input-hr-quantity', '');
+      setVal('input-hr-applyLink', '');
+
+      renderPostsList();
       updateLivePreview();
     }
 
@@ -1208,13 +1396,14 @@
       return title !== '' || summary !== '';
     }
 
+    // Load đầy đủ dữ liệu khi Chỉnh Sửa
     window.editPost = function (id) {
       const posts = db[currentFolder] || [];
-      const post = posts.find(p => p.id === id);
+      const post = posts.find(p => Number(p.id) === Number(id));
       if (!post) return;
 
-      editingPostId = id;
-      document.getElementById('editing-id-text').innerText = id;
+      editingPostId = Number(post.id);
+      document.getElementById('editing-id-text').innerText = post.id;
       document.getElementById('edit-status-badge').classList.remove('hidden');
       document.getElementById('btn-cancel-edit').classList.remove('hidden');
       document.getElementById('btn-add-text').innerText = 'Cập nhật bài';
@@ -1228,6 +1417,7 @@
       document.getElementById('input-summary').value = post.summary || '';
       document.getElementById('input-image').value = post.image || '';
       document.getElementById('input-link').value = post.link || '';
+      document.getElementById('input-eyelink').value = post.eyelink || '';
 
       if (currentFolder === 'projects') {
         document.getElementById('input-code').value = post.code || '';
@@ -1254,28 +1444,59 @@
 
     window.deletePost = function (id) {
       if (!confirm(`Bạn có chắc muốn xóa bài viết ID #${id}?`)) return;
-      db[currentFolder] = db[currentFolder].filter(p => p.id !== id);
+      db[currentFolder] = db[currentFolder].filter(p => Number(p.id) !== Number(id));
       saveLocalDB();
 
-      if (editingPostId === id) resetForm();
+      if (editingPostId === Number(id)) resetForm();
       updateTabCounts();
       renderPostsList();
       showToast(`Đã xóa bài viết ID #${id}`);
     };
 
+    // XỬ LÝ TRÙNG ID CHỦ ĐỘNG: Cho phép lựa chọn Giữ lại (Ghi đè) hay Tự động gán ID nhỏ nhất
     document.getElementById('btn-add-to-list').addEventListener('click', () => {
-      const id = parseInt(document.getElementById('input-id').value);
+      const inputId = parseInt(document.getElementById('input-id').value);
       const title = document.getElementById('input-title').value.trim();
 
-      if (isNaN(id) || id < 1 || !title) {
+      if (isNaN(inputId) || inputId < 1 || !title) {
         showToast('Vui lòng nhập ID hợp lệ (> 0) và Tiêu đề bài viết!', 'error');
         return;
+      }
+
+      let posts = db[currentFolder] || [];
+      let finalId = inputId;
+
+      // Kiểm tra trùng mã ID trong mảng hiện tại
+      let existingIndex = -1;
+      if (editingPostId !== null) {
+        existingIndex = posts.findIndex(p => Number(p.id) === inputId && Number(p.id) !== editingPostId);
+      } else {
+        existingIndex = posts.findIndex(p => Number(p.id) === inputId);
+      }
+
+      if (existingIndex !== -1) {
+        const smallestId = getSmallestMissingId(posts, editingPostId);
+        const choice = confirm(
+          `Mã ID #${inputId} đã tồn tại trong danh sách [${currentTitle}]!\n\n` +
+          `• Nhấn "OK" để GIỮ LẠI ID #${inputId} (Hệ thống sẽ cập nhật / ghi đè bài viết có ID này).\n` +
+          `• Nhấn "Cancel" (Hủy) để TỰ ĐỘNG GÁN ID NHỎ NHẤT còn thiếu là #${smallestId}.`
+        );
+
+        if (choice) {
+          // Lựa chọn 1: Giữ nguyên ID -> Xóa bài cũ trùng ID để ghi đè
+          finalId = inputId;
+          posts = posts.filter((p, idx) => idx !== existingIndex);
+        } else {
+          // Lựa chọn 2: Gán ID nhỏ nhất còn thiếu
+          finalId = smallestId;
+          document.getElementById('input-id').value = finalId;
+        }
       }
 
       const rawDate = document.getElementById('input-date-picker').value;
 
       let postObj = {
-        id: id,
+        id: finalId,
         category: document.getElementById('select-category').value,
         categoryLabel: document.getElementById('input-category-label').value.trim(),
         date: formatDateToDDMMYYYY(rawDate),
@@ -1294,6 +1515,11 @@
         postObj.summary = document.getElementById('input-summary').value.trim();
         postObj.link = document.getElementById('input-link').value.trim();
 
+        // Chỉ lưu trường eyelink trong nav tab Dịch vụ
+        if (currentFolder === 'services') {
+          postObj.eyelink = document.getElementById('input-eyelink').value.trim();
+        }
+
         if (currentFolder !== 'services' && currentFolder !== 'investment') {
           postObj.image = document.getElementById('input-image').value.trim();
         }
@@ -1310,19 +1536,12 @@
         }
       }
 
-      let posts = db[currentFolder] || [];
-      const existingIdx = posts.findIndex(p => p.id === id);
-
       if (editingPostId !== null) {
-        posts = posts.map(p => p.id === editingPostId ? postObj : p);
-        showToast(`Đã cập nhật bài viết #${id}`);
-      } else if (existingIdx >= 0) {
-        if (!confirm(`ID #${id} đã tồn tại. Bạn có muốn ghi đè bài viết này?`)) return;
-        posts[existingIdx] = postObj;
-        showToast(`Đã ghi đè bài viết #${id}`);
+        posts = posts.map(p => Number(p.id) === editingPostId ? postObj : p);
+        showToast(`Đã cập nhật bài viết #${finalId}`);
       } else {
         posts.push(postObj);
-        showToast(`Đã thêm bài viết mới #${id}`);
+        showToast(`Đã thêm bài viết mới #${finalId}`);
       }
 
       db[currentFolder] = posts;
@@ -1374,7 +1593,7 @@
     }
 
     const allInputIds = [
-      'input-id', 'input-title', 'input-summary', 'input-image', 'input-link',
+      'input-id', 'input-title', 'input-summary', 'input-image', 'input-link', 'input-eyelink',
       'select-category', 'input-category-label', 'input-date-picker',
       'input-code', 'input-scale', 'input-client', 'input-location', 'input-architect',
       'input-service-code', 'input-service-icon',
@@ -1402,6 +1621,7 @@
       showToast(`Đã xuất file sao lưu cho tab [${currentTitle}]!`);
     });
 
+    // Tự động chuẩn hóa dữ liệu khi Import JSON (ép kiểu ID và định dạng ngày)
     document.getElementById('import-json-file').addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (!file) return;
@@ -1418,8 +1638,12 @@
             }
 
             const normalizedImported = imported.map(item => {
-              if (item.date) item.date = formatDateToDDMMYYYY(item.date);
-              return item;
+              const numId = Number(item.id);
+              return {
+                ...item,
+                id: !isNaN(numId) ? numId : item.id,
+                date: formatDateToDDMMYYYY(item.date)
+              };
             });
 
             db[currentFolder] = normalizedImported;
@@ -1446,6 +1670,7 @@
       });
     });
 
+    // Tải dữ liệu từ GitHub chuẩn hóa ID và Ngày tháng
     document.getElementById('btn-sync-github').addEventListener('click', async () => {
       if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
         showToast('Vui lòng kiểm tra lại thông tin xác thực GitHub', 'error');
@@ -1479,8 +1704,12 @@
         const jsonParsed = JSON.parse(contentUtf8);
 
         const normalizedParsed = Array.isArray(jsonParsed) ? jsonParsed.map(item => {
-          if (item.date) item.date = formatDateToDDMMYYYY(item.date);
-          return item;
+          const numId = Number(item.id);
+          return {
+            ...item,
+            id: !isNaN(numId) ? numId : item.id,
+            date: formatDateToDDMMYYYY(item.date)
+          };
         }) : [];
 
         db[currentFolder] = normalizedParsed;
