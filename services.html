@@ -476,15 +476,24 @@
         }
 
         function closeSuccessModal() {
+            // 1. Tắt Popup Thông Báo Thành Công
             const successModal = document.getElementById('successModal') || document.getElementById('thankYouModal');
             if (successModal) {
                 successModal.classList.add('hidden');
                 successModal.classList.remove('flex');
             }
 
+            // 2. Mô phỏng hành vi click vật lý để Bypass Popup Blocker
             if (currentFileUrl) {
-                window.open(currentFileUrl, '_blank');
-                currentFileUrl = '';
+                const link = document.createElement('a');
+                link.href = currentFileUrl;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                currentFileUrl = ''; // Reset biến lưu trữ
             }
         }
 
