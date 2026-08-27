@@ -313,7 +313,7 @@
                     <p class="text-slate-600 text-sm mt-3 text-center">
                         Chúng tôi lấy độ chính xác kỹ thuật, tính minh bạch ngân sách tài chính và sự an toàn pháp lý
                         làm thước đo
-                        uy tín cho từng công trình.
+                        uy tính cho từng công trình.
                     </p>
                 </div>
 
@@ -378,9 +378,10 @@
         </section>
     </main>
 
+    <!-- POPUP 1: ĐIỀN THÔNG TIN (CĂN GIỮA TRUNG TÂM MÀN HÌNH) -->
     <div id="requestModal"
         class="fixed inset-0 z-[50] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto transition-all">
-        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 relative my-auto">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative my-auto">
             <button onclick="closeRequestModal()"
                 class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer">
                 <i class="fa-solid fa-xmark text-xl"></i>
@@ -421,13 +422,38 @@
         </div>
     </div>
 
+    <!-- POPUP 2: THÔNG BÁO THÀNH CÔNG (CĂN GIỮA TRUNG TÂM MÀN HÌNH) -->
+    <div id="successModal"
+        class="fixed inset-0 z-[50] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 transition-all">
+        <div class="bg-white w-full max-w-sm rounded-2xl shadow-2xl p-6 text-center relative my-auto">
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Gửi Yêu Cầu Thành Công!</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-6">Cảm ơn bạn đã gửi thông tin. Nhấn nút bên dưới để mở file báo giá / tài liệu.</p>
+            
+            <button type="button" onclick="closeSuccessModal()"
+                class="w-full py-2.5 bg-brand-blue hover:bg-brand-blue/90 text-white font-bold text-xs sm:text-sm rounded-xl transition-colors cursor-pointer shadow-md">
+                Đóng
+            </button>
+        </div>
+    </div>
+
     <script>
-        function openRequestModal(serviceName, requestType) {
+        let currentFileUrl = '';
+
+        function openRequestModal(serviceName, requestType, fileUrl) {
+            currentFileUrl = fileUrl || '';
             const modal = document.getElementById('requestModal');
             if (!modal) return;
-            document.getElementById('modalServiceInput').value = serviceName;
-            document.getElementById('modalTypeInput').value = requestType;
-            document.getElementById('modalTitle').innerText = requestType + ' - ' + serviceName;
+            
+            const serviceInput = document.getElementById('modalServiceInput');
+            const typeInput = document.getElementById('modalTypeInput');
+            const titleElem = document.getElementById('modalTitle');
+
+            if (serviceInput) serviceInput.value = serviceName;
+            if (typeInput) typeInput.value = requestType;
+            if (titleElem) titleElem.innerText = requestType + ' - ' + serviceName;
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -441,7 +467,27 @@
             }
         }
 
-        // HÀM XỬ LÝ FORM ĐÃ ĐỔI TÊN & TÍNH NĂNG GỌI MODAL CÁM ƠN DÙNG CHUNG
+        function showThankYouModal() {
+            const successModal = document.getElementById('successModal') || document.getElementById('thankYouModal');
+            if (successModal) {
+                successModal.classList.remove('hidden');
+                successModal.classList.add('flex');
+            }
+        }
+
+        function closeSuccessModal() {
+            const successModal = document.getElementById('successModal') || document.getElementById('thankYouModal');
+            if (successModal) {
+                successModal.classList.add('hidden');
+                successModal.classList.remove('flex');
+            }
+
+            if (currentFileUrl) {
+                window.open(currentFileUrl, '_blank');
+                currentFileUrl = '';
+            }
+        }
+
         async function submitDownloadForm(event) {
             event.preventDefault();
             const form = event.target;
@@ -462,7 +508,7 @@
                 if (response.ok) {
                     form.reset();
                     closeRequestModal();   // 1. Tắt bảng nhập thông tin
-                    showThankYouModal();  // 2. Bật bảng Cám ơn chuẩn dùng chung
+                    showThankYouModal();  // 2. Bật bảng Cám ơn / Thành công
                 } else {
                     alert('Có lỗi xảy ra, vui lòng thử lại sau.');
                 }
