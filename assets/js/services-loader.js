@@ -1,3 +1,6 @@
+// Biến toàn cục lưu trữ đường dẫn file báo giá
+let currentFileUrl = '';
+
 document.addEventListener('DOMContentLoaded', () => {
     fetch('content/posts-services.json')
         .then(response => {
@@ -46,12 +49,9 @@ function renderServices(posts) {
                                 <p class="text-xs text-slate-500 mt-1"><i class="fa-solid ${post.icon} mr-1 text-brand-orange"></i>${post.summary}</p>
                             </div>
                             <div class="flex flex-col justify-between gap-2 shrink-0 w-32 sm:w-36">
-                                <button onclick="openRequestModal('${post.title}', 'Tải báo giá', '${post.link}')" class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold 
-                                flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap 
-                                cursor-pointer"><i class="fa-solid fa-download"></i> Tải báo giá</button>
+                                <button onclick="openRequestModal('${post.title}', 'Tải báo giá', '${post.link}')" class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap cursor-pointer"><i class="fa-solid fa-download"></i> Tải báo giá</button>
                                 <a href="${post.eyelink}" target="_blank" rel="noopener noreferrer" 
-                                class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 
-                                border border-slate-200 hover:border-brand-orange whitespace-nowrap"><i class="fa-solid fa-eye"></i> Xem quy trình</a>
+                                class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap"><i class="fa-solid fa-eye"></i> Xem quy trình</a>
                             </div>
                         </div>
                     `;
@@ -73,4 +73,50 @@ function renderServices(posts) {
             }).join(''); // Ép toàn bộ cấu trúc thành một chuỗi duy nhất trước khi đưa vào DOM
         }
     });
+}
+
+// 1. Hàm mở Modal nhập thông tin và lưu đường dẫn file
+function openRequestModal(title, actionType, fileUrl) {
+    currentFileUrl = fileUrl || ''; // Lưu vết link file
+
+    const modal = document.getElementById('requestModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex'); // Bật flex để căn giữa trung tâm
+    }
+}
+
+// 2. Hàm xử lý khi bấm nút "Gửi Yêu Cầu Tải Tài Liệu"
+function handleModalSubmit(event) {
+    if (event) event.preventDefault(); // Ngăn reload trang
+
+    // Đóng Popup Form nhập liệu
+    const requestModal = document.getElementById('requestModal');
+    if (requestModal) {
+        requestModal.classList.add('hidden');
+        requestModal.classList.remove('flex');
+    }
+
+    // Mở Popup Thông Báo Thành Công
+    const successModal = document.getElementById('successModal') || document.getElementById('notificationPopup');
+    if (successModal) {
+        successModal.classList.remove('hidden');
+        successModal.classList.add('flex'); // Bật flex để căn giữa trung tâm
+    }
+}
+
+// 3. Hàm đóng Popup Thông Báo Thành Công và MỞ FILE LINK (Gán cho nút Đóng)
+function closeSuccessModal() {
+    // Ẩn Popup Thông Báo Thành Công
+    const successModal = document.getElementById('successModal') || document.getElementById('notificationPopup');
+    if (successModal) {
+        successModal.classList.add('hidden');
+        successModal.classList.remove('flex');
+    }
+
+    // Chuyển hướng sang file link báo giá trong tab mới
+    if (currentFileUrl) {
+        window.open(currentFileUrl, '_blank');
+        currentFileUrl = ''; // Reset biến lưu trữ
+    }
 }
