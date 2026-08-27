@@ -46,10 +46,13 @@
   {
     "id": 5,
     "category": "documents",
-    "title": "1. Hợp đồng thiết kế",
+    "categoryLabel": "",
+    "date": "",
+    "title": "1. Hợp đồng tư vấn thiết kế công trình",
     "summary": "Mẫu hợp đồng tư vấn & thiết kế chuẩn quy trình BIM/VDC",
-    "icon": "fa-file-contract",
-    "link": ""
+    "link": "database/notlink/wait.html",
+    "code": "",
+    "icon": "fa-file-contract"
   },
   {
     "id": 6,
