@@ -5,8 +5,8 @@
     "categoryLabel": "",
     "date": "",
     "title": "Thiết kế kiến trúc công trình",
-    "summary": "Khung giá tham khảo:\n90.000 - 550.000 VNĐ/m²",
-    "link": "",
+    "summary": "Khung giá tham khảo: 90.000 - 550.000 VNĐ/m²",
+    "link": "#dich-vu-chinh",
     "code": "",
     "icon": "fa-tag"
   },
@@ -16,7 +16,7 @@
     "categoryLabel": "",
     "date": "",
     "title": "Thiết kế và Dịch vụ cấp phép xây dựng nhà thép",
-    "summary": "Khung giá tham khảo:\n75.000.000 - 350.000.000 VNĐ / Trọn gói",
+    "summary": "Khung giá tham khảo: 75.000.000 - 350.000.000 VNĐ / Trọn gói",
     "link": "#dich-vu-chinh",
     "code": "",
     "icon": "fa-tag"
@@ -27,7 +27,7 @@
     "categoryLabel": "",
     "date": "",
     "title": "Dịch vụ pháp lý hỗ trợ cấp phép xây dựng",
-    "summary": "Khung giá tham khảo:\n5.000.000 - 60.000.000 VNĐ / Trọn gói",
+    "summary": "Khung giá tham khảo: 5.000.000 - 60.000.000 VNĐ / Trọn gói",
     "link": "#dich-vu-chinh",
     "code": "",
     "icon": "fa-tag"
@@ -38,7 +38,7 @@
     "categoryLabel": "",
     "date": "",
     "title": "Dịch vụ pháp lý hỗ trợ Hoàn công xây dựng",
-    "summary": "Khung giá tham khảo:\n12.000.000 - 60.000.000 VNĐ / Trọn gói",
+    "summary": "Khung giá tham khảo: 12.000.000 - 60.000.000 VNĐ / Trọn gói",
     "link": "#dich-vu-chinh",
     "code": "",
     "icon": "fa-tag"
@@ -54,18 +54,24 @@
   {
     "id": 6,
     "category": "documents",
-    "title": "2. Hợp đồng thi công",
+    "categoryLabel": "",
+    "date": "",
+    "title": "2. Hợp đồng thi công xây dựng",
     "summary": "Mẫu hợp đồng thi công phần thô & trọn gói công trình",
-    "icon": "fa-file-contract",
-    "link": ""
+    "link": "",
+    "code": "",
+    "icon": "fa-file-contract"
   },
   {
     "id": 7,
     "category": "documents",
+    "categoryLabel": "",
+    "date": "",
     "title": "3. Hợp đồng dịch vụ pháp lý",
-    "summary": "Mẫu hợp đồng trích đo, xin phép xây dựng & hoàn công",
-    "icon": "fa-file-contract",
-    "link": ""
+    "summary": "Mẫu hợp đồng dịch vụ pháp lý về bất động sản",
+    "link": "",
+    "code": "",
+    "icon": "fa-file-contract"
   },
   {
     "id": 8,
@@ -78,58 +84,54 @@
   {
     "id": 9,
     "category": "documents",
-    "title": "5. Biên bản giám sát tác giả",
-    "summary": "Mẫu ghi nhận kiểm tra thực địa của đơn vị tư vấn thiết kế",
-    "icon": "fa-clipboard-check",
-    "link": ""
+    "categoryLabel": "",
+    "date": "",
+    "title": "9. Hợp đồng khoán việc",
+    "summary": "Mẫu hợp đồng giao khoán nhân công & hạng mục chuyên biệt",
+    "link": "",
+    "code": "",
+    "icon": "fa-file-contract"
   },
   {
     "id": 10,
-    "category": "documents",
-    "title": "6. Phiếu RFI (Request For Information)",
-    "summary": "Mẫu phiếu yêu cầu làm rõ thông tin thiết kế & kỹ thuật",
-    "icon": "fa-circle-question",
-    "link": ""
-  },
-  {
-    "id": 11,
-    "category": "documents",
-    "title": "7. Phiếu RFA (Request For Approval)",
-    "summary": "Mẫu phiếu trình duyệt vật tư, thiết bị & giải pháp thi công",
-    "icon": "fa-file-circle-check",
-    "link": ""
-  },
-  {
-    "id": 12,
-    "category": "documents",
-    "title": "8. Biên bản nghiệm thu công việc",
-    "summary": "Mẫu biên bản nghiệm thu chuyển bước thi công & giai đoạn công trình",
-    "icon": "fa-list-check",
-    "link": ""
-  },
-  {
-    "id": 13,
-    "category": "documents",
-    "title": "9. Hợp đồng khoán việc",
-    "summary": "Mẫu hợp đồng giao khoán nhân công & hạng mục chuyên biệt",
-    "icon": "fa-file-contract",
-    "link": ""
-  },
-  {
-    "id": 14,
-    "category": "documents",
-    "title": "10. Phiếu giao nhận hồ sơ",
-    "summary": "Mẫu biên bản bàn giao bản vẽ, hồ sơ pháp lý & chứng từ công trình",
-    "icon": "fa-box-archive",
-    "link": ""
-  },
-  {
-    "id": 15,
     "category": "pricing",
     "categoryLabel": "",
     "date": "19/08/2026",
     "title": "Tư vấn lập báo cáo tiền khả thi và Bảng tính dòng tiền dự án",
-    "summary": "Đơn giá:\nLiên hệ để được báo giá chính xác",
+    "summary": "Đơn giá: Liên hệ để được báo giá chính xác",
+    "link": "#dich-vu-chinh",
+    "code": "",
+    "icon": "fa-tag"
+  },
+  {
+    "id": 11,
+    "category": "pricing",
+    "categoryLabel": "Bảng giá dịch vụ",
+    "date": "27/08/2026",
+    "title": "Thi công xây dựng công trình nhà ở gia đình",
+    "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
+    "link": "#dich-vu-chinh",
+    "code": "",
+    "icon": "fa-tag"
+  },
+  {
+    "id": 12,
+    "category": "pricing",
+    "categoryLabel": "Bảng giá dịch vụ",
+    "date": "27/08/2026",
+    "title": "Thi công xây dựng Biệt thự",
+    "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
+    "link": "#dich-vu-chinh",
+    "code": "",
+    "icon": "fa-tag"
+  },
+  {
+    "id": 13,
+    "category": "pricing",
+    "categoryLabel": "Bảng giá dịch vụ",
+    "date": "27/08/2026",
+    "title": "Thi công xây dựng nhà thép tiền chế",
+    "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
     "link": "",
     "code": "",
     "icon": "fa-tag"
