@@ -3,10 +3,11 @@
     "id": 1,
     "category": "pricing",
     "categoryLabel": "",
-    "date": "",
+    "date": "27/08/2026",
     "title": "Thiết kế kiến trúc công trình",
     "summary": "Khung giá: 90.000 - 550.000 VNĐ/m²",
-    "link": "#dich-vu-chinh",
+    "link": "database/Giá thiết kế_Sdigital.pdf",
+    "eyelink": "/database/wait.htm",
     "code": "",
     "icon": "fa-tag"
   },
