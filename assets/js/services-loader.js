@@ -47,7 +47,7 @@ function renderServices(posts) {
                             </div>
                             <div class="flex flex-col justify-between gap-2 shrink-0 w-32 sm:w-36">
                                 <button onclick="openRequestModal('${post.title}', 'Tải báo giá')" class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap cursor-pointer"><i class="fa-solid fa-download"></i> Tải báo giá</button>
-                                <a href="${post.link}" target="_blank" rel="noopener noreferrer" 
+                                <a href="${post.eyelink || post.link}" target="_blank" rel="noopener noreferrer" 
                                 class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap"><i class="fa-solid fa-eye"></i> Xem quy trình</a>
                             </div>
                         </div>
@@ -62,7 +62,6 @@ function renderServices(posts) {
                             <div class="shrink-0">
                                 <a href="${post.link}" target="_blank" rel="noopener noreferrer" 
                                 class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap"><i class="fa-solid fa-eye"></i> Xem tài liệu</a>
-                                </a>
                             </div>
                         </div>
                     `;
