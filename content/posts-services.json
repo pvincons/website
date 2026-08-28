@@ -6,7 +6,7 @@
     "date": "27/08/2026",
     "title": "Thiết kế kiến trúc công trình",
     "summary": "Khung giá: 90.000 - 550.000 VNĐ/m²",
-    "link": "database/Giá thiết kế_Sdigital.pdf",
+    "link": "",
     "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
@@ -18,7 +18,8 @@
     "date": "27/08/2026",
     "title": "Thiết kế và Dịch vụ cấp phép xây dựng nhà thép",
     "summary": "Khung giá: 75.000.000 - 350.000.000 VNĐ / Trọn gói",
-    "link": "#dich-vu-chinh",
+    "link": "",
+    "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -29,7 +30,8 @@
     "date": "27/08/2026",
     "title": "Dịch vụ pháp lý hỗ trợ cấp phép xây dựng",
     "summary": "Khung giá: 5.000.000 - 60.000.000 VNĐ / Trọn gói",
-    "link": "#dich-vu-chinh",
+    "link": "",
+    "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -40,7 +42,8 @@
     "date": "27/08/2026",
     "title": "Dịch vụ pháp lý hỗ trợ Hoàn công xây dựng",
     "summary": "Khung giá: 12.000.000 - 60.000.000 VNĐ / Trọn gói",
-    "link": "#dich-vu-chinh",
+    "link": "",
+    "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -104,7 +107,8 @@
     "date": "19/08/2026",
     "title": "Tư vấn lập báo cáo tiền khả thi và Bảng tính dòng tiền dự án",
     "summary": "Đơn giá: Liên hệ để được báo giá chính xác",
-    "link": "#dich-vu-chinh",
+    "link": "",
+    "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -115,7 +119,8 @@
     "date": "27/08/2026",
     "title": "Thi công xây dựng công trình nhà ở gia đình",
     "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
-    "link": "#dich-vu-chinh",
+    "link": "",
+    "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -126,7 +131,8 @@
     "date": "27/08/2026",
     "title": "Thi công xây dựng Biệt thự",
     "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
-    "link": "#dich-vu-chinh",
+    "link": "",
+    "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -138,6 +144,19 @@
     "title": "Thi công xây dựng nhà thép tiền chế",
     "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
     "link": "",
+    "eyelink": "/database/wait.html",
+    "code": "",
+    "icon": "fa-tag"
+  },
+  {
+    "id": 14,
+    "category": "pricing",
+    "categoryLabel": "Bảng giá dịch vụ",
+    "date": "28/08/2026",
+    "title": "Quản lý và Giám sát thi công xây dựng công trình",
+    "summary": "Khung giá: Trọn gói 3.0 - 8.0% Giá trị hợp đồng xây dựng.",
+    "link": "",
+    "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
   }
