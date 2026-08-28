@@ -1,44 +1,68 @@
 [
-    {
-        "id": 1,
-        "title": "Báo cáo tài chính Quý I năm 2026",
-        "date": "2026-04-25",
-        "category": "tai-chinh-cong-ty",
-        "link": "#"
-    },
-    {
-        "id": 2,
-        "title": "Báo cáo tài chính kiểm toán năm 2025",
-        "date": "2026-03-28",
-        "category": "tai-chinh-cong-ty",
-        "link": "#"
-    },
-    {
-        "id": 3,
-        "title": "Báo cáo thường niên năm 2025",
-        "date": "2026-03-20",
-        "category": "tai-chinh-cong-ty",
-        "link": "#"
-    },
-    {
-        "id": 4,
-        "title": "Nghị quyết Đại hội đồng cổ đông thường niên năm 2026",
-        "date": "2026-04-15",
-        "category": "quan-he-co-dong",
-        "link": "#"
-    },
-    {
-        "id": 5,
-        "title": "Thông báo họp Đại hội đồng cổ đông thường niên năm 2026",
-        "date": "2026-03-15",
-        "category": "quan-he-co-dong",
-        "link": "#"
-    },
-    {
-        "id": 6,
-        "title": "Báo cáo tình hình quản trị công ty năm 2025",
-        "date": "2026-01-20",
-        "category": "quan-he-co-dong",
-        "link": "#"
-    }
+  {
+    "id": 1,
+    "category": "",
+    "categoryLabel": "",
+    "date": "25/04/2026",
+    "title": "Báo cáo tài chính Quý I năm 2026",
+    "summary": "",
+    "link": "/database/wait.html",
+    "code": "",
+    "icon": "fa-file-contract"
+  },
+  {
+    "id": 2,
+    "category": "",
+    "categoryLabel": "",
+    "date": "28/03/2026",
+    "title": "Báo cáo tài chính kiểm toán năm 2025",
+    "summary": "",
+    "link": "/database/wait.html",
+    "code": "",
+    "icon": "fa-file-contract"
+  },
+  {
+    "id": 3,
+    "category": "",
+    "categoryLabel": "",
+    "date": "20/03/2026",
+    "title": "Báo cáo thường niên năm 2025",
+    "summary": "",
+    "link": "/database/wait.html",
+    "code": "",
+    "icon": "fa-file-contract"
+  },
+  {
+    "id": 4,
+    "category": "quan-he-co-dong",
+    "categoryLabel": "",
+    "date": "15/04/2026",
+    "title": "Nghị quyết Đại hội đồng cổ đông thường niên năm 2026",
+    "summary": "",
+    "link": "/database/wait.html",
+    "code": "",
+    "icon": "fa-file-contract"
+  },
+  {
+    "id": 5,
+    "category": "quan-he-co-dong",
+    "categoryLabel": "",
+    "date": "15/03/2026",
+    "title": "Thông báo họp Đại hội đồng cổ đông thường niên năm 2026",
+    "summary": "",
+    "link": "/database/wait.html",
+    "code": "",
+    "icon": "fa-file-contract"
+  },
+  {
+    "id": 6,
+    "category": "quan-he-co-dong",
+    "categoryLabel": "",
+    "date": "20/01/2026",
+    "title": "Báo cáo tình hình quản trị công ty năm 2020",
+    "summary": "",
+    "link": "/database/wait.html",
+    "code": "",
+    "icon": "fa-file-contract"
+  }
 ]
