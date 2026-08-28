@@ -1,4 +1,3 @@
-// Chỉ giữ lại logic Fetch API và Render DOM
 document.addEventListener('DOMContentLoaded', () => {
     fetch('content/posts-services.json')
         .then(response => {
@@ -29,11 +28,12 @@ function renderServices(posts) {
         }
     });
 
-    // 3. Lặp qua các nhóm category và nạp vào DOM
+    // 3. Lặp qua các nhóm category và nạp vào DOM bằng map().join('')
     Object.keys(categoriesData).forEach(categoryKey => {
         const container = document.querySelector(`[data-category="${categoryKey}"]`);
         
         if (container && categoriesData[categoryKey].length > 0) {
+            
             // Render toàn bộ mảng thành một chuỗi HTML duy nhất
             container.innerHTML = categoriesData[categoryKey].map(post => {
                 
@@ -46,7 +46,7 @@ function renderServices(posts) {
                                 <p class="text-xs text-slate-500 mt-1"><i class="fa-solid ${post.icon} mr-1 text-brand-orange"></i>${post.summary}</p>
                             </div>
                             <div class="flex flex-col justify-between gap-2 shrink-0 w-32 sm:w-36">
-                                <button onclick="openRequestModal('${post.title}', 'Tải báo giá', '${post.link}')" class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap cursor-pointer"><i class="fa-solid fa-download"></i> Tải báo giá</button>
+                                <button onclick="openRequestModal('${post.title}', 'Nhận báo giá')" class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap cursor-pointer"><i class="fa-solid fa-download"></i> Tải báo giá</button>
                                 <a href="${post.eyelink}" target="_blank" rel="noopener noreferrer" 
                                 class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap"><i class="fa-solid fa-eye"></i> Xem quy trình</a>
                             </div>
@@ -62,12 +62,13 @@ function renderServices(posts) {
                             <div class="shrink-0">
                                 <a href="${post.link}" target="_blank" rel="noopener noreferrer" 
                                 class="w-full text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-colors py-2 px-3 rounded-lg bg-slate-50 border border-slate-200 hover:border-brand-orange whitespace-nowrap"><i class="fa-solid fa-eye"></i> Xem tài liệu</a>
+                                </a>
                             </div>
                         </div>
                     `;
                 }
                 return '';
-            }).join('');
+            }).join(''); // Ép toàn bộ cấu trúc thành một chuỗi duy nhất trước khi đưa vào DOM
         }
     });
 }
