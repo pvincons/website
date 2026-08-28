@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "category": "tai-chinh",
+    "category": "tai-chinh-cong-ty",
     "categoryLabel": "Tài chính công ty",
     "date": "10/02/2022",
     "title": "Báo cáo tài chính công ty năm 2021",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "category": "tai-chinh",
+    "category": "tai-chinh-cong-ty",
     "categoryLabel": "Tài chính công ty",
     "date": "10/02/2021",
     "title": "Báo cáo tài chính công ty năm 2020",
@@ -45,7 +45,7 @@
   },
   {
     "id": 5,
-    "category": "tai-chinh",
+    "category": "tai-chinh-cong-ty",
     "categoryLabel": "Tài chính công ty",
     "date": "10/02/2023",
     "title": "Báo cáo tài chính công ty năm 2022",
@@ -67,7 +67,7 @@
   },
   {
     "id": 7,
-    "category": "tai-chinh",
+    "category": "tai-chinh-cong-ty",
     "categoryLabel": "Tài chính công ty",
     "date": "10/02/2024",
     "title": "Báo cáo tài chính công ty năm 2023",
@@ -78,7 +78,7 @@
   },
   {
     "id": 8,
-    "category": "tai-chinh",
+    "category": "tai-chinh-cong-ty",
     "categoryLabel": "Tài chính công ty",
     "date": "10/02/2025",
     "title": "Báo cáo tài chính công ty năm 2024",
@@ -89,7 +89,7 @@
   },
   {
     "id": 9,
-    "category": "tai-chinh",
+    "category": "tai-chinh-cong-ty",
     "categoryLabel": "Tài chính công ty",
     "date": "10/02/2026",
     "title": "Báo cáo tài chính công ty năm 2025",
