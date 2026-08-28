@@ -48,5 +48,15 @@
     "summary": "Hoàn công xây dựng là thủ tục pháp lý bắt buộc giúp chủ nhà xác nhận quyền sở hữu công trình hợp pháp trên đất. Việc cập nhật tài sản gắn liền với đất vào Giấy chứng nhận quyền sử dụng đất (Sổ đỏ/Sổ hồng) không chỉ bảo vệ tối đa quyền lợi gia chủ mà còn gia tăng giá trị tài sản khi thực hiện các giao dịch chuyển nhượng hay thế chấp ngân hàng.",
     "link": "/database/hoan_cong_xay_dung.html",
     "image": "https://i.pinimg.com/736x/46/57/59/465759e88d0cc19d4e15981cad53adfc.jpg"
+  },
+  {
+    "id": 6,
+    "category": "khach-hang-bao-chi",
+    "categoryLabel": "Khách hàng & báo chí",
+    "date": "28/08/2026",
+    "title": "Chính sách nhãn hiệu và sở hữu trí tuệ",
+    "summary": "Chính sách này được ban hành nhằm thiết lập các quy định rõ ràng về việc quản lý, bảo vệ, định hướng sử dụng và xử lý vi phạm đối với toàn bộ các tài sản sở hữu trí tuệ mang thương hiệu PV INCONS, bảo vệ uy tín doanh nghiệp và quyền lợi hợp pháp của Quý khách hàng, Đối tác.",
+    "link": "",
+    "image": "/assets/pic/logo.webp"
   }
 ]
