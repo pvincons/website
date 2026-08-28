@@ -22,7 +22,7 @@
 
     <!-- File CSS dùng chung -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Thẻ Canonical chuẩn SEO -->
     <link rel="canonical" href="https://pvincons.com/">
 
@@ -110,7 +110,8 @@
         <section class="relative w-full">
             <div
                 class="relative w-full h-[20vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] bg-slate-800 flex items-center justify-center overflow-hidden">
-                <img src="https://i.pinimg.com/736x/5f/16/b5/5f16b564462a1f8c8db3d674cd5dbeeb.jpg?q=100&w=1920&auto=format&fit=crop" alt="Tin Tức & Sự Kiện"
+                <img src="https://i.pinimg.com/736x/5f/16/b5/5f16b564462a1f8c8db3d674cd5dbeeb.jpg?q=100&w=1920&auto=format&fit=crop"
+                    alt="Tin Tức & Sự Kiện"
                     class="absolute inset-0 w-full h-full object-cover opacity-50 animate-bg-pan">
                 <div class="relative z-10 text-center px-4">
                     <h1
@@ -131,6 +132,11 @@
                 <a href="#" class="text-brand-orange transition-colors py-0.5 shrink-0">TIN TỨC CÔNG TY</a>
                 <span class="text-slate-300 font-normal shrink-0">/</span>
 
+                <a href="#thong-tin-bao-chi"
+                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">THÔNG TIN KHÁCH HÀNG & BÁO CHÍ
+                    </a>
+                <span class="text-slate-300 font-normal shrink-0">/</span>
+
                 <a href="#goc-nhin-chuyen-gia"
                     class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">GÓC NHÌN CHUYÊN
                     GIA</a>
@@ -141,14 +147,8 @@
                 <span class="text-slate-300 font-normal shrink-0">/</span>
 
                 <a href="#tin-phap-luat"
-                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">TIN PHÁP LUẬT</a>
-                <span class="text-slate-300 font-normal shrink-0">/</span>
-
-                <a href="#thong-tin-bao-chi"
-                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">THÔNG TIN KHÁCH
-                    HÀNG & BÁO
-                    CHÍ</a>
-
+                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">TIN PHÁP LUẬT
+                    </a>
             </div>
         </nav>
 
@@ -178,9 +178,34 @@
             </div>
         </section>
 
-        <!-- 2. GÓC NHÌN CHUYÊN GIA (Nền xám nhạt xen kẽ) -->
+        <!-- 2. THÔNG TIN KHÁCH HÀNG VÀ BÁO CHÍ (Nền xám nhạt) -->
+        <section id="thong-tin-bao-chi" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Thông Tin Chính Thức
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-800 mt-2 uppercase tracking-wide">
+                        KHÁCH HÀNG & BÁO CHÍ
+                    </h2>
+                    <div
+                        class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
+                    </div>
+                    <p class="text-slate-600 text-[13px] sm:text-sm mt-3 text-center">
+                        Thông cáo báo chí, tư liệu truyền thông đến khách hàng và các cam kết minh bạch chất lượng dịch
+                        vụ từ PV
+                        INCONS.
+                    </p>
+                </div>
+
+                <div data-category="khach-hang-bao-chi" class="space-y-4 max-w-5xl mx-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. GÓC NHÌN CHUYÊN GIA (Nền trắng) -->
         <section id="goc-nhin-chuyen-gia"
-            class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
+            class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white border-y border-slate-200/70">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
                     <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
@@ -203,8 +228,8 @@
             </div>
         </section>
 
-        <!-- 3. TIN THỊ TRƯỜNG (Nền trắng) -->
-        <section id="tin-thi-truong" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white">
+        <!-- 4. TIN THỊ TRƯỜNG (Nền xám nhạt) -->
+        <section id="tin-thi-truong" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
                     <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
@@ -227,9 +252,9 @@
             </div>
         </section>
 
-        <!-- 4. TIN PHÁP LUẬT (Nền xám nhạt xen kẽ) -->
+        <!-- 5. TIN PHÁP LUẬT (Nền trắng) -->
         <section id="tin-phap-luat"
-            class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60 border-y border-slate-200/70">
+            class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white border-y border-slate-200/70">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
                     <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
@@ -249,31 +274,6 @@
                 </div>
 
                 <div data-category="phap-luat" class="flex flex-col gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. THÔNG TIN KHÁCH HÀNG VÀ BÁO CHÍ (Nền trắng - Định dạng danh sách ngang đồng bộ) -->
-        <section id="thong-tin-bao-chi" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
-                        Thông Tin Chính Thức
-                    </span>
-                    <h2 class="text-xl sm:text-3xl font-extrabold text-slate-800 mt-2 uppercase tracking-wide">
-                        KHÁCH HÀNG & BÁO CHÍ
-                    </h2>
-                    <div
-                        class="w-28 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mt-3">
-                    </div>
-                    <p class="text-slate-600 text-[13px] sm:text-sm mt-3 text-center">
-                        Thông cáo báo chí, tư liệu truyền thông đến khách hàng và các cam kết minh bạch chất lượng dịch
-                        vụ từ PV
-                        INCONS.
-                    </p>
-                </div>
-
-                <div data-category="khach-hang-bao-chi" class="space-y-4 max-w-5xl mx-auto">
                 </div>
             </div>
         </section>
