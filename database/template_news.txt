@@ -10,9 +10,9 @@ Các vị trí bắt buộc cập nhật SEO & Nội dung:
 - Schema JSON-LD: Cập nhật trường "description" và "name" phù hợp với bài viết mới nhưng giữ nguyên thông tin doanh nghiệp.
 - Khung bài viết:
   + <h1 class="article-title">: Tiêu đề bài viết mới (chứa từ khóa chính).
-  + <p class="article-subtitle">: Sapo tóm tắt bài viết.
+  + <p class="article-subtitle text-justify">: Sapo tóm tắt bài viết.
   + <div class="article-meta">: Cập nhật ngày đăng và chuyên mục.
-  + <section class="article-content">: Thay toàn bộ <h2>, <p>, .callout-box, .table-wrapper (nếu có), .step-list bằng nội dung bài viết mới, giữ nguyên các class chuẩn này.
+  + <section class="article-content">: Thay toàn bộ <h2>, <p class="text-justify">, .callout-box, .table-wrapper (nếu có), .step-list bằng nội dung bài viết mới, giữ nguyên các class chuẩn này.
   + <div class="article-tags">: Cập nhật các thẻ #tag liên quan.
 
 Chủ đề bài viết mới:
@@ -141,7 +141,7 @@ File HTML mẫu gốc:
             <h1 class="article-title">Tiêu Đề Bài Viết Mẫu PV INCONS</h1>
 
             <!-- Mô tả ngắn / Sapo (Times New Roman) -->
-            <p class="article-subtitle">Mô tả ngắn hoặc tóm tắt nội dung chính của bài viết cung cấp thông tin tổng quan
+            <p class="article-subtitle text-justify">Mô tả ngắn hoặc tóm tắt nội dung chính của bài viết cung cấp thông tin tổng quan
                 cho độc giả.</p>
 
             <!-- Thông tin tác giả & Ngày đăng -->
@@ -162,10 +162,10 @@ File HTML mẫu gốc:
             <!-- Nội dung chi tiết bài viết -->
             <section class="article-content">
                 <h2>Tiêu đề heading 2 của bài viết</h2>
-                <p>Nội dung chi tiết diễn giải bên dưới đề mục được trình bày liền mạch, rõ ràng và dễ đọc.</p>
+                <p class="text-justify">Nội dung chi tiết diễn giải bên dưới đề mục được trình bày liền mạch, rõ ràng và dễ đọc.</p>
 
                 <div class="callout-box">
-                    <p><strong>Lưu ý quan trọng:</strong> Đây là điểm cần chú ý trong quá trình triển khai dự án thực
+                    <p class="text-justify"><strong>Lưu ý quan trọng:</strong> Đây là điểm cần chú ý trong quá trình triển khai dự án thực
                         tế.</p>
                 </div>
 
@@ -196,9 +196,9 @@ File HTML mẫu gốc:
 
                 <h2>Các bước thực hiện dự án</h2>
                 <ol class="step-list">
-                    <li>Khảo sát hiện trạng và thu thập thông tin dự án.</li>
-                    <li>Lập quy hoạch và phương án thiết kế sơ bộ.</li>
-                    <li>Triển khai chi tiết và xuất hồ sơ thi công.</li>
+                    <li class="text-justify">Khảo sát hiện trạng và thu thập thông tin dự án.</li>
+                    <li class="text-justify">Lập quy hoạch và phương án thiết kế sơ bộ.</li>
+                    <li class="text-justify">Triển khai chi tiết và xuất hồ sơ thi công.</li>
                 </ol>
             </section>
 
