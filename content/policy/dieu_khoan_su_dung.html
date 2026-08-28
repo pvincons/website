@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều Khoản Sử Dụng - PV INCONS</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #0f172a;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --accent-bg: #eff6ff;
+            --accent-border: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .meta-info {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--accent-border);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .toc {
+            background-color: #f1f5f9;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 15px;
+        }
+
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            font-size: 19px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 span.num {
+            background: var(--primary-color);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: #1e293b;
+            margin: 18px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .highlight-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f1f5f9;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .contact-card {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-card p {
+            margin-bottom: 8px;
+        }
+
+        .contact-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            background-color: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .header {
+                padding: 30px 15px;
+            }
+            .header h1 {
+                font-size: 22px;
+            }
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .toc {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>ĐIỀU KHOẢN SỬ DỤNG DỊCH VỤ VÀ WEBSITE</h1>
+        <p>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+    </div>
+
+    <div class="content">
+        <div class="meta-info">
+            <strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS<br>
+            <strong>Tên tiếng Anh:</strong> PV INCONS CONSTRUCTION AND TRADING COMPANY LIMITED<br>
+            <strong>Mã số doanh nghiệp:</strong> 1501112147<br>
+            <strong>Đăng ký lần đầu:</strong> Ngày 12 tháng 03 năm 2020<br>
+            <strong>Cập nhật lần cuối:</strong> Ngày 28 tháng 08 năm 2026<br>
+            <em>Vui lòng đọc kỹ các Điều khoản sử dụng này trước khi truy cập website hoặc sử dụng các dịch vụ của PV INCONS. Việc sử dụng website đồng nghĩa với việc Quý khách đã chấp thuận các điều khoản này.</em>
+        </div>
+
+        <div class="toc">
+            <h3>MỤC LỤC TỔNG QUAN</h3>
+            <ul>
+                <li><a href="#sec1">1. Chấp nhận điều khoản</a></li>
+                <li><a href="#sec2">2. Quyền và trách nhiệm của Người dùng</a></li>
+                <li><a href="#sec3">3. Quyền sở hữu trí tuệ</a></li>
+                <li><a href="#sec4">4. Dịch vụ tư vấn, thiết kế & thi công</a></li>
+                <li><a href="#sec5">5. Chính sách giá và Thanh toán</a></li>
+                <li><a href="#sec6">6. Miễn trừ và Giới hạn trách nhiệm</a></li>
+                <li><a href="#sec7">7. Liên kết và Dịch vụ bên thứ ba</a></li>
+                <li><a href="#sec8">8. Tạm ngừng & Chấm dứt cung cấp</a></li>
+                <li><a href="#sec9">9. Giải quyết tranh chấp</a></li>
+                <li><a href="#sec10">10. Thay đổi chính sách & Thông tin liên hệ</a></li>
+            </ul>
+        </div>
+
+        <section id="sec1">
+            <h2><span class="num">1</span> Chấp nhận điều khoản</h2>
+            <p>Bằng việc truy cập vào website của <strong>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</strong> (sau đây gọi tắt là "PV INCONS" hoặc "Chúng tôi") và/hoặc sử dụng các dịch vụ do Chúng tôi cung cấp, Quý khách hàng/Người dùng (sau đây gọi tắt là "Quý khách") đồng ý tuân thủ toàn bộ các quy định tại Điều khoản sử dụng này.</p>
+            <p>Nếu Quý khách không đồng ý với bất kỳ nội dung nào, xin vui lòng ngừng truy cập website và không sử dụng dịch vụ của Chúng tôi.</p>
+        </section>
+
+        <section id="sec2">
+            <h2><span class="num">2</span> Quyền và trách nhiệm của Người dùng</h2>
+            <p>Khi truy cập hệ thống và sử dụng dịch vụ của PV INCONS, Quý khách có các quyền và trách nhiệm sau:</p>
+            <ul>
+                <li><strong>Tính trung thực:</strong> Cung cấp thông tin chính xác, đầy đủ khi yêu cầu tư vấn báo giá, điền form liên hệ hoặc ký kết hợp đồng thi công/thiết kế.</li>
+                <li><strong>Hành vi cấm:</strong> Không được sử dụng website để phát tán mã độc, virus, phần mềm độc hại hoặc thực hiện các hành vi tấn công mạng, làm gián đoạn hệ thống.</li>
+                <li><strong>Tính hợp pháp:</strong> Không sử dụng thông tin, hình ảnh, tài liệu trên website cho các mục đích lừa đảo, vi phạm pháp luật hoặc gây tổn hại đến uy tín của PV INCONS.</li>
+            </ul>
+        </section>
+
+        <section id="sec3">
+            <h2><span class="num">3</span> Quyền sở hữu trí tuệ</h2>
+            <p>Toàn bộ tài sản trí tuệ hiển thị trên website thuộc quyền sở hữu hợp pháp của PV INCONS và được bảo hộ bởi Luật Sở hữu trí tuệ Việt Nam, bao gồm nhưng không giới hạn ở:</p>
+            <ul>
+                <li>Logo, nhãn hiệu, tên thương mại, khẩu hiệu (slogan) của PV INCONS.</li>
+                <li>Các bản vẽ thiết kế kiến trúc, bản vẽ kết cấu, mô hình 3D (BIM/Revit), hình ảnh render phối cảnh công trình.</li>
+                <li>Nội dung bài viết, mã nguồn website, hình ảnh tư liệu thi công thực tế.</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>Lưu ý:</strong> Quý khách tuyệt đối không được phép sao chép, phân phối, chỉnh sửa hoặc sử dụng cho mục đích thương mại bất kỳ tài sản trí tuệ nào nêu trên nếu chưa có sự chấp thuận bằng văn bản từ PV INCONS.
+            </div>
+        </section>
+
+        <section id="sec4">
+            <h2><span class="num">4</span> Dịch vụ tư vấn, thiết kế & thi công</h2>
+            <p>Các thông tin về quy trình làm việc, đơn giá dự kiến và hình ảnh trên website chỉ mang tính chất tham khảo. Quá trình cung cấp dịch vụ thực tế tuân theo các nguyên tắc sau:</p>
+            <ul>
+                <li><strong>Hợp đồng pháp lý:</strong> Mọi thỏa thuận về thiết kế, thi công, mua bán vật tư đều phải được lập thành Hợp đồng kinh tế bằng văn bản và có chữ ký, con dấu của người đại diện hợp pháp.</li>
+                <li><strong>Khảo sát thực tế:</strong> PV INCONS bảo lưu quyền khảo sát lại hiện trạng công trình, thông tin địa chất và quy hoạch đất đai trước khi đưa ra phương án thiết kế hoặc báo giá chính thức.</li>
+                <li><strong>Từ chối dịch vụ:</strong> Chúng tôi có quyền từ chối cung cấp dịch vụ nếu nhận thấy dự án vi phạm các quy định pháp luật về xây dựng, an toàn lao động, hoặc vượt ngoài năng lực đáp ứng tại thời điểm yêu cầu.</li>
+            </ul>
+        </section>
+
+        <section id="sec5">
+            <h2><span class="num">5</span> Chính sách giá và Thanh toán</h2>
+            <p>Trừ khi có thỏa thuận khác được ghi nhận trong hợp đồng, các giao dịch tài chính tuân theo quy định:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 35%;">Hạng mục</th>
+                        <th>Quy định chi tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Đồng tiền thanh toán</strong></td>
+                        <td>Đồng Việt Nam (VNĐ). Giao dịch ngoại tệ (nếu có) phải tuân thủ quy định quản lý ngoại hối của pháp luật Việt Nam.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phương thức thanh toán</strong></td>
+                        <td>Thanh toán chuyển khoản qua tài khoản ngân hàng của Công ty hoặc thanh toán tiền mặt theo từng đợt nghiệm thu/bàn giao.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thuế Giá trị gia tăng</strong></td>
+                        <td>Các báo giá khái toán trên website có thể chưa bao gồm Thuế Giá trị gia tăng (VAT) 8% hoặc 10% tùy thuộc quy định hiện hành, trừ khi có ghi chú rõ ràng.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="sec6">
+            <h2><span class="num">6</span> Miễn trừ và Giới hạn trách nhiệm</h2>
+            <p>PV INCONS sẽ không chịu trách nhiệm bồi thường đối với các thiệt hại trực tiếp hoặc gián tiếp phát sinh trong các trường hợp sau:</p>
+            <ul>
+                <li><strong>Sự cố kỹ thuật:</strong> Lỗi đường truyền internet, nghẽn mạng, bảo trì máy chủ khiến website tạm thời bị gián đoạn.</li>
+                <li><strong>Sự kiện bất khả kháng:</strong> Thiên tai, hỏa hoạn, dịch bệnh, đình công, hoặc sự thay đổi của chính sách pháp luật nhà nước làm ảnh hưởng đến dịch vụ.</li>
+                <li><strong>Rủi ro từ phía người dùng:</strong> Thiệt hại phát sinh do Quý khách tự ý ứng dụng các bài viết tư vấn chung trên website vào công trình thực tế mà không thông qua khảo sát, tư vấn trực tiếp từ kỹ sư/kiến trúc sư của chúng tôi.</li>
+            </ul>
+        </section>
+
+        <section id="sec7">
+            <h2><span class="num">7</span> Liên kết và Dịch vụ bên thứ ba</h2>
+            <p>Website PV INCONS có thể chứa các đường dẫn (links) tới các nền tảng của bên thứ ba (mạng xã hội, cổng thanh toán, nhà cung cấp vật tư). Chúng tôi không kiểm soát và không chịu trách nhiệm về nội dung, tính chính xác hay các chính sách bảo mật của các trang web độc lập này. Việc Quý khách truy cập và sử dụng dịch vụ của bên thứ ba hoàn toàn thuộc về rủi ro cá nhân.</p>
+        </section>
+
+        <section id="sec8">
+            <h2><span class="num">8</span> Tạm ngừng & Chấm dứt cung cấp</h2>
+            <p>Chúng tôi có quyền tạm ngừng hoặc chặn vĩnh viễn quyền truy cập website/ứng dụng của Quý khách mà không cần thông báo trước nếu phát hiện Quý khách có một trong các hành vi:</p>
+            <ul>
+                <li>Vi phạm nghiêm trọng các quy định tại Điều khoản sử dụng này.</li>
+                <li>Thực hiện các hành vi gian lận tài chính, giả mạo danh tính, hoặc gây tổn hại đến hoạt động kinh doanh, uy tín thương hiệu của PV INCONS.</li>
+            </ul>
+        </section>
+
+        <section id="sec9">
+            <h2><span class="num">9</span> Giải quyết tranh chấp</h2>
+            <p>Mọi tranh chấp phát sinh từ hoặc liên quan đến Điều khoản sử dụng này cũng như việc sử dụng dịch vụ của PV INCONS sẽ được ưu tiên giải quyết thông qua thương lượng, hòa giải trên tinh thần hợp tác đôi bên cùng có lợi.</p>
+            <p>Trong trường hợp không thể đạt được thỏa thuận qua thương lượng trong vòng 30 ngày, tranh chấp sẽ được đưa ra giải quyết tại Tòa án nhân dân có thẩm quyền tại Việt Nam, căn cứ theo luật pháp của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam.</p>
+        </section>
+
+        <section id="sec10">
+            <h2><span class="num">10</span> Thay đổi chính sách & Thông tin liên hệ</h2>
+            <p>PV INCONS có quyền tự do cập nhật, sửa đổi hoặc bổ sung nội dung Điều khoản sử dụng này vào bất kỳ lúc nào để phù hợp với chiến lược kinh doanh và quy định pháp luật. Những thay đổi sẽ có hiệu lực ngay khi được đăng tải trên website.</p>
+            
+            <p>Nếu Quý khách có bất kỳ thắc mắc nào về Điều khoản sử dụng, yêu cầu hỗ trợ pháp lý hoặc khiếu nại, vui lòng liên hệ:</p>
+
+         <div class="contact-card">
+                <p><strong>BỘ PHẬN PHÁP CHẾ VÀ CHĂM SÓC KHÁCH HÀNG - PV INCONS</strong></p>
+                <p><strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+                <p><strong>Địa chỉ trụ sở chính:</strong> Số 292/30 đường Phan Văn Quân, Phường Bình Minh, Vĩnh Long, Việt Nam</p>
+                <p><strong>Địa điểm kinh doanh:</strong> P.007, đường Lý Thái Tổ, Phường Hưng Phú, Cần Thơ, Việt Nam</p>
+                <p><strong>Điện thoại:</strong> 0939.751.194</p>
+                <p><strong>Email tiếp nhận yêu cầu:</strong> pvincons@gmail.com</p>
+                <p><strong>Thời gian làm việc:</strong> 08:00 - 17:30 (Thứ 2 đến Thứ 6)</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS. Tất cả các quyền được bảo lưu.
+    </div>
+</div>
+
+</body>
+</html>
