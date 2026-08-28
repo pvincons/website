@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chính Sách Thân Thiện Với Môi Trường - PV INCONS</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #0f172a;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --accent-bg: #eff6ff;
+            --accent-border: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .meta-info {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--accent-border);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        .toc {
+            background-color: #f1f5f9;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 15px;
+        }
+
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            font-size: 19px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 span.num {
+            background: var(--primary-color);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: #1e293b;
+            margin: 18px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 12px;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #92400e;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f1f5f9;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .contact-card {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-card p {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .contact-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            background-color: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .header {
+                padding: 30px 15px;
+            }
+            .header h1 {
+                font-size: 22px;
+            }
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .toc {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header" style="text-align: center;">
+        <h1>CHÍNH SÁCH THÂN THIỆN VỚI MÔI TRƯỜNG & PHÁT TRIỂN BỀN VỮNG</h1>
+        <p style="text-align: center;"></p> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+    </div>
+
+    <div class="content">
+        <div class="meta-info">
+            <strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS<br>
+            <strong>Tên tiếng Anh:</strong> PV INCONS CONSTRUCTION AND TRADING COMPANY LIMITED<br>
+            <strong>Mã số doanh nghiệp:</strong> 1501112147<br>
+            <strong>Đăng ký lần đầu:</strong> Ngày 12 tháng 03 năm 2020<br>
+            <strong>Cập nhật lần cuối:</strong> Ngày 28 tháng 08 năm 2026<br>
+            <em>Chính sách này được xây dựng phù hợp với Luật Bảo vệ môi trường số 72/2020/QH14 và các tiêu chuẩn công trình xanh, bảo vệ sinh thái trong hoạt động xây dựng tại Việt Nam.</em>
+        </div>
+
+        <div class="toc">
+            <h3>MỤC LỤC TỔNG QUAN</h3>
+            <ul>
+                <li><a href="#sec1">1. Tầm nhìn & Cam kết môi trường</a></li>
+                <li><a href="#sec2">2. Phạm vi áp dụng & Mục tiêu cụ thể</a></li>
+                <li><a href="#sec3">3. Thiết kế kiến trúc tối ưu năng lượng</a></li>
+                <li><a href="#sec4">4. Lựa chọn vật liệu thân thiện môi trường</a></li>
+                <li><a href="#sec5">5. Quản lý & Giảm thiểu phế thải xây dựng</a></li>
+                <li><a href="#sec6">6. Tiết kiệm tài nguyên điện, nước & Nhiên liệu</a></li>
+                <li><a href="#sec7">7. Kiểm soát tiếng ồn, bụi & Môi trường thi công</a></li>
+                <li><a href="#sec8">8. Ứng dụng công nghệ BIM & Chuyển đổi số</a></li>
+                <li><a href="#sec9">9. Đào tạo, Tuyên truyền & Trách nhiệm xã hội</a></li>
+                <li><a href="#sec10">10. Giám sát thực thi & Thông tin liên hệ</a></li>
+            </ul>
+        </div>
+
+        <section id="sec1">
+            <h2><span class="num">1</span> Tầm nhìn & Cam kết môi trường</h2>
+            <p><strong>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</strong> (sau đây gọi tắt là "PV INCONS" hoặc "Chúng tôi") nhận thức rõ tầm quan trọng của việc bảo vệ môi trường và ứng phó biến đổi khí hậu đối với sự phát triển bền vững của ngành xây dựng và cộng đồng xã hội.</p>
+            <p>Chúng tôi cam kết tích hợp các tiêu chí sinh thái, giải pháp công trình xanh và nguyên tắc phát triển bền vững vào toàn bộ quy trình hoạt động từ khâu tư vấn thiết kế, lựa chọn vật liệu đến thi công xây dựng và bàn giao công trình.</p>
+        </section>
+
+        <section id="sec2">
+            <h2><span class="num">2</span> Phạm vi áp dụng & Mục tiêu cụ thể</h2>
+            <p>Chính sách môi trường này áp dụng cho toàn thể cán bộ nhân viên, các công trường thi công, văn phòng làm việc và các đối tác nhà thầu phụ hợp tác cùng PV INCONS.</p>
+            
+            <h3>Mục tiêu môi trường cốt lõi:</h3>
+            <ul>
+                <li>Tối thiểu hóa lượng phát thải khí nhà kính và phế thải xây dựng phát sinh tại các dự án;</li>
+                <li>Ưu tiên tối đa giải pháp chiếu sáng và thông gió tự nhiên trong tất cả các hồ sơ thiết kế kiến trúc;</li>
+                <li>Đảm bảo 100% công trình thi công tuân thủ quy chuẩn về kiểm soát bụi, tiếng ồn và chất thải nguy hại;</li>
+                <li>Thúc đẩy việc sử dụng vật liệu không nung, vật liệu tái chế và các giải pháp xây dựng xanh.</li>
+            </ul>
+        </section>
+
+        <section id="sec3">
+            <h2><span class="num">3</span> Thiết kế kiến trúc tối ưu năng lượng</h2>
+            <p>PV INCONS áp dụng nguyên tắc thiết kế thụ động (Passive Design) và công nghệ hiện đại nhằm giảm thiểu tiêu thụ năng lượng trong suốt vòng đời công trình:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 35%;">Giải pháp thiết kế</th>
+                        <th>Chi tiết ứng dụng & Lợi ích môi trường</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Thông gió & Chiếu sáng tự nhiên</strong></td>
+                        <td>Tận dụng hướng gió chủ đạo, thiết kế giếng trời, ô thoáng giúp giảm từ 20-30% nhu cầu sử dụng điện cho chiếu sáng và làm mát.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bao che & Cách nhiệt</strong></td>
+                        <td>Sử dụng tường gạch nhẹ cách nhiệt, kính hộp chống tia UV/bức xạ nhiệt giúp giảm tải cho hệ thống điều hòa không khí.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mảng xanh công trình</strong></td>
+                        <td>Tích hợp vườn sân thượng, ban công xanh giúp giảm hiệu ứng đảo nhiệt đô thị và cải thiện chất lượng không khí sống.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thu gom & Tái sử dụng nước</strong></td>
+                        <td>Bố trí hệ thống thu gom nước mưa tưới cây, thiết bị vệ sinh tiết kiệm nước giúp tối ưu hóa tài nguyên nước sinh hoạt.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="sec4">
+            <h2><span class="num">4</span> Lựa chọn vật liệu thân thiện môi trường</h2>
+            <p>Chúng tôi ưu tiên khảo sát và tư vấn cho Chủ đầu tư sử dụng các nguồn vật liệu xây dựng có chứng nhận sinh thái và dấu chân carbon thấp:</p>
+            <ul>
+                <li>Sử dụng gạch bê tông nhẹ (AAC), gạch xi măng cốt liệu thay thế gạch đất sét nung truyền thống;</li>
+                <li>Ưu tiên sơn nước có hàm lượng chất hữu cơ dễ bay hơi (VOC) thấp, đảm bảo an toàn cho sức khỏe người sử dụng;</li>
+                <li>Khuyến khích sử dụng gỗ công nghiệp đạt chứng nhận FSC (nguồn gốc rừng trồng bền vững) hoặc vật liệu thay thế gỗ;</li>
+                <li>Sử dụng nguồn cung ứng vật liệu địa phương để giảm thiểu cự ly vận chuyển và phát thải CO2.</li>
+            </ul>
+        </section>
+
+        <section id="sec5">
+            <h2><span class="num">5</span> Quản lý & Giảm thiểu phế thải xây dựng</h2>
+            <div class="highlight-box">
+                <strong>Nguyên tắc 3R:</strong> PV INCONS triệt để áp dụng nguyên tắc Reductions (Giảm thiểu) - Reuse (Tái sử dụng) - Recycle (Tái chế) đối với tất cả các loại vật liệu và phế thải phát sinh trên công trường.
+            </div>
+            <p>Quy trình quản lý rác thải công trường bao gồm:</p>
+            <ul>
+                <li>Phân loại rác thải ngay tại nguồn: Rác thải nguy hại (vỏ sơn, keo, dầu mỡ), rác tái chế (sắt thép vụn, bao bì, cốp pha) và rác xây dựng thông thường;</li>
+                <li>Tái sử dụng ván khuôn, cốp pha định hình và gạch vụn làm bê tông lót hoặc san lấp nền;</li>
+                <li>Hợp đồng với đơn vị có chức năng thu gom và xử lý rác thải nguy hại theo đúng quy định pháp luật môi trường.</li>
+            </ul>
+        </section>
+
+        <section id="sec6">
+            <h2><span class="num">6</span> Tiết kiệm tài nguyên điện, nước & Nhiên liệu</h2>
+            <p>Tại tất cả các công trường thi công và văn phòng làm việc của PV INCONS:</p>
+            <ul>
+                <li>Lắp đặt hệ thống đèn LED tiết kiệm điện và công tắc tự động tại các khu vực phụ trợ;</li>
+                <li>Sử dụng thiết bị, máy móc thi công đạt tiêu chuẩn kiểm định hiệu suất năng lượng và khí thải;</li>
+                <li>Thường xuyên kiểm tra, bảo trì hệ thống đường ống nước tránh rò rỉ, lãng phí trong quá trình trộn bê tông và bảo dưỡng công trình.</li>
+            </ul>
+        </section>
+
+        <section id="sec7">
+            <h2><span class="num">7</span> Kiểm soát tiếng ồn, bụi & Môi trường thi công</h2>
+            <p>Để hạn chế tối đa ảnh hưởng tới khu vực dân cư xung quanh công trình:</p>
+            <ul>
+                <li>Che chắn toàn bộ bề mặt công trường bằng lưới chắn bụi và bạt bảo vệ chuyên dụng;</li>
+                <li>Tưới nước dập bụi định kỳ tại khu vực tập kết vật liệu và các tuyến đường vận chuyển nội bộ công trường;</li>
+                <li>Khống chế thời gian thi công gây tiếng ồn lớn theo đúng quy định chung của địa phương, tránh khung giờ nghỉ ngơi của người dân.</li>
+            </ul>
+        </section>
+
+        <section id="sec8">
+            <h2><span class="num">8</span> Ứng dụng công nghệ BIM & Chuyển đổi số</h2>
+            <p>PV INCONS đẩy mạnh ứng dụng mô hình thông tin công trình (BIM - Autodesk Revit) và Dynamo trong thiết kế, quản lý khối lượng:</p>
+            <ul>
+                <li>Tính toán chính xác nhu cầu vật tư, hạn chế tối đa tình trạng thừa thiếu vật liệu gây lãng phí trên công trường;</li>
+                <li>Phát hiện và xử lý xung đột kỹ thuật ngay trên mô hình 3D, giảm thiểu sai sót và đập phá sửa chữa thực tế;</li>
+                <li>Số hóa toàn bộ quy trình quản lý hồ sơ, tài liệu giúp giảm thiểu 80-90% việc in ấn giấy tờ văn phòng.</li>
+            </ul>
+        </section>
+
+        <section id="sec9">
+            <h2><span class="num">9</span> Đào tạo, Tuyên truyền & Trách nhiệm xã hội</h2>
+            <p>Chúng tôi định kỳ tổ chức các khóa tập huấn cho kỹ sư, công nhân về an toàn lao động, vệ sinh môi trường và tiết kiệm tài nguyên. Đồng thời, PV INCONS tích cực tham gia các phong trào bảo vệ môi trường, trồng cây xanh và phát triển cộng đồng bền vững tại địa phương.</p>
+        </section>
+
+        <section id="sec10">
+            <h2><span class="num">10</span> Giám sát thực thi & Thông tin liên hệ</h2>
+            <p>Ban Giám đốc và Chỉ huy trưởng các công trường có trách nhiệm giám sát, kiểm tra định kỳ việc tuân thủ chính sách môi trường. Mọi ý kiến đóng góp hoặc phản ánh về công tác môi trường tại các dự án của PV INCONS, vui lòng liên hệ:</p>
+
+            <div class="contact-card">
+                <p><strong>BAN QUẢN LÝ MÔI TRƯỜNG & AN TOÀN - PV INCONS</strong></p>
+                <p><strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+                <p><strong>Địa chỉ trụ sở chính:</strong> Số 292/30 đường Phan Văn Quân, Phường Bình Minh, Vĩnh Long, Việt Nam</p>
+                <p><strong>Địa điểm kinh doanh:</strong> P.007, đường Lý Thái Tổ, Phường Hưng Phú, Cần Thơ, Việt Nam</p>
+                <p><strong>Điện thoại:</strong> 0772.194.789</p>
+                <p><strong>Email tiếp nhận yêu cầu:</strong> pvincons@gmail.com</p>
+                <p><strong>Thời gian làm việc:</strong> 08:00 - 17:30 (Thứ 2 đến Thứ 6)</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS. Tất cả các quyền được bảo lưu.
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chính Sách Nhãn Hiệu Và Sở Hữu Trí Tuệ - PV INCONS</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #0f172a;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --accent-bg: #eff6ff;
+            --accent-border: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .meta-info {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--accent-border);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        .toc {
+            background-color: #f1f5f9;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 15px;
+        }
+
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            font-size: 19px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 span.num {
+            background: var(--primary-color);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: #1e293b;
+            margin: 18px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 12px;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #92400e;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f1f5f9;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .contact-card {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-card p {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .contact-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            background-color: #f1f5f9;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .header {
+                padding: 30px 15px;
+            }
+            .header h1 {
+                font-size: 22px;
+            }
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+            .toc {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header" style="text-align: center;">
+        <h1>CHÍNH SÁCH NHÃN HIỆU VÀ SỞ HỮU TRÍ TUỆ</h1>
+        <p style="text-align: center;"></p> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+    </div>
+
+    <div class="content">
+        <div class="meta-info">
+            <strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS<br>
+            <strong>Tên tiếng Anh:</strong> PV INCONS CONSTRUCTION AND TRADING COMPANY LIMITED<br>
+            <strong>Mã số doanh nghiệp:</strong> 1501112147<br>
+            <strong>Đăng ký lần đầu:</strong> Ngày 12 tháng 03 năm 2020<br>
+            <strong>Cập nhật lần cuối:</strong> Ngày 28 tháng 08 năm 2026<br>
+            <em>Chính sách này được xây dựng phù hợp với Luật Sở hữu trí tuệ số 50/2005/QH11 (sửa đổi, bổ sung năm 2009, 2019, 2022) và các quy định pháp luật liên quan tại Việt Nam.</em>
+        </div>
+
+        <div class="toc">
+            <h3>MỤC LỤC TỔNG QUAN</h3>
+            <ul>
+                <li><a href="#sec1">1. Lời mở đầu & Mục đích chính sách</a></li>
+                <li><a href="#sec2">2. Danh mục tài sản sở hữu trí tuệ</a></li>
+                <li><a href="#sec3">3. Quy định sử dụng nhãn hiệu & Biểu trưng</a></li>
+                <li><a href="#sec4">4. Chuẩn mực nhận diện thương hiệu</a></li>
+                <li><a href="#sec5">5. Các hành vi cấm & Vi phạm nhãn hiệu</a></li>
+                <li><a href="#sec6">6. Bảo hộ bản quyền & Tài liệu kỹ thuật</a></li>
+                <li><a href="#sec7">7. Quy trình cấp phép sử dụng nhãn hiệu</a></li>
+                <li><a href="#sec8">8. Giám sát & Báo cáo hành vi vi phạm</a></li>
+                <li><a href="#sec9">9. Chế tài xử lý & Trách nhiệm bồi thường</a></li>
+                <li><a href="#sec10">10. Điều khoản thi hành & Thông tin liên hệ</a></li>
+            </ul>
+        </div>
+
+        <section id="sec1">
+            <h2><span class="num">1</span> Lời mở đầu & Mục đích chính sách</h2>
+            <p><strong>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</strong> (sau đây gọi tắt là "PV INCONS" hoặc "Chúng tôi") là chủ sở hữu hợp pháp của nhãn hiệu, biểu trưng (logo), tên thương mại, bản quyền thiết kế và các tài sản sở hữu trí tuệ liên quan trong lĩnh vực tư vấn, thiết kế, thi công xây dựng và thương mại.</p>
+            <p>Chính sách này được ban hành nhằm thiết lập các quy định rõ ràng về việc quản lý, bảo vệ, định hướng sử dụng và xử lý vi phạm đối với toàn bộ các tài sản sở hữu trí tuệ mang thương hiệu PV INCONS, bảo vệ uy tín doanh nghiệp và quyền lợi hợp pháp của Quý khách hàng, Đối tác.</p>
+        </section>
+
+        <section id="sec2">
+            <h2><span class="num">2</span> Danh mục tài sản sở hữu trí tuệ</h2>
+            <p>Tài sản sở hữu trí tuệ thuộc quyền sở hữu độc quyền của PV INCONS bao gồm nhưng không giới hạn ở:</p>
+            
+            <h3>a) Nhãn hiệu & Tên thương mại:</h3>
+            <ul>
+                <li>Tên thương mại: "CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS", "PV INCONS";</li>
+                <li>Biểu trưng (Logo) chính thức, biểu tượng đồ họa, khẩu hiệu (Slogan) và nhận diện thương hiệu gắn liền với dịch vụ xây dựng, thiết kế;</li>
+                <li>Tên miền quốc tế và quốc gia bao gồm: <code>pvincons.com</code>, <code>pvincons.cloud</code> và các phân vùng tên miền phụ liên quan.</li>
+            </ul>
+
+            <h3>b) Bản quyền tác giả & Hồ sơ kỹ thuật:</h3>
+            <ul>
+                <li>Toàn bộ bản vẽ kiến trúc, kết cấu, MEP, mô hình thông tin công trình (BIM/Revit), hồ sơ trích đo hiện trạng;</li>
+                <li>Mã nguồn phần mềm, kịch bản tự động hóa Dynamo, các ứng dụng phát triển trên Google AI Studio;</li>
+                <li>Tài liệu đào tạo nội bộ, quy trình quản lý dự án, báo giá, catalogue và nội dung xuất bản trên website/kênh truyền thông.</li>
+            </ul>
+        </section>
+
+        <section id="sec3">
+            <h2><span class="num">3</span> Quy định sử dụng nhãn hiệu & Biểu trưng</h2>
+            <p>Việc sử dụng nhãn hiệu và biểu trưng của PV INCONS phải tuân thủ nghiêm ngặt các nguyên tắc sau:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 35%;">Đối tượng sử dụng</th>
+                        <th>Quy định & Quyền hạn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nội bộ PV INCONS</strong></td>
+                        <td>Được quyền sử dụng đầy đủ nhãn hiệu trên các văn bản hành chính, hợp đồng, bản vẽ, đồng phục, bảng hiệu công trình và phương tiện truyền thông chính thức.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nhà thầu phụ & Đối tác</strong></td>
+                        <td>Chỉ được sử dụng nhãn hiệu trong phạm vi thực hiện hợp đồng liên danh/hợp tác cụ thể sau khi có văn bản đồng ý chính thức từ PV INCONS.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Khách hàng & Chủ đầu tư</strong></td>
+                        <td>Được quyền trích dẫn thương hiệu PV INCONS làm đơn vị tư vấn/thi công trên các hồ sơ pháp lý, biển báo công trình theo đúng giao kết hợp đồng.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cơ quan báo chí & Truyền thông</strong></td>
+                        <td>Chỉ sử dụng biểu trưng và tên thương mại cho mục đích đưa tin khách quan, chính xác và phải dẫn nguồn chính thức từ PV INCONS.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="sec4">
+            <h2><span class="num">4</span> Chuẩn mực nhận diện thương hiệu</h2>
+            <p>Mọi hình thức hiển thị biểu trưng (Logo) và nhãn hiệu của PV INCONS phải tuân thủ hướng dẫn nhận diện cốt lõi:</p>
+            <ul>
+                <li><strong>Giữ nguyên tỷ lệ:</strong> Không được kéo giãn, làm méo méo, biến dạng hoặc thay đổi vị trí tương đối giữa phần hình và phần chữ của Logo.</li>
+                <li><strong>Màu sắc chuẩn mực:</strong> Chỉ sử dụng mã màu chuẩn của thương hiệu (Xanh navy, Xanh dương accent) trên nền đủ độ tương phản.</li>
+                <li><strong>Khoảng trống an toàn:</strong> Luôn duy trì khoảng trống tối thiểu xung quanh Logo để bảo vệ tính độc lập và khả năng nhận diện.</li>
+                <li><strong>Không tự ý kết hợp:</strong> Không gắn Logo PV INCONS chung với nhãn hiệu của bên thứ ba khi chưa có sự chấp thuận bằng văn bản.</li>
+            </ul>
+        </section>
+
+        <section id="sec5">
+            <h2><span class="num">5</span> Các hành vi cấm & Vi phạm nhãn hiệu</h2>
+            <div class="highlight-box">
+                <strong>Cảnh báo:</strong> PV INCONS nghiêm cấm mọi hành vi lợi dụng thương hiệu, logo hoặc danh nghĩa của Công ty để thực hiện các hành vi gian lận, lừa đảo hoặc làm tổn hại đến uy tín của PV INCONS.
+            </div>
+            <p>Các hành vi sau đây được xác định là vi phạm quyền sở hữu trí tuệ của PV INCONS:</p>
+            <ul>
+                <li>Sử dụng nhãn hiệu, tên thương mại hoặc dấu hiệu tương tự gây nhầm lẫn trên sản phẩm, dịch vụ, tài liệu quảng cáo mà không được phép;</li>
+                <li>Đăng ký chiếm giữ tên miền, tài khoản mạng xã hội có chứa cụm từ "PV INCONS" hoặc các biến thể gây nhầm lẫn;</li>
+                <li>Sao chép, phát tán, thương mại hóa bản vẽ thiết kế, hồ sơ kỹ thuật, mã nguồn Dynamo/BIM thuộc bản quyền của PV INCONS;</li>
+                <li>Mạo danh cán bộ, kỹ sư hoặc đại diện PV INCONS để giao dịch với khách hàng, đối tác.</li>
+            </ul>
+        </section>
+
+        <section id="sec6">
+            <h2><span class="num">6</span> Bảo hộ bản quyền & Tài liệu kỹ thuật</h2>
+            <p>Tất cả bản vẽ thiết kế kiến trúc, giải pháp kết cấu, hồ sơ trích đo địa chính và mô hình 3D do PV INCONS lập là tài sản trí tuệ được bảo hộ tự động theo quy định pháp luật:</p>
+            <ul>
+                <li>Khách hàng được quyền sử dụng hồ sơ thiết kế cho đúng địa điểm và quy mô công trình ghi trong hợp đồng.</li>
+                <li>Khách hàng không được quyền bán lại, chuyển giao hoặc tái sử dụng thiết kế cho công trình khác khi chưa được sự đồng ý của PV INCONS.</li>
+                <li>Mọi quy trình đăng ký quyền tác giả đối với hồ sơ tài liệu do Bộ phận Pháp chế PV INCONS trực tiếp thực hiện và quản lý.</li>
+            </ul>
+        </section>
+
+        <section id="sec7">
+            <h2><span class="num">7</span> Quy trình cấp phép sử dụng nhãn hiệu</h2>
+            <p>Trường hợp đối tác hoặc đơn vị bên thứ ba muốn sử dụng nhãn hiệu PV INCONS cho mục đích truyền thông, tài trợ hoặc hợp tác thương mại, quy trình áp dụng như sau:</p>
+            <ol>
+                <li>Gửi văn bản đề nghị cấp phép sử dụng nhãn hiệu đến Email tiếp nhận của PV INCONS.</li>
+                <li>Bộ phận Truyền thông & Pháp chế thẩm định mục đích, bối cảnh và maquette hiển thị trong vòng 03-05 ngày làm việc.</li>
+                <li>Phát hành Văn bản chấp thuận có thời hạn hoặc Ký kết Hợp đồng cấp phép sử dụng nhãn hiệu (Licensing Agreement).</li>
+            </ol>
+        </section>
+
+        <section id="sec8">
+            <h2><span class="num">8</span> Giám sát & Báo cáo hành vi vi phạm</h2>
+            <p>PV INCONS chủ động theo dõi, giám sát thị trường và không gian mạng để phát hiện các hành vi xâm phạm quyền sở hữu trí tuệ. Quý khách hàng, đối tác khi phát hiện các dấu hiệu nghi ngờ mạo danh hoặc sử dụng trái phép thương hiệu PV INCONS, vui lòng phản ánh ngay cho Chúng tôi.</p>
+        </section>
+
+        <section id="sec9">
+            <h2><span class="num">9</span> Chế tài xử lý & Trách nhiệm bồi thường</h2>
+            <p>Khi phát hiện hành vi vi phạm nhãn hiệu và quyền sở hữu trí tuệ, PV INCONS sẽ kiên quyết áp dụng các biện pháp pháp lý cần thiết:</p>
+            <ul>
+                <li>Gửi khuyến cáo yêu cầu chấm dứt ngay hành vi vi phạm và gỡ bỏ các tài liệu vi phạm;</li>
+                <li>Yêu cầu cơ quan quản lý nhà nước (Thanh tra KH&CN, Quản lý thị trường, Cục SHTT) xử phạt hành chính;</li>
+                <li>Khởi kiện ra Tòa án có thẩm quyền để buộc bồi thường thiệt hại thực tế và tổn thất uy tín thương hiệu phát sinh.</li>
+            </ul>
+        </section>
+
+        <section id="sec10">
+            <h2><span class="num">10</span> Điều khoản thi hành & Thông tin liên hệ</h2>
+            <p>Chính sách này có hiệu lực kể từ ngày đăng tải chính thức. PV INCONS bảo lưu quyền sửa đổi, bổ sung nội dung chính sách vào bất kỳ thời điểm nào nhằm phù hợp với quy định pháp luật và chiến lược phát triển của Công ty.</p>
+            
+            <p>Mọi yêu cầu liên quan đến cấp phép, báo cáo vi phạm hoặc làm rõ nội dung nhãn hiệu, vui lòng liên hệ:</p>
+
+            <div class="contact-card">
+                <p><strong>BỘ PHẬN SỞ HỮU TRÍ TUỆ & PHÁP CHẾ - PV INCONS</strong></p>
+                <p><strong>Tên doanh nghiệp:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS</p>
+                <p><strong>Địa chỉ trụ sở chính:</strong> Số 292/30 đường Phan Văn Quân, Phường Bình Minh, Vĩnh Long, Việt Nam</p>
+                <p><strong>Địa điểm kinh doanh:</strong> P.007, đường Lý Thái Tổ, Phường Hưng Phú, Cần Thơ, Việt Nam</p>
+                <p><strong>Điện thoại:</strong> 0772.194.789</p>
+                <p><strong>Email tiếp nhận yêu cầu:</strong> pvincons@gmail.com</p>
+                <p><strong>Thời gian làm việc:</strong> 08:00 - 17:30 (Thứ 2 đến Thứ 6)</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS. Tất cả các quyền được bảo lưu.
+    </div>
+</div>
+
+</body>
+</html>
