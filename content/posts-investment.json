@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "category": "",
-    "categoryLabel": "",
+    "category": "tai-chinh",
+    "categoryLabel": "Tài chính công ty",
     "date": "25/04/2026",
     "title": "Báo cáo tài chính Quý I năm 2026",
     "summary": "",
@@ -12,8 +12,8 @@
   },
   {
     "id": 2,
-    "category": "",
-    "categoryLabel": "",
+    "category": "tai-chinh",
+    "categoryLabel": "Tài chính công ty",
     "date": "28/03/2026",
     "title": "Báo cáo tài chính kiểm toán năm 2025",
     "summary": "",
@@ -23,8 +23,8 @@
   },
   {
     "id": 3,
-    "category": "",
-    "categoryLabel": "",
+    "category": "quan-he-co-dong",
+    "categoryLabel": "Quan hệ cổ đông",
     "date": "20/03/2026",
     "title": "Báo cáo thường niên năm 2025",
     "summary": "",
