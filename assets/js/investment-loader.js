@@ -58,7 +58,7 @@ function renderInvestmentPosts(posts) {
                             <p class="text-xs text-slate-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Đăng tải ngày: ${post.date}</p>
                         </div>
                         <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded ${buttonBg} border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
-                            <i class="fa-solid fa-file-pdf"></i> Xem / Tải về
+                            <i class="fa-solid fa-download"></i>Tải tài liệu
                         </a>
                     </div>
                 `;
