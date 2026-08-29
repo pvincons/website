@@ -73,5 +73,35 @@
     "client": "LILAMA CỬU LONG",
     "location": "đường Trần Việt Châu, Ninh Kiều, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 6,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Nhà ở",
+    "date": "01/10/2022",
+    "title": "Nhà Phố Hiện Đại",
+    "summary": "",
+    "link": "/database/wait.html",
+    "image": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/472832370_632969569395137_5974127887755100736_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1442&ctp=s2048x1442&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VLpPWlZNRHYQ7kNvwGdB4x2&_nc_oc=Adpt0qdNFxrrCOMHUOvR-t3Ot0fpTFajyPSicLk8hbRBO1SLWlmPkV7CBxRBJZXbh5LYgODlpo5n7qM4d69BfRgu&_nc_zt=23&_nc_ht=scontent.fsgn2-8.fna&_nc_gid=vik5G_wDOj5PALPIYKjoDA&_nc_ss=7b2a8&oh=00_AQLlEs8DUZ_DtPkdAY855bUwhT6SAEU0IMqwmiKIwoIQ7A&oe=6A98C330",
+    "code": "",
+    "scale": "3 tầng / GFA: 256 m2",
+    "client": "LÊ THANH",
+    "location": "đường Lê Hồng Phong, Bình Thủy, Tp. Cần Thơ",
+    "architect": ""
+  },
+  {
+    "id": 7,
+    "category": "dang-trien-khai",
+    "categoryLabel": "Nhà ở",
+    "date": "29/08/2026",
+    "title": "Nhà Phố Tân Cổ Điển",
+    "summary": "",
+    "link": "/database/wait.html",
+    "image": "https://i.pinimg.com/736x/c8/ff/cf/c8ffcf9adeaefde4c7061c764c9925a0.jpg",
+    "code": "",
+    "scale": "5 tầng / GFA: 325 m2",
+    "client": "Nguyễn Hữu Thừa",
+    "location": "198 CMT8, Bình Thủy, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
