@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": 1,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Đã hoàn thành",
+    "date": "26/03/2020",
+    "title": "Nhà Ở Gia Đình",
+    "summary": "“Phong cách tối giản được áp dụng trong thiết kế nhưng không ảnh hưởng đến dòng hiện đại”: Nằm trên cung đường Cách Mạng Tháng 8_Tp. Cần Thơ. Căn nhà được thiết kế với vật liệu và cấu trúc hoàn toàn tương thích với tự nhiên, bền vững và vượt thời gian.",
+    "link": "",
+    "image": "https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.6435-9/90736079_106463931002983_8119845215952437248_n.jpg?stp=dst-jpg_tt6&cstp=mx1609x2048&ctp=s1609x2048&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=TgWLAUMph90Q7kNvwFP7Q9u&_nc_oc=AdpYo2hF8rJwNz4d1ggLsY0kKvNf4izI-PJvfCCMzChn9910ArZ7ATp8cNZDSfB3FG4ndWupgaS1KtHq8aI1DCLF&_nc_zt=23&_nc_ht=scontent.fsgn2-6.fna&_nc_gid=H9y4SFNz2zXlXFVX6WFbRA&_nc_ss=7b2a8&oh=00_AQIsBqVXdEdo8zkOwtK1q07GfSJQ3Jiozl3QooAxXdtt4A&oe=6ABA0681",
+    "code": "",
+    "scale": "Chiều cao: 4 tầng / GFA: 326 m2",
+    "client": "anh Long",
+    "location": "Đường CMT8 - Ninh Kiều - Cần Thơ",
+    "architect": "PV INCONS"
+  }
+]
