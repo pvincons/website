@@ -140,7 +140,7 @@ const renderMoiNhaDauTu = (p) => `
             </a>
         </div>
     </div>
-</a>
+</div>
 `;
 
 // Map ánh xạ cấu hình từng danh mục
