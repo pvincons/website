@@ -166,5 +166,17 @@
     "eyelink": "/database/wait.html",
     "code": "",
     "icon": "fa-tag"
+  },
+  {
+    "id": 15,
+    "category": "pricing",
+    "categoryLabel": "Bảng giá dịch vụ",
+    "date": "29/08/2026",
+    "title": "Dịch vụ trích đo tọa độ VN-2000 và Xác định ranh mốc thửa đất.",
+    "summary": "Khung giá: 15.000.000 - 80.000.000 VNĐ/Trọn gói",
+    "link": "",
+    "eyelink": "/database/qt-ranh-moc.pdf",
+    "code": "",
+    "icon": "fa-tag"
   }
 ]
