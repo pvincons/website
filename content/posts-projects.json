@@ -28,5 +28,20 @@
     "client": "Chị. Võ Minh Anh",
     "location": "đường Trần Quang Diệu, phường Bình Thủy, Tp. Cần Thơ",
     "architect": "PV INCONS"
+  },
+  {
+    "id": 3,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Đã hoàn thành",
+    "date": "29/08/2019",
+    "title": "Nhà Ở Gia ĐÌnh",
+    "summary": "",
+    "link": "",
+    "image": "",
+    "code": "",
+    "scale": "3 tầng / GFA: 260 m2",
+    "client": "Ông. Hà Trung Dũng",
+    "location": "đường Nguyễn Văn Cừ, Bình Thủy, Cần Thơ",
+    "architect": ""
   }
 ]
