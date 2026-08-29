@@ -13,5 +13,20 @@
     "client": "anh Long",
     "location": "Đường CMT8 - Ninh Kiều - Cần Thơ",
     "architect": "PV INCONS"
+  },
+  {
+    "id": 2,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Đã hoàn thành",
+    "date": "29/08/2026",
+    "title": "Nhà Phố Phong Cách Tối Giản",
+    "summary": "“Kiến trúc của các đường thẳng và vật liệu đơn giản là sự kết hợp giữa chức năng và thiết kế”: Căn nhà là sự kết hợp hài hòa giữa các hình khối theo tỉ lệ vàng kiến trúc, cũng với đó là điểm nhấn tường ốp gạch gồ ghề bên cạch các lan lan kính hiện đại.",
+    "link": "",
+    "image": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/481658405_674126548612772_229219574972384218_n.jpg?stp=dst-jpg_tt6&cstp=mx1474x2048&ctp=s1474x2048&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vZ8waPrT_X4Q7kNvwFPKF6J&_nc_oc=AdqGWKfOWEPljAt38iluKymYZZjiWn2VtxLYKmukULg2lbDMw2vpfxIKLHgCB7zaajt2A3z9htp71RssUK4tgMpQ&_nc_zt=23&_nc_ht=scontent.fsgn2-8.fna&_nc_gid=DRX6wvs5TU4WANaLN9NYAA&_nc_ss=7b2a8&oh=00_AQIMa1at47neQxOIaulAGVhAulKYu533K8Xg9sqVo3zI8Q&oe=6A988006",
+    "code": "",
+    "scale": "Chiều cao: 4 tầng / GFA: 320 m2",
+    "client": "Chị. Võ Minh Anh",
+    "location": "đường Trần Quang Diệu, phường Bình Thủy, Tp. Cần Thơ",
+    "architect": "PV INCONS"
   }
 ]
