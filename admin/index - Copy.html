@@ -666,22 +666,7 @@
       ]
     };
 
-    // 3. Security Notes: Load & Save thông tin mã hóa nhẹ qua base64
-    function loadAuth() {
-      try {
-        const val = localStorage.getItem('pv_github_auth');
-        if (!val) return null;
-        if (val.trim().startsWith('{')) {
-          const parsed = JSON.parse(val);
-          localStorage.setItem('pv_github_auth', btoa(JSON.stringify(parsed)));
-          return parsed;
-        }
-        return JSON.parse(atob(val));
-      } catch (e) {
-        return null;
-      }
-    }
-    let authConfig = loadAuth();
+    let authConfig = JSON.parse(localStorage.getItem('pv_github_auth')) || null;
 
     // Chuẩn hóa & đồng bộ ngày tháng
     function formatDateToDDMMYYYY(dateStr) {
@@ -796,9 +781,6 @@
     let currentTitle = "Tin tức";
     let editingPostId = null;
     let currentFilteredPosts = [];
-    
-    // 2.1 Lỗi kiểm tra Form bị thay đổi (isFormDirty)
-    let isFormDirtyFlag = false;
 
     function escapeHtml(str) {
       if (str === null || str === undefined) return '';
@@ -865,7 +847,7 @@
         return;
       }
       authConfig = { owner, repo, token };
-      localStorage.setItem('pv_github_auth', btoa(JSON.stringify(authConfig))); // Cải thiện bảo mật
+      localStorage.setItem('pv_github_auth', JSON.stringify(authConfig));
       db = loadLocalDB();
       document.getElementById('login-modal').classList.add('hidden');
       document.getElementById('admin-workspace').classList.remove('hidden');
@@ -887,69 +869,48 @@
         return;
       }
 
-      // 2.3. Lỗi kích thước tệp
-      const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB cho API base64 GitHub
-      if (file.size > MAX_FILE_SIZE) {
-        showToast(`Lỗi: Kích thước tệp ${file.name} quá lớn (>25MB). GitHub API không hỗ trợ.`, 'error');
-        return;
-      }
-
       showToast(`Đang tải tệp ${file.name} lên thư mục /database...`, 'info');
 
       try {
         const base64Content = await fileToBase64(file);
         const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${targetPath}`;
 
-        // 1.4. Lỗi Race Condition (Xung đột dữ liệu) & Lỗi Rate Limit
-        let maxRetries = 2;
-        let attempt = 0;
-        let success = false;
+        let sha = null;
         let isOverwrite = false;
 
-        while (attempt < maxRetries && !success) {
-          attempt++;
-          let sha = null;
-          
-          const checkRes = await fetch(url, {
-            headers: {
-              'Authorization': `token ${authConfig.token}`,
-              'Accept': 'application/vnd.github.v3+json'
-            }
-          });
-
-          if (checkRes.ok) {
-            const existingData = await checkRes.json();
-            sha = existingData.sha;
-            isOverwrite = true;
-            if (attempt === 1) showToast(`CẢNH BÁO: Tệp "${file.name}" đã tồn tại. Đang tiến hành ghi đè!`, 'error');
-          } else if (checkRes.status === 403 || checkRes.status === 429) {
-            throw new Error('Vượt quá giới hạn API của GitHub (Rate Limit). Vui lòng thử lại sau.');
+        // Kiểm tra xem tệp đã tồn tại trong /database chưa
+        const checkRes = await fetch(url, {
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
           }
+        });
 
-          const putRes = await fetch(url, {
-            method: 'PUT',
-            headers: {
-              'Authorization': `token ${authConfig.token}`,
-              'Content-Type': 'application/json',
-              'Accept': 'application/vnd.github.v3+json'
-            },
-            body: JSON.stringify({
-              message: `Upload ${file.name} to /database via PV INCONS Admin`,
-              content: base64Content,
-              sha: sha || undefined
-            })
-          });
+        if (checkRes.ok) {
+          const existingData = await checkRes.json();
+          sha = existingData.sha;
+          isOverwrite = true;
+          showToast(`CẢNH BÁO: Tệp "${file.name}" đã tồn tại trong /database. Đang tiến hành ghi đè!`, 'error');
+        }
 
-          if (putRes.status === 409) {
-            if (attempt >= maxRetries) throw new Error('Lỗi xung đột dữ liệu (Race Condition). Vui lòng thử tải lại tệp.');
-            continue; // Retry fetch latest SHA
-          } else if (putRes.status === 403 || putRes.status === 429) {
-            throw new Error('Vượt quá giới hạn API của GitHub (Rate Limit). Vui lòng thử lại sau.');
-          } else if (!putRes.ok) {
-            const errData = await putRes.json();
-            throw new Error(errData.message || `HTTP ${putRes.status}`);
-          }
-          success = true;
+        // Đẩy/Ghi đè file lên GitHub
+        const putRes = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: `Upload ${file.name} to /database via PV INCONS Admin`,
+            content: base64Content,
+            sha: sha || undefined
+          })
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json();
+          throw new Error(errData.message || `HTTP ${putRes.status}`);
         }
 
         if (isOverwrite) {
@@ -959,7 +920,7 @@
         }
       } catch (err) {
         console.error('Lỗi khi tải tệp lên /database:', err);
-        showToast(`Lỗi lưu tệp: ${err.message}`, 'error');
+        showToast(`Lỗi lưu tệp lên /database: ${err.message}`, 'error');
       }
     }
 
@@ -994,21 +955,21 @@
         const dt = e.dataTransfer;
         const files = dt.files;
         
-        // 2.2. Lỗi kéo thả nhiều file cùng lúc
         if (files && files.length > 0) {
-          if (files.length > 1) {
-            showToast('Cảnh báo: Chỉ xử lý tệp đầu tiên cho ô nhập liệu này.', 'info');
-          }
-          
-          const file = files[0];
-          const targetPath = (defaultPathPrefix ? defaultPathPrefix : '') + file.name;
-          
-          input.value = targetPath;
-          isFormDirtyFlag = true;
+          // Xử lý kéo thả tất cả các file vào ô nhập liệu
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const targetPath = (defaultPathPrefix ? defaultPathPrefix : '') + file.name;
+            
+            // Cập nhật đường dẫn vào ô input (lấy tệp đầu tiên hoặc tệp đang xử lý)
+            if (i === 0 || files.length === 1) {
+              input.value = targetPath;
+            }
 
-          // Nếu kéo thả vào trường có prefix 'database/' -> Tự động upload & ghi đè lên /database
-          if (defaultPathPrefix === 'database/') {
-            await uploadFileToDatabase(file, targetPath);
+            // Nếu kéo thả vào trường link/eyelink/image có prefix 'database/' -> Tự động upload & ghi đè lên /database
+            if (defaultPathPrefix === 'database/') {
+              await uploadFileToDatabase(file, targetPath);
+            }
           }
         } else {
           // Kéo URL hoặc liên kết từ trình duyệt / tab khác
@@ -1016,7 +977,6 @@
           if (url) {
             url = url.trim().split('\n')[0];
             input.value = url;
-            isFormDirtyFlag = true;
           }
         }
         updateLivePreview();
@@ -1373,7 +1333,6 @@
     // XỬ LÝ LỖI HÀM resetForm CHUẨN XÁC, KHÔNG LỖI NULL ELEMENT & ĐỒNG BỘ TRẠNG THÁI
     function resetForm() {
       editingPostId = null;
-      isFormDirtyFlag = false; // Xóa trạng thái form bẩn
       
       const editStatusBadge = document.getElementById('edit-status-badge');
       const btnCancelEdit = document.getElementById('btn-cancel-edit');
@@ -1431,9 +1390,10 @@
       updateLivePreview();
     }
 
-    // Kiểm tra thông qua Flag (Đã khắc phục lỗi 2.1)
     function isFormDirty() {
-      return isFormDirtyFlag;
+      const title = document.getElementById('input-title').value.trim();
+      const summary = document.getElementById('input-summary').value.trim();
+      return title !== '' || summary !== '';
     }
 
     // Load đầy đủ dữ liệu khi Chỉnh Sửa
@@ -1480,8 +1440,6 @@
 
       renderPostsList();
       updateLivePreview();
-      
-      isFormDirtyFlag = false; // Reset sau khi điền đầy đủ dữ liệu
     };
 
     window.deletePost = function (id) {
@@ -1646,14 +1604,8 @@
     allInputIds.forEach(id => {
       const el = document.getElementById(id);
       if (el) {
-        el.addEventListener('input', () => {
-          isFormDirtyFlag = true;
-          debouncedPreview();
-        });
-        el.addEventListener('change', () => {
-          isFormDirtyFlag = true;
-          debouncedPreview();
-        });
+        el.addEventListener('input', debouncedPreview);
+        el.addEventListener('change', debouncedPreview);
       }
     });
 
@@ -1741,9 +1693,6 @@
         });
 
         if (!response.ok) {
-          if (response.status === 403 || response.status === 429) {
-            throw new Error('Vượt quá giới hạn API GitHub (Rate Limit). Hãy thử lại sau.');
-          }
           if (response.status === 404) {
             throw new Error(`File ${filePath} chưa tồn tại trên GitHub`);
           }
@@ -1794,59 +1743,42 @@
       btnPublish.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-xs"></i> Đang xuất bản...`;
 
       try {
-        let maxRetries = 2;
-        let attempt = 0;
-        let success = false;
+        let sha = "";
+        const getRes = await fetch(url, {
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          sha = fileData.sha;
+        }
+
         const jsonString = JSON.stringify(db[currentFolder] || [], null, 2);
         const contentBase64 = utf8_to_b64(jsonString);
 
-        // 1.4. Lỗi Race Condition (Xung đột dữ liệu xuất bản)
-        while(attempt < maxRetries && !success) {
-          attempt++;
-          let sha = "";
-          
-          const getRes = await fetch(url, {
-            headers: {
-              'Authorization': `token ${authConfig.token}`,
-              'Accept': 'application/vnd.github.v3+json'
-            }
-          });
+        const putRes = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${authConfig.token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: `Update ${filePath} via PV INCONS Studio Admin`,
+            content: contentBase64,
+            sha: sha || undefined
+          })
+        });
 
-          if (getRes.ok) {
-            const fileData = await getRes.json();
-            sha = fileData.sha;
-          } else if (getRes.status === 403 || getRes.status === 429) {
-            throw new Error('Giới hạn API của GitHub (Rate Limit). Vui lòng thử lại sau.');
-          }
-
-          const putRes = await fetch(url, {
-            method: 'PUT',
-            headers: {
-              'Authorization': `token ${authConfig.token}`,
-              'Content-Type': 'application/json',
-              'Accept': 'application/vnd.github.v3+json'
-            },
-            body: JSON.stringify({
-              message: `Update ${filePath} via PV INCONS Studio Admin`,
-              content: contentBase64,
-              sha: sha || undefined
-            })
-          });
-
-          if (putRes.status === 409) {
-            if (attempt >= maxRetries) throw new Error('Xung đột dữ liệu (Race condition). Ai đó vừa ghi đè file.');
-            continue; // Retry để lấy lại SHA
-          } else if (putRes.status === 403 || putRes.status === 429) {
-            throw new Error('Giới hạn API của GitHub (Rate Limit). Vui lòng thử lại sau.');
-          } else if (!putRes.ok) {
-            const errBody = await putRes.json();
-            throw new Error(errBody.message || `HTTP ${putRes.status}`);
-          }
-          success = true;
+        if (!putRes.ok) {
+          const errBody = await putRes.json();
+          throw new Error(errBody.message || `HTTP ${putRes.status}`);
         }
 
         showToast(`Đã xuất bản thành công ${filePath} lên GitHub!`);
-        isFormDirtyFlag = false; // Reset sau khi xuất bản
       } catch (err) {
         console.error('Lỗi publish GitHub:', err);
         showToast(`Xuất bản thất bại: ${err.message}`, 'error');
