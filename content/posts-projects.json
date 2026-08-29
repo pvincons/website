@@ -43,5 +43,20 @@
     "client": "Ông. Hà Trung Dũng",
     "location": "đường Nguyễn Văn Cừ, Bình Thủy, Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 4,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Nhà ở",
+    "date": "25/09/2018",
+    "title": "Biệt Thự Phố Mái Thái",
+    "summary": "Nhà mái thái thiết kế theo phong cách cổ điển",
+    "link": "",
+    "image": "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/482243022_674126938612733_3044670472498888181_n.jpg?stp=dst-jpg_tt6&cstp=mx1995x1465&ctp=s1995x1465&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PXgT20eTQgEQ7kNvwEFdVN5&_nc_oc=AdoNMcohvLiXCOZv84_fsouqezjiWyCNu94CzXR-T_qQWGTCjftFVOtquIONEnpo3GwoGPgJ8TCWWVtBDXcpRYWQ&_nc_zt=23&_nc_ht=scontent.fsgn2-9.fna&_nc_gid=Zzh9sv6qYqllNchBs_bsqQ&_nc_ss=7b2a8&oh=00_AQIb-3uafzBzNaync2oFY7rTtrDVyJHr0WtpBk7wEpKIwA&oe=6A989D83",
+    "code": "",
+    "scale": "2 tầng / GFA: 256 m2",
+    "client": "Lê Tùng",
+    "location": "KDC Ngân Thuận, Bình Thủy, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
