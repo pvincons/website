@@ -96,8 +96,13 @@ main {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background-color: whitesmoke !important;
-        object-fit: cover;
+        background-color: whitesmoke;
+        object-fit: contain;
+        /* Giữ nguyên tỉ lệ và không bị xén mép logo */
+        padding: 6px;
+        /* Tạo khoảng thở giúp logo nằm gọn trong đường tròn */
+        border: 1px solid #e2e8f0;
+        /* Viền mỏng định hình khối tròn nét hơn */
     }
 
     .article-date-time {
