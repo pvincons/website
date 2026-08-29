@@ -1,10 +1,23 @@
-const ITEMS_PER_PAGE = 6; //Sửa số bài đăng (7) thành số .... mong muốn tại đây
+const ITEMS_PER_PAGE = 6; // Sửa số bài đăng mong muốn tại đây
 let categoriesData = {
     'dang-trien-khai': [],
     'da-hoan-thanh': [],
     'moi-nha-dau-tu': []
 };
 let currentPages = {};
+
+// Hàm hỗ trợ chuyển đổi chuỗi ngày thành Timestamp để so sánh chuẩn xác
+function parseDate(dateStr) {
+    if (!dateStr) return 0;
+    // Xử lý định dạng DD/MM/YYYY nếu có
+    if (typeof dateStr === 'string' && dateStr.includes('/')) {
+        const parts = dateStr.split('/');
+        if (parts.length === 3) {
+            return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).getTime() || 0;
+        }
+    }
+    return new Date(dateStr).getTime() || 0;
+}
 
 /* =========================================
    TEMPLATES RENDER CARD THEO TỪNG GIAO DIỆN
@@ -17,7 +30,7 @@ const renderDangTrienKhai = (p) => `
     <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
         <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-            ${p.categoryLabel || 'Đã hoàn thành'}
+            ${p.categoryLabel || 'Đang triển khai'}
         </span>
     </div>
 
@@ -26,6 +39,7 @@ const renderDangTrienKhai = (p) => `
         <div class="space-y-2">
             <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span class="flex items-center gap-1"><i class="fa-solid fa-building mr-1"></i>Quy mô: ${p.scale || 'N/A'}</span>
+                ${p.date ? `<span class="flex items-center gap-1"><i class="fa-regular fa-calendar-days mr-1"></i>${p.date}</span>` : ''}
             </div>
             <h3 class="font-bold text-base text-slate-900 group-hover:text-brand-blue transition-colors line-clamp-1 uppercase">
                 ${p.title}
@@ -41,7 +55,6 @@ const renderDangTrienKhai = (p) => `
                 ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
-            <!-- Nút biểu tượng (Chuyển sang span để tránh trùng lặp thẻ a) -->
             <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
                 <i class="fa-solid fa-arrow-right"></i>
             </span>
@@ -66,6 +79,7 @@ const renderDaHoanThanh = (p) => `
         <div class="space-y-2">
             <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span class="flex items-center gap-1"><i class="fa-solid fa-building mr-1"></i>Quy mô: ${p.scale || 'N/A'}</span>
+                ${p.date ? `<span class="flex items-center gap-1"><i class="fa-regular fa-calendar-days mr-1"></i>${p.date}</span>` : ''}
             </div>
             <h3 class="font-bold text-base text-slate-900 group-hover:text-brand-blue transition-colors line-clamp-1 uppercase">
                 ${p.title}
@@ -81,7 +95,6 @@ const renderDaHoanThanh = (p) => `
                 ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
-            <!-- Nút biểu tượng (Chuyển sang span để tránh trùng lặp thẻ a) -->
             <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
                 <i class="fa-solid fa-arrow-right"></i>
             </span>
@@ -97,7 +110,7 @@ const renderMoiNhaDauTu = (p) => `
     <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
         <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-            ${p.categoryLabel || 'Đã hoàn thành'}
+            ${p.categoryLabel || 'Mời nhà đầu tư'}
         </span>
     </div>
 
@@ -106,6 +119,7 @@ const renderMoiNhaDauTu = (p) => `
         <div class="space-y-2">
             <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span class="flex items-center gap-1"><i class="fa-solid fa-building mr-1"></i>Quy mô: ${p.scale || 'N/A'}</span>
+                ${p.date ? `<span class="flex items-center gap-1"><i class="fa-regular fa-calendar-days mr-1"></i>${p.date}</span>` : ''}
             </div>
             <h3 class="font-bold text-base text-slate-900 group-hover:text-brand-blue transition-colors line-clamp-1 uppercase">
                 ${p.title}
@@ -121,7 +135,6 @@ const renderMoiNhaDauTu = (p) => `
                 ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
-            <!-- Nút biểu tượng (Chuyển sang span để tránh trùng lặp thẻ a) -->
             <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
                 <i class="fa-solid fa-arrow-right"></i>
             </span>
@@ -153,6 +166,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
+        // Sắp xếp các danh mục theo thứ tự Ngày hoàn thành / Ngày đăng giảm dần (mới nhất lên đầu)
+        Object.keys(categoriesData).forEach(cat => {
+            categoriesData[cat].sort((a, b) => parseDate(b.date) - parseDate(a.date));
+        });
+
         // Hiển thị trang 1 cho cả 3 danh mục
         Object.keys(categoryConfig).forEach(categoryKey => {
             renderProjectPage(categoryKey, 1);
@@ -173,7 +191,7 @@ function renderProjectPage(categoryKey, page) {
     currentPages[categoryKey] = page;
     const projects = categoriesData[categoryKey] || [];
 
-    // Cắt mảng lấy đúng 7 dự án cho trang hiện tại
+    // Cắt mảng lấy đúng số dự án theo quy định cho trang hiện tại
     const startIndex = (page - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
     const itemsToDisplay = projects.slice(startIndex, endIndex);
