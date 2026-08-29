@@ -66,7 +66,8 @@
     "date": "27/08/2026",
     "title": "2. Hợp đồng thi công xây dựng",
     "summary": "Mẫu hợp đồng thi công phần thô & trọn gói công trình",
-    "link": "",
+    "link": "/database/wait.htm",
+    "eyelink": "",
     "code": "",
     "icon": "fa-file-contract"
   },
@@ -77,7 +78,8 @@
     "date": "27/08/2026",
     "title": "3. Hợp đồng dịch vụ pháp lý",
     "summary": "Mẫu hợp đồng dịch vụ pháp lý về bất động sản",
-    "link": "",
+    "link": "/database/mau-hd-phap-ly.pdf",
+    "eyelink": "",
     "code": "",
     "icon": "fa-file-contract"
   },
@@ -88,8 +90,8 @@
     "date": "27/08/2026",
     "title": "4. Văn bản thỏa thuận thực hiện dịch vụ",
     "summary": "Mẫu thỏa thuận ghi nhớ & nguyên tắc hợp tác ban đầu",
-    "link": "",
-    "eyelink": "/database/mau-tt-dich-vu.pdf",
+    "link": "/database/mau-tt-dich-vu.pdf",
+    "eyelink": "",
     "code": "",
     "icon": "fa-file-signature"
   },
@@ -100,7 +102,7 @@
     "date": "27/08/2026",
     "title": "5. Hợp đồng khoán việc",
     "summary": "Mẫu hợp đồng giao khoán nhân công & hạng mục chuyên biệt",
-    "link": "/database/wait.html",
+    "link": "/database/mau-hd-khoan-viec.pdf",
     "eyelink": "",
     "code": "",
     "icon": "fa-file-contract"
