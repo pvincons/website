@@ -2,7 +2,7 @@
   {
     "id": 1,
     "category": "da-hoan-thanh",
-    "categoryLabel": "nhà ở",
+    "categoryLabel": "Thiết kế",
     "date": "26/03/2019",
     "title": "Nhà Phố Hiện Đại",
     "summary": "“Phong cách tối giản được áp dụng trong thiết kế nhưng không ảnh hưởng đến dòng hiện đại”:",
@@ -17,7 +17,7 @@
   {
     "id": 2,
     "category": "da-hoan-thanh",
-    "categoryLabel": "nhà ở",
+    "categoryLabel": "Thiết kế",
     "date": "15/02/2017",
     "title": "Nhà Phố Hiện Đại",
     "summary": "“Kiến trúc của các đường thẳng và vật liệu đơn giản là sự kết hợp giữa chức năng và thiết kế”: Căn nhà là sự kết hợp hài hòa giữa các hình khối theo tỉ lệ vàng kiến trúc, cũng với đó là điểm nhấn tường ốp gạch gồ ghề bên cạch các lan lan kính hiện đại.",
@@ -32,7 +32,7 @@
   {
     "id": 3,
     "category": "da-hoan-thanh",
-    "categoryLabel": "nhà ở",
+    "categoryLabel": "Thiết kế",
     "date": "29/08/2018",
     "title": "Nhà Mái Thái",
     "summary": "Căn nhà là sự kết hợp hài hòa giữa các hình khối theo tỉ lệ vàng kiến trúc",
@@ -47,7 +47,7 @@
   {
     "id": 4,
     "category": "da-hoan-thanh",
-    "categoryLabel": "Nhà ở",
+    "categoryLabel": "Thiết kế",
     "date": "25/09/2018",
     "title": "Biệt Thự Phố Mái Thái",
     "summary": "Nhà mái thái thiết kế theo phong cách cổ điển",
@@ -62,7 +62,7 @@
   {
     "id": 5,
     "category": "dang-trien-khai",
-    "categoryLabel": "Cao ốc văn phòng",
+    "categoryLabel": "Thiết kế",
     "date": "30/06/2024",
     "title": "Tòa Nhà Văn Phòng",
     "summary": "Tòa nhà văn phòng làm việc.",
@@ -77,7 +77,7 @@
   {
     "id": 6,
     "category": "da-hoan-thanh",
-    "categoryLabel": "Nhà ở",
+    "categoryLabel": "Thiết kế",
     "date": "01/10/2022",
     "title": "Nhà Phố Hiện Đại",
     "summary": "",
@@ -92,7 +92,7 @@
   {
     "id": 7,
     "category": "dang-trien-khai",
-    "categoryLabel": "Nhà ở",
+    "categoryLabel": "Thiết kế",
     "date": "29/08/2026",
     "title": "Nhà Phố Tân Cổ Điển",
     "summary": "",
@@ -107,7 +107,7 @@
   {
     "id": 8,
     "category": "dang-trien-khai",
-    "categoryLabel": "Nhà ở",
+    "categoryLabel": "Thiết kế",
     "date": "02/11/2022",
     "title": "Nhà Phố Tân Cổ Điển",
     "summary": "",
@@ -122,7 +122,7 @@
   {
     "id": 9,
     "category": "da-hoan-thanh",
-    "categoryLabel": "Biệt thự",
+    "categoryLabel": "Thiết kế",
     "date": "26/03/2020",
     "title": "Biệt Thự Sân Vườn",
     "summary": "",
