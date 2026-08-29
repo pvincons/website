@@ -10,79 +10,124 @@ let currentPages = {};
    TEMPLATES RENDER CARD THEO TỪNG GIAO DIỆN
 ========================================= */
 
-// 1. Template: ĐANG TRIỂN KHAI (Giữ nguyên cấu trúc có nút "Chi tiết")
+// 1. Template: ĐANG TRIỂN KHAI
 const renderDangTrienKhai = (p) => `
-    <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-        <div>
-            <div class="h-52 overflow-hidden relative">
-                <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                <span class="absolute top-3 right-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase shadow">
-                    ${p.categoryLabel || 'Đang Thi Công'}
-                </span>
+<a href="${p.link || '#'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
+    <!-- Ảnh bên trái (Chiếm 5/12 cột) -->
+    <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
+        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            ${p.categoryLabel || 'Đã hoàn thành'}
+        </span>
+    </div>
+
+    <!-- Nội dung bên phải (Chiếm 7/12 cột) -->
+    <div class="md:col-span-7 p-5 flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-building mr-1"></i>Quy mô: ${p.scale || 'N/A'}</span>
             </div>
-            <div class="p-2 pb-1">
-                <h3 class="font-bold text-base uppercase text-slate-900 mb-2">${p.title}</h3>
-                <p class="text-slate-600 text-sm leading-relaxed text-justify mb-1">${p.summary}</p>
-                ${p.location ? `<span class="text-xs text-brand-blue font-semibold uppercase tracking-wider"><i class="fa-solid fa-location-dot mr-1"></i> ${p.location}</span>` : ''}
-            </div>
+            <h3 class="font-bold text-base text-slate-900 group-hover:text-brand-blue transition-colors line-clamp-1 uppercase">
+                ${p.title}
+            </h3>
+            <p class="text-slate-500 text-xs leading-relaxed line-clamp-2">
+                ${p.summary}
+            </p>
         </div>
-        <div class="p-2 pt-2 flex justify-between items-center border-t border-slate-200/60 mt-2">
-            <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Quy mô: ${p.scale || 'Đang cập nhật'}</span>
-            <a href="${p.link || '#'}" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors flex items-center h-full">
-                Chi tiết &rarr;
-            </a>
+
+        <!-- Thông tin chi tiết + Nút bấm -->
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
+            <div class="space-y-1">
+                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
+                ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
+            </div>
+            <!-- Nút biểu tượng (Chuyển sang span để tránh trùng lặp thẻ a) -->
+            <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
         </div>
     </div>
+</a>
 `;
 
-// 2. Template: ĐÃ HOÀN THÀNH (Bọc thẻ <a> toàn bộ card cho tiện click)
+// 2. Template: ĐÃ HOÀN THÀNH
 const renderDaHoanThanh = (p) => `
-    <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-        <div>
-            <div class="h-52 overflow-hidden relative">
-                <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                <span class="absolute top-3 right-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase shadow">
-                    ${p.categoryLabel || 'Đang Thi Công'}
-                </span>
+<a href="${p.link || '#'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
+    <!-- Ảnh bên trái (Chiếm 5/12 cột) -->
+    <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
+        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            ${p.categoryLabel || 'Đã hoàn thành'}
+        </span>
+    </div>
+
+    <!-- Nội dung bên phải (Chiếm 7/12 cột) -->
+    <div class="md:col-span-7 p-5 flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-building mr-1"></i>Quy mô: ${p.scale || 'N/A'}</span>
             </div>
-            <div class="p-2 pb-1">
-                <h3 class="font-bold text-base uppercase text-slate-900 mb-2">${p.title}</h3>
-                <p class="text-slate-600 text-sm leading-relaxed text-justify mb-1">${p.summary}</p>
-                ${p.location ? `<span class="text-xs text-brand-blue font-semibold uppercase tracking-wider"><i class="fa-solid fa-location-dot mr-1"></i> ${p.location}</span>` : ''}
-            </div>
+            <h3 class="font-bold text-base text-slate-900 group-hover:text-brand-blue transition-colors line-clamp-1 uppercase">
+                ${p.title}
+            </h3>
+            <p class="text-slate-500 text-xs leading-relaxed line-clamp-2">
+                ${p.summary}
+            </p>
         </div>
-        <div class="p-2 pt-2 flex justify-between items-center border-t border-slate-200/60 mt-2">
-            <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Quy mô: ${p.scale || 'Đang cập nhật'}</span>
-            <a href="${p.link || '#'}" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors flex items-center h-full">
-                Chi tiết &rarr;
-            </a>
+
+        <!-- Thông tin chi tiết + Nút bấm -->
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
+            <div class="space-y-1">
+                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
+                ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
+            </div>
+            <!-- Nút biểu tượng (Chuyển sang span để tránh trùng lặp thẻ a) -->
+            <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
         </div>
     </div>
+</a>
 `;
 
 // 3. Template: MỜI NHÀ ĐẦU TƯ
 const renderMoiNhaDauTu = (p) => `
-    <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-        <div>
-            <div class="h-52 overflow-hidden relative">
-                <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                <span class="absolute top-3 right-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase shadow">
-                    ${p.categoryLabel || 'Đang Thi Công'}
-                </span>
+<a href="${p.link || '#'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
+    <!-- Ảnh bên trái (Chiếm 5/12 cột) -->
+    <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
+        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            ${p.categoryLabel || 'Đã hoàn thành'}
+        </span>
+    </div>
+
+    <!-- Nội dung bên phải (Chiếm 7/12 cột) -->
+    <div class="md:col-span-7 p-5 flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-building mr-1"></i>Quy mô: ${p.scale || 'N/A'}</span>
             </div>
-            <div class="p-2 pb-1">
-                <h3 class="font-bold text-base uppercase text-slate-900 mb-2">${p.title}</h3>
-                <p class="text-slate-600 text-sm leading-relaxed text-justify mb-1">${p.summary}</p>
-                ${p.location ? `<span class="text-xs text-brand-blue font-semibold uppercase tracking-wider"><i class="fa-solid fa-location-dot mr-1"></i> ${p.location}</span>` : ''}
-            </div>
+            <h3 class="font-bold text-base text-slate-900 group-hover:text-brand-blue transition-colors line-clamp-1 uppercase">
+                ${p.title}
+            </h3>
+            <p class="text-slate-500 text-xs leading-relaxed line-clamp-2">
+                ${p.summary}
+            </p>
         </div>
-        <div class="p-2 pt-2 flex justify-between items-center border-t border-slate-200/60 mt-2">
-            <span class="text-xs text-slate-500 flex items-center"><i class="fa-solid fa-ruler-combined mr-1"></i> Quy mô: ${p.scale || 'Đang cập nhật'}</span>
-            <a href="${p.link || '#'}" class="text-brand-blue hover:text-brand-orange text-xs font-bold transition-colors flex items-center h-full">
-                Chi tiết &rarr;
-            </a>
+
+        <!-- Thông tin chi tiết + Nút bấm -->
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
+            <div class="space-y-1">
+                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
+                ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
+            </div>
+            <!-- Nút biểu tượng (Chuyển sang span để tránh trùng lặp thẻ a) -->
+            <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
         </div>
     </div>
+</a>
 `;
 
 // Map ánh xạ cấu hình từng danh mục
