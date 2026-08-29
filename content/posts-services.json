@@ -54,7 +54,8 @@
     "date": "27/08/2026",
     "title": "1. Hợp đồng tư vấn thiết kế công trình",
     "summary": "Mẫu hợp đồng tư vấn & thiết kế chuẩn quy trình BIM/VDC",
-    "link": "database/notlink/wait.html",
+    "link": "database/mau-hd-thiet-ke.pdf",
+    "eyelink": "",
     "code": "",
     "icon": "fa-file-contract"
   },
@@ -83,11 +84,14 @@
   {
     "id": 8,
     "category": "documents",
+    "categoryLabel": "",
+    "date": "27/08/2026",
     "title": "4. Văn bản thỏa thuận thực hiện dịch vụ",
     "summary": "Mẫu thỏa thuận ghi nhớ & nguyên tắc hợp tác ban đầu",
-    "icon": "fa-file-signature",
     "link": "",
-    "date": "27/08/2026"
+    "eyelink": "/database/mau-tt-dich-vu.pdf",
+    "code": "",
+    "icon": "fa-file-signature"
   },
   {
     "id": 9,
