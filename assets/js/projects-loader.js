@@ -25,7 +25,7 @@ function parseDate(dateStr) {
 
 // 1. Template: ĐANG TRIỂN KHAI
 const renderDangTrienKhai = (p) => `
-<a href="${p.link || '#'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
+<a href="${p.link || '/database/wait.html'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
     <!-- Ảnh bên trái (Chiếm 5/12 cột) -->
     <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
         <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -65,7 +65,7 @@ const renderDangTrienKhai = (p) => `
 
 // 2. Template: ĐÃ HOÀN THÀNH
 const renderDaHoanThanh = (p) => `
-<a href="${p.link || '#'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
+<a href="${p.link || '/database/wait.html'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
     <!-- Ảnh bên trái (Chiếm 5/12 cột) -->
     <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
         <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -105,7 +105,7 @@ const renderDaHoanThanh = (p) => `
 
 // 3. Template: MỜI NHÀ ĐẦU TƯ
 const renderMoiNhaDauTu = (p) => `
-<a href="${p.link || '#'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
+<a href="${p.link || '/database/wait.html'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
     <!-- Ảnh bên trái (Chiếm 5/12 cột) -->
     <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
         <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
