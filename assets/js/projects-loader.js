@@ -65,7 +65,7 @@ const renderDangTrienKhai = (p) => `
 
 // 2. Template: ĐÃ HOÀN THÀNH
 const renderDaHoanThanh = (p) => `
-<div href="${p.link || '/database/wait.html'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
+<div class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
     <!-- Ảnh bên trái (Chiếm 5/12 cột) -->
     <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
         <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -95,7 +95,7 @@ const renderDaHoanThanh = (p) => `
                 ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>CĐT: ${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
-            <a class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
+            <a href="${p.link || '/database/wait.html'}" class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
@@ -105,7 +105,7 @@ const renderDaHoanThanh = (p) => `
 
 // 3. Template: MỜI NHÀ ĐẦU TƯ
 const renderMoiNhaDauTu = (p) => `
-<a href="${p.link || '/database/wait.html'}" class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
+<div class="group block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-0">
     <!-- Ảnh bên trái (Chiếm 5/12 cột) -->
     <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-100">
         <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -135,9 +135,9 @@ const renderMoiNhaDauTu = (p) => `
                 ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>CĐT: ${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
-            <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
+            <a href="${p.link || '/database/wait.html'}" class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
                 <i class="fa-solid fa-arrow-right"></i>
-            </span>
+            </a>
         </div>
     </div>
 </a>
