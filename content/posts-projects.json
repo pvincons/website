@@ -118,5 +118,20 @@
     "client": "Hà Tấn Tưởng",
     "location": "đường Bùi Hữu Nghĩa, Bình Thủy, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 9,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Biệt thự",
+    "date": "26/03/2020",
+    "title": "Biệt Thự Sân Vườn",
+    "summary": "",
+    "link": "/database/wait.html",
+    "image": "https://i.pinimg.com/1200x/e3/16/b6/e316b60f432f7c3dae20ff265309e5e7.jpg",
+    "code": "",
+    "scale": "5 tầng / GFA: 520 m2",
+    "client": "Đặng Tuyết Sương",
+    "location": "đường Nguyễn Tri Phương, An Khánh, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
