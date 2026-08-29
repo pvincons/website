@@ -52,7 +52,7 @@ const renderDangTrienKhai = (p) => `
         <!-- Thông tin chi tiết + Nút bấm -->
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
             <div class="space-y-1">
-                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
+                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>CĐT: ${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
             <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
@@ -92,7 +92,7 @@ const renderDaHoanThanh = (p) => `
         <!-- Thông tin chi tiết + Nút bấm -->
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
             <div class="space-y-1">
-                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
+                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>CĐT: ${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
             <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
@@ -132,7 +132,7 @@ const renderMoiNhaDauTu = (p) => `
         <!-- Thông tin chi tiết + Nút bấm -->
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
             <div class="space-y-1">
-                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>${p.client}</p>` : ''}
+                ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>CĐT: ${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
             <span class="shrink-0 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-700 p-2.5 rounded-xl transition-all">
