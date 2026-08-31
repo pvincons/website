@@ -39,7 +39,7 @@ const renderProjectCard = (p, defaultCategoryLabel) => `
                 <span class="flex items-center gap-1"><i class="fa-solid fa-building mr-1"></i>Quy mô: ${p.scale || 'N/A'}</span>
                 ${p.date ? `<span class="flex items-center gap-1"><i class="fa-regular fa-calendar-days mr-1"></i>${p.date}</span>` : ''}
             </div>
-            <h3 class="font-bold text-base text-slate-900 leading-relaxed line-clamp-1 group-hover:text-brand-blue transition-colors line-clamp-1 uppercase">
+            <h3 class="font-bold text-base text-slate-900 leading-relaxed line-clamp-1 group-hover:text-brand-blue transition-colors uppercase">
                 ${p.title || ''}
             </h3>
             <p class="text-slate-500 text-xs leading-relaxed line-clamp-2">
