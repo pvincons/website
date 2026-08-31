@@ -92,7 +92,7 @@ function createPostCardHTML(post) {
                     </div>
                     
                     <!-- Tiêu đề -->
-                    <h3 class="font-bold text-[12px] leading-snug line-clnamp-2 sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 group-hover:text-brand-blue transition-colors">
+                    <h3 class="font-bold text-[12px] leading-snug line-clnamp-2 sm:line-clamp-3 sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 group-hover:text-brand-blue transition-colors">
                         ${post.title}
                     </h3>
 
