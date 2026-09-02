@@ -12,7 +12,7 @@
   {
     "id": 2,
     "category": "cong-ty",
-    "categoryLabel": "Công ty",
+    "categoryLabel": "BIM",
     "date": "28/06/2026",
     "title": "Phân Loại Dữ Liệu Công Trình Bằng Bảng Mã OmniClass",
     "summary": "Phân tích cấu trúc dữ liệu OmniClass và cách gán mã định danh thông minh cho các cấu kiện trong mô hình 3D Revit.",
@@ -71,7 +71,7 @@
   },
   {
     "id": 8,
-    "category": "cong-ty",
+    "category": "tin-noi-bat",
     "categoryLabel": "Hội thảo",
     "date": "26/08/2023",
     "title": "Giải Pháp Vật Liệu Xây Dựng Xanh & Tiết Kiệm Năng Lượng",
