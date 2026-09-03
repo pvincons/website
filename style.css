@@ -4454,7 +4454,6 @@ main {
 }
 
 .metric-title {
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 20px;
   font-weight: 800;
   color: var(--brand-darkblue);
@@ -4632,7 +4631,7 @@ main {
   display: inline-block;
   background: #475569;
   color: var(--accent-orange);
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-weight: 800;
   font-size: 14px;
   padding: 4px 10px;
@@ -4641,7 +4640,7 @@ main {
 }
 
 .policy-title {
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
