@@ -4454,7 +4454,6 @@ main {
 }
 
 .metric-title {
-  font-family: 'Segoe UI', sans-serif;
   font-size: 20px;
   font-weight: 800;
   color: var(--brand-darkblue);
