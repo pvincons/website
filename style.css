@@ -4454,6 +4454,7 @@ main {
 }
 
 .metric-title {
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 20px;
   font-weight: 800;
   color: var(--brand-darkblue);
@@ -4466,6 +4467,11 @@ main {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+/* Tầm nhìn - Sứ mệnh - Giá trị cốt lõi */
+.Vision-title {
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 800;
 }
 
 /* 8. CÁC SECTION & BỐ CỤC NỘI DUNG */
@@ -4515,6 +4521,7 @@ main {
 }
 
 .philosophy-card h3 {
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: var(--primary-dark);
@@ -4525,10 +4532,12 @@ main {
 }
 
 .philosophy-card h3 i {
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--accent-orange);
 }
 
 .philosophy-card p {
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
   color: var(--text-muted);
   line-height: 1.6;
@@ -4631,16 +4640,16 @@ main {
   display: inline-block;
   background: #475569;
   color: var(--accent-orange);
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 12px;
   padding: 4px 10px;
   border-radius: 6px;
   margin-bottom: 12px;
 }
 
 .policy-title {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
