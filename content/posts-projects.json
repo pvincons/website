@@ -133,5 +133,20 @@
     "client": "Đặng Tuyết Sương",
     "location": "đường Nguyễn Tri Phương, An Khánh, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 10,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Thiết kế",
+    "date": "04/09/2022",
+    "title": "Nhà phố",
+    "summary": "",
+    "link": "",
+    "image": "https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/482073191_676303838395043_1838963999742527746_n.jpg?stp=dst-jpg_tt6&cstp=mx960x720&ctp=s960x720&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=2JvmCTPjBAIQ7kNvwHJXpBU&_nc_oc=AdrTvEYJ97dQcxj5dZPOgvcZvibD4QX4e0VtKeYAbvHOyvwe-QSeHzUyl_cdi0m1ti--hVeD5KxZKhFwLH0O4-X_&_nc_zt=23&_nc_ht=scontent.fsgn2-7.fna&_nc_gid=hLLLbcZKb219dSIIsE64_A&_nc_ss=7b2a8&oh=00_AQLLetWYBF1Hu_bCofKqhR18C3qxWnVyrtseq9ruNgsxsg&oe=6A9FFC3C",
+    "code": "",
+    "scale": "",
+    "client": "Đinh Thiên Dũng",
+    "location": "Đường A5, Hưng Phú, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
