@@ -148,5 +148,20 @@
     "client": "BÙI HỮU CÔNG",
     "location": "đường Trần Quang Diệu, Bình Thủy, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 11,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Thiết kế",
+    "date": "27/03/2021",
+    "title": "NHÀ PHỐ MÁI THÁI",
+    "summary": "Kiến trúc nhà phố mái thái.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/6c/59/52/6c5952477ad8dc04cfd0a75a54e873eb.jpg",
+    "code": "",
+    "scale": "2 tầng / GFA: 230 m2",
+    "client": "ĐỖ HỮU LỢI",
+    "location": "Hòn Sơn, Kiên Giang",
+    "architect": ""
   }
 ]
