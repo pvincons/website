@@ -53,7 +53,7 @@ const renderProjectCard = (p, defaultCategoryLabel) => `
                 ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>CĐT: ${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
-            <a href="${p.link || '/database/wait.html'}" class="shrink-0 w-10 h-10 rounded-full bg-slate-100 text-brand-blue flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
+            <a href="${p.link || '/database/wait.html'}" class="shrink-0 w-7 h-7 rounded-full bg-slate-100 text-brand-blue flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
             <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
