@@ -155,13 +155,28 @@
     "categoryLabel": "Thiết kế",
     "date": "27/03/2021",
     "title": "NHÀ PHỐ MÁI THÁI",
-    "summary": "Kiến trúc nhà phố mái thái.",
+    "summary": "Công trình sở hữu hệ mái Thái giật cấp bề thế, kết hợp tông màu trắng thanh lịch cùng các mảng nhấn xám ghi và chi tiết trang trí tinh tế. Tối ưu không gian sống thoáng đãng, đón sáng tự nhiên hiệu quả với hệ cửa kính hiện đại, cửa chính bằng gỗ đầm ấm và sân trước rộng rãi.",
     "link": "",
     "image": "https://i.pinimg.com/1200x/6c/59/52/6c5952477ad8dc04cfd0a75a54e873eb.jpg",
     "code": "",
     "scale": "2 tầng / GFA: 230 m2",
     "client": "ĐỖ HỮU LỢI",
     "location": "Hòn Sơn, Kiên Giang",
+    "architect": ""
+  },
+  {
+    "id": 12,
+    "category": "dang-trien-khai",
+    "categoryLabel": "Đang triển khai",
+    "date": "12/09/2026",
+    "title": "NHÀ PHỐ - MODERN HOUSE",
+    "summary": "Thiết kế hình khối vuông vức, tinh tế với tông màu trắng – xám làm chủ đạo, điểm xuyết các mảng tường ốp gỗ ấm áp và hệ lam trang trí sang trọng. Không gian mở tối ưu ánh sáng tự nhiên nhờ hệ cửa kính lớn, ban công tầng 2 thoáng đãng cùng sân trước rộng rãi, đáp ứng trọn vẹn sự tiện nghi và thẩm mỹ kiến trúc đương đại.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/d9/8f/08/d98f08ff62eabb9de6c1d6b17a0145ad.jpg",
+    "code": "",
+    "scale": "2 tầng / GFA: 250 m2",
+    "client": "NGUYỄN CHÂU THANH",
+    "location": "KDC. An Khánh, Ninh Kiều, Tp. Cần Thơ",
     "architect": ""
   }
 ]
