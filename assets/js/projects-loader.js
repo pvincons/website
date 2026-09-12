@@ -1,4 +1,4 @@
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 15; //Số công trình hiển thị trên mỗi trang, có thể thay đổi tùy ý
 let categoriesData = {
     'dang-trien-khai': [],
     'da-hoan-thanh': [],
@@ -39,7 +39,7 @@ const renderProjectCard = (p, defaultCategoryLabel) => `
                 <span class="flex items-center gap-1"><i class="fa-solid fa-building mr-1"></i>Quy mô: ${p.scale || 'N/A'}</span>
                 ${p.date ? `<span class="flex items-center gap-1"><i class="fa-regular fa-calendar-days mr-1"></i>${p.date}</span>` : ''}
             </div>
-            <h3 class="font-bold text-base text-slate-900 line-clamp-1 group-hover:text-brand-blue transition-colors uppercase">
+            <h3 class="font-bold text-base text-slate-900 group-hover:text-brand-blue transition-colors line-clamp-1 uppercase">
                 ${p.title || ''}
             </h3>
             <p class="text-slate-500 text-xs leading-relaxed line-clamp-2">
@@ -53,10 +53,9 @@ const renderProjectCard = (p, defaultCategoryLabel) => `
                 ${p.client ? `<p class="font-bold text-slate-800 uppercase truncate pt-2"><i class="fa-solid fa-user-tie text-brand-blue mr-1.5"></i>CĐT: ${p.client}</p>` : ''}
                 ${p.location ? `<p class="text-slate-500 line-clamp-1"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>${p.location}</p>` : ''}
             </div>
-            <a href="${p.link || '/database/wait.html'}" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 text-brand-blue group-hover:bg-brand-orange group-hover:text-white flex items-center justify-center text-xs transition-all duration-300 transform group-hover:translate-x-1">
-                <i class="fa-solid fa-arrow-right"></i>
+            <a href="${p.link || '/database/wait.html'}" class="shrink-0 w-10 h-10 rounded-full bg-slate-100 text-brand-blue flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
+            <i class="fa-solid fa-arrow-right"></i>
             </a>
-
         </div>
     </div>
 </div>

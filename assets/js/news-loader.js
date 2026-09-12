@@ -1,4 +1,4 @@
-const ITEMS_PER_PAGE = 6;  // Sửa số tin đăng (6) thành số .... mong muốn tại đây
+const ITEMS_PER_PAGE = 6;  //Số tin tức hiển thị trên mỗi trang, có thể thay đổi tùy ý
 let categoriesData = {};
 let currentPages = {};
 
@@ -68,7 +68,7 @@ function renderCategoryPage(categoryKey, page) {
 
 function createPostCardHTML(post) {
     return `
-        <article onclick="window.location.href='${post.link}'" 
+        <article onclick="window.location.href='${post.link || '/database/wait.html'}'" 
                  class="bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-brand-blue/50 transition-all duration-300 flex flex-row items-stretch min-h-[130px] sm:min-h-[200px] cursor-pointer group">
             
             <!-- Hình ảnh đại diện + Thẻ chủ đề -->
@@ -92,12 +92,12 @@ function createPostCardHTML(post) {
                     </div>
                     
                     <!-- Tiêu đề -->
-                    <h3 class="font-bold text-[12px] leading-snug line-clamp-2 sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 group-hover:text-brand-blue transition-colors">
+                    <h3 class="font-bold text-[12px] leading-snug sm:text-lg text-slate-900 mt-1 sm:mt-2 mb-1 sm:mb-2 group-hover:text-brand-blue transition-colors">
                         ${post.title}
                     </h3>
 
                     <!-- Đoạn mô tả tóm tắt -->
-                    <p class="text-slate-600 text-[10px] sm:text-sm leading-relaxed line-clamp-3 mt-1">
+                    <p class="text-slate-600 text-[10px] sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3 mt-1">
                         ${post.summary || ''}
                     </p>
                 </div>
