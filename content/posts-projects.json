@@ -133,5 +133,20 @@
     "client": "Đặng Tuyết Sương",
     "location": "đường Nguyễn Tri Phương, An Khánh, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 10,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Thiết kế",
+    "date": "19/07/2020",
+    "title": "GRAND PIANO VILLA",
+    "summary": "Ý tưởng thiết kế lấy cảm hứng từ Dương Cầm (Grand Piano) tập trung vào việc chuyển thể nhịp điệu âm nhạc, tính uốn lượn kiêu sa của thân đàn và sự tương phản kinh điển giữa hai gam màu đen - trắng vào ngôn ngữ kiến trúc và nội thất. Công trình là sự kết hợp giữa Kiến Trúc - Công Năng - Nghệ Thuật",
+    "link": "",
+    "image": "https://i.pinimg.com/736x/40/90/9f/40909f729be46fd705f95d273575343d.jpg",
+    "code": "",
+    "scale": "2 tầng | GFA: 300 m2",
+    "client": "BÙI HỮU CÔNG",
+    "location": "325A đường Trần Quang Diệu, Bình Thủy, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
