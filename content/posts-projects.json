@@ -223,5 +223,20 @@
     "client": "HÀ TẤN TƯỞNG",
     "location": "đường Bùi Hữu Nghĩa, Bình Thủy, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 16,
+    "category": "dang-trien-khai",
+    "categoryLabel": "Đang triển khai",
+    "date": "23/01/2026",
+    "title": "NHÀ PHỐ NEO CLASSIC",
+    "summary": "Thiết kế là sự kết hợp tinh tế giữa đường nét tân cổ điển đẳng cấp và hình khối kiến trúc hiện đại, bề thế.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/cc/09/c3/cc09c30e16f6b87ce3fd124ff6a3fefc.jpg",
+    "code": "",
+    "scale": "3 tầng / GFA: 215 m2",
+    "client": "LÊ THANH ĐỨC",
+    "location": "H38, đường 3 Tháng 2, Nink Kiều, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
