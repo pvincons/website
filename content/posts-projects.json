@@ -283,5 +283,20 @@
     "client": "(ANH) QUẬN",
     "location": "QL1, Bình Minh, Vĩnh Long",
     "architect": ""
+  },
+  {
+    "id": 20,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "DSG",
+    "date": "18/05/2021",
+    "title": "NHÀ PHỐ - TROPICAL HOUSE",
+    "summary": "Nhà phố Tropical House mang phong cách nhiệt đới hiện đại, nổi bật với sự kết hợp hài hòa giữa mảng trần ốp gỗ ấm áp, gạch thông gió tinh tế và bồn cây xanh rủ bóng. Thiết kế ưu tiên thông gió tự nhiên, đem lại không gian sống thoáng đãng và thư thái.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/57/74/97/577497d73e1e681cbc20acbc2329413b.jpg",
+    "code": "",
+    "scale": "",
+    "client": "LÂM THÁI HOÀNG",
+    "location": "15 Đặng Thị Nhường, Bình Thủy, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
