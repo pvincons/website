@@ -208,5 +208,20 @@
     "client": "TRẦN TRƯỜNG TRANG",
     "location": "đường Hoàng Văn Thụ, Ninh Kiều, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 15,
+    "category": "dang-trien-khai",
+    "categoryLabel": "Thiết kế",
+    "date": "11/02/2025",
+    "title": "BIỆT THỰ MÁI NHẬT",
+    "summary": "Biệt thự mái Nhật 3 tầng phong cách hiện đại. Công trình sở hữu hình khối vững chãi, hệ mái Nhật thanh lịch cùng giải pháp lấy sáng và thông gió tối ưu cho không gian sống sang trọng.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/63/70/d7/6370d709d058acbcec6cf76201261671.jpg",
+    "code": "",
+    "scale": "3 tầng / GFA: 350 m2",
+    "client": "HÀ TẤN TƯỞNG",
+    "location": "đường Bùi Hữu Nghĩa, Bình Thủy, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
