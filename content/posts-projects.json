@@ -91,7 +91,7 @@
   },
   {
     "id": 7,
-    "category": "da-hoan-thanh",
+    "category": "dang-trien-khai",
     "categoryLabel": "DSG",
     "date": "29/08/2026",
     "title": "NHÀ PHỐ TÂN CỔ ĐIỂN – NEO CLASSIC",
@@ -267,6 +267,21 @@
     "scale": "2 tầng / GFA: 160 m2",
     "client": "NGUYỄN THỊ PHƯƠNG LAN",
     "location": "98/55 Trần Hưng Đạo, Cái Khế, Tp. Cần Thơ",
+    "architect": ""
+  },
+  {
+    "id": 19,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "DSG",
+    "date": "16/12/2024",
+    "title": "NHÀ PHỐ - NEO CLASSICAL",
+    "summary": "Nhà phố phong cách Tân cổ điển tinh tế và sang trọng. Công trình nổi bật với gam màu trắng trang nhã, hệ cửa vòm cong mềm mại cùng tỉ lệ hình khối chuẩn mực, mang đến vẻ đẹp thanh lịch và bền vững với thời gian.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/a4/ad/a7/a4ada7c653bb206e4615080d79e0cc21.jpg",
+    "code": "",
+    "scale": "3 tầng / GFA: 180 m2",
+    "client": "(ANH) QUẬN",
+    "location": "QL1, Bình Minh, Vĩnh Long",
     "architect": ""
   }
 ]
