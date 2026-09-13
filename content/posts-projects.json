@@ -193,5 +193,20 @@
     "client": "ANH THIỆN & CHỊ NHUNG",
     "location": "Mỹ Hòa, Bình Minh, Vĩnh Long",
     "architect": ""
+  },
+  {
+    "id": 14,
+    "category": "dang-trien-khai",
+    "categoryLabel": "Đang triển khai",
+    "date": "13/09/2026",
+    "title": "NHÀ PHỐ 2 TẦNG",
+    "summary": "Công trình gây ấn tượng bởi mảng khối kiến trúc tinh tế, kết hợp hài hòa giữa chất liệu kính, lam trang trí và hệ đèn âm trần, đem lại không gian sống tiện nghi, thoáng đãng cho gia chủ.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/ad/c4/0e/adc40eb467bea4f4ece57f527e59fe45.jpg",
+    "code": "",
+    "scale": "2 tầng / GFA: 240 m2",
+    "client": "TRẦN TRƯỜNG TRANG",
+    "location": "đường Hoàng Văn Thụ, Ninh Kiều, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
