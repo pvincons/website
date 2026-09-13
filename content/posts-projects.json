@@ -178,5 +178,20 @@
     "client": "NGUYỄN CHÂU THANH",
     "location": "KDC. An Khánh, Ninh Kiều, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 13,
+    "category": "dang-trien-khai",
+    "categoryLabel": "Đang triển khai",
+    "date": "13/09/2026",
+    "title": "BIỆT THỰ TRỆT MÁI NHẬT",
+    "summary": "Thiết kế kết hợp nét đẹp kiến trúc tinh tế, không gian sống tiện nghi, thoáng đãng và hài hòa với thiên nhiên.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/23/ea/dc/23eadc349953d6c7c8c150e4f3f39abf.jpg",
+    "code": "",
+    "scale": "1 tầng / GFA: 305 m2",
+    "client": "ANH THIỆN & CHỊ NHUNG",
+    "location": "Mỹ Hòa, Bình Minh, Vĩnh Long",
+    "architect": ""
   }
 ]
