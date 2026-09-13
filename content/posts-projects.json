@@ -253,5 +253,20 @@
     "client": "NGUYỄN ĐÌNH VIỆT",
     "location": "đường CMT8, Bình Thủy, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 18,
+    "category": "dang-trien-khai",
+    "categoryLabel": "DSG",
+    "date": "13/09/2026",
+    "title": "TROPICAL HOUSE",
+    "summary": "Công trình sở hữu ngôn ngữ kiến trúc nhiệt đới mộc mạc mà hiện đại, kết hợp tông màu trắng - gỗ ấm áp cùng hệ ban công xanh, mang lại giải pháp vi khí hậu tối ưu, đón gió và ánh sáng tự nhiên tràn ngập không gian.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/c9/2d/60/c92d602597bdb64bd7cd6f8e75353476.jpg",
+    "code": "",
+    "scale": "2 tầng / GFA: 160 m2",
+    "client": "NGUYỄN THỊ PHƯƠNG LAN",
+    "location": "98/55 Trần Hưng Đạo, Cái Khế, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
