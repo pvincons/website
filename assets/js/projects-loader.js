@@ -1,4 +1,4 @@
-const ITEMS_PER_PAGE = 15; //Số công trình hiển thị trên mỗi trang, có thể thay đổi tùy ý
+const ITEMS_PER_PAGE = 30; //Số công trình hiển thị trên mỗi trang, có thể thay đổi tùy ý
 let categoriesData = {
     'dang-trien-khai': [],
     'da-hoan-thanh': [],
