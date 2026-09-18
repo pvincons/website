@@ -298,5 +298,20 @@
     "client": "LÂM THÁI HOÀNG",
     "location": "15 Đặng Thị Nhường, Bình Thủy, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 21,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "DSG",
+    "date": "18/11/2019",
+    "title": "NHÀ PHỐ MÁI THÁI",
+    "summary": "Thiết kế nhà phố mái Thái sang trọng tại Cần Thơ. Công trình nổi bật với gam màu trắng nhã nhặn, hệ mái Thái giật cấp thanh thoát cùng không gian sống đón ánh sáng tự nhiên tối ưu.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/b8/3c/ba/b83cbafb5059f4773d0415e338683f29.jpg",
+    "code": "",
+    "scale": "2 tầng / GFA: 180 m2",
+    "client": "(ANH) THỦ",
+    "location": "Mỹ Khánh, Phong Điền, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
