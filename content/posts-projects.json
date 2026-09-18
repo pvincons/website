@@ -313,5 +313,20 @@
     "client": "(ANH) THỦ",
     "location": "Mỹ Khánh, Phong Điền, Tp. Cần Thơ",
     "architect": ""
+  },
+  {
+    "id": 22,
+    "category": "da-hoan-thanh",
+    "categoryLabel": "Đã hoàn thành",
+    "date": "26/09/2020",
+    "title": "NHÀ PHỐ",
+    "summary": "hiết kế dạng nhà ống hiện đại với các đường nét hình khối khỏe khoắn. Cấu trúc giật cấp nhẹ giữa các tầng giúp tạo độ sâu và tăng tính thẩm mỹ cho mặt tiền.",
+    "link": "",
+    "image": "https://i.pinimg.com/1200x/2f/22/1e/2f221e8e919d958367ac9c86b43b085b.jpg",
+    "code": "",
+    "scale": "4 tầng / GFA: 260 m2",
+    "client": "DƯƠNG HỒNG ÁNH",
+    "location": "đường Nguyễn Việt Hồng, Ninh Kiều, Tp. Cần Thơ",
+    "architect": ""
   }
 ]
