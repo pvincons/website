@@ -7,7 +7,7 @@
     "title": "Thiết kế kiến trúc công trình",
     "summary": "Khung giá: 90.000 - 550.000 VNĐ/m²",
     "link": "",
-    "eyelink": "/database/quy-trinh-thiet-ke.pdf",
+    "eyelink": "database/ser_quy-trinh-thiet-ke.pdf",
     "code": "",
     "icon": "fa-tag"
   },
@@ -19,7 +19,7 @@
     "title": "Thiết kế và Dịch vụ cấp phép xây dựng nhà thép",
     "summary": "Khung giá: 75.000.000 - 350.000.000 VNĐ / Trọn gói",
     "link": "",
-    "eyelink": "/database/wait.html",
+    "eyelink": "database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -31,7 +31,7 @@
     "title": "Dịch vụ pháp lý hỗ trợ cấp phép xây dựng",
     "summary": "Khung giá: 5.000.000 - 60.000.000 VNĐ / Trọn gói",
     "link": "",
-    "eyelink": "/database/wait.html",
+    "eyelink": "database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -43,7 +43,7 @@
     "title": "Dịch vụ pháp lý hỗ trợ Hoàn công xây dựng",
     "summary": "Khung giá: 12.000.000 - 60.000.000 VNĐ / Trọn gói",
     "link": "",
-    "eyelink": "/database/wait.html",
+    "eyelink": "database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -54,7 +54,7 @@
     "date": "27/08/2026",
     "title": "1. Hợp đồng tư vấn thiết kế công trình",
     "summary": "Mẫu hợp đồng tư vấn & thiết kế chuẩn quy trình BIM/VDC",
-    "link": "/database/mau-hd-tk.pdf",
+    "link": "database/ser_mau-hd-tk.pdf",
     "eyelink": "",
     "code": "",
     "icon": "fa-file-contract"
@@ -66,7 +66,7 @@
     "date": "27/08/2026",
     "title": "2. Hợp đồng thi công xây dựng",
     "summary": "Mẫu hợp đồng thi công phần thô & trọn gói công trình",
-    "link": "/database/wait.htm",
+    "link": "database/wait.htm",
     "eyelink": "",
     "code": "",
     "icon": "fa-file-contract"
@@ -78,7 +78,7 @@
     "date": "27/08/2026",
     "title": "3. Hợp đồng dịch vụ pháp lý",
     "summary": "Mẫu hợp đồng dịch vụ pháp lý về bất động sản",
-    "link": "/database/mau-hd-phap-ly.pdf",
+    "link": "database/ser_mau-hd-phap-ly.pdf",
     "eyelink": "",
     "code": "",
     "icon": "fa-file-contract"
@@ -90,7 +90,7 @@
     "date": "27/08/2026",
     "title": "4. Văn bản thỏa thuận thực hiện dịch vụ",
     "summary": "Mẫu thỏa thuận ghi nhớ & nguyên tắc hợp tác ban đầu",
-    "link": "/database/mau-tt-dich-vu.pdf",
+    "link": "database/ser_mau-tt-dich-vu.pdf",
     "eyelink": "",
     "code": "",
     "icon": "fa-file-signature"
@@ -102,7 +102,7 @@
     "date": "27/08/2026",
     "title": "5. Hợp đồng khoán việc",
     "summary": "Mẫu hợp đồng giao khoán nhân công & hạng mục chuyên biệt",
-    "link": "/database/mau-hd-khoan-viec.pdf",
+    "link": "database/ser_mau-hd-khoan-viec.pdf",
     "eyelink": "",
     "code": "",
     "icon": "fa-file-contract"
@@ -115,7 +115,7 @@
     "title": "Tư vấn lập báo cáo tiền khả thi và Bảng tính dòng tiền dự án",
     "summary": "Đơn giá: Liên hệ để được báo giá chính xác",
     "link": "",
-    "eyelink": "/database/wait.html",
+    "eyelink": "database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -127,7 +127,7 @@
     "title": "Thi công xây dựng công trình nhà ở gia đình",
     "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
     "link": "",
-    "eyelink": "/database/wait.html",
+    "eyelink": "database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -139,7 +139,7 @@
     "title": "Thi công xây dựng Biệt thự",
     "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
     "link": "",
-    "eyelink": "/database/wait.html",
+    "eyelink": "database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -151,7 +151,7 @@
     "title": "Thi công xây dựng nhà thép tiền chế",
     "summary": "Đơn giá: Liên hệ để được báo giá chi tiết theo từng công trình cụ thể",
     "link": "",
-    "eyelink": "/database/wait.html",
+    "eyelink": "database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -163,7 +163,7 @@
     "title": "Quản lý và Giám sát thi công xây dựng công trình",
     "summary": "Khung giá: Trọn gói 3.0 - 8.0% Giá trị hợp đồng xây dựng.",
     "link": "",
-    "eyelink": "/database/wait.html",
+    "eyelink": "database/wait.html",
     "code": "",
     "icon": "fa-tag"
   },
@@ -175,7 +175,7 @@
     "title": "Dịch vụ trích đo tọa độ VN-2000 và Xác định ranh mốc thửa đất.",
     "summary": "Khung giá: 15.000.000 - 80.000.000 VNĐ/Trọn gói",
     "link": "",
-    "eyelink": "/database/qt-ranh-moc.pdf",
+    "eyelink": "database/ser_qt-ranh-moc.pdf",
     "code": "",
     "icon": "fa-tag"
   }
