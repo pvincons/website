@@ -130,27 +130,5 @@
     "link": "/database/wait.html",
     "code": "",
     "icon": "fa-file-contract"
-  },
-  {
-    "id": 13,
-    "category": "quan-he-co-dong",
-    "categoryLabel": "Quan hệ cổ đông",
-    "date": "12/03/2020",
-    "title": "Giấy chứng nhận đăng ký doanh nghiệp",
-    "summary": "",
-    "link": "database/inv_gcnkd.pdf",
-    "code": "",
-    "icon": "fa-file-contract"
-  },
-  {
-    "id": 14,
-    "category": "quan-he-co-dong",
-    "categoryLabel": "Quan hệ cổ đông",
-    "date": "17/09/2026",
-    "title": "Giấy chứng nhận đăng ký doanh nghiệp thay đổi lần 1",
-    "summary": "",
-    "link": "database/inv_gcnkd_rev01.pdf",
-    "code": "",
-    "icon": "fa-file-contract"
   }
 ]
