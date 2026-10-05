@@ -129,8 +129,14 @@
                 class="w-full max-w-7xl mx-auto flex items-center gap-3 sm:gap-5 overflow-x-auto whitespace-nowrap text-xs sm:text-sm font-normal uppercase 
                 justify-start sm:justify-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4">
 
-                <a href="#tin-tuc-cong-ty" class="text-brand-orange transition-colors py-0.5 shrink-0">TIN TỨC CÔNG
-                    TY</a>
+                <a href="#tin-noi-bat" 
+                    class="text-brand-orange transition-colors py-0.5 shrink-0">TIN NỔI BẬT
+                </a>
+                <span class="text-slate-300 font-normal shrink-0">/</span>
+
+                <a href="#tin-tuc-cong-ty"
+                    class="text-slate-600 hover:text-brand-orange transition-colors py-0.5 shrink-0">TIN TỨC CÔNG TY
+                </a>
                 <span class="text-slate-300 font-normal shrink-0">/</span>
 
                 <a href="#thong-tin-bao-chi"
@@ -154,8 +160,28 @@
             </div>
         </nav>
 
-        <!-- 1. TIN TỨC CÔNG TY (Nền trắng) -->
-        <section id="tin-tuc-cong-ty" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white">
+        <!-- 1. TIN NỔI BẬT (Nền trắng) -->
+        <section id="tin-noi-bat" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div
+                    class="flex items-center justify-between max-w-5xl mx-auto mb-6 sm:mb-8 pb-3 border-b border-slate-200">
+                    <span class="text-brand-blue font-bold text-xs sm:text-sm tracking-widest uppercase">
+                        Tin nổi bật
+                    </span>
+                    <div
+                        class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#8c6239] transition-colors group">
+                    </div>
+                </div>
+
+                <div id="news-container" data-category="tin-noi-bat"
+                    class="flex flex-col gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
+                    <!-- Posts-news ......... news-loader -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. TIN TỨC CÔNG TY (Nền xám nhạt) -->
+        <section id="tin-tuc-cong-ty" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div
                     class="flex items-center justify-between max-w-5xl mx-auto mb-6 sm:mb-8 pb-3 border-b border-slate-200">
@@ -174,8 +200,8 @@
             </div>
         </section>
 
-        <!-- 2. THÔNG TIN KHÁCH HÀNG VÀ BÁO CHÍ (Nền xám nhạt) -->
-        <section id="thong-tin-bao-chi" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60">
+        <!-- 3. THÔNG TIN KHÁCH HÀNG VÀ BÁO CHÍ (Nền trắng) -->
+        <section id="thong-tin-bao-chi" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div
                     class="flex items-center justify-between max-w-5xl mx-auto mb-6 sm:mb-8 pb-3 border-b border-slate-200">
@@ -192,9 +218,8 @@
             </div>
         </section>
 
-        <!-- 3. GÓC NHÌN CHUYÊN GIA (Nền trắng) -->
-        <section id="goc-nhin-chuyen-gia"
-            class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white border-y border-slate-200/70">
+        <!-- 4. GÓC NHÌN CHUYÊN GIA (Nền xám nhạt) -->
+        <section id="goc-nhin-chuyen-gia" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div
                     class="flex items-center justify-between max-w-5xl mx-auto mb-6 sm:mb-8 pb-3 border-b border-slate-200">
@@ -211,8 +236,8 @@
             </div>
         </section>
 
-        <!-- 4. TIN THỊ TRƯỜNG (Nền xám nhạt) -->
-        <section id="tin-thi-truong" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60">
+        <!-- 5. TIN THỊ TRƯỜNG (Nền trắng) -->
+        <section id="tin-thi-truong" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div
                     class="flex items-center justify-between max-w-5xl mx-auto mb-6 sm:mb-8 pb-3 border-b border-slate-200">
@@ -229,9 +254,8 @@
             </div>
         </section>
 
-        <!-- 5. TIN PHÁP LUẬT (Nền trắng) -->
-        <section id="tin-phap-luat"
-            class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-white border-y border-slate-200/70">
+        <!-- 6. TIN PHÁP LUẬT (Nền xám nhạt) -->
+        <section id="tin-phap-luat" class="scroll-mt-[100px] sm:scroll-mt-30 py-8 sm:py-16 bg-slate-100/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div
                     class="flex items-center justify-between max-w-5xl mx-auto mb-6 sm:mb-8 pb-3 border-b border-slate-200">
