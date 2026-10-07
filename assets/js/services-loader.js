@@ -137,13 +137,12 @@ function renderDocumentsSection() {
 }
 
 /**
- * THIẾT KẾ CARD TÀI LIỆU "DOCUMENT" ĐỒNG BỘ 100% KÍCH THƯỚC VỚI "PRICING":
- * - HÀNG 1: TIÊU ĐỀ (text-sm sm:text-base) | CATEGORYLABEL
- * - HÀNG 2: MÔ TẢ (text-xs) | NÚT "XEM TÀI LIỆU" (text-xs sm:text-sm)
+ * THIẾT KẾ CARD TÀI LIỆU "DOCUMENT" VỚI KIỂU DÁNG CATEGORYLABEL MỚI
  */
 function createDocumentPostHTML(post) {
+    // Nhãn categoryLabel kiểu dáng mới: in thường, màu xám nhạt, viền nhẹ & bo góc tròn
     const badgeHTML = post.categoryLabel 
-        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-semibold bg-blue-50 text-brand-blue border border-blue-100/80 shrink-0">
+        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-normal lowercase bg-slate-100 text-slate-500 border border-slate-200/80 shrink-0">
             ${post.categoryLabel}
            </span>` 
         : '';
