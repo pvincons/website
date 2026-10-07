@@ -38,7 +38,7 @@
   {
     "id": 5,
     "category": "documents",
-    "categoryLabel": "",
+    "categoryLabel": "Hợp đồng",
     "date": "27/08/2026",
     "title": "1. Hợp đồng tư vấn thiết kế công trình",
     "summary": "Mẫu hợp đồng tư vấn & thiết kế chuẩn quy trình BIM/VDC",
@@ -50,7 +50,7 @@
   {
     "id": 6,
     "category": "documents",
-    "categoryLabel": "",
+    "categoryLabel": "Hợp đồng",
     "date": "27/08/2026",
     "title": "2. Hợp đồng thi công xây dựng",
     "summary": "Mẫu hợp đồng thi công phần thô & trọn gói công trình",
@@ -62,7 +62,7 @@
   {
     "id": 7,
     "category": "documents",
-    "categoryLabel": "Hợp đồng / Văn bản",
+    "categoryLabel": "Hợp đồng",
     "date": "27/08/2026",
     "title": "3. Hợp đồng dịch vụ pháp lý",
     "summary": "Mẫu hợp đồng dịch vụ pháp lý về bất động sản",
@@ -74,7 +74,7 @@
   {
     "id": 8,
     "category": "documents",
-    "categoryLabel": "Thỏa thuận / Biên bản",
+    "categoryLabel": "Thỏa thuận",
     "date": "27/08/2026",
     "title": "4. Văn bản thỏa thuận thực hiện dịch vụ",
     "summary": "Mẫu thỏa thuận ghi nhớ & nguyên tắc hợp tác ban đầu",
@@ -86,7 +86,7 @@
   {
     "id": 9,
     "category": "documents",
-    "categoryLabel": "Hợp đồng / Văn bản",
+    "categoryLabel": "Hợp đồng",
     "date": "27/08/2026",
     "title": "5. Hợp đồng khoán việc",
     "summary": "Mẫu hợp đồng giao khoán nhân công & hạng mục chuyên biệt",
