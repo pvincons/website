@@ -108,7 +108,7 @@ function renderInvestmentPage(categoryKey, page) {
     
     if (posts.length === 0) {
         container.innerHTML = `
-            <div class="text-center py-8 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+            <div class="text-center py-8 bg-white rounded-xl border border-slate-200 shadow-sm">
                 <i class="fa-solid fa-folder-open text-slate-300 text-3xl mb-2"></i>
                 <p class="text-slate-500 text-xs sm:text-sm font-medium">Không tìm thấy tài liệu phù hợp.</p>
             </div>
@@ -130,7 +130,7 @@ function renderInvestmentPage(categoryKey, page) {
 }
 
 /**
- * THIẾT KẾ CARD TÀI LIỆU CỰC KỲ GỌN ĐẸP, TỐI ƯU UI/UX THEO YÊU CẦU
+ * THIẾT KẾ CARD TÀI LIỆU "INVESTMENT" ĐỒNG BỘ 100% VỚI "SERVICES"
  */
 function createInvestmentPostHTML(post, categoryKey) {
     const isFinance = categoryKey === 'tai-chinh-cong-ty';
@@ -138,32 +138,31 @@ function createInvestmentPostHTML(post, categoryKey) {
         ? 'bg-white hover:border-brand-blue/40 hover:shadow-md' 
         : 'bg-slate-50/70 hover:bg-white hover:border-brand-blue/40 hover:shadow-md';
 
-    // Badge categoryLabel nằm bên phải
     const badgeHTML = post.categoryLabel 
-        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold bg-blue-50 text-brand-blue border border-blue-100/80 shrink-0">
+        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-semibold bg-blue-50 text-brand-blue border border-blue-100/80 shrink-0">
             ${post.categoryLabel}
            </span>` 
         : '';
 
     return `
-        <div class="group p-3 sm:p-3.5 ${containerBg} rounded-xl border border-slate-200/90 transition-all duration-200 flex flex-col gap-2">
+        <div class="group p-4 sm:p-5 ${containerBg} rounded-xl border border-slate-200 transition-all duration-200 flex flex-col gap-2">
             
-            <!-- HÀNG 1: "Đăng tải ngày" (Canh trái) & "categoryLabel" (Canh phải) -->
+            <!-- HÀNG 1: Tiêu đề (Canh trái) & categoryLabel (Canh phải) -->
             <div class="flex items-center justify-between w-full gap-2">
-                <span class="text-[11px] sm:text-xs text-slate-500 font-medium flex items-center gap-1.5">
-                    <i class="fa-regular fa-clock text-slate-400 text-[11px]"></i>Đăng tải ngày: ${post.date}
-                </span>
+                <h4 class="font-bold text-slate-900 text-sm sm:text-base leading-snug flex-1 min-w-0 group-hover:text-brand-blue transition-colors">
+                    ${post.title}
+                </h4>
                 ${badgeHTML}
             </div>
 
-            <!-- HÀNG 2: Tiêu đề (Canh trái) & Nút "Tải tài liệu" (Góc phải ô chữ nhật) -->
-            <div class="flex items-center justify-between gap-3 pt-0.5">
-                <h4 class="font-bold text-slate-900 text-xs sm:text-sm leading-snug flex-1 min-w-0 group-hover:text-brand-blue transition-colors">
-                    ${post.title}
-                </h4>
+            <!-- HÀNG 2: Ngày đăng (Canh trái) & Nút "Tải tài liệu" (Góc phải) -->
+            <div class="flex items-center justify-between gap-3 pt-1">
+                <p class="text-xs text-slate-500 font-medium min-w-0 flex-1 truncate">
+                    <i class="fa-regular fa-clock mr-1 text-slate-400"></i>Đăng tải ngày: ${post.date}
+                </p>
                 <a href="${post.link}" target="_blank" rel="noopener noreferrer" 
-                    class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-brand-blue hover:text-white bg-slate-100/90 hover:bg-brand-blue border border-slate-200/80 hover:border-brand-blue transition-all duration-200 whitespace-nowrap shrink-0 shadow-2xs">
-                    <i class="fa-solid fa-download text-[11px]"></i>
+                    class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-orange bg-slate-50 border border-slate-200 hover:border-brand-orange transition-colors whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-download text-xs sm:text-sm"></i>
                     <span>Tải tài liệu</span>
                 </a>
             </div>
@@ -203,7 +202,7 @@ function renderPaginationControls(categoryKey, container, totalItems, currentPag
             <button 
                 type="button"
                 onclick="changeInvestmentCategoryPage('${categoryKey}', ${i})" 
-                class="px-3 py-1 rounded-lg text-xs font-medium transition-all ${btnClass}">
+                class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${btnClass}">
                 ${i}
             </button>
         `;
