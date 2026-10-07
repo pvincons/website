@@ -130,7 +130,7 @@ function renderInvestmentPage(categoryKey, page) {
 }
 
 /**
- * THIẾT KẾ CARD TÀI LIỆU "INVESTMENT" ĐỒNG BỘ 100% VỚI "SERVICES"
+ * THIẾT KẾ CARD TÀI LIỆU "INVESTMENT" THEO YÊU CẦU MỚI
  */
 function createInvestmentPostHTML(post, categoryKey) {
     const isFinance = categoryKey === 'tai-chinh-cong-ty';
@@ -138,8 +138,9 @@ function createInvestmentPostHTML(post, categoryKey) {
         ? 'bg-white hover:border-brand-blue/40 hover:shadow-md' 
         : 'bg-slate-50/70 hover:bg-white hover:border-brand-blue/40 hover:shadow-md';
 
+    // Nhãn categoryLabel: chữ in thường, màu xám nhạt, kích thước nhỏ, bo tròn nhẹ
     const badgeHTML = post.categoryLabel 
-        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-semibold bg-blue-50 text-brand-blue border border-blue-100/80 shrink-0">
+        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-normal lowercase bg-slate-100 text-slate-500 border border-slate-200/80 shrink-0">
             ${post.categoryLabel}
            </span>` 
         : '';
@@ -147,19 +148,19 @@ function createInvestmentPostHTML(post, categoryKey) {
     return `
         <div class="group p-4 sm:p-5 ${containerBg} rounded-xl border border-slate-200 transition-all duration-200 flex flex-col gap-2">
             
-            <!-- HÀNG 1: Tiêu đề (Canh trái) & categoryLabel (Canh phải) -->
+            <!-- HÀNG 1: Đăng tải ngày (Canh trái) & categoryLabel (Canh phải) -->
             <div class="flex items-center justify-between w-full gap-2">
-                <h4 class="font-bold text-slate-900 text-sm sm:text-base leading-snug flex-1 min-w-0 group-hover:text-brand-blue transition-colors">
-                    ${post.title}
-                </h4>
-                ${badgeHTML}
-            </div>
-
-            <!-- HÀNG 2: Ngày đăng (Canh trái) & Nút "Tải tài liệu" (Góc phải) -->
-            <div class="flex items-center justify-between gap-3 pt-1">
                 <p class="text-xs text-slate-500 font-medium min-w-0 flex-1 truncate">
                     <i class="fa-regular fa-clock mr-1 text-slate-400"></i>Đăng tải ngày: ${post.date}
                 </p>
+                ${badgeHTML}
+            </div>
+
+            <!-- HÀNG 2: Tiêu đề (Canh trái) & Nút "Tải tài liệu" (Canh phải) -->
+            <div class="flex items-center justify-between gap-3 pt-1">
+                <h4 class="font-bold text-slate-900 text-sm sm:text-base leading-snug flex-1 min-w-0 group-hover:text-brand-blue transition-colors">
+                    ${post.title}
+                </h4>
                 <a href="${post.link}" target="_blank" rel="noopener noreferrer" 
                     class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-orange bg-slate-50 border border-slate-200 hover:border-brand-orange transition-colors whitespace-nowrap shrink-0">
                     <i class="fa-solid fa-download text-xs sm:text-sm"></i>
