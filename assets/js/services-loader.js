@@ -137,37 +137,36 @@ function renderDocumentsSection() {
 }
 
 /**
- * THIẾT KẾ CARD TÀI LIỆU "DOCUMENT" CHUẨN ĐẸP TƯƠNG TỰ TAB INVESTMENT:
- * - HÀNG 1: MÔ TẢ VÀ ICON BAN ĐẦU (CANH TRÁI) | CATEGORYLABEL (CANH PHẢI)
- * - HÀNG 2: TIÊU ĐỀ (CANH TRÁI) | NÚT "XEM TÀI LIỆU" (CANH PHẢI)
+ * THIẾT KẾ CARD TÀI LIỆU "DOCUMENT" ĐỒNG BỘ 100% KÍCH THƯỚC VỚI "PRICING":
+ * - HÀNG 1: TIÊU ĐỀ (text-sm sm:text-base) | CATEGORYLABEL
+ * - HÀNG 2: MÔ TẢ (text-xs) | NÚT "XEM TÀI LIỆU" (text-xs sm:text-sm)
  */
 function createDocumentPostHTML(post) {
-    // Nhãn categoryLabel canh phải
     const badgeHTML = post.categoryLabel 
-        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold bg-blue-50 text-brand-blue border border-blue-100/80 shrink-0">
+        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-semibold bg-blue-50 text-brand-blue border border-blue-100/80 shrink-0">
             ${post.categoryLabel}
            </span>` 
         : '';
 
     return `
-        <div class="group p-3 sm:p-3.5 bg-white hover:border-brand-blue/40 hover:shadow-md rounded-xl border border-slate-200/90 transition-all duration-200 flex flex-col gap-2">
+        <div class="group p-4 sm:p-5 bg-white hover:border-brand-blue/40 hover:shadow-md rounded-xl border border-slate-200 transition-all duration-200 flex flex-col gap-2">
             
-            <!-- HÀNG 1: Mô tả & Icon giữ nguyên 100% (Canh trái) & categoryLabel (Canh phải) -->
+            <!-- HÀNG 1: Tiêu đề (Canh trái) & categoryLabel (Canh phải) -->
             <div class="flex items-center justify-between w-full gap-2">
-                <p class="text-[11px] sm:text-xs text-slate-500 font-medium min-w-0 truncate">
-                    <i class="fa-solid ${post.icon} mr-1 text-brand-orange"></i>${post.summary || ''}
-                </p>
+                <h4 class="font-bold text-slate-900 text-sm sm:text-base leading-snug flex-1 min-w-0 group-hover:text-brand-blue transition-colors">
+                    ${post.title}
+                </h4>
                 ${badgeHTML}
             </div>
 
-            <!-- HÀNG 2: Tiêu đề (Canh trái) & Nút "Xem tài liệu" (Góc phải) -->
-            <div class="flex items-center justify-between gap-3 pt-0.5">
-                <h4 class="font-bold text-slate-900 text-xs sm:text-sm leading-snug flex-1 min-w-0 group-hover:text-brand-blue transition-colors">
-                    ${post.title}
-                </h4>
+            <!-- HÀNG 2: Mô tả & Icon (Canh trái) & Nút "Xem tài liệu" (Góc phải) -->
+            <div class="flex items-center justify-between gap-3 pt-1">
+                <p class="text-xs text-slate-500 font-medium min-w-0 flex-1 truncate">
+                    <i class="fa-solid ${post.icon} mr-1 text-brand-orange"></i>${post.summary || ''}
+                </p>
                 <a href="${post.link}" target="_blank" rel="noopener noreferrer" 
-                    class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-brand-blue hover:text-white bg-slate-100/90 hover:bg-brand-blue border border-slate-200/80 hover:border-brand-blue transition-all duration-200 whitespace-nowrap shrink-0 shadow-2xs">
-                    <i class="fa-solid fa-eye text-[11px]"></i>
+                    class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-orange bg-slate-50 border border-slate-200 hover:border-brand-orange transition-colors whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-eye text-xs sm:text-sm"></i>
                     <span>Xem tài liệu</span>
                 </a>
             </div>
