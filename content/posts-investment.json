@@ -24,7 +24,7 @@
   {
     "id": 3,
     "category": "quan-he-co-dong",
-    "categoryLabel": "Quan hệ cổ đông",
+    "categoryLabel": "Báo cáo",
     "date": "20/01/2022",
     "title": "Báo cáo tình hình quản trị công ty năm 2021",
     "summary": "",
@@ -35,7 +35,7 @@
   {
     "id": 4,
     "category": "quan-he-co-dong",
-    "categoryLabel": "",
+    "categoryLabel": "Báo cáo",
     "date": "20/01/2023",
     "title": "Báo cáo tình hình quản trị công ty năm 2022",
     "summary": "",
@@ -57,7 +57,7 @@
   {
     "id": 6,
     "category": "quan-he-co-dong",
-    "categoryLabel": "",
+    "categoryLabel": "Báo cáo",
     "date": "20/01/2021",
     "title": "Báo cáo tình hình quản trị công ty năm 2020",
     "summary": "",
@@ -101,7 +101,7 @@
   {
     "id": 10,
     "category": "quan-he-co-dong",
-    "categoryLabel": "Quan hệ cổ đông",
+    "categoryLabel": "Báo cáo",
     "date": "20/01/2024",
     "title": "Báo cáo tình hình quản trị công ty năm 2023",
     "summary": "",
@@ -112,7 +112,7 @@
   {
     "id": 11,
     "category": "quan-he-co-dong",
-    "categoryLabel": "Quan hệ cổ đông",
+    "categoryLabel": "Báo cáo",
     "date": "20/01/2025",
     "title": "Báo cáo tình hình quản trị công ty năm 2024",
     "summary": "",
@@ -123,7 +123,7 @@
   {
     "id": 12,
     "category": "quan-he-co-dong",
-    "categoryLabel": "Quan hệ cổ đông",
+    "categoryLabel": "Báo cáo",
     "date": "20/01/2026",
     "title": "Báo cáo tình hình quản trị công ty năm 2025",
     "summary": "",
