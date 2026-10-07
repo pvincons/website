@@ -1,5 +1,6 @@
-const ITEMS_PER_PAGE = 10; // Số tài liệu hiển thị trên mỗi trang (tùy chỉnh số lượng tại đây)
+const ITEMS_PER_PAGE = 10;
 let categoriesData = {};
+let filteredData = {};
 let currentPages = {};
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return dateB - dateA;
             });
             
-            // Khởi tạo các section đầu tư và phân trang
+            // Khởi tạo các section đầu tư, bộ lọc và phân trang
             initInvestmentSections(posts);
         })
         .catch(error => console.error('Lỗi nạp dữ liệu:', error));
@@ -40,13 +41,62 @@ function initInvestmentSections(posts) {
         categoriesData[post.category].push(post);
     });
 
-    // 2. Hiển thị trang 1 cho tất cả danh mục trên giao diện
-    Object.keys(categoriesData).forEach(categoryKey => {
-        const container = document.querySelector(`[data-category="${categoryKey}"]`);
-        if (container && categoriesData[categoryKey].length > 0) {
-            renderInvestmentPage(categoryKey, 1);
+    // Tạo bản sao dữ liệu ban đầu cho danh sách lọc
+    filteredData = {
+        'tai-chinh-cong-ty': [...categoriesData['tai-chinh-cong-ty']],
+        'quan-he-co-dong': [...categoriesData['quan-he-co-dong']]
+    };
+
+    // 2. Khởi tạo dropdown filter & lắng nghe sự kiện tìm kiếm/lọc
+    ['tai-chinh-cong-ty', 'quan-he-co-dong'].forEach(categoryKey => {
+        setupFilterOptions(categoryKey);
+        setupEventListeners(categoryKey);
+        renderInvestmentPage(categoryKey, 1);
+    });
+}
+
+// Khởi tạo danh sách các tùy chọn cho thẻ Filter Select từ categoryLabel
+function setupFilterOptions(categoryKey) {
+    const filterSelect = document.getElementById(`filter-${categoryKey}`);
+    if (!filterSelect) return;
+
+    const posts = categoriesData[categoryKey] || [];
+    const labels = new Set();
+    
+    posts.forEach(post => {
+        if (post.categoryLabel) {
+            labels.add(post.categoryLabel);
         }
     });
+
+    labels.forEach(label => {
+        const option = document.createElement('option');
+        option.value = label;
+        option.textContent = label;
+        filterSelect.appendChild(option);
+    });
+}
+
+// Lắng nghe sự kiện tìm kiếm và chọn bộ lọc
+function setupEventListeners(categoryKey) {
+    const searchInput = document.getElementById(`search-${categoryKey}`);
+    const filterSelect = document.getElementById(`filter-${categoryKey}`);
+
+    const handleFilter = () => {
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        const selectedLabel = filterSelect ? filterSelect.value : 'ALL';
+
+        filteredData[categoryKey] = (categoriesData[categoryKey] || []).filter(post => {
+            const matchesSearch = !query || post.title.toLowerCase().includes(query);
+            const matchesLabel = selectedLabel === 'ALL' || post.categoryLabel === selectedLabel;
+            return matchesSearch && matchesLabel;
+        });
+
+        renderInvestmentPage(categoryKey, 1);
+    };
+
+    if (searchInput) searchInput.addEventListener('input', handleFilter);
+    if (filterSelect) filterSelect.addEventListener('change', handleFilter);
 }
 
 function renderInvestmentPage(categoryKey, page) {
@@ -54,8 +104,19 @@ function renderInvestmentPage(categoryKey, page) {
     if (!container) return;
 
     currentPages[categoryKey] = page;
-    const posts = categoriesData[categoryKey] || [];
+    const posts = filteredData[categoryKey] || [];
     
+    if (posts.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-8 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+                <i class="fa-solid fa-folder-open text-slate-300 text-3xl mb-2"></i>
+                <p class="text-slate-500 text-xs sm:text-sm font-medium">Không tìm thấy tài liệu phù hợp.</p>
+            </div>
+        `;
+        renderPaginationControls(categoryKey, container, 0, 1);
+        return;
+    }
+
     // Cắt mảng để lấy đúng số bài cho trang hiện tại
     const startIndex = (page - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -68,22 +129,45 @@ function renderInvestmentPage(categoryKey, page) {
     renderPaginationControls(categoryKey, container, posts.length, page);
 }
 
+/**
+ * THIẾT KẾ CARD TÀI LIỆU CỰC KỲ GỌN ĐẸP, TỐI ƯU UI/UX THEO YÊU CẦU
+ */
 function createInvestmentPostHTML(post, categoryKey) {
     const isFinance = categoryKey === 'tai-chinh-cong-ty';
-    const containerClass = isFinance 
-        ? 'bg-white shadow-sm hover:shadow-md transition-all' 
-        : 'bg-slate-50 hover:border-brand-blue/40 transition-colors';
-    const buttonBg = isFinance ? 'bg-slate-50' : 'bg-white';
+    const containerBg = isFinance 
+        ? 'bg-white hover:border-brand-blue/40 hover:shadow-md' 
+        : 'bg-slate-50/70 hover:bg-white hover:border-brand-blue/40 hover:shadow-md';
+
+    // Badge categoryLabel nằm bên phải
+    const badgeHTML = post.categoryLabel 
+        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold bg-blue-50 text-brand-blue border border-blue-100/80 shrink-0">
+            ${post.categoryLabel}
+           </span>` 
+        : '';
 
     return `
-        <div class="p-5 ${containerClass} rounded-xl border border-slate-200 flex justify-between items-center hover:border-brand-blue/40 gap-3">
-            <div class="min-w-0 flex-1">
-                <h4 class="font-bold text-slate-900 text-sm sm:text-base">${post.title}</h4>
-                <p class="text-xs text-slate-500 mt-1"><i class="fa-regular fa-clock mr-1"></i>Đăng tải ngày: ${post.date}</p>
+        <div class="group p-3 sm:p-3.5 ${containerBg} rounded-xl border border-slate-200/90 transition-all duration-200 flex flex-col gap-2">
+            
+            <!-- HÀNG 1: "Đăng tải ngày" (Canh trái) & "categoryLabel" (Canh phải) -->
+            <div class="flex items-center justify-between w-full gap-2">
+                <span class="text-[11px] sm:text-xs text-slate-500 font-medium flex items-center gap-1.5">
+                    <i class="fa-regular fa-clock text-slate-400 text-[11px]"></i>Đăng tải ngày: ${post.date}
+                </span>
+                ${badgeHTML}
             </div>
-            <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:text-brand-orange text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors py-1.5 px-3 rounded ${buttonBg} border border-slate-200 hover:border-brand-orange whitespace-nowrap shrink-0">
-                <i class="fa-solid fa-download"></i>Tải tài liệu
-            </a>
+
+            <!-- HÀNG 2: Tiêu đề (Canh trái) & Nút "Tải tài liệu" (Góc phải ô chữ nhật) -->
+            <div class="flex items-center justify-between gap-3 pt-0.5">
+                <h4 class="font-bold text-slate-900 text-xs sm:text-sm leading-snug flex-1 min-w-0 group-hover:text-brand-blue transition-colors">
+                    ${post.title}
+                </h4>
+                <a href="${post.link}" target="_blank" rel="noopener noreferrer" 
+                    class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-brand-blue hover:text-white bg-slate-100/90 hover:bg-brand-blue border border-slate-200/80 hover:border-brand-blue transition-all duration-200 whitespace-nowrap shrink-0 shadow-2xs">
+                    <i class="fa-solid fa-download text-[11px]"></i>
+                    <span>Tải tài liệu</span>
+                </a>
+            </div>
+
         </div>
     `;
 }
@@ -97,7 +181,7 @@ function renderPaginationControls(categoryKey, container, totalItems, currentPag
     if (!paginationNav) {
         paginationNav = document.createElement('div');
         paginationNav.setAttribute('data-pagination-for', categoryKey);
-        paginationNav.className = 'flex justify-center items-center gap-2 mt-6 sm:mt-8';
+        paginationNav.className = 'flex justify-center items-center gap-1.5 mt-5 sm:mt-7';
         container.parentNode.insertBefore(paginationNav, container.nextSibling);
     }
 
@@ -112,14 +196,14 @@ function renderPaginationControls(categoryKey, container, totalItems, currentPag
     for (let i = 1; i <= totalPages; i++) {
         const isActive = i === currentPage;
         const btnClass = isActive
-            ? 'bg-[#8c6239] text-white font-bold shadow-sm'
+            ? 'bg-[#8c6239] text-white font-bold shadow-xs'
             : 'bg-slate-100 text-slate-700 hover:bg-slate-200';
 
         buttonsHTML += `
             <button 
                 type="button"
                 onclick="changeInvestmentCategoryPage('${categoryKey}', ${i})" 
-                class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${btnClass}">
+                class="px-3 py-1 rounded-lg text-xs font-medium transition-all ${btnClass}">
                 ${i}
             </button>
         `;
