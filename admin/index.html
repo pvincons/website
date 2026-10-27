@@ -856,23 +856,60 @@
       document.getElementById('display-repo-info').innerText = `${authConfig.owner}/${authConfig.repo}`;
     }
 
-    document.getElementById('btn-login').addEventListener('click', () => {
+    // ĐÃ CẬP NHẬT: Kiểm tra tính hợp lệ qua GitHub API trước khi cho phép đăng nhập
+    document.getElementById('btn-login').addEventListener('click', async () => {
       const owner = document.getElementById('auth-owner').value.trim();
       const repo = document.getElementById('auth-repo').value.trim();
       const token = document.getElementById('auth-token').value.trim();
+      
       if (!owner || !repo || !token) {
         showToast('Vui lòng điền đầy đủ thông tin xác thực GitHub', 'error');
         return;
       }
-      authConfig = { owner, repo, token };
-      localStorage.setItem('pv_github_auth', btoa(JSON.stringify(authConfig))); // Cải thiện bảo mật
-      db = loadLocalDB();
-      document.getElementById('login-modal').classList.add('hidden');
-      document.getElementById('admin-workspace').classList.remove('hidden');
-      document.getElementById('display-repo-info').innerText = `${owner}/${repo}`;
-      showToast('Đã xác thực thành công!');
-      updateTabCounts();
-      renderPostsList();
+
+      const btnLogin = document.getElementById('btn-login');
+      btnLogin.disabled = true;
+      btnLogin.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-xs"></i> <span>Đang xác thực với GitHub...</span>`;
+
+      try {
+        const testUrl = `https://api.github.com/repos/${owner}/${repo}`;
+        const response = await fetch(testUrl, {
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            throw new Error('Mã Personal Access Token (PAT) không hợp lệ hoặc đã hết hạn!');
+          } else if (response.status === 404) {
+            throw new Error('Không tìm thấy Repository hoặc Owner tương ứng trên GitHub!');
+          } else if (response.status === 403 || response.status === 429) {
+            throw new Error('Vượt quá giới hạn API GitHub hoặc Token thiếu quyền truy cập (repo scope)!');
+          } else {
+            throw new Error(`Xác thực thất bại (Lỗi HTTP ${response.status})`);
+          }
+        }
+
+        authConfig = { owner, repo, token };
+        localStorage.setItem('pv_github_auth', btoa(JSON.stringify(authConfig)));
+        db = loadLocalDB();
+        
+        document.getElementById('login-modal').classList.add('hidden');
+        document.getElementById('admin-workspace').classList.remove('hidden');
+        document.getElementById('display-repo-info').innerText = `${owner}/${repo}`;
+        
+        showToast('Xác thực GitHub thành công!');
+        updateTabCounts();
+        renderPostsList();
+      } catch (err) {
+        console.error('Lỗi đăng nhập:', err);
+        showToast(err.message || 'Thông tin xác thực không chính xác!', 'error');
+      } finally {
+        btnLogin.disabled = false;
+        btnLogin.innerHTML = `<i class="fa-solid fa-key text-xs"></i><span>Xác nhận & Vào Admin Website</span>`;
+      }
     });
 
     document.getElementById('btn-logout').addEventListener('click', () => {
