@@ -2,1902 +2,888 @@
 <html lang="vi">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Data Website Admin</title>
-  <!-- Favicon đường dẫn tương đối gốc -->
-  <link rel="icon" type="image/webp" href="../assets/pic/LOGO_PVI.webp">
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Inter & FontAwesome 6 Icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Super Admin - Quản lý Phân quyền Portal</title>
 
-    /* Tùy chỉnh Scrollbar */
-    ::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
-    }
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #f8fafc;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
 
-    ::-webkit-scrollbar-track {
-      background: #13151b;
-    }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+        }
 
-    ::-webkit-scrollbar-thumb {
-      background: #2a2e39;
-      border-radius: 3px;
-    }
+        .workspace-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
+        }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3b4050;
-    }
+        .workspace-card:hover {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
 
-    /* Ẩn scrollbar cho menu và cuộn mượt */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    .toast-animate {
-      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    input[type="date"] {
-      color-scheme: dark;
-    }
-
-    /* Font chữ nội dung nhập liệu */
-    input,
-    textarea,
-    select,
-    button {
-      font-family: Arial, Helvetica, sans-serif !important;
-    }
-
-    /* Font chữ nội dung chữ hướng dẫn (placeholder) */
-    input::placeholder,
-    textarea::placeholder {
-      font-family: 'Inter', sans-serif !important;
-      font-size: 10px !important;
-      color: #6b7280 !important;
-      opacity: 0.6 !important;
-    }
-
-    .json-block-item {
-      background-color: #08090c;
-      border: 1px solid #1e222d;
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 10px;
-      position: relative;
-    }
-
-    .json-block-item::before {
-      content: "ID: " attr(data-id);
-      position: absolute;
-      top: -9px;
-      left: 12px;
-      background: #12141c;
-      padding: 0 6px;
-      font-size: 10px;
-      color: #10b981;
-      border-radius: 4px;
-      border: 1px solid #1e222d;
-      font-family: monospace;
-    }
-  </style>
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .toast-animate {
+            animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
 </head>
 
-<body class="bg-[#0f1117] text-gray-200 h-screen overflow-hidden text-sm select-none flex flex-col">
+<body class="min-h-screen flex flex-col justify-between p-3 sm:p-6 md:p-8">
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="toast-container"
-    class="fixed top-4 right-4 left-4 lg:left-auto z-50 flex flex-col gap-2 pointer-events-none lg:max-w-sm w-auto">
-  </div>
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed top-4 right-4 left-4 lg:left-auto z-50 flex flex-col gap-2 pointer-events-none lg:max-w-sm w-auto"></div>
 
-  <!-- 1. MÀN HÌNH ĐĂNG NHẬP -->
-  <div id="login-modal"
-    class="fixed inset-0 bg-[#090a0f]/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
-    <div class="bg-[#14171f] border border-[#262a36] rounded-xl p-6 w-full max-w-md shadow-2xl space-y-5">
-      <div class="text-center space-y-2">
-        <img src="https://i.pinimg.com/736x/54/56/c7/5456c78c0aa3b2aea8d4b96fa5a500cf.jpg" alt="PV INCONS Logo"
-          class="mx-auto h-16 w-16 rounded-full object-cover border border-[#2a2e3d] shadow-lg shadow-rose-900/10">
-        <h2 class="text-lg font-bold text-gray-100">PV INCONS Data Website</h2>
-        <p class="text-xs text-gray-400">Xác thực Quản trị dữ liệu. Phiên bản v1.5.1</p>
-      </div>
+    <!-- 1. MÀN HÌNH ĐĂNG NHẬP GITHUB PAT -->
+    <div id="login-modal" class="fixed inset-0 bg-[#090a0f]/95 backdrop-blur-md z-50 flex items-center justify-center p-4">
+        <div class="bg-[#14171f] border border-[#262a36] rounded-2xl p-6 w-full max-w-md shadow-2xl space-y-5">
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-600/20 border border-purple-500/30 text-purple-400 flex items-center justify-center text-2xl shadow-lg">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h2 class="text-lg font-bold text-gray-100">Super Admin Portal</h2>
+                <p class="text-xs text-gray-400">Xác thực GitHub để quản lý phân quyền users.json</p>
+            </div>
 
-      <div class="space-y-3">
-        <div class="space-y-1">
-          <label class="text-[11px] font-semibold text-gray-400 uppercase">GitHub Owner / User</label>
-          <input type="text" id="auth-owner" placeholder="VD: pvincons"
-            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
+            <!-- KHUNG THÔNG BÁO LỖI TRỰC TIẾP TRÊN TAB ĐĂNG NHẬP -->
+            <div id="login-error-alert" class="hidden bg-rose-500/10 border border-rose-500/30 text-rose-300 rounded-xl p-3 text-xs flex items-start gap-2.5 animate-pulse">
+                <i class="fa-solid fa-circle-exclamation text-rose-400 text-sm mt-0.5 shrink-0"></i>
+                <div id="login-error-message" class="leading-relaxed"></div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="space-y-1">
+                    <label class="text-[11px] font-semibold text-gray-400 uppercase">GitHub Owner / User</label>
+                    <input type="text" id="auth-owner" placeholder="VD: pvincons"
+                        class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-xl px-3 py-2.5 text-xs text-gray-200 outline-none focus:border-purple-500 font-mono">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-semibold text-gray-400 uppercase">Repository Name</label>
+                    <input type="text" id="auth-repo" value="website" placeholder="VD: website"
+                        class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-xl px-3 py-2.5 text-xs text-gray-200 outline-none focus:border-purple-500 font-mono">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[11px] font-semibold text-gray-400 uppercase">Personal Access Token (PAT)</label>
+                    <input type="password" id="auth-token" placeholder="ghp_... hoặc github_pat_..."
+                        class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-xl px-3 py-2.5 text-xs text-gray-200 outline-none focus:border-purple-500 font-mono">
+                </div>
+            </div>
+
+            <button id="btn-login"
+                class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-purple-900/30 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-key text-xs"></i>
+                <span>Xác nhận & Vào Super Admin</span>
+            </button>
         </div>
-
-        <div class="space-y-1">
-          <label class="text-[11px] font-semibold text-gray-400 uppercase">Repository Name</label>
-          <input type="text" id="auth-repo" placeholder="VD: website"
-            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
-        </div>
-
-        <div class="space-y-1">
-          <label class="text-[11px] font-semibold text-gray-400 uppercase">Personal Access Token (PAT)</label>
-          <input type="password" id="auth-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-            class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-lg px-3 py-3 lg:py-2 text-xs text-gray-200 outline-none focus:border-rose-500 font-mono">
-        </div>
-      </div>
-
-      <button id="btn-login"
-        class="w-full bg-rose-600 hover:bg-rose-500 text-white font-semibold py-3 lg:py-2.5 rounded-lg text-xs transition shadow-lg shadow-rose-900/20 flex items-center justify-center gap-2">
-        <i class="fa-solid fa-key text-xs"></i>
-        <span>Xác nhận & Vào Admin Website</span>
-      </button>
     </div>
-  </div>
 
-  <!-- 2. MODAL THÔNG TIN BẢN QUYỀN / ABOUT -->
-  <div id="about-modal"
-    class="fixed inset-0 bg-[#090a0f]/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-[#14171f] border border-[#262a36] rounded-xl p-6 w-full max-w-md shadow-2xl space-y-4 relative">
-      <button id="btn-close-about" class="absolute top-4 right-4 text-gray-400 hover:text-white text-sm">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <div class="text-center space-y-2">
-        <img src="../assets/pic/LOGO_PVI.webp" alt="PV INCONS Logo"
-          class="mx-auto h-16 w-16 rounded-full object-cover border border-[#2a2e3d] shadow-lg shadow-rose-900/10">
-        <h3 class="text-base font-bold text-gray-100">PV INCONS Data Website</h3>
-        <p class="text-xs text-rose-500 font-mono font-semibold">Phiên bản ver: 1.5.1</p>
-      </div>
-      <div class="border-t border-[#222630] pt-3 text-xs text-gray-300 space-y-2 leading-relaxed">
-        <p><strong class="text-gray-100">Hệ thống quản trị dữ liệu Website</strong> - Mã nguồn được phát triển bởi<br>CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS.</p>
-        <p><i class="fa-solid fa-copyright text-rose-500 mr-1.5"></i><span class="font-semibold text-gray-200">2026 PV INCONS.</span> Tất cả các quyền được bảo lưu. Phần mềm quản trị dữ liệu website này được xây dựng độc
-            quyền phục vụ công tác vận hành nội bộ.</p>
-      </div>
-      <div class="pt-2">
-        <button id="btn-close-about-2"
-          class="w-full bg-[#222630] hover:bg-[#2c313f] text-gray-200 font-medium py-2 rounded-lg text-xs transition">
-          Đóng
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. MAIN WORKSPACE -->
-  <div id="admin-workspace" class="flex-1 flex flex-col hidden h-full overflow-hidden">
-
-    <!-- TOP HEADER -->
-    <header
-      class="border-b border-[#222630] bg-[#14171f] flex flex-col lg:flex-row items-center justify-between shrink-0 h-auto lg:h-12 py-2 lg:py-0 px-3 lg:px-4 gap-2 lg:gap-0">
-      
-      <!-- Left Actions -->
-      <div class="hidden lg:flex items-center gap-2.5">
-        <img src="../assets/pic/LOGO_PVI.webp" alt="PV INCONS Logo"
-          class="h-6 w-6 rounded-full object-cover border border-[#2a2e3d]">
-        <div class="flex items-center gap-2">
-          <span class="font-bold text-xs text-gray-200 tracking-wide">PV INCONS web</span>
-          <span class="font-medium text-xs text-gray-600 tracking-wide">Phiên bản: v1.5.1</span>
-        </div>
-        <button onclick="document.getElementById('about-modal').classList.remove('hidden')"
-          class="text-xs text-gray-400 hover:text-rose-500 transition ml-1 px-2 py-1 rounded bg-[#1c202b] border border-[#2a2e3d] flex items-center gap-1.5"
-          title="Bản quyền & Thông tin">
-          <i class="fa-solid fa-circle-info text-xs text-rose-500"></i>
-          <span class="text-[10px] font-medium text-gray-400">Thông tin</span>
-        </button>
-      </div>
-
-      <!-- Right Actions -->
-      <div
-        class="flex items-center justify-between lg:justify-end gap-2.5 w-full lg:w-auto order-1 lg:order-2 border-b lg:border-b-0 border-[#222630] pb-1.5 lg:pb-0">
-        <span class="text-[10px] sm:text-xs text-gray-400 font-mono flex items-center gap-1 shrink-0">
-          <i class="fa-brands fa-github text-xs text-gray-300"></i>
-          <span id="display-repo-info"
-            class="text-gray-200 font-semibold max-w-[110px] sm:max-w-max truncate">user/repo</span>
-        </span>
-
-        <div class="flex items-center gap-1.5">
-          <button id="btn-export-backup"
-            class="text-gray-300 hover:text-emerald-400 text-[10px] bg-[#1c202b] hover:bg-emerald-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono">
-            <i class="fa-solid fa-download text-xs"></i> <span>Backup</span>
-          </button>
-
-          <label
-            class="text-gray-300 hover:text-blue-400 text-[10px] bg-[#1c202b] hover:bg-blue-500/10 border border-[#2a2e3d] px-2 py-1 rounded transition flex items-center gap-1 font-mono cursor-pointer">
-            <i class="fa-solid fa-upload text-xs"></i> <span>Nhập JSON</span>
-            <input type="file" id="import-json-file" accept=".json" class="hidden">
-          </label>
-
-          <button id="btn-logout"
-            class="bg-[#222630] hover:bg-rose-600/20 hover:text-rose-500 text-gray-300 text-[10px] px-2 py-1 rounded transition flex items-center gap-1 font-medium whitespace-nowrap">
-            <i class="fa-solid fa-right-from-bracket text-xs"></i> <span>Đăng xuất</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Nav Tabs -->
-      <nav
-        class="flex items-center justify-center gap-1.5 overflow-x-auto no-scrollbar w-full lg:flex-1 order-2 lg:order-1 pt-1.5 lg:pt-0 pb-1 lg:pb-0"
-        id="sidebar-nav">
-        <button data-folder="news" data-title="Tin tức"
-          class="nav-tab active flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-          <i class="fa-solid fa-newspaper text-rose-500"></i>
-          <span class="hidden md:inline">Tin tức</span>
-          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded font-mono tab-count"
-            id="count-news">0</span>
-        </button>
-        <button data-folder="projects" data-title="Dự án"
-          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-          <i class="fa-solid fa-building text-rose-500"></i>
-          <span class="hidden md:inline">Dự án</span>
-          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded font-mono tab-count"
-            id="count-projects">0</span>
-        </button>
-        <button data-folder="services" data-title="Dịch vụ"
-          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-          <i class="fa-solid fa-layer-group text-rose-500"></i>
-          <span class="hidden md:inline">Dịch vụ</span>
-          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded font-mono tab-count"
-            id="count-services">0</span>
-        </button>
-        <button data-folder="investment" data-title="Quan hệ đầu tư"
-          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-          <i class="fa-solid fa-chart-line text-rose-500"></i>
-          <span class="hidden md:inline">Quan hệ đầu tư</span>
-          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded font-mono tab-count"
-            id="count-investment">0</span>
-        </button>
-        <button data-folder="hr" data-title="Chính sách nhân sự"
-          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
-          <i class="fa-solid fa-users text-rose-500"></i>
-          <span class="hidden md:inline">Chính sách nhân sự</span>
-          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded font-mono tab-count"
-            id="count-hr">0</span>
-        </button>
-      </nav>
-
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <div class="flex-1 flex flex-row overflow-x-auto lg:overflow-hidden snap-x snap-mandatory h-full no-scrollbar">
-
-      <!-- CỘT 1: DANH SÁCH BÀI VIẾT -->
-      <aside
-        class="w-full min-w-full lg:min-w-0 lg:w-80 h-full border-r border-[#222630] bg-[#12141c] flex flex-col shrink-0 snap-start">
-        <div class="h-12 px-3 border-b border-[#222630] bg-[#0f1117] flex items-center justify-between shrink-0">
-          <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
-            <i class="fa-solid fa-list text-rose-500"></i>
-            Bài viết: <span id="current-tab-label" class="text-rose-500">Tin tức</span>
-          </span>
-        </div>
-
-        <div class="p-2 border-b border-[#222630] bg-[#14171f] space-y-2 shrink-0">
-          <div
-            class="flex items-center justify-between gap-2 px-2 py-1.5 bg-[#0f1117] rounded-md border border-[#2a2e3d]">
-            <button id="btn-sync-github"
-              class="text-blue-400 hover:text-blue-300 text-[11px] font-medium flex items-center gap-1">
-              <i class="fa-solid fa-arrows-rotate text-xs"></i> Tải dữ liệu
-            </button>
-
-            <div class="flex items-center gap-1 text-[11px] text-gray-400">
-              <select id="sort-order"
-                class="bg-[#14171f] border border-[#2a2e3d] rounded px-1.5 py-1 lg:py-0.5 text-[10px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer font-mono">
-                <option value="date-desc">Ngày giảm dần</option>
-                <option value="id-desc">ID giảm dần</option>
-                <option value="id-asc">ID tăng dần</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="flex gap-2">
-            <select id="filter-category"
-              class="w-1/2 bg-[#0f1117] border border-[#2a2e3d] rounded-md px-2 py-1.5 lg:py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500 cursor-pointer">
-              <option value="">Tất cả Category</option>
-            </select>
-            <div class="relative w-1/2">
-              <input type="text" id="filter-search" placeholder="Lọc nhãn/tiêu đề..."
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] rounded-md pl-7 pr-2 py-1.5 lg:py-1 text-[11px] text-gray-300 outline-none focus:border-rose-500">
-              <i class="fa-solid fa-magnifying-glass text-gray-500 absolute left-2 top-2.5 lg:top-2 text-xs"></i>
-            </div>
-          </div>
-        </div>
-
-        <div id="posts-list-container" class="flex-1 overflow-y-auto p-2 space-y-1.5"></div>
-      </aside>
-
-      <!-- CỘT 2: FORM SOẠN THẢO BÀI VIẾT -->
-      <main
-        class="w-full min-w-full lg:min-w-0 lg:flex-1 h-full flex flex-col bg-[#14171f] border-r border-[#222630] shrink-0 lg:shrink snap-start overflow-y-auto">
-
-        <!-- Header Form -->
-        <div
-          class="p-3 lg:h-12 lg:px-6 border-b border-[#222630] flex flex-col xl:flex-row xl:items-center justify-between bg-[#12141c] shrink-0 gap-3 xl:gap-0">
-          <div class="flex flex-wrap items-center gap-2">
-            <i class="fa-solid fa-pen-to-square text-rose-500"></i>
-            <span id="form-title" class="font-semibold text-gray-200 text-sm">Soạn thảo [Tin tức]</span>
-            <span id="active-module-badge"
-              class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
-              posts-news.json
-            </span>
-            <span id="edit-status-badge"
-              class="hidden text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20 font-mono">
-              Sửa ID: #<span id="editing-id-text"></span>
-            </span>
-          </div>
-
-          <!-- Các nút thao tác form -->
-          <div class="flex flex-wrap items-center gap-2 w-full xl:w-auto justify-end">
-            <button id="btn-cancel-edit"
-              class="hidden px-2 py-1.5 text-[11px] text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded font-medium flex-1 lg:flex-none justify-center">
-              Hủy sửa
-            </button>
-            <button id="btn-reset"
-              class="px-2 py-1.5 text-[11px] text-gray-400 bg-[#222630] lg:bg-transparent rounded lg:rounded-none flex-1 lg:flex-none justify-center">
-              Làm mới
-            </button>
-            <button id="btn-add-to-list"
-              class="bg-blue-600 hover:bg-blue-500 text-white text-[11px] font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1.5 transition flex-1 lg:flex-none">
-              <i id="btn-add-icon" class="fa-solid fa-circle-plus text-xs"></i>
-              <span id="btn-add-text">Lưu list</span>
-            </button>
-            <button id="btn-publish-github"
-              class="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold px-3 py-1.5 rounded flex items-center justify-center gap-1.5 transition w-full lg:w-auto mt-1 lg:mt-0">
-              <i class="fa-solid fa-cloud-arrow-up text-xs"></i>
-              Xuất bản GitHub
-            </button>
-          </div>
-        </div>
-
-        <div class="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4">
-          <div class="grid grid-cols-1 xl:grid-cols-4 gap-3">
-            <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Mã ID (<code
-                  class="text-rose-500">id</code>)</label>
-              <input type="number" id="input-id" value="1" placeholder="Nhập mã ID số (VD: 1)"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 font-mono text-xs outline-none">
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Phân loại (<code
-                  class="text-rose-500">category</code>)</label>
-              <select id="select-category"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-2.5 py-2 text-gray-100 text-xs outline-none cursor-pointer">
-              </select>
-            </div>
-
-            <div id="wrapper-category-label" class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Nhãn Hiển Thị (<code
-                  class="text-rose-500">categoryLabel</code>)</label>
-              <input type="text" id="input-category-label" value="" placeholder="Nhập nhãn hiển thị (VD: Tin nổi bật)"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-300 font-mono text-xs outline-none">
-            </div>
-
-            <div id="wrapper-date-picker" class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Ngày đăng (<code
-                  class="text-rose-500">date</code>)</label>
-              <input type="date" id="input-date-picker" placeholder="Chọn ngày đăng"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-200 text-xs outline-none cursor-pointer">
-            </div>
-          </div>
-
-          <div class="border-t border-[#222630] pt-1"></div>
-
-          <div id="tab-detail-header" class="text-xs font-bold text-rose-500 uppercase tracking-wider">
-            THÔNG TIN CHI TIẾT TIN TỨC
-          </div>
-
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-gray-300">
-              <span id="title-field-label">Tiêu đề bài viết / Tên dịch vụ</span> (<code
-                class="text-rose-500">title</code>) <span class="text-rose-500">*</span>
-            </label>
-            <input type="text" id="input-title" placeholder="VD: Kỹ Sư Triển Khai BIM / Revit (Kiến Trúc & Kết Cấu)"
-              class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 outline-none transition text-sm">
-          </div>
-
-          <!-- DỰ ÁN (PROJECTS) -->
-          <div id="project-extra-fields" class="hidden space-y-3">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Mã Dự Án / Ký hiệu (<code
-                    class="text-rose-500">code</code>)</label>
-                <input type="text" id="input-code" placeholder="VD: PRJ-2026-01"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
-              </div>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Quy mô (<code
-                    class="text-rose-500">scale</code>)</label>
-                <input type="text" id="input-scale" placeholder="VD: 50.000 m2 - 25 tầng"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Chủ đầu tư (<code
-                    class="text-rose-500">client</code>)</label>
-                <input type="text" id="input-client" placeholder="VD: Tập đoàn PVN"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Địa điểm (<code
-                    class="text-rose-500">location</code>)</label>
-                <input type="text" id="input-location" placeholder="VD: Quận 1, TP. Hồ Chí Minh"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Thiết kế / Tổng thầu (<code
-                    class="text-rose-500">architect</code>)</label>
-                <input type="text" id="input-architect" placeholder="VD: PV INCONS / Partner"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-            </div>
-          </div>
-
-          <!-- DỊCH VỤ & QUAN HỆ ĐẦU TƯ (SERVICES & INVESTMENT) -->
-          <div id="service-extra-fields" class="hidden space-y-3">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Mã Dịch Vụ / Tài Liệu (<code
-                    class="text-rose-500">code</code>)</label>
-                <input type="text" id="input-service-code" placeholder="VD: SVC-DOC-01"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
-              </div>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Icon FontAwesome (<code
-                    class="text-rose-500">icon</code>)</label>
-                <select id="input-service-icon"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3 py-2 text-gray-100 text-xs outline-none cursor-pointer font-mono">
-                  <option value="fa-file-contract">📄 Hợp đồng / Văn bản</option>
-                  <option value="fa-stamp">📜 Nghị quyết / Quy chế</option>
-                  <option value="fa-file-signature">✍️ Thỏa thuận / Biên bản</option>
-                  <option value="fa-circle-question">❓ RFI / RFA / RFQ</option>
-                  <option value="fa-tag">🏷️ Báo giá / Phụ lục</option>
-                  <option value="fa-list-check">📋 Liệt kê / Danh mục</option>
-                  <option value="fa-box-archive">📦 Phiếu giao / Phiếu nhận</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- CHÍNH SÁCH NHÂN SỰ / TUYỂN DỤNG (HR) -->
-          <div id="hr-extra-fields" class="hidden space-y-3">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Hình thức làm việc (<code
-                    class="text-rose-500">type</code>)</label>
-                <input type="text" id="input-hr-type" placeholder="VD: Toàn thời gian"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Hạn nộp hồ sơ (<code
-                    class="text-rose-500">deadline</code>)</label>
-                <input type="text" id="input-hr-deadline" placeholder="VD: Hạn nộp: Đang tuyển"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Địa điểm làm việc (<code
-                    class="text-rose-500">location</code>)</label>
-                <input type="text" id="input-hr-location" placeholder="VD: Cần Thơ / TP.HCM"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Mức lương (<code
-                    class="text-rose-500">salary</code>)</label>
-                <input type="text" id="input-hr-salary" placeholder="VD: Lương: Thỏa thuận theo năng lực"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-semibold text-gray-300">Số lượng tuyển (<code
-                    class="text-rose-500">quantity</code>)</label>
-                <input type="text" id="input-hr-quantity" placeholder="VD: Số lượng: 01 Nhân viên"
-                  class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 text-xs outline-none">
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Yêu cầu công việc (<code
-                  class="text-rose-500">requirement</code>)</label>
-              <textarea id="input-hr-requirement" rows="2"
-                placeholder="Nhập các yêu cầu về bằng cấp, kĩ năng, kinh nghiệm chuyên môn..."
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-xs"></textarea>
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Liên kết / Mail ứng tuyển (<code
-                  class="text-rose-500">applyLink</code>)</label>
-              <input type="text" id="input-hr-applyLink" placeholder="VD: mailto:workspace.pvi@gmail.com"
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg px-3.5 py-2 text-gray-100 font-mono text-xs outline-none">
-            </div>
-          </div>
-
-          <!-- TRƯỜNG CHUNG NEWS, PROJECTS, SERVICES, INVESTMENT -->
-          <div id="standard-common-fields" class="space-y-3">
-            <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code
-                  class="text-rose-500">summary</code>)</label>
-              <textarea id="input-summary" rows="3" placeholder="VD: Tóm tắt nội dung chính hoặc đơn giá tham khảo..."
-                class="w-full bg-[#0f1117] border border-[#2a2e3d] focus:border-rose-500 rounded-lg p-3 text-gray-100 outline-none transition text-sm"></textarea>
-            </div>
-
-            <!-- KÉO THẢ DÀNH CHO HÌNH ẢNH (ẨN KHI Ở TAB DỊCH VỤ & QUAN HỆ ĐẦU TƯ) -->
-            <div id="wrapper-image-field" class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code
-                  class="text-rose-500">image</code>)</label>
-              <div id="drop-zone-image"
-                class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
-                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-500 transition">
-                  <i class="fa-solid fa-file-image text-rose-500 text-sm shrink-0"></i>
-                  <span>Kéo & thả file ảnh / URL vào đây (Tự động lưu vào /database)</span>
+    <!-- 2. MAIN WORKSPACE -->
+    <div id="admin-workspace" class="hidden flex-1 flex flex-col justify-between">
+      <div>
+        <!-- HEADER ADMIN -->
+        <header class="flex flex-wrap items-center justify-between gap-4 mb-6 md:mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/30 text-purple-400 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-user-shield"></i>
                 </div>
-                <input type="text" id="input-image"
-                  placeholder="Dán URL hình ảnh hoặc kéo thả file vào đây (Tự động lưu vào /database)"
-                  class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
-              </div>
-            </div>
-
-            <!-- KÉO THẢ FILE HTML/PDF TỰ ĐỘNG LƯU VÀO /database -->
-            <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML /file PDF/ Chi tiết (<code
-                  class="text-rose-500">link</code>)</label>
-              <div id="drop-zone-link"
-                class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
-                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-500 transition">
-                  <i class="fa-solid fa-file-arrow-up text-rose-500 text-sm shrink-0"></i>
-                  <span>Kéo & thả file HTML / PDF vào đây (Tự động lưu vào /database)</span>
+                <div>
+                    <h1 class="font-extrabold text-white text-base sm:text-lg tracking-wider flex items-center gap-2">
+                        SUPER ADMIN PORTAL <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30">ROOT</span>
+                    </h1>
+                    <p class="text-[11px] sm:text-xs text-slate-400">Quản lý tài khoản, phân quyền & đồng bộ users.json</p>
                 </div>
-                <input type="text" id="input-link"
-                  placeholder="Dán đường dẫn (database/doc_001.pdf) hoặc kéo thả file vào đây"
-                  class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
-              </div>
             </div>
 
-            <!-- KÉO THẢ FILE EYELINK TỰ ĐỘNG LƯU VÀO /database (CHỈ HIỂN THỊ TRONG TAB DỊCH VỤ) -->
-            <div id="wrapper-eyelink-field" class="space-y-1.5 hidden">
-              <label class="block text-xs font-semibold text-gray-300">Đường dẫn EyeLink (<code
-                  class="text-rose-500">eyelink</code>)</label>
-              <div id="drop-zone-eyelink"
-                class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
-                <div class="flex items-center gap-2 text-xs text-gray-400 group-hover:text-rose-500 transition">
-                  <i class="fa-solid fa-file-arrow-up text-rose-500 text-sm shrink-0"></i>
-                  <span>Kéo & thả file HTML / PDF vào đây (Tự động lưu vào /database)</span>
-                </div>
-                <input type="text" id="input-eyelink"
-                  placeholder="Dán đường dẫn (database/doc_001.pdf) hoặc kéo thả file vào đây"
-                  class="w-full bg-[#14171f] border border-[#2a2e3d] focus:border-rose-500 rounded-md px-3 py-2 text-gray-100 outline-none transition text-xs font-mono">
-              </div>
-            </div>
-          </div>
-
-          <!-- KHUNG PREVIEW BÀI VIẾT THỰC TẾ (LIVE PREVIEW) -->
-          <div class="space-y-2 border-t border-[#222630] pt-4 mt-2">
-            <div class="flex items-center justify-between">
-              <label class="block text-xs font-semibold text-rose-500 flex items-center gap-2">
-                <span class="relative flex h-2 w-2">
-                  <span
-                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                <span class="text-[10px] sm:text-xs text-slate-400 font-mono flex items-center gap-1 shrink-0 bg-slate-900 px-2.5 py-1.5 rounded-xl border border-slate-800">
+                    <i class="fa-brands fa-github text-xs text-slate-300"></i>
+                    <span id="display-repo-info" class="text-purple-300 font-semibold">pvincons/website</span>
                 </span>
-                XEM TRƯỚC
-              </label>
-              <span class="text-[10px] text-gray-500 font-mono">Website Mockup</span>
+                <button id="btn-logout" class="px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 text-xs font-bold transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                </button>
+            </div>
+        </header>
+
+        <!-- THỐNG KÊ TỔNG QUAN -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 md:mb-8">
+            <div class="glass-card p-4 sm:p-5 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase">TỔNG TÀI KHOẢN</p>
+                    <p id="stat-total" class="text-xl sm:text-2xl font-black text-white mt-1">0</p>
+                </div>
+                <div class="text-blue-400 text-xl sm:text-2xl"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="glass-card p-4 sm:p-5 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase">HOẠT ĐỘNG (ACTIVE)</p>
+                    <p id="stat-active" class="text-xl sm:text-2xl font-black text-emerald-400 mt-1">0</p>
+                </div>
+                <div class="text-emerald-400 text-xl sm:text-2xl"><i class="fa-solid fa-user-check"></i></div>
+            </div>
+            <div class="glass-card p-4 sm:p-5 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase">KHÓA (INACTIVE)</p>
+                    <p id="stat-inactive" class="text-xl sm:text-2xl font-black text-amber-400 mt-1">0</p>
+                </div>
+                <div class="text-amber-400 text-xl sm:text-2xl"><i class="fa-solid fa-user-slash"></i></div>
+            </div>
+            <div class="glass-card p-4 sm:p-5 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase">HỆ THỐNG GITHUB</p>
+                    <p class="text-[11px] sm:text-xs font-bold text-emerald-400 mt-2 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> API CONNECTED
+                    </p>
+                </div>
+                <div class="text-emerald-400 text-xl sm:text-2xl"><i class="fa-solid fa-cloud"></i></div>
+            </div>
+        </div>
+
+        <!-- THƯ MỤC 1: ĐIỀU HƯỚNG TRỰC TIẾP -->
+        <div class="glass-card p-4 sm:p-6 rounded-3xl mb-6 md:mb-8">
+            <h2 class="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                <i class="fa-solid fa-compass text-blue-400"></i> ĐIỀU HƯỚNG TRỰC TIẾP WORKSPACE
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <a href="../content/partner/index.html" class="workspace-card p-3.5 sm:p-4 rounded-2xl flex items-center justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-400 flex items-center justify-center text-base shrink-0">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-orange-300 transition-colors">CRM Khách Hàng</h3>
+                            <p class="text-[10px] text-slate-400 font-mono mt-0.5">content/partner/index.html</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-orange-400 group-hover:translate-x-1 transition-all"></i>
+                </a>
+
+                <a href="../content/internal/index.html" class="workspace-card p-3.5 sm:p-4 rounded-2xl flex items-center justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-base shrink-0">
+                            <i class="fa-solid fa-folder-closed"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-emerald-300 transition-colors">Quản Lý Nội Bộ</h3>
+                            <p class="text-[10px] text-slate-400 font-mono mt-0.5">content/internal/index.html</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
+                </a>
+
+                <a href="../content/bim-vdc/index.html" class="workspace-card p-3.5 sm:p-4 rounded-2xl flex items-center justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center text-base shrink-0">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-blue-300 transition-colors">BIM - VDC CDE</h3>
+                            <p class="text-[10px] text-slate-400 font-mono mt-0.5">content/bim-vdc/index.html</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all"></i>
+                </a>
+
+                <a href="../content/cms/index.html" class="workspace-card p-3.5 sm:p-4 rounded-2xl flex items-center justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center text-base shrink-0">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-purple-300 transition-colors">Quản Trị Thông Báo</h3>
+                            <p class="text-[10px] text-slate-400 font-mono mt-0.5">content/cms/index.html</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-purple-400 group-hover:translate-x-1 transition-all"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- THƯ MỤC 2: QUẢN LÝ TÀI KHOẢN USERS.JSON & BỘ LỌC -->
+        <div class="glass-card p-4 sm:p-6 rounded-3xl">
+            <div class="flex flex-col gap-4 mb-6">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-sm font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-database text-yellow-400"></i> Danh Sách Tài Khoản <span class="font-mono text-xs text-purple-300 hidden sm:inline">( backend/assets/data/users.json )</span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1 hidden sm:block">Hệ thống lọc nâng cao theo Chức vụ, Vai trò, Công ty, Trạng thái & Sắp xếp</p>
+                    </div>
+                    
+                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        <button id="btn-sync-github" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-blue-400 border border-slate-700 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5 shadow">
+                            <i class="fa-solid fa-arrows-rotate"></i> Tải dữ liệu
+                        </button>
+                        <button id="btn-publish-github" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all flex items-center gap-1.5 shadow">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Xuất bản GitHub
+                        </button>
+                        <button onclick="openAddModal()" class="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Thêm
+                        </button>
+                    </div>
+                </div>
+
+                <!-- THANH BỘ LỌC VÀ SẮP XẾP -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-2 border-t border-white/10">
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-500 text-xs"></i>
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm tên, user..." onkeyup="applyFiltersAndSort()" class="w-full bg-slate-900 border border-slate-700 text-xs pl-8 pr-3 py-2.5 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-purple-400">
+                    </div>
+                    <select id="filterPosition" onchange="applyFiltersAndSort()" class="bg-slate-900 border border-slate-700 text-xs px-3 py-2.5 rounded-xl text-white focus:outline-none focus:border-purple-400">
+                        <option value="">-- Tất cả Chức vụ --</option>
+                    </select>
+                    <select id="filterRole" onchange="applyFiltersAndSort()" class="bg-slate-900 border border-slate-700 text-xs px-3 py-2.5 rounded-xl text-white focus:outline-none focus:border-purple-400">
+                        <option value="">-- Tất cả Vai trò --</option>
+                    </select>
+                    <select id="filterCompany" onchange="applyFiltersAndSort()" class="bg-slate-900 border border-slate-700 text-xs px-3 py-2.5 rounded-xl text-white focus:outline-none focus:border-purple-400">
+                        <option value="">-- Tất cả Công ty --</option>
+                    </select>
+                    <select id="filterStatus" onchange="applyFiltersAndSort()" class="bg-slate-900 border border-slate-700 text-xs px-3 py-2.5 rounded-xl text-white focus:outline-none focus:border-purple-400">
+                        <option value="">-- Trạng thái --</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                    <select id="sortSelect" onchange="applyFiltersAndSort()" class="bg-slate-900 border border-purple-500/50 text-purple-300 font-bold text-xs px-3 py-2.5 rounded-xl focus:outline-none focus:border-purple-400">
+                        <option value="id-asc">ID: Tăng dần (1 ➔ n)</option>
+                        <option value="id-desc">ID: Giảm dần (n ➔ 1)</option>
+                        <option value="name-asc">Tên: A ➔ Z</option>
+                        <option value="name-desc">Tên: Z ➔ A</option>
+                    </select>
+                </div>
             </div>
 
-            <!-- Container thẻ mô phỏng -->
-            <div id="live-preview-box"
-              class="bg-[#0b0c10] border border-[#262a36] rounded-xl p-3 sm:p-4 shadow-2xl transition-all">
+            <!-- BẢNG TÀI KHOẢN - DESKTOP VIEW -->
+            <div class="hidden md:block overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-white/10 text-slate-400 uppercase font-semibold">
+                            <th class="pb-3 px-3">Tài Khoản</th>
+                            <th class="pb-3 px-3">Họ Tên & Liên Hệ</th>
+                            <th class="pb-3 px-3">Chức Vụ</th>
+                            <th class="pb-3 px-3">Vai Trò (Role)</th>
+                            <th class="pb-3 px-3">Quyền Hạn (Permission)</th>
+                            <th class="pb-3 px-3">Công Ty</th>
+                            <th class="pb-3 px-3">Dự Án Tham Gia</th>
+                            <th class="pb-3 px-3">Trạng Thái</th>
+                            <th class="pb-3 px-3 text-right">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody" class="divide-y divide-white/5 font-medium"></tbody>
+                </table>
             </div>
-          </div>
 
+            <!-- DANH SÁCH DẠNG CARD - MOBILE & TABLET VIEW -->
+            <div id="userCardList" class="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
         </div>
-      </main>
+      </div>
 
-      <!-- CỘT 3: PREVIEW JSON -->
-      <aside class="w-full min-w-full lg:min-w-0 lg:w-96 h-full bg-[#0c0d12] flex flex-col shrink-0 snap-start">
-        <div class="h-12 border-b border-[#222630] px-3 flex items-center justify-between bg-[#12141c] shrink-0">
-          <div class="flex items-center gap-2 text-xs font-semibold text-gray-300 font-mono truncate">
-            <i class="fa-solid fa-code text-emerald-400 shrink-0"></i>
-            <span id="json-header-filename" class="truncate">content/posts-news.json</span>
-          </div>
-          <button id="btn-copy"
-            class="text-[11px] bg-[#1e222d] px-2 py-1 rounded text-rose-500 hover:text-white flex items-center gap-1 font-mono transition">
-            <i class="fa-solid fa-copy text-xs"></i> Copy
-          </button>
-        </div>
-
-        <div id="json-output-container" class="flex-1 p-4 overflow-y-auto font-mono text-xs"></div>
-
-        <div
-          class="p-3 border-t border-[#222630] bg-[#12141c] text-[10px] sm:text-[11px] text-gray-500 flex justify-between items-center font-mono">
-          <span>Tác giả: Ks. Trần Hoàng Phước</span>
-          <span class="text-emerald-500">Mảng JSON Tab Hiện Tại</span>
-        </div>
-      </aside>
-
+      <footer class="mt-8 text-center text-xs text-slate-500">
+          &copy; 2026 PV INCONS Enterprise Workspace. GitHub Path: <span class="font-mono text-purple-400">backend/assets/data/users.json</span>
+      </footer>
     </div>
-  </div>
 
-  <script>
-    const CATEGORIES = {
-      news: [
-        { value: 'tin-noi-bat', label: 'Tin nổi bật' },
-        { value: 'cong-ty', label: 'Công ty' },
-        { value: 'khach-hang-bao-chi', label: 'Khách hàng & báo chí' },
-        { value: 'chuyen-gia', label: 'Chuyên gia' },
-        { value: 'thi-truong', label: 'Thị trường' },
-        { value: 'phap-luat', label: 'Pháp luật' },
-      ],
-      projects: [
-        { value: 'dang-trien-khai', label: 'Đang triển khai' },
-        { value: 'da-hoan-thanh', label: 'Đã hoàn thành' },
-        { value: 'moi-nha-dau-tu', label: 'Danh sách mời nhà đầu tư' }
-      ],
-      services: [
-        { value: 'pricing', label: 'Bảng giá dịch vụ' },
-        { value: 'documents', label: 'Tài liệu mẫu' }
-      ],
-      investment: [
-        { value: 'tai-chinh-cong-ty', label: 'Tài chính công ty' },
-        { value: 'quan-he-co-dong', label: 'Quan hệ cổ đông' }
-      ],
-      hr: [
-        { value: 'tuyen-dung', label: 'Tuyển dụng' },
-        { value: 'chinh-sach', label: 'Chính sách' }
-      ]
-    };
+    <!-- MODAL EDIT / ADD USER -->
+    <div id="userModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4 z-50">
+        <div class="glass-card max-w-2xl w-full p-5 sm:p-6 rounded-3xl border border-white/20 max-h-[92vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modalTitle" class="text-sm font-bold text-white uppercase flex items-center gap-2">
+                    <i class="fa-solid fa-user-pen text-purple-400"></i> Chỉnh Sửa Người Dùng
+                </h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-lg p-1"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="userForm" onsubmit="saveUser(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
+                <input type="hidden" id="userId">
+                
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Username <span class="text-red-400">*</span></label>
+                    <input type="text" id="formUsername" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                </div>
 
-    // 3. Security Notes: Load & Save thông tin mã hóa nhẹ qua base64
-    function loadAuth() {
-      try {
-        const val = localStorage.getItem('pv_github_auth');
-        if (!val) return null;
-        if (val.trim().startsWith('{')) {
-          const parsed = JSON.parse(val);
-          localStorage.setItem('pv_github_auth', btoa(JSON.stringify(parsed)));
-          return parsed;
-        }
-        return JSON.parse(atob(val));
-      } catch (e) {
-        return null;
-      }
-    }
-    let authConfig = loadAuth();
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Mật Khẩu Ban Đầu (Gốc)</label>
+                    <input type="text" id="formRawPassword" placeholder="Nhập mật khẩu mới (nếu muốn đổi)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400 placeholder:text-slate-600">
+                    <p class="text-[10px] text-slate-500 mt-1">* Hệ thống tự mã hóa Hash khi lưu vào JSON</p>
+                </div>
 
-    // Chuẩn hóa & đồng bộ ngày tháng
-    function formatDateToDDMMYYYY(dateStr) {
-      if (!dateStr || typeof dateStr !== 'string') {
-        const today = new Date();
-        return `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
-      }
-      dateStr = dateStr.trim();
-      if (!dateStr) {
-        const today = new Date();
-        return `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
-      }
-      if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
-        let [day, month, year] = dateStr.split('/');
-        return `${day.padStart(2, '0')}/${month.padStart(2, '0')}/${year}`;
-      }
-      if (/^\d{4}-\d{1,2}-\d{1,2}$/.test(dateStr)) {
-        const [year, month, day] = dateStr.split('-');
-        return `${day.padStart(2, '0')}/${month.padStart(2, '0')}/${year}`;
-      }
-      const d = new Date(dateStr);
-      if (!isNaN(d.getTime())) {
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        const year = d.getFullYear();
-        return `${day}/${month}/${year}`;
-      }
-      return dateStr;
-    }
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Họ và Tên (fullName) <span class="text-red-400">*</span></label>
+                    <input type="text" id="formFullName" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                </div>
 
-    function parseDateForPicker(dateStr) {
-      if (!dateStr || typeof dateStr !== 'string') return new Date().toISOString().split('T')[0];
-      dateStr = dateStr.trim();
-      if (!dateStr) return new Date().toISOString().split('T')[0];
-      if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
-        let [day, month, year] = dateStr.split('/');
-        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-      }
-      if (/^\d{4}-\d{1,2}-\d{1,2}$/.test(dateStr)) {
-        let [year, month, day] = dateStr.split('-');
-        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-      }
-      const d = new Date(dateStr);
-      if (!isNaN(d.getTime())) {
-        return d.toISOString().split('T')[0];
-      }
-      return new Date().toISOString().split('T')[0];
-    }
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Số điện thoại (phone)</label>
+                    <input type="text" id="formPhone" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                </div>
 
-    function parseDateToTimestamp(dateStr) {
-      if (!dateStr || typeof dateStr !== 'string') return 0;
-      dateStr = dateStr.trim();
-      if (!dateStr) return 0;
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Chức vụ (position)</label>
+                    <input type="text" id="formPosition" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                </div>
 
-      if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateStr)) {
-        const [day, month, year] = dateStr.split('/');
-        const time = new Date(`${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}T00:00:00`).getTime();
-        return isNaN(time) ? 0 : time;
-      }
-      if (/^\d{4}-\d{1,2}-\d{1,2}$/.test(dateStr)) {
-        const time = new Date(`${dateStr}T00:00:00`).getTime();
-        return isNaN(time) ? 0 : time;
-      }
-      const time = new Date(dateStr).getTime();
-      return isNaN(time) ? 0 : time;
-    }
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Chuyên môn (discipline)</label>
+                    <input type="text" id="formDiscipline" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                </div>
 
-    // Hàm tự động cấp ID nhỏ nhất còn thiếu
-    function getSmallestMissingId(posts, ignoreId = null) {
-      const usedIds = new Set(
-        posts
-          .filter(p => p.id !== ignoreId && typeof p.id === 'number' && !isNaN(p.id))
-          .map(p => p.id)
-      );
-      let candidate = 1;
-      while (usedIds.has(candidate)) {
-        candidate++;
-      }
-      return candidate;
-    }
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Vai trò (Role)</label>
+                    <select id="formRole" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="MASTER">MASTER</option>
+                        <option value="DESIGNER">DESIGNER</option>
+                        <option value="MANAGEMENT">MANAGEMENT</option>
+                        <option value="CONTRACTOR">CONTRACTOR</option>
+                        <option value="INTERNAL">INTERNAL</option>
+                    </select>
+                </div>
 
-    function getDbStorageKey() {
-      if (authConfig && authConfig.owner && authConfig.repo) {
-        return `pv_studio_db_${authConfig.owner}_${authConfig.repo}`;
-      }
-      return 'pv_studio_db_default';
-    }
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Quyền hạn (Permission)</label>
+                    <select id="formPermission" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="MASTER">MASTER</option>
+                        <option value="DESIGNER">DESIGNER</option>
+                        <option value="MANAGEMENT">MANAGEMENT</option>
+                        <option value="CONTRACTOR">CONTRACTOR</option>
+                        <option value="INTERNAL">INTERNAL</option>
+                    </select>
+                </div>
 
-    // Tự động chuẩn hóa ép kiểu ID dạng số (Number) khi load
-    function loadLocalDB() {
-      const key = getDbStorageKey();
-      const raw = JSON.parse(localStorage.getItem(key)) || { news: [], projects: [], services: [], investment: [], hr: [] };
-      Object.keys(raw).forEach(k => {
-        if (Array.isArray(raw[k])) {
-          raw[k] = raw[k].map(item => ({
-            ...item,
-            id: Number(item.id) || item.id
-          }));
-        }
-      });
-      return raw;
-    }
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Công ty (company)</label>
+                    <input type="text" id="formCompany" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                </div>
 
-    function saveLocalDB() {
-      const key = getDbStorageKey();
-      localStorage.setItem(key, JSON.stringify(db));
-    }
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold">Trạng thái (status)</label>
+                    <select id="formStatus" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                        <option value="Active">Active (Hoạt động)</option>
+                        <option value="Inactive">Inactive (Khóa/Tạm dừng)</option>
+                    </select>
+                </div>
 
-    let db = loadLocalDB();
+                <div class="sm:col-span-2">
+                    <label class="block text-slate-400 mb-1 font-semibold">Dự án tham gia (projects - phân tách bằng dấu phẩy)</label>
+                    <input type="text" id="formProjects" placeholder="VD: Project_01, Project_02" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400">
+                </div>
 
-    let currentFolder = "news";
-    let currentTitle = "Tin tức";
-    let editingPostId = null;
-    let currentFilteredPosts = [];
-    
-    // 2.1 Lỗi kiểm tra Form bị thay đổi (isFormDirty)
-    let isFormDirtyFlag = false;
+                <div class="sm:col-span-2 flex justify-end gap-3 mt-4 pt-3 border-t border-white/10">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-bold">Hủy</button>
+                    <button type="submit" class="px-5 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-bold shadow-lg">Lưu Thay Đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    function escapeHtml(str) {
-      if (str === null || str === undefined) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
+    <script>
+        let usersData = [];
 
-    function utf8_to_b64(str) {
-      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
-    }
-
-    function b64_to_utf8(str) {
-      return decodeURIComponent(Array.prototype.map.call(atob(str.replace(/\s/g, '')), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-    }
-
-    function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const result = reader.result;
-          const base64 = result.split(',')[1];
-          resolve(base64);
-        };
-        reader.onerror = error => reject(error);
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function showToast(message, type = 'success') {
-      const toastContainer = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      const isSuccess = type === 'success';
-      const isError = type === 'error';
-      const bgColor = isSuccess ? 'bg-[#14231e]' : isError ? 'bg-[#2a171a]' : 'bg-[#1e2330]';
-      const borderColor = isSuccess ? 'border-emerald-500/50' : isError ? 'border-rose-500/50' : 'border-blue-500/50';
-      const textColor = isSuccess ? 'text-emerald-300' : isError ? 'text-rose-300' : 'text-blue-300';
-      const iconClass = isSuccess ? 'fa-circle-check' : isError ? 'fa-circle-exclamation' : 'fa-circle-info';
-
-      toast.className = `toast-animate border ${borderColor} ${bgColor} ${textColor} p-3 rounded-lg shadow-xl flex items-center gap-2.5 text-xs font-medium pointer-events-auto`;
-      toast.innerHTML = `<i class="fa-solid ${iconClass} shrink-0 text-sm"></i><span>${escapeHtml(message)}</span>`;
-      toastContainer.appendChild(toast);
-      setTimeout(() => { toast.remove(); }, 3500);
-    }
-
-    document.getElementById('btn-close-about').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
-    document.getElementById('btn-close-about-2').addEventListener('click', () => document.getElementById('about-modal').classList.add('hidden'));
-
-    if (authConfig) {
-      document.getElementById('login-modal').classList.add('hidden');
-      document.getElementById('admin-workspace').classList.remove('hidden');
-      document.getElementById('display-repo-info').innerText = `${authConfig.owner}/${authConfig.repo}`;
-    }
-
-    // ĐÃ CẬP NHẬT: Kiểm tra tính hợp lệ qua GitHub API trước khi cho phép đăng nhập
-    document.getElementById('btn-login').addEventListener('click', async () => {
-      const owner = document.getElementById('auth-owner').value.trim();
-      const repo = document.getElementById('auth-repo').value.trim();
-      const token = document.getElementById('auth-token').value.trim();
-      
-      if (!owner || !repo || !token) {
-        showToast('Vui lòng điền đầy đủ thông tin xác thực GitHub', 'error');
-        return;
-      }
-
-      const btnLogin = document.getElementById('btn-login');
-      btnLogin.disabled = true;
-      btnLogin.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-xs"></i> <span>Đang xác thực với GitHub...</span>`;
-
-      try {
-        const testUrl = `https://api.github.com/repos/${owner}/${repo}`;
-        const response = await fetch(testUrl, {
-          headers: {
-            'Authorization': `token ${token}`,
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        });
-
-        if (!response.ok) {
-          if (response.status === 401) {
-            throw new Error('Mã Personal Access Token (PAT) không hợp lệ hoặc đã hết hạn!');
-          } else if (response.status === 404) {
-            throw new Error('Không tìm thấy Repository hoặc Owner tương ứng trên GitHub!');
-          } else if (response.status === 403 || response.status === 429) {
-            throw new Error('Vượt quá giới hạn API GitHub hoặc Token thiếu quyền truy cập (repo scope)!');
-          } else {
-            throw new Error(`Xác thực thất bại (Lỗi HTTP ${response.status})`);
-          }
-        }
-
-        authConfig = { owner, repo, token };
-        localStorage.setItem('pv_github_auth', btoa(JSON.stringify(authConfig)));
-        db = loadLocalDB();
-        
-        document.getElementById('login-modal').classList.add('hidden');
-        document.getElementById('admin-workspace').classList.remove('hidden');
-        document.getElementById('display-repo-info').innerText = `${owner}/${repo}`;
-        
-        showToast('Xác thực GitHub thành công!');
-        updateTabCounts();
-        renderPostsList();
-      } catch (err) {
-        console.error('Lỗi đăng nhập:', err);
-        showToast(err.message || 'Thông tin xác thực không chính xác!', 'error');
-      } finally {
-        btnLogin.disabled = false;
-        btnLogin.innerHTML = `<i class="fa-solid fa-key text-xs"></i><span>Xác nhận & Vào Admin Website</span>`;
-      }
-    });
-
-    document.getElementById('btn-logout').addEventListener('click', () => {
-      localStorage.removeItem('pv_github_auth');
-      location.reload();
-    });
-
-    // Hàm tải file trực tiếp lên thư mục /database trong Repository GitHub
-    async function uploadFileToDatabase(file, targetPath) {
-      if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
-        showToast(`Đã chọn tệp: ${file.name}. (Vui lòng đăng nhập GitHub để tự động đồng bộ lên /database)`, 'info');
-        return;
-      }
-
-      // 2.3. Lỗi kích thước tệp
-      const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB cho API base64 GitHub
-      if (file.size > MAX_FILE_SIZE) {
-        showToast(`Lỗi: Kích thước tệp ${file.name} quá lớn (>25MB). GitHub API không hỗ trợ.`, 'error');
-        return;
-      }
-
-      showToast(`Đang tải tệp ${file.name} lên thư mục /database...`, 'info');
-
-      try {
-        const base64Content = await fileToBase64(file);
-        const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${targetPath}`;
-
-        // 1.4. Lỗi Race Condition (Xung đột dữ liệu) & Lỗi Rate Limit
-        let maxRetries = 2;
-        let attempt = 0;
-        let success = false;
-        let isOverwrite = false;
-
-        while (attempt < maxRetries && !success) {
-          attempt++;
-          let sha = null;
-          
-          const checkRes = await fetch(url, {
-            headers: {
-              'Authorization': `token ${authConfig.token}`,
-              'Accept': 'application/vnd.github.v3+json'
+        function showLoginError(msg) {
+            const alertBox = document.getElementById('login-error-alert');
+            const msgBox = document.getElementById('login-error-message');
+            if (alertBox && msgBox) {
+                msgBox.innerText = msg;
+                alertBox.classList.remove('hidden');
             }
-          });
-
-          if (checkRes.ok) {
-            const existingData = await checkRes.json();
-            sha = existingData.sha;
-            isOverwrite = true;
-            if (attempt === 1) showToast(`CẢNH BÁO: Tệp "${file.name}" đã tồn tại. Đang tiến hành ghi đè!`, 'error');
-          } else if (checkRes.status === 403 || checkRes.status === 429) {
-            throw new Error('Vượt quá giới hạn API của GitHub (Rate Limit). Vui lòng thử lại sau.');
-          }
-
-          const putRes = await fetch(url, {
-            method: 'PUT',
-            headers: {
-              'Authorization': `token ${authConfig.token}`,
-              'Content-Type': 'application/json',
-              'Accept': 'application/vnd.github.v3+json'
-            },
-            body: JSON.stringify({
-              message: `Upload ${file.name} to /database via PV INCONS Admin`,
-              content: base64Content,
-              sha: sha || undefined
-            })
-          });
-
-          if (putRes.status === 409) {
-            if (attempt >= maxRetries) throw new Error('Lỗi xung đột dữ liệu (Race Condition). Vui lòng thử tải lại tệp.');
-            continue; // Retry fetch latest SHA
-          } else if (putRes.status === 403 || putRes.status === 429) {
-            throw new Error('Vượt quá giới hạn API của GitHub (Rate Limit). Vui lòng thử lại sau.');
-          } else if (!putRes.ok) {
-            const errData = await putRes.json();
-            throw new Error(errData.message || `HTTP ${putRes.status}`);
-          }
-          success = true;
         }
 
-        if (isOverwrite) {
-          showToast(`Đã GHI ĐÈ thành công tệp ${file.name} vào /database!`, 'success');
-        } else {
-          showToast(`Đã lưu tệp ${file.name} thành công vào /database!`, 'success');
-        }
-      } catch (err) {
-        console.error('Lỗi khi tải tệp lên /database:', err);
-        showToast(`Lỗi lưu tệp: ${err.message}`, 'error');
-      }
-    }
-
-    // CỬA SỔ KÉO THẢ FILE: Lấy đúng đường dẫn URL / Tên file theo Prefix & Tự động upload nếu vào /database
-    function setupDragAndDrop(dropZoneId, inputId, defaultPathPrefix = '') {
-      const dropZone = document.getElementById(dropZoneId);
-      const input = document.getElementById(inputId);
-
-      if (!dropZone || !input) return;
-
-      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }, false);
-      });
-
-      ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener('dragenter', () => {
-          dropZone.classList.add('border-rose-500', 'bg-rose-500/10');
-        }, false);
-      });
-
-      ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener('dragleave', () => {
-          dropZone.classList.remove('border-rose-500', 'bg-rose-500/10');
-        }, false);
-      });
-
-      dropZone.addEventListener('drop', async (e) => {
-        dropZone.classList.remove('border-rose-500', 'bg-rose-500/10');
-        const dt = e.dataTransfer;
-        const files = dt.files;
-        
-        // 2.2. Lỗi kéo thả nhiều file cùng lúc
-        if (files && files.length > 0) {
-          if (files.length > 1) {
-            showToast('Cảnh báo: Chỉ xử lý tệp đầu tiên cho ô nhập liệu này.', 'info');
-          }
-          
-          const file = files[0];
-          const targetPath = (defaultPathPrefix ? defaultPathPrefix : '') + file.name;
-          
-          input.value = targetPath;
-          isFormDirtyFlag = true;
-
-          // Nếu kéo thả vào trường có prefix 'database/' -> Tự động upload & ghi đè lên /database
-          if (defaultPathPrefix === 'database/') {
-            await uploadFileToDatabase(file, targetPath);
-          }
-        } else {
-          // Kéo URL hoặc liên kết từ trình duyệt / tab khác
-          let url = dt.getData('text/uri-list') || dt.getData('text/plain') || dt.getData('URL');
-          if (url) {
-            url = url.trim().split('\n')[0];
-            input.value = url;
-            isFormDirtyFlag = true;
-          }
-        }
-        updateLivePreview();
-      }, false);
-    }
-
-    setupDragAndDrop('drop-zone-image', 'input-image', 'database/');
-    setupDragAndDrop('drop-zone-link', 'input-link', 'database/');
-    setupDragAndDrop('drop-zone-eyelink', 'input-eyelink', 'database/');
-
-    const DEFAULT_FALLBACK_IMG = "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=600&q=80";
-
-    // Cập nhật Live Preview
-    function updateLivePreview() {
-      const container = document.getElementById('live-preview-box');
-      if (!container) return;
-
-      const title = escapeHtml(document.getElementById('input-title').value.trim() || 'Tiêu đề bài viết / Nội dung mẫu...');
-      const catLabel = escapeHtml(document.getElementById('input-category-label').value.trim() || document.getElementById('select-category').value || 'Danh mục');
-      const rawDate = document.getElementById('input-date-picker').value;
-      const date = escapeHtml(formatDateToDDMMYYYY(rawDate || new Date().toISOString().split('T')[0]));
-      const summary = escapeHtml(document.getElementById('input-summary').value.trim() || '');
-      const image = escapeHtml(document.getElementById('input-image').value.trim() || DEFAULT_FALLBACK_IMG);
-      const link = escapeHtml(document.getElementById('input-link').value.trim() || '#');
-      const eyelink = escapeHtml(document.getElementById('input-eyelink').value.trim() || '');
-      const svcIcon = escapeHtml(document.getElementById('input-service-icon').value || 'fa-file-contract');
-      const svcCode = escapeHtml(document.getElementById('input-service-code').value.trim() || '');
-
-      if (currentFolder === 'hr') {
-        const type = escapeHtml(document.getElementById('input-hr-type').value.trim() || 'Toàn thời gian');
-        const salary = escapeHtml(document.getElementById('input-hr-salary').value.trim() || 'Lương: Thỏa thuận');
-        const location = escapeHtml(document.getElementById('input-hr-location').value.trim() || 'Cần Thơ');
-        const deadline = escapeHtml(document.getElementById('input-hr-deadline').value.trim() || 'Đang tuyển');
-        const req = escapeHtml(document.getElementById('input-hr-requirement').value.trim() || 'Yêu cầu chuyên môn kĩ thuật, bằng cấp & kinh nghiệm thực tế...');
-
-        container.innerHTML = `
-          <div class="bg-[#141722] border border-[#2a2e3d] rounded-lg p-4 space-y-3 hover:border-rose-500/40 transition shadow-md">
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#222630] pb-2.5">
-              <div>
-                <span class="bg-rose-500/10 text-rose-500 border border-rose-500/20 text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-wider">${catLabel}</span>
-                <h4 class="text-sm font-bold text-gray-100 mt-1.5 flex items-center gap-2">
-                  <i class="fa-solid fa-briefcase text-rose-500 text-xs"></i>
-                  ${title}
-                </h4>
-              </div>
-              <span class="text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium">
-                ${salary}
-              </span>
-            </div>
-            
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px] text-gray-300">
-              <div class="flex items-center gap-1.5"><i class="fa-solid fa-clock text-rose-500 text-xs"></i><span>${type}</span></div>
-              <div class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-rose-500 text-xs"></i><span>${location}</span></div>
-              <div class="flex items-center gap-1.5"><i class="fa-solid fa-calendar-xmark text-rose-500 text-xs"></i><span>${deadline}</span></div>
-            </div>
-
-            ${req ? `<p class="text-xs text-gray-400 line-clamp-2 bg-[#0d0f14] p-2.5 rounded border border-[#1e222d] leading-relaxed">${req}</p>` : ''}
-
-            <div class="flex items-center justify-between pt-1 text-xs">
-              <span class="text-[10px] text-gray-500 font-mono">ID #${escapeHtml(document.getElementById('input-id').value || '1')}</span>
-              <button class="bg-rose-600 hover:bg-rose-500 text-white text-[11px] px-3 py-1 rounded font-medium transition flex items-center gap-1">
-                <span>Ứng tuyển ngay</span>
-                <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </button>
-            </div>
-          </div>
-        `;
-      } else if (currentFolder === 'projects') {
-        const code = escapeHtml(document.getElementById('input-code').value.trim() || 'PRJ-2026');
-        const scale = escapeHtml(document.getElementById('input-scale').value.trim() || 'Chưa cập nhật quy mô');
-        const client = escapeHtml(document.getElementById('input-client').value.trim() || 'PV INCONS Client');
-
-        container.innerHTML = `
-          <div class="bg-[#141722] border border-[#2a2e3d] rounded-lg overflow-hidden flex flex-col sm:flex-row hover:border-rose-500/40 transition shadow-md group">
-            <div class="sm:w-2/5 h-36 sm:h-auto relative overflow-hidden bg-[#0d0f14]">
-              <img src="${image}" onError="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}';" alt="Project Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-              <span class="absolute top-2 left-2 bg-black/70 backdrop-blur-md text-emerald-400 font-mono text-[10px] px-2 py-0.5 rounded border border-emerald-500/30">${code}</span>
-            </div>
-            <div class="p-3.5 sm:w-3/5 flex flex-col justify-between space-y-2">
-              <div>
-                <div class="flex items-center justify-between text-[10px] text-gray-400 mb-1">
-                  <span class="text-rose-500 font-semibold uppercase">${catLabel}</span>
-                  <span><i class="fa-solid fa-calendar text-[9px] mr-1"></i>${date}</span>
-                </div>
-                <h4 class="text-xs font-bold text-gray-100 line-clamp-1 group-hover:text-rose-500 transition">${title}</h4>
-                <p class="text-[11px] text-gray-400 line-clamp-2 mt-1 leading-snug">${summary || 'Mô tả dự án...'}</p>
-              </div>
-
-              <div class="space-y-1 text-[10px] text-gray-300 border-t border-[#222630] pt-2">
-                <div class="flex items-center justify-between">
-                  <span class="text-gray-500">Chủ đầu tư:</span>
-                  <span class="font-medium truncate max-w-[140px] text-gray-200">${client}</span>
-                </div>
-                <div class="flex items-center justify-between">
-                  <span class="text-gray-500">Quy mô:</span>
-                  <span class="font-medium truncate max-w-[140px] text-amber-300">${scale}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      } else if (currentFolder === 'investment') {
-        container.innerHTML = `
-          <div class="bg-[#141722] border border-[#2a2e3d] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-rose-500/40 transition shadow-md group">
-            <div class="space-y-1.5 flex-1 min-w-0">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid ${svcIcon} text-rose-500 text-sm"></i>
-                <h4 class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-rose-500 transition leading-snug">
-                  ${title}
-                </h4>
-              </div>
-              <p class="text-[11px] text-gray-400 flex items-center gap-1.5">
-                <i class="fa-regular fa-clock text-[10px] text-rose-500"></i>
-                <span>Đăng tải ngày: ${date}</span>
-                ${svcCode ? `<span class="bg-[#1a202c] text-emerald-400 font-mono text-[9px] px-1.5 py-0.5 rounded border border-emerald-500/20">${svcCode}</span>` : ''}
-              </p>
-              ${summary ? `<p class="text-[11px] text-gray-400 line-clamp-2 leading-relaxed pt-0.5">${summary}</p>` : ''}
-            </div>
-            <div class="shrink-0 flex items-center gap-2">
-              <a href="${link}" onclick="return false;" class="bg-[#1b2333] hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold px-4 py-2 rounded-lg transition flex items-center gap-1.5 shadow">
-                <i class="fa-solid fa-download text-xs"></i>
-                <span>Tải về</span>
-              </a>
-            </div>
-          </div>
-        `;
-      } else if (currentFolder === 'services') {
-        container.innerHTML = `
-          <div class="bg-[#141722] border border-[#2a2e3d] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-rose-500/40 transition shadow-md group">
-            <div class="space-y-1.5 flex-1 min-w-0">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid ${svcIcon} text-rose-500 text-base shrink-0"></i>
-                <h4 class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-rose-500 transition leading-snug">
-                  ${title}
-                </h4>
-              </div>
-              ${svcCode ? `<span class="inline-block bg-[#1a202c] text-emerald-400 font-mono text-[9px] px-1.5 py-0.5 rounded border border-emerald-500/20">${svcCode}</span>` : ''}
-              ${summary ? `
-                <p class="text-[11px] text-amber-300/90 font-medium flex items-center gap-1">
-                  <i class="fa-solid fa-tag text-[10px] text-amber-400"></i>
-                  <span>${summary}</span>
-                </p>
-              ` : ''}
-            </div>
-            <div class="flex sm:flex-col gap-2 shrink-0">
-              <a href="${link}" onclick="return false;" class="bg-[#1b2333] hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center justify-center gap-1.5 shadow">
-                <i class="fa-solid fa-download text-xs"></i>
-                <span>Tải báo giá</span>
-              </a>
-              ${eyelink ? `
-              <a href="${eyelink}" onclick="return false;" class="bg-[#1e222d] hover:bg-gray-700 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center justify-center gap-1.5 border border-[#2a2e3d]">
-                <i class="fa-solid fa-eye text-xs"></i>
-                <span>Xem quy trình</span>
-              </a>
-              ` : ''}
-            </div>
-          </div>
-        `;
-      } else {
-        container.innerHTML = `
-          <div class="bg-[#141722] border border-[#2a2e3d] rounded-lg overflow-hidden flex flex-col sm:flex-row hover:border-rose-500/40 transition shadow-md group">
-            <div class="sm:w-1/3 h-32 sm:h-auto relative overflow-hidden bg-[#0d0f14] shrink-0 flex items-center justify-center">
-              <img src="${image}" onError="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}';" alt="Post Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-            <div class="p-3.5 flex-1 flex flex-col justify-between space-y-2">
-              <div class="space-y-1.5">
-                <div class="flex items-center justify-between text-[10px]">
-                  <span class="bg-rose-500/10 text-rose-500 border border-rose-500/20 px-2 py-0.5 rounded font-semibold flex items-center gap-1">
-                    <i class="fa-solid fa-newspaper text-[10px]"></i>
-                    ${catLabel}
-                  </span>
-                  <span class="text-gray-400 font-mono"><i class="fa-solid fa-clock text-[9px] mr-1"></i>${date}</span>
-                </div>
-                <h4 class="text-xs sm:text-sm font-bold text-gray-100 line-clamp-2 group-hover:text-rose-500 transition leading-snug">${title}</h4>
-                <p class="text-[11px] text-gray-400 line-clamp-2 leading-relaxed">${summary || 'Mô tả tóm tắt nội dung bài viết sẽ hiển thị tại đây...'}</p>
-              </div>
-
-              <div class="flex items-center justify-between pt-2 border-t border-[#222630] text-[11px]">
-                <span class="text-[10px] text-gray-500 font-mono truncate max-w-[180px]"><i class="fa-solid fa-link text-[9px] mr-1"></i>${link}</span>
-                <span class="text-rose-500 group-hover:translate-x-1 transition font-medium flex items-center gap-1 shrink-0">
-                  <span>Chi tiết</span>
-                  <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    // Cập nhật hiển thị trường EyeLink & các trường phụ thuộc theo đúng Tab
-    function updateFormCategoryOptions() {
-      const selectCat = document.getElementById('select-category');
-      const filterCat = document.getElementById('filter-category');
-      const cats = CATEGORIES[currentFolder] || [];
-
-      const detailHeader = document.getElementById('tab-detail-header');
-      if (detailHeader) {
-        detailHeader.innerText = `THÔNG TIN CHI TIẾT ${currentTitle.toUpperCase()}`;
-      }
-
-      selectCat.innerHTML = '';
-      filterCat.innerHTML = '<option value="">Tất cả Category</option>';
-
-      cats.forEach(c => {
-        const opt1 = document.createElement('option');
-        opt1.value = c.value;
-        opt1.textContent = `${c.label} (${c.value})`;
-        selectCat.appendChild(opt1);
-
-        const opt2 = document.createElement('option');
-        opt2.value = c.value;
-        opt2.textContent = c.label;
-        filterCat.appendChild(opt2);
-      });
-
-      const inputCategoryLabel = document.getElementById('input-category-label');
-      if (cats.length > 0) {
-        inputCategoryLabel.value = cats[0].label;
-      }
-
-      selectCat.onchange = () => {
-        const selected = cats.find(c => c.value === selectCat.value);
-        if (selected) inputCategoryLabel.value = selected.label;
-        updateLivePreview();
-      };
-
-      const isHr = currentFolder === 'hr';
-      const isNoImageTab = currentFolder === 'services' || currentFolder === 'investment';
-
-      document.getElementById('project-extra-fields').classList.toggle('hidden', currentFolder !== 'projects');
-      document.getElementById('service-extra-fields').classList.toggle('hidden', !isNoImageTab);
-      document.getElementById('hr-extra-fields').classList.toggle('hidden', !isHr);
-      document.getElementById('standard-common-fields').classList.toggle('hidden', isHr);
-
-      document.getElementById('wrapper-image-field').classList.toggle('hidden', isNoImageTab);
-      
-      // Hiển thị EyeLink ở tab Dịch vụ
-      const wrapperEyelink = document.getElementById('wrapper-eyelink-field');
-      if (wrapperEyelink) {
-        wrapperEyelink.classList.toggle('hidden', currentFolder !== 'services');
-      }
-
-      const titleLabel = document.getElementById('title-field-label');
-      if (titleLabel) {
-        titleLabel.innerText = isHr ? 'Tiêu đề vị trí tuyển dụng' : 'Tiêu đề bài viết / Tên dịch vụ';
-      }
-
-      updateLivePreview();
-    }
-
-    function updateTabCounts() {
-      Object.keys(db).forEach(key => {
-        const el = document.getElementById(`count-${key}`);
-        if (el) el.innerText = (db[key] || []).length;
-      });
-    }
-
-    function updateJsonPreview() {
-      const container = document.getElementById('json-output-container');
-      container.innerHTML = '';
-
-      document.getElementById('json-header-filename').innerText = `content/posts-${currentFolder}.json`;
-      document.getElementById('active-module-badge').innerText = `posts-${currentFolder}.json`;
-
-      if (!currentFilteredPosts || currentFilteredPosts.length === 0) {
-        container.innerHTML = `<pre class="text-emerald-400 leading-relaxed bg-[#08090c] p-4 rounded-lg border border-[#1e222d]">[]</pre>`;
-        return;
-      }
-
-      currentFilteredPosts.forEach(post => {
-        const blockDiv = document.createElement('div');
-        blockDiv.className = 'json-block-item';
-        blockDiv.setAttribute('data-id', post.id || 'N/A');
-
-        const pre = document.createElement('pre');
-        pre.className = 'text-emerald-400 leading-relaxed whitespace-pre-wrap break-all m-0';
-        pre.textContent = JSON.stringify(post, null, 2);
-
-        blockDiv.appendChild(pre);
-        container.appendChild(blockDiv);
-      });
-    }
-
-    // Lọc, tìm kiếm, sắp xếp danh sách và đếm số lượng bài
-    function renderPostsList() {
-      const container = document.getElementById('posts-list-container');
-      container.innerHTML = '';
-
-      let posts = [...(db[currentFolder] || [])];
-      const sortVal = document.getElementById('sort-order').value;
-      const catVal = document.getElementById('filter-category').value;
-      const searchVal = document.getElementById('filter-search').value.toLowerCase().trim();
-
-      if (catVal) posts = posts.filter(p => p.category === catVal);
-      if (searchVal) {
-        posts = posts.filter(p => 
-          (p.title && p.title.toLowerCase().includes(searchVal)) || 
-          (p.categoryLabel && p.categoryLabel.toLowerCase().includes(searchVal)) ||
-          (p.code && p.code.toLowerCase().includes(searchVal)) ||
-          String(p.id).includes(searchVal)
-        );
-      }
-
-      posts.sort((a, b) => {
-        if (sortVal === 'id-desc') {
-          return (Number(b.id) || 0) - (Number(a.id) || 0);
-        }
-        if (sortVal === 'id-asc') {
-          return (Number(a.id) || 0) - (Number(a.id) || 0);
-        }
-        const timeA = parseDateToTimestamp(a.date);
-        const timeB = parseDateToTimestamp(b.date);
-        if (timeA !== timeB) {
-          return timeB - timeA;
-        }
-        return (Number(b.id) || 0) - (Number(a.id) || 0);
-      });
-
-      currentFilteredPosts = posts;
-
-      if (posts.length === 0) {
-        container.innerHTML = `<div class="p-4 text-center text-xs text-gray-500 italic">Không tìm thấy bài viết nào</div>`;
-        updateJsonPreview();
-        return;
-      }
-
-      posts.forEach(post => {
-        const div = document.createElement('div');
-        const isEditing = editingPostId === post.id;
-        div.className = `p-2.5 rounded-lg border transition cursor-pointer flex flex-col gap-1.5 ${isEditing ? 'bg-rose-500/10 border-rose-500/50' : 'bg-[#14171f] border-[#222630] hover:border-[#3a3f52]'}`;
-
-        const displayDate = formatDateToDDMMYYYY(post.date);
-
-        div.innerHTML = `
-          <div class="flex items-center justify-between text-[11px]">
-            <span class="font-mono text-rose-500 font-bold">#${escapeHtml(post.id)}</span>
-            <span class="bg-[#1e222d] text-gray-300 px-1.5 py-0.5 rounded font-mono text-[10px]">${escapeHtml(post.category || 'N/A')}</span>
-          </div>
-          <div class="text-xs font-semibold text-gray-200 line-clamp-2 leading-snug">${escapeHtml(post.title || 'Chưa có tiêu đề')}</div>
-          <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1 border-t border-[#1e222d]">
-            <span>${escapeHtml(post.type || displayDate || '')}</span>
-            <div class="flex items-center gap-1">
-              <button onclick="editPost(${post.id})" class="p-1 hover:text-amber-400" title="Sửa"><i class="fa-solid fa-pen-to-square"></i></button>
-              <button onclick="deletePost(${post.id})" class="p-1 hover:text-rose-500" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
-            </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-      updateJsonPreview();
-    }
-
-    // XỬ LÝ LỖI HÀM resetForm CHUẨN XÁC, KHÔNG LỖI NULL ELEMENT & ĐỒNG BỘ TRẠNG THÁI
-    function resetForm() {
-      editingPostId = null;
-      isFormDirtyFlag = false; // Xóa trạng thái form bẩn
-      
-      const editStatusBadge = document.getElementById('edit-status-badge');
-      const btnCancelEdit = document.getElementById('btn-cancel-edit');
-      const btnAddText = document.getElementById('btn-add-text');
-      const btnAddIcon = document.getElementById('btn-add-icon');
-
-      if (editStatusBadge) editStatusBadge.classList.add('hidden');
-      if (btnCancelEdit) btnCancelEdit.classList.add('hidden');
-      if (btnAddText) btnAddText.innerText = 'Lưu list';
-      if (btnAddIcon) btnAddIcon.className = 'fa-solid fa-circle-plus text-xs';
-
-      const posts = db[currentFolder] || [];
-      const nextId = posts.length > 0 ? getSmallestMissingId(posts) : 1;
-
-      const cats = CATEGORIES[currentFolder] || [];
-      const selectCat = document.getElementById('select-category');
-      const inputCatLabel = document.getElementById('input-category-label');
-
-      if (cats.length > 0) {
-        if (selectCat) selectCat.value = cats[0].value;
-        if (inputCatLabel) inputCatLabel.value = cats[0].label;
-      }
-
-      const setVal = (id, val) => {
-        const el = document.getElementById(id);
-        if (el) el.value = val;
-      };
-
-      setVal('input-id', nextId);
-      setVal('input-title', '');
-      setVal('input-summary', '');
-      setVal('input-image', '');
-      setVal('input-link', '');
-      setVal('input-eyelink', '');
-      setVal('input-date-picker', new Date().toISOString().split('T')[0]);
-
-      setVal('input-code', '');
-      setVal('input-scale', '');
-      setVal('input-client', '');
-      setVal('input-location', '');
-      setVal('input-architect', '');
-
-      setVal('input-service-code', '');
-      setVal('input-service-icon', 'fa-file-contract');
-
-      setVal('input-hr-type', '');
-      setVal('input-hr-deadline', '');
-      setVal('input-hr-location', '');
-      setVal('input-hr-salary', '');
-      setVal('input-hr-requirement', '');
-      setVal('input-hr-quantity', '');
-      setVal('input-hr-applyLink', '');
-
-      renderPostsList();
-      updateLivePreview();
-    }
-
-    // Kiểm tra thông qua Flag (Đã khắc phục lỗi 2.1)
-    function isFormDirty() {
-      return isFormDirtyFlag;
-    }
-
-    // Load đầy đủ dữ liệu khi Chỉnh Sửa
-    window.editPost = function (id) {
-      const posts = db[currentFolder] || [];
-      const post = posts.find(p => Number(p.id) === Number(id));
-      if (!post) return;
-
-      editingPostId = Number(post.id);
-      document.getElementById('editing-id-text').innerText = post.id;
-      document.getElementById('edit-status-badge').classList.remove('hidden');
-      document.getElementById('btn-cancel-edit').classList.remove('hidden');
-      document.getElementById('btn-add-text').innerText = 'Cập nhật bài';
-      document.getElementById('btn-add-icon').className = 'fa-solid fa-arrows-rotate text-xs';
-
-      document.getElementById('input-id').value = post.id;
-      document.getElementById('select-category').value = post.category || '';
-      document.getElementById('input-category-label').value = post.categoryLabel || '';
-      document.getElementById('input-date-picker').value = parseDateForPicker(post.date || '');
-      document.getElementById('input-title').value = post.title || '';
-      document.getElementById('input-summary').value = post.summary || '';
-      document.getElementById('input-image').value = post.image || '';
-      document.getElementById('input-link').value = post.link || '';
-      document.getElementById('input-eyelink').value = post.eyelink || '';
-
-      if (currentFolder === 'projects') {
-        document.getElementById('input-code').value = post.code || '';
-        document.getElementById('input-scale').value = post.scale || '';
-        document.getElementById('input-client').value = post.client || '';
-        document.getElementById('input-location').value = post.location || '';
-        document.getElementById('input-architect').value = post.architect || '';
-      } else if (currentFolder === 'services' || currentFolder === 'investment') {
-        document.getElementById('input-service-code').value = post.code || '';
-        document.getElementById('input-service-icon').value = post.icon || 'fa-file-contract';
-      } else if (currentFolder === 'hr') {
-        document.getElementById('input-hr-type').value = post.type || '';
-        document.getElementById('input-hr-deadline').value = post.deadline || '';
-        document.getElementById('input-hr-location').value = post.location || '';
-        document.getElementById('input-hr-salary').value = post.salary || '';
-        document.getElementById('input-hr-requirement').value = post.requirement || '';
-        document.getElementById('input-hr-quantity').value = post.quantity || '';
-        document.getElementById('input-hr-applyLink').value = post.applyLink || '';
-      }
-
-      renderPostsList();
-      updateLivePreview();
-      
-      isFormDirtyFlag = false; // Reset sau khi điền đầy đủ dữ liệu
-    };
-
-    window.deletePost = function (id) {
-      if (!confirm(`Bạn có chắc muốn xóa bài viết ID #${id}?`)) return;
-      db[currentFolder] = db[currentFolder].filter(p => Number(p.id) !== Number(id));
-      saveLocalDB();
-
-      if (editingPostId === Number(id)) resetForm();
-      updateTabCounts();
-      renderPostsList();
-      showToast(`Đã xóa bài viết ID #${id}`);
-    };
-
-    // XỬ LÝ TRÙNG ID CHỦ ĐỘNG: Cho phép lựa chọn Giữ lại (Ghi đè) hay Tự động gán ID nhỏ nhất
-    document.getElementById('btn-add-to-list').addEventListener('click', () => {
-      const inputId = parseInt(document.getElementById('input-id').value);
-      const title = document.getElementById('input-title').value.trim();
-
-      if (isNaN(inputId) || inputId < 1 || !title) {
-        showToast('Vui lòng nhập ID hợp lệ (> 0) và Tiêu đề bài viết!', 'error');
-        return;
-      }
-
-      let posts = db[currentFolder] || [];
-      let finalId = inputId;
-
-      // Kiểm tra trùng mã ID trong mảng hiện tại
-      let existingIndex = -1;
-      if (editingPostId !== null) {
-        existingIndex = posts.findIndex(p => Number(p.id) === inputId && Number(p.id) !== editingPostId);
-      } else {
-        existingIndex = posts.findIndex(p => Number(p.id) === inputId);
-      }
-
-      if (existingIndex !== -1) {
-        const smallestId = getSmallestMissingId(posts, editingPostId);
-        const choice = confirm(
-          `Mã ID #${inputId} đã tồn tại trong danh sách [${currentTitle}]!\n\n` +
-          `• Nhấn "OK" để GIỮ LẠI ID #${inputId} (Hệ thống sẽ cập nhật / ghi đè bài viết có ID này).\n` +
-          `• Nhấn "Cancel" (Hủy) để TỰ ĐỘNG GÁN ID NHỎ NHẤT còn thiếu là #${smallestId}.`
-        );
-
-        if (choice) {
-          // Lựa chọn 1: Giữ nguyên ID -> Xóa bài cũ trùng ID để ghi đè
-          finalId = inputId;
-          posts = posts.filter((p, idx) => idx !== existingIndex);
-        } else {
-          // Lựa chọn 2: Gán ID nhỏ nhất còn thiếu
-          finalId = smallestId;
-          document.getElementById('input-id').value = finalId;
-        }
-      }
-
-      const rawDate = document.getElementById('input-date-picker').value;
-
-      let postObj = {
-        id: finalId,
-        category: document.getElementById('select-category').value,
-        categoryLabel: document.getElementById('input-category-label').value.trim(),
-        date: formatDateToDDMMYYYY(rawDate),
-        title: title
-      };
-
-      if (currentFolder === 'hr') {
-        postObj.type = document.getElementById('input-hr-type').value.trim();
-        postObj.deadline = document.getElementById('input-hr-deadline').value.trim();
-        postObj.location = document.getElementById('input-hr-location').value.trim();
-        postObj.salary = document.getElementById('input-hr-salary').value.trim();
-        postObj.requirement = document.getElementById('input-hr-requirement').value.trim();
-        postObj.quantity = document.getElementById('input-hr-quantity').value.trim();
-        postObj.applyLink = document.getElementById('input-hr-applyLink').value.trim();
-      } else {
-        postObj.summary = document.getElementById('input-summary').value.trim();
-        postObj.link = document.getElementById('input-link').value.trim();
-
-        // Chỉ lưu trường eyelink trong nav tab Dịch vụ
-        if (currentFolder === 'services') {
-          postObj.eyelink = document.getElementById('input-eyelink').value.trim();
+        function hideLoginError() {
+            const alertBox = document.getElementById('login-error-alert');
+            if (alertBox) {
+                alertBox.classList.add('hidden');
+            }
         }
 
-        if (currentFolder !== 'services' && currentFolder !== 'investment') {
-          postObj.image = document.getElementById('input-image').value.trim();
+        function loadAuth() {
+            try {
+                const val = localStorage.getItem('pv_github_auth');
+                if (!val) return null;
+                if (val.trim().startsWith('{')) {
+                    const parsed = JSON.parse(val);
+                    localStorage.setItem('pv_github_auth', btoa(JSON.stringify(parsed)));
+                    return parsed;
+                }
+                return JSON.parse(atob(val));
+            } catch (e) {
+                return null;
+            }
+        }
+        let authConfig = loadAuth();
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+            const toast = document.createElement('div');
+            const isSuccess = type === 'success';
+            const isError = type === 'error';
+            const bgColor = isSuccess ? 'bg-[#14231e]' : isError ? 'bg-[#2a171a]' : 'bg-[#1e2330]';
+            const borderColor = isSuccess ? 'border-emerald-500/50' : isError ? 'border-rose-500/50' : 'border-blue-500/50';
+            const textColor = isSuccess ? 'text-emerald-300' : isError ? 'text-rose-300' : 'text-blue-300';
+            const iconClass = isSuccess ? 'fa-circle-check' : isError ? 'fa-circle-exclamation' : 'fa-circle-info';
+
+            toast.className = `toast-animate border ${borderColor} ${bgColor} ${textColor} p-3 rounded-xl shadow-xl flex items-center gap-2.5 text-xs font-medium pointer-events-auto`;
+            toast.innerHTML = `<i class="fa-solid ${iconClass} shrink-0 text-sm"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3500);
         }
 
-        if (currentFolder === 'projects') {
-          postObj.code = document.getElementById('input-code').value.trim();
-          postObj.scale = document.getElementById('input-scale').value.trim();
-          postObj.client = document.getElementById('input-client').value.trim();
-          postObj.location = document.getElementById('input-location').value.trim();
-          postObj.architect = document.getElementById('input-architect').value.trim();
-        } else if (currentFolder === 'services' || currentFolder === 'investment') {
-          postObj.code = document.getElementById('input-service-code').value.trim();
-          postObj.icon = document.getElementById('input-service-icon').value;
-        }
-      }
-
-      if (editingPostId !== null) {
-        posts = posts.map(p => Number(p.id) === editingPostId ? postObj : p);
-        showToast(`Đã cập nhật bài viết #${finalId}`);
-      } else {
-        posts.push(postObj);
-        showToast(`Đã thêm bài viết mới #${finalId}`);
-      }
-
-      db[currentFolder] = posts;
-      saveLocalDB();
-
-      resetForm();
-      updateTabCounts();
-      renderPostsList();
-    });
-
-    document.getElementById('btn-cancel-edit').addEventListener('click', resetForm);
-    document.getElementById('btn-reset').addEventListener('click', resetForm);
-
-    document.querySelectorAll('.nav-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        if (isFormDirty()) {
-          if (!confirm('Bạn có thông tin chưa lưu trên form. Chuyển tab sẽ làm mất dữ liệu vừa nhập, bạn có chắc chắn?')) {
-            return;
-          }
+        function utf8_to_b64(str) {
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
         }
 
-        document.querySelectorAll('.nav-tab').forEach(t => {
-          t.classList.remove('active', 'bg-rose-600/10', 'text-rose-500', 'border-rose-500/20');
-          t.classList.add('text-gray-400', 'border-transparent');
+        function b64_to_utf8(str) {
+            return decodeURIComponent(Array.prototype.map.call(atob(str.replace(/\s/g, '')), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+        }
+
+        if (authConfig) {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('admin-workspace').classList.remove('hidden');
+            document.getElementById('display-repo-info').innerText = `${authConfig.owner}/${authConfig.repo}`;
+            loadUsersFromGitHub();
+        }
+
+        // Tự động ẩn khung báo lỗi khi người dùng bắt đầu nhập liệu lại
+        ['auth-owner', 'auth-repo', 'auth-token'].forEach(id => {
+            const inputElem = document.getElementById(id);
+            if (inputElem) {
+                inputElem.addEventListener('input', hideLoginError);
+            }
         });
-        tab.classList.add('active', 'bg-rose-600/10', 'text-rose-500', 'border-rose-500/20');
-        tab.classList.remove('text-gray-400', 'border-transparent');
 
-        currentFolder = tab.dataset.folder;
-        currentTitle = tab.dataset.title;
+        // ĐĂNG NHẬP & BÁO LỖI TRỰC TIẾP
+        document.getElementById('btn-login').addEventListener('click', async () => {
+            hideLoginError();
+            const owner = document.getElementById('auth-owner').value.trim();
+            const repo = document.getElementById('auth-repo').value.trim() || 'website';
+            const token = document.getElementById('auth-token').value.trim();
 
-        document.getElementById('current-tab-label').innerText = currentTitle;
-        document.getElementById('form-title').innerText = `Soạn thảo [${currentTitle}]`;
-
-        updateFormCategoryOptions();
-        resetForm();
-        renderPostsList();
-      });
-    });
-
-    document.getElementById('sort-order').addEventListener('change', renderPostsList);
-    document.getElementById('filter-category').addEventListener('change', renderPostsList);
-    document.getElementById('filter-search').addEventListener('input', renderPostsList);
-
-    let previewTimer = null;
-    function debouncedPreview() {
-      clearTimeout(previewTimer);
-      previewTimer = setTimeout(updateLivePreview, 150);
-    }
-
-    const allInputIds = [
-      'input-id', 'input-title', 'input-summary', 'input-image', 'input-link', 'input-eyelink',
-      'select-category', 'input-category-label', 'input-date-picker',
-      'input-code', 'input-scale', 'input-client', 'input-location', 'input-architect',
-      'input-service-code', 'input-service-icon',
-      'input-hr-type', 'input-hr-deadline', 'input-hr-location', 'input-hr-salary',
-      'input-hr-requirement', 'input-hr-quantity', 'input-hr-applyLink'
-    ];
-
-    allInputIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.addEventListener('input', () => {
-          isFormDirtyFlag = true;
-          debouncedPreview();
-        });
-        el.addEventListener('change', () => {
-          isFormDirtyFlag = true;
-          debouncedPreview();
-        });
-      }
-    });
-
-    document.getElementById('btn-export-backup').addEventListener('click', () => {
-      const dataToExport = currentFilteredPosts || [];
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataToExport, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `PV_INCONS_${currentFolder}_Backup_${new Date().toISOString().split('T')[0]}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-      showToast(`Đã xuất file sao lưu cho tab [${currentTitle}]!`);
-    });
-
-    // Tự động chuẩn hóa dữ liệu khi Import JSON (ép kiểu ID và định dạng ngày)
-    document.getElementById('import-json-file').addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        try {
-          const imported = JSON.parse(event.target.result);
-          if (Array.isArray(imported)) {
-            const isValidStructure = imported.every(item => typeof item === 'object' && item !== null && 'id' in item);
-            if (!isValidStructure && imported.length > 0) {
-              showToast('Lỗi: File JSON không khớp cấu trúc bài viết (thiếu mã id)!', 'error');
-              return;
+            if (!owner || !repo || !token) {
+                const errMsg = 'Vui lòng điền đầy đủ thông tin Owner, Repo và Token PAT!';
+                showLoginError(errMsg);
+                showToast(errMsg, 'error');
+                return;
             }
 
-            const normalizedImported = imported.map(item => {
-              const numId = Number(item.id);
-              return {
-                ...item,
-                id: !isNaN(numId) ? numId : item.id,
-                date: formatDateToDDMMYYYY(item.date)
-              };
+            const btnLogin = document.getElementById('btn-login');
+            btnLogin.disabled = true;
+            btnLogin.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-xs"></i> <span>Đang xác thực với GitHub...</span>`;
+
+            try {
+                const testUrl = `https://api.github.com/repos/${owner}/${repo}`;
+                const response = await fetch(testUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        throw new Error('Token PAT không hợp lệ hoặc đã hết hạn!');
+                    } else if (response.status === 404) {
+                        throw new Error('Không tìm thấy Repository hoặc Owner trên GitHub!');
+                    } else {
+                        throw new Error(`Xác thực thất bại (Mã lỗi HTTP ${response.status})`);
+                    }
+                }
+
+                authConfig = { owner, repo, token };
+                localStorage.setItem('pv_github_auth', btoa(JSON.stringify(authConfig)));
+
+                document.getElementById('login-modal').classList.add('hidden');
+                document.getElementById('admin-workspace').classList.remove('hidden');
+                document.getElementById('display-repo-info').innerText = `${owner}/${repo}`;
+
+                showToast('Xác thực GitHub thành công!');
+                loadUsersFromGitHub();
+            } catch (err) {
+                console.error('Lỗi đăng nhập:', err);
+                let errorDisplayMsg = err.message || 'Xác thực thất bại!';
+                if (err.message === 'Failed to fetch') {
+                    errorDisplayMsg = 'Lỗi kết nối mạng hoặc bị chặn CORS. Hãy chạy ứng dụng qua Local Server (như Live Server).';
+                }
+                showLoginError(errorDisplayMsg);
+                showToast(errorDisplayMsg, 'error');
+            } finally {
+                btnLogin.disabled = false;
+                btnLogin.innerHTML = `<i class="fa-solid fa-key text-xs"></i><span>Xác nhận & Vào Super Admin</span>`;
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            localStorage.removeItem('pv_github_auth');
+            location.reload();
+        });
+
+        async function loadUsersFromGitHub() {
+            if (!authConfig) return;
+            const filePath = `backend/assets/data/users.json`;
+            const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
+
+            try {
+                const res = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${authConfig.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                if (!res.ok) throw new Error('Không tìm thấy file users.json trên repo.');
+                const data = await res.json();
+                const content = JSON.parse(b64_to_utf8(data.content));
+                
+                usersData = Array.isArray(content) ? content.map(u => ({
+                    ...u,
+                    status: (u.status === 'Active' || u.status === 'Đang triển khai') ? 'Active' : 'Inactive'
+                })) : [];
+
+                populateFilterDropdowns();
+                applyFiltersAndSort();
+                showToast('Đã tải users.json từ GitHub thành công!');
+            } catch (err) {
+                console.error(err);
+                showToast('Không tải được users.json từ GitHub, dùng dữ liệu mẫu cục bộ.', 'info');
+                usersData = [
+                    {
+                        "id": 1,
+                        "username": "admin",
+                        "passwordHash": "$2b$10$Mhg7uk2abtNcK8/yqU1ZFOzT7mPAdzbjK9zPJMX18cF/yalhrIpSa",
+                        "role": "ADMIN",
+                        "permission": "ADMIN",
+                        "fullName": "TRẦN HOÀNG PHƯỚC",
+                        "phone": "0939751194",
+                        "position": "Giám đốc",
+                        "discipline": "Kỹ sư",
+                        "projects": "Tất cả dự án",
+                        "company": "PV INCONS CO.LTD",
+                        "status": "Active"
+                    }
+                ];
+                populateFilterDropdowns();
+                applyFiltersAndSort();
+            }
+        }
+
+        document.getElementById('btn-sync-github').addEventListener('click', loadUsersFromGitHub);
+
+        document.getElementById('btn-publish-github').addEventListener('click', async () => {
+            if (!authConfig) return;
+            const filePath = `backend/assets/data/users.json`;
+            const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
+
+            const btnPub = document.getElementById('btn-publish-github');
+            btnPub.disabled = true;
+            btnPub.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-xs"></i> Đang đẩy...`;
+
+            try {
+                let sha = null;
+                const checkRes = await fetch(url, {
+                    headers: { 'Authorization': `Bearer ${authConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                });
+                if (checkRes.ok) {
+                    const fileData = await checkRes.json();
+                    sha = fileData.sha;
+                }
+
+                const jsonString = JSON.stringify(usersData, null, 2);
+                const contentBase64 = utf8_to_b64(jsonString);
+
+                const putRes = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${authConfig.token}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: `Update ${filePath} via Super Admin Portal`,
+                        content: contentBase64,
+                        sha: sha || undefined
+                    })
+                });
+
+                if (!putRes.ok) throw new Error('Không thể xuất bản lên GitHub.');
+                showToast('Đã xuất bản users.json lên GitHub thành công!');
+            } catch (err) {
+                showToast(`Lỗi xuất bản: ${err.message}`, 'error');
+            } finally {
+                btnPub.disabled = false;
+                btnPub.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Xuất bản GitHub`;
+            }
+        });
+
+        function populateFilterDropdowns() {
+            const positions = [...new Set(usersData.map(u => u.position).filter(Boolean))];
+            const roles = [...new Set(usersData.map(u => u.role).filter(Boolean))];
+            const companies = [...new Set(usersData.map(u => u.company).filter(Boolean))];
+
+            document.getElementById('filterPosition').innerHTML = '<option value="">-- Tất cả Chức vụ --</option>' + positions.map(p => `<option value="${p}">${p}</option>`).join('');
+            document.getElementById('filterRole').innerHTML = '<option value="">-- Tất cả Vai trò --</option>' + roles.map(r => `<option value="${r}">${r}</option>`).join('');
+            document.getElementById('filterCompany').innerHTML = '<option value="">-- Tất cả Công ty --</option>' + companies.map(c => `<option value="${c}">${c}</option>`).join('');
+        }
+
+        function applyFiltersAndSort() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase();
+            const filterPos = document.getElementById('filterPosition').value;
+            const filterRole = document.getElementById('filterRole').value;
+            const filterComp = document.getElementById('filterCompany').value;
+            const filterStatus = document.getElementById('filterStatus').value;
+            const sortVal = document.getElementById('sortSelect').value;
+
+            let result = usersData.filter(u => {
+                const matchKeyword = !keyword || u.username.toLowerCase().includes(keyword) || (u.fullName && u.fullName.toLowerCase().includes(keyword));
+                const matchPos = !filterPos || u.position === filterPos;
+                const matchRole = !filterRole || u.role === filterRole;
+                const matchComp = !filterComp || u.company === filterComp;
+                const matchStatus = !filterStatus || u.status === filterStatus;
+                return matchKeyword && matchPos && matchRole && matchComp && matchStatus;
             });
 
-            db[currentFolder] = normalizedImported;
-            saveLocalDB();
-            updateTabCounts();
-            renderPostsList();
-            resetForm();
-            showToast(`Đã ghi đè dữ liệu mới lên tab [${currentTitle}] thành công!`);
-          } else {
-            showToast('Lỗi: File JSON phải là một mảng dữ liệu (Array)', 'error');
-          }
-        } catch (err) {
-          showToast('Định dạng file JSON không hợp lệ!', 'error');
-        }
-      };
-      reader.readAsText(file);
-      e.target.value = '';
-    });
+            result.sort((a, b) => {
+                if (sortVal === 'id-asc') return a.id - b.id;
+                if (sortVal === 'id-desc') return b.id - a.id;
+                if (sortVal === 'name-asc') return (a.fullName || '').localeCompare(b.fullName || '');
+                if (sortVal === 'name-desc') return (b.fullName || '').localeCompare(a.fullName || '');
+                return 0;
+            });
 
-    document.getElementById('btn-copy').addEventListener('click', () => {
-      const textToCopy = JSON.stringify(currentFilteredPosts || [], null, 2);
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        showToast('Đã sao chép mã JSON của danh sách hiện tại!');
-      });
-    });
-
-    // Tải dữ liệu từ GitHub chuẩn hóa ID và Ngày tháng
-    document.getElementById('btn-sync-github').addEventListener('click', async () => {
-      if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
-        showToast('Vui lòng kiểm tra lại thông tin xác thực GitHub', 'error');
-        return;
-      }
-
-      const filePath = `content/posts-${currentFolder}.json`;
-      const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
-
-      const btnSync = document.getElementById('btn-sync-github');
-      btnSync.disabled = true;
-      btnSync.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-xs"></i> Đang tải...`;
-
-      try {
-        const response = await fetch(url, {
-          headers: {
-            'Authorization': `token ${authConfig.token}`,
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        });
-
-        if (!response.ok) {
-          if (response.status === 403 || response.status === 429) {
-            throw new Error('Vượt quá giới hạn API GitHub (Rate Limit). Hãy thử lại sau.');
-          }
-          if (response.status === 404) {
-            throw new Error(`File ${filePath} chưa tồn tại trên GitHub`);
-          }
-          throw new Error(`Lỗi kết nối GitHub (HTTP ${response.status})`);
+            renderUI(result);
+            updateStats(usersData);
         }
 
-        const data = await response.json();
-        const contentUtf8 = b64_to_utf8(data.content);
-        const jsonParsed = JSON.parse(contentUtf8);
+        function updateStats(data) {
+            document.getElementById('stat-total').innerText = data.length;
+            document.getElementById('stat-active').innerText = data.filter(u => u.status === 'Active').length;
+            document.getElementById('stat-inactive').innerText = data.filter(u => u.status === 'Inactive').length;
+        }
 
-        const normalizedParsed = Array.isArray(jsonParsed) ? jsonParsed.map(item => {
-          const numId = Number(item.id);
-          return {
-            ...item,
-            id: !isNaN(numId) ? numId : item.id,
-            date: formatDateToDDMMYYYY(item.date)
-          };
-        }) : [];
+        function renderUI(data) {
+            renderTable(data);
+            renderCards(data);
+        }
 
-        db[currentFolder] = normalizedParsed;
-        saveLocalDB();
+        function renderTable(data) {
+            const tbody = document.getElementById('userTableBody');
+            tbody.innerHTML = '';
 
-        updateTabCounts();
-        renderPostsList();
-        resetForm();
-
-        showToast(`Đã đồng bộ file ${filePath} từ GitHub!`);
-      } catch (err) {
-        console.error('Lỗi sync GitHub:', err);
-        showToast(err.message || 'Không thể tải file từ GitHub', 'error');
-      } finally {
-        btnSync.disabled = false;
-        btnSync.innerHTML = `<i class="fa-solid fa-arrows-rotate text-xs"></i> Tải dữ liệu`;
-      }
-    });
-
-    document.getElementById('btn-publish-github').addEventListener('click', async () => {
-      if (!authConfig || !authConfig.owner || !authConfig.repo || !authConfig.token) {
-        showToast('Vui lòng kiểm tra lại thông tin xác thực GitHub', 'error');
-        return;
-      }
-
-      const filePath = `content/posts-${currentFolder}.json`;
-      const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${filePath}`;
-
-      const btnPublish = document.getElementById('btn-publish-github');
-      btnPublish.disabled = true;
-      btnPublish.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-xs"></i> Đang xuất bản...`;
-
-      try {
-        let maxRetries = 2;
-        let attempt = 0;
-        let success = false;
-        const jsonString = JSON.stringify(db[currentFolder] || [], null, 2);
-        const contentBase64 = utf8_to_b64(jsonString);
-
-        // 1.4. Lỗi Race Condition (Xung đột dữ liệu xuất bản)
-        while(attempt < maxRetries && !success) {
-          attempt++;
-          let sha = "";
-          
-          const getRes = await fetch(url, {
-            headers: {
-              'Authorization': `token ${authConfig.token}`,
-              'Accept': 'application/vnd.github.v3+json'
+            if (data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" class="text-center py-6 text-slate-500">Không tìm thấy tài khoản phù hợp.</td></tr>`;
+                return;
             }
-          });
 
-          if (getRes.ok) {
-            const fileData = await getRes.json();
-            sha = fileData.sha;
-          } else if (getRes.status === 403 || getRes.status === 429) {
-            throw new Error('Giới hạn API của GitHub (Rate Limit). Vui lòng thử lại sau.');
-          }
-
-          const putRes = await fetch(url, {
-            method: 'PUT',
-            headers: {
-              'Authorization': `token ${authConfig.token}`,
-              'Content-Type': 'application/json',
-              'Accept': 'application/vnd.github.v3+json'
-            },
-            body: JSON.stringify({
-              message: `Update ${filePath} via PV INCONS Studio Admin`,
-              content: contentBase64,
-              sha: sha || undefined
-            })
-          });
-
-          if (putRes.status === 409) {
-            if (attempt >= maxRetries) throw new Error('Xung đột dữ liệu (Race condition). Ai đó vừa ghi đè file.');
-            continue; // Retry để lấy lại SHA
-          } else if (putRes.status === 403 || putRes.status === 429) {
-            throw new Error('Giới hạn API của GitHub (Rate Limit). Vui lòng thử lại sau.');
-          } else if (!putRes.ok) {
-            const errBody = await putRes.json();
-            throw new Error(errBody.message || `HTTP ${putRes.status}`);
-          }
-          success = true;
+            data.forEach(user => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-white/5 transition-colors';
+                tr.innerHTML = `
+                    <td class="py-3.5 px-3">
+                        <div class="font-bold text-white flex items-center gap-1.5">
+                            <i class="fa-solid fa-user-circle text-purple-400"></i> ${user.username}
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-mono">ID: #${user.id}</span>
+                    </td>
+                    <td class="py-3.5 px-3">
+                        <div class="font-bold text-slate-200">${user.fullName || 'Chưa cập nhật'}</div>
+                        <div class="text-[11px] text-slate-400">${user.phone || 'N/A'}</div>
+                    </td>
+                    <td class="py-3.5 px-3">
+                        <div class="text-slate-300">${user.position || 'Nhân viên'}</div>
+                        <div class="text-[10px] text-slate-500">${user.discipline || ''}</div>
+                    </td>
+                    <td class="py-3.5 px-3">
+                        <span class="px-2.5 py-1 rounded-md text-[10px] font-extrabold bg-purple-500/10 text-purple-300 border border-purple-500/30">
+                            ${user.role}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-3">
+                        <span class="px-2.5 py-1 rounded-md text-[10px] font-extrabold bg-blue-500/10 text-blue-300 border border-blue-500/30">
+                            ${user.permission}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-3 font-bold text-slate-200">${user.company || 'PV INCONS'}</td>
+                    <td class="py-3.5 px-3 max-w-[180px]">
+                        <div class="flex flex-wrap gap-1">
+                            ${(user.projects || '').split(',').map(p => `<span class="px-1.5 py-0.5 bg-slate-800 text-slate-300 text-[10px] rounded border border-slate-700">${p.trim()}</span>`).join('')}
+                        </div>
+                    </td>
+                    <td class="py-3.5 px-3">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${user.status === 'Active' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30' : 'bg-slate-700 text-slate-400'}">
+                            ● ${user.status}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-right space-x-1">
+                        <button onclick="editUser(${user.id})" class="px-2 py-1 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700" title="Chỉnh sửa"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteUser(${user.id})" class="px-2 py-1 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500/20" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
 
-        showToast(`Đã xuất bản thành công ${filePath} lên GitHub!`);
-        isFormDirtyFlag = false; // Reset sau khi xuất bản
-      } catch (err) {
-        console.error('Lỗi publish GitHub:', err);
-        showToast(`Xuất bản thất bại: ${err.message}`, 'error');
-      } finally {
-        btnPublish.disabled = false;
-        btnPublish.innerHTML = `<i class="fa-solid fa-cloud-arrow-up text-xs"></i> Xuất bản GitHub`;
-      }
-    });
+        function renderCards(data) {
+            const container = document.getElementById('userCardList');
+            container.innerHTML = '';
 
-    updateFormCategoryOptions();
-    updateTabCounts();
-    renderPostsList();
-    resetForm();
-  </script>
+            if (data.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-6 text-slate-500 text-xs">Không tìm thấy tài khoản phù hợp.</div>`;
+                return;
+            }
+
+            data.forEach(user => {
+                const card = document.createElement('div');
+                card.className = 'workspace-card p-4 rounded-2xl border border-white/10 flex flex-col justify-between gap-3';
+                card.innerHTML = `
+                    <div class="flex items-start justify-between border-b border-white/10 pb-2.5">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center font-bold text-xs">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xs text-white">${user.fullName || user.username}</h3>
+                                <p class="text-[10px] text-slate-400 font-mono">@${user.username} • ID: #${user.id}</p>
+                            </div>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${user.status === 'Active' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30' : 'bg-slate-700 text-slate-400'}">
+                            ● ${user.status}
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-[11px]">
+                        <div>
+                            <span class="text-slate-500 block text-[10px]">VAI TRÒ (ROLE)</span>
+                            <span class="font-bold text-purple-300">${user.role}</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block text-[10px]">QUYỀN (PERMISSION)</span>
+                            <span class="font-bold text-blue-300">${user.permission}</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block text-[10px]">CHỨC VỤ</span>
+                            <span class="text-slate-200">${user.position || 'N/A'}</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block text-[10px]">SỐ ĐIỆN THOẠI</span>
+                            <span class="text-slate-200">${user.phone || 'N/A'}</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-2.5 rounded-xl text-[11px]">
+                        <div class="text-slate-400 font-bold mb-1"><i class="fa-solid fa-building text-xs mr-1"></i> ${user.company || 'PV INCONS'}</div>
+                        <div class="flex flex-wrap gap-1 mt-1">
+                            ${(user.projects || '').split(',').map(p => `<span class="px-1.5 py-0.5 bg-slate-800 text-slate-300 text-[9px] rounded border border-slate-700">${p.trim()}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-end gap-2 pt-1">
+                        <button onclick="editUser(${user.id})" class="px-3 py-1.5 bg-slate-800 text-slate-200 rounded-lg text-xs font-semibold hover:bg-slate-700 flex items-center gap-1"><i class="fa-solid fa-pen text-[10px]"></i> Sửa</button>
+                        <button onclick="deleteUser(${user.id})" class="px-3 py-1.5 bg-red-500/10 text-red-400 rounded-lg text-xs font-semibold hover:bg-red-500/20 flex items-center gap-1"><i class="fa-solid fa-trash text-[10px]"></i> Xóa</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openAddModal() {
+            document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-user-plus text-purple-400"></i> Thêm Người Dùng Mới';
+            document.getElementById('userForm').reset();
+            document.getElementById('userId').value = '';
+            document.getElementById('formRawPassword').value = '123456';
+            document.getElementById('userModal').classList.remove('hidden');
+            document.getElementById('userModal').classList.add('flex');
+        }
+
+        function editUser(id) {
+            const user = usersData.find(u => u.id === id);
+            if (!user) return;
+            document.getElementById('modalTitle').innerHTML = `<i class="fa-solid fa-user-pen text-purple-400"></i> Chỉnh Sửa: @${user.username}`;
+            document.getElementById('userId').value = user.id;
+            document.getElementById('formUsername').value = user.username;
+            document.getElementById('formRawPassword').value = '';
+            document.getElementById('formFullName').value = user.fullName || '';
+            document.getElementById('formPhone').value = user.phone || '';
+            document.getElementById('formPosition').value = user.position || '';
+            document.getElementById('formDiscipline').value = user.discipline || '';
+            document.getElementById('formRole').value = user.role || 'INTERNAL';
+            document.getElementById('formPermission').value = user.permission || 'INTERNAL';
+            document.getElementById('formCompany').value = user.company || '';
+            document.getElementById('formStatus').value = user.status === 'Active' ? 'Active' : 'Inactive';
+            document.getElementById('formProjects').value = user.projects || '';
+
+            document.getElementById('userModal').classList.remove('hidden');
+            document.getElementById('userModal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('userModal').classList.remove('flex');
+            document.getElementById('userModal').classList.add('hidden');
+        }
+
+        function saveUser(event) {
+            event.preventDefault();
+            const idVal = document.getElementById('userId').value;
+            const rawPassword = document.getElementById('formRawPassword').value;
+
+            let finalPasswordHash = "$2b$10$Mhg7uk2abtNcK8/yqU1ZFOzT7mPAdzbjK9zPJMX18cF/yalhrIpSa"; 
+            if (idVal) {
+                const existingUser = usersData.find(u => u.id === parseInt(idVal));
+                if (existingUser) finalPasswordHash = existingUser.passwordHash;
+            }
+            if (rawPassword.trim() !== '') {
+                finalPasswordHash = `$2b$10$${btoa(rawPassword).substring(0, 10)}...HASHED...${rawPassword.length}`;
+            }
+
+            const userData = {
+                id: idVal ? parseInt(idVal) : (usersData.length ? Math.max(...usersData.map(u => u.id)) + 1 : 1),
+                username: document.getElementById('formUsername').value.trim(),
+                passwordHash: finalPasswordHash,
+                role: document.getElementById('formRole').value,
+                permission: document.getElementById('formPermission').value,
+                avatarLink: "",
+                fullName: document.getElementById('formFullName').value.trim(),
+                phone: document.getElementById('formPhone').value.trim(),
+                position: document.getElementById('formPosition').value.trim(),
+                discipline: document.getElementById('formDiscipline').value.trim(),
+                projects: document.getElementById('formProjects').value.trim(),
+                company: document.getElementById('formCompany').value.trim(),
+                status: document.getElementById('formStatus').value
+            };
+
+            if (idVal) {
+                const index = usersData.findIndex(u => u.id === parseInt(idVal));
+                if (index !== -1) usersData[index] = userData;
+            } else {
+                usersData.push(userData);
+            }
+
+            populateFilterDropdowns();
+            applyFiltersAndSort();
+            closeModal();
+            showToast('Đã lưu thay đổi vào bộ nhớ tạm. Hãy nhấn "Xuất bản GitHub" để đồng bộ lên repo!');
+        }
+
+        function deleteUser(id) {
+            if (confirm('Xác nhận xóa tài khoản này khỏi danh sách quản trị?')) {
+                usersData = usersData.filter(u => u.id !== id);
+                populateFilterDropdowns();
+                applyFiltersAndSort();
+                showToast('Đã xóa tài khoản.');
+            }
+        }
+    </script>
 </body>
 
 </html>
