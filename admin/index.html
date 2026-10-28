@@ -110,9 +110,9 @@
 
 <body class="bg-[#0f1117] text-gray-200 h-screen overflow-hidden text-sm select-none flex flex-col">
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
+  <!-- TOAST NOTIFICATION CONTAINER (Đặt z-[100] để luôn nổi lên trên màn hình đăng nhập) -->
   <div id="toast-container"
-    class="fixed top-4 right-4 left-4 lg:left-auto z-50 flex flex-col gap-2 pointer-events-none lg:max-w-sm w-auto">
+    class="fixed top-4 right-4 left-4 lg:left-auto z-[100] flex flex-col gap-2 pointer-events-none lg:max-w-sm w-auto">
   </div>
 
   <!-- 1. MÀN HÌNH ĐĂNG NHẬP -->
@@ -856,23 +856,59 @@
       document.getElementById('display-repo-info').innerText = `${authConfig.owner}/${authConfig.repo}`;
     }
 
-    document.getElementById('btn-login').addEventListener('click', () => {
+    // ĐÃ CẬP NHẬT: Kiểm tra xác thực API GitHub thực tế khi đăng nhập, chặn đăng nhập sai và báo lỗi rõ ràng bên ngoài modal đăng nhập
+    document.getElementById('btn-login').addEventListener('click', async () => {
       const owner = document.getElementById('auth-owner').value.trim();
       const repo = document.getElementById('auth-repo').value.trim();
       const token = document.getElementById('auth-token').value.trim();
+
       if (!owner || !repo || !token) {
         showToast('Vui lòng điền đầy đủ thông tin xác thực GitHub', 'error');
         return;
       }
-      authConfig = { owner, repo, token };
-      localStorage.setItem('pv_github_auth', btoa(JSON.stringify(authConfig))); // Cải thiện bảo mật
-      db = loadLocalDB();
-      document.getElementById('login-modal').classList.add('hidden');
-      document.getElementById('admin-workspace').classList.remove('hidden');
-      document.getElementById('display-repo-info').innerText = `${owner}/${repo}`;
-      showToast('Đã xác thực thành công!');
-      updateTabCounts();
-      renderPostsList();
+
+      const btnLogin = document.getElementById('btn-login');
+      btnLogin.disabled = true;
+      btnLogin.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-xs"></i> <span>Đang xác thực...</span>`;
+
+      try {
+        const testUrl = `https://api.github.com/repos/${owner}/${repo}`;
+        const response = await fetch(testUrl, {
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            throw new Error('Xác thực thất bại: Personal Access Token (PAT) không hợp lệ hoặc đã hết hạn!');
+          } else if (response.status === 404) {
+            throw new Error('Không tìm thấy Repository! Vui lòng kiểm tra lại Owner hoặc tên Repository.');
+          } else {
+            throw new Error(`Lỗi kết nối GitHub (HTTP ${response.status})`);
+          }
+        }
+
+        authConfig = { owner, repo, token };
+        localStorage.setItem('pv_github_auth', btoa(JSON.stringify(authConfig)));
+        db = loadLocalDB();
+
+        document.getElementById('login-modal').classList.add('hidden');
+        document.getElementById('admin-workspace').classList.remove('hidden');
+        document.getElementById('display-repo-info').innerText = `${owner}/${repo}`;
+        
+        showToast('Đăng nhập và xác thực thành công!');
+        updateTabCounts();
+        renderPostsList();
+
+      } catch (err) {
+        console.error('Lỗi đăng nhập:', err);
+        showToast(err.message || 'Sai thông tin đăng nhập hoặc Token không đủ quyền!', 'error');
+      } finally {
+        btnLogin.disabled = false;
+        btnLogin.innerHTML = `<i class="fa-solid fa-key text-xs"></i><span>Xác nhận & Vào Admin Website</span>`;
+      }
     });
 
     document.getElementById('btn-logout').addEventListener('click', () => {
