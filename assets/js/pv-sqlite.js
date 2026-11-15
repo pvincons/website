@@ -324,7 +324,7 @@
   }
 
   // ---------------------------------------------------------------
-  // 7. DÙNG CHO TRANG CÔNG KHAI (đọc /content/website.db)
+  // 7. DÙNG CHO TRANG CÔNG KHAI (đọc /database/website.db)
   // ---------------------------------------------------------------
   var siteDbPromise = null;
 
