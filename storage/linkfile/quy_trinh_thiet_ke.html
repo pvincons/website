@@ -102,16 +102,65 @@
     <!-- Font tiêu đề: Be Vietnam Pro (thiết kế riêng cho tiếng Việt) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         main h1, main h2, main h3 {
             font-family: 'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif !important;
             letter-spacing: 0 !important;
             text-wrap: balance;
         }
-        main h1 { font-weight: 700 !important; line-height: 1.3 !important; }
-        main h2 { font-weight: 700 !important; line-height: 1.3 !important; }
+        main h1 { font-weight: 700 !important; line-height: 1.5 !important; }
+        main h2 { font-weight: 700 !important; line-height: 1.5 !important; }
         main h3 { font-weight: 600 !important; line-height: 1.4 !important; }
+
+        /* Tối ưu giao diện bảng trên điện thoại (< 768px): chuyển thành thẻ xếp dọc, loại bỏ cuộn ngang */
+        @media (max-width: 767px) {
+            .responsive-table {
+                min-width: 100% !important;
+                display: block;
+            }
+            .responsive-table thead {
+                display: none;
+            }
+            .responsive-table tbody {
+                display: block;
+                width: 100%;
+            }
+            .responsive-table tr {
+                display: block;
+                padding: 1rem 1.125rem;
+            }
+            .responsive-table td {
+                display: block;
+                width: 100% !important;
+                padding: 0 !important;
+                text-align: left !important;
+            }
+            .responsive-table td.price-cell {
+                display: inline-flex;
+                align-items: baseline;
+                gap: 0.35rem;
+                margin-top: 0.5rem;
+                margin-bottom: 0.625rem;
+                padding: 0.25rem 0.65rem !important;
+                background-color: #fffbeb;
+                border: 1px solid #fde68a;
+                border-radius: 0.5rem;
+                font-size: 0.95rem;
+            }
+            .responsive-table td.price-cell::after {
+                content: attr(data-unit);
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: #92400e;
+            }
+            .responsive-table td.desc-cell {
+                padding-top: 0.5rem !important;
+                border-top: 1px dashed #e2e8f0;
+                font-size: 0.85rem;
+                line-height: 1.55;
+            }
+        }
     </style>
 </head>
 
@@ -120,166 +169,538 @@
     <!-- Header chuẩn của hệ thống -->
     <div id="header-placeholder"></div>
 
-    <!-- Nội dung body được viết lại: báo giá theo mặt bằng thị trường 2026 -->
-    <main class="pb-16">
+    <!-- Nội dung chính -->
+    <main class="pb-14 md:pb-16">
         <!-- Hero -->
-        <section class="relative bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#1e68a8] text-white py-12 md:py-16 overflow-hidden">
+        <section class="relative bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#1e68a8] text-white pt-8 pb-14 md:py-16 overflow-hidden">
             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"></div>
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <nav class="flex items-center space-x-2 text-xs md:text-sm text-blue-200 mb-6">
+                <nav class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs md:text-sm text-blue-200 mb-4 md:mb-6">
                     <a href="/" class="hover:text-white transition"><i class="fa-solid fa-house mr-1"></i>Trang chủ</a>
                     <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    <a href="/news.html" class="hover:text-white transition">Tin tức</a>
+                    <a href="/services.html" class="hover:text-white transition">Dịch vụ</a>
                     <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    <span class="text-white font-medium">Quy trình & Báo giá thiết kế</span>
+                    <span class="text-white font-medium">Báo giá thiết kế</span>
                 </nav>
 
                 <div>
-                    <h1 class="max-w-4xl text-2xl sm:text-3xl md:text-4xl mb-4">
-                        Quy Trình Thiết Kế Công Trình, Bảng Giá & Ưu Điểm Khi Chọn Đơn Vị Uy Tín
+                    <h1 class="max-w-4xl text-xl sm:text-3xl md:text-4xl mb-3 md:mb-4">
+                        BẢNG GIÁ DỊCH VỤ TƯ VẤN THIẾT KẾ - THAM KHẢO
                     </h1>
-                    <p class="max-w-2xl text-base sm:text-lg text-blue-100 leading-relaxed mb-8 font-light">
-                        Biết trước chi phí, các bước làm việc và hồ sơ nhận được, để bạn quyết định tự tin trước khi bắt đầu xây dựng.
+                    <p class="max-w-2xl text-sm sm:text-lg text-blue-100 leading-relaxed mb-6 md:mb-8 font-light">
+                        Dịch vụ tư vấn thiết kế công trình chuẩn kỹ thuật số BIM (LOD 350 - AIA/CSI). Liên hệ: <span class="font-bold">0939 751 194</span> để nhận báo giá chính xác và chi tiết theo dự án của bạn.
                     </p>
 
-                    <div class="flex flex-wrap items-center justify-between gap-4 pt-5 border-t border-white/15 text-sm text-blue-100">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pt-4 md:pt-5 border-t border-white/15 text-xs sm:text-sm text-blue-100">
                         <div class="flex items-center space-x-3">
-                            <img src="https://pvincons.com/assets/pic/favicon.png" alt="PV INCONS" class="w-10 h-10 rounded-full bg-white p-1 shadow">
+                            <img src="https://pvincons.com/assets/pic/favicon.png" alt="PV INCONS" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white p-1 shadow shrink-0">
                             <div>
                                 <p class="font-bold text-white">Phòng kinh doanh</p>
-                                <p class="text-xs text-blue-200">Chuyên mục: Thiết kế & Xây dựng</p>
+                                <p class="text-[11px] sm:text-xs text-blue-200">Áp dụng từ ngày 01/06/2026</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-5 text-xs sm:text-sm">
-                            <span><i class="fa-regular fa-calendar mr-1.5 text-amber-400"></i>16/11/2026</span>
-                            <span><i class="fa-regular fa-clock mr-1.5 text-amber-400"></i>5 phút đọc</span>
+                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm">
+                            <span><i class="fa-regular fa-calendar mr-1.5 text-amber-400"></i>Cập nhật 2026</span>
+                            <span><i class="fa-solid fa-cube mr-1.5 text-amber-400"></i>Chuẩn BIM LOD 350</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
-            <!-- Bảng giá -->
-            <section class="mb-16">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div class="p-6 md:p-8 border-b border-slate-100">
-                        <h2 class="text-2xl md:text-3xl text-slate-900">Bảng giá thiết kế tham khảo 2026</h2>
-                        <p class="text-slate-600 text-sm mt-2">Đơn giá tính theo tổng diện tích sàn xây dựng, áp dụng cho công trình từ 150 m² sàn. Công trình nhỏ hơn tính theo phí tối thiểu, báo giá riêng. Đơn giá chưa bao gồm VAT.</p>
-                    </div>
+        <div class="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 -mt-6 md:-mt-8 relative z-20 space-y-6 md:space-y-10">
 
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse min-w-[560px]">
+            <!-- PHẦN A: HỒ SƠ PHÁP LÝ (RS) -->
+            <section class="bg-white rounded-xl md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-4 sm:p-6 md:p-8 border-b border-slate-100">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                            <i class="fa-solid fa-file-signature mr-1.5"></i> PHẦN A • REGULATORY SUBMITTAL (RS)
+                        </span>
+                        <span class="text-[11px] sm:text-xs text-slate-500">Tuân thủ QCVN 01:2021/BXD & Quy chế kiến trúc đô thị</span>
+                    </div>
+                    <h2 class="text-lg sm:text-xl md:text-2xl text-slate-900">Bảng giá hồ sơ pháp lý xây dựng</h2>
+                </div>
+
+                <div>
+                    <table class="responsive-table w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                                <th class="py-3.5 px-6 font-semibold w-64">Loại hồ sơ pháp lý</th>
+                                <th class="py-3.5 px-6 font-semibold whitespace-nowrap w-44">Đơn giá (đ/m²)</th>
+                                <th class="py-3.5 px-6 font-semibold">Quy cách bàn giao & Định mức tối thiểu</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+                            <tr class="hover:bg-blue-50/40 transition">
+                                <td class="py-4 px-6">
+                                    <p class="font-bold text-slate-900 text-[15px] md:text-sm">1. Cấp phép xây dựng (Building Permit)</p>
+                                </td>
+                                <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap" data-unit="đ/m²">20.000</td>
+                                <td class="desc-cell py-4 px-6 text-slate-600">
+                                    Cung cấp 02 bộ bản vẽ xin phép theo quy định. Diện tích sàn &lt; 250 m²: <strong>5 triệu/hồ sơ</strong>; trên 500 m²: giá theo thỏa thuận.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
+                                <td class="py-4 px-6">
+                                    <p class="font-bold text-slate-900 text-[15px] md:text-sm">2. Hoàn công xây dựng (As-Built)</p>
+                                </td>
+                                <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap" data-unit="đ/m²">15.000</td>
+                                <td class="desc-cell py-4 px-6 text-slate-600">
+                                    Đo vẽ hiện trạng, cung cấp 03 bộ bản vẽ hoàn công (chưa gồm phí đo vẽ trích lục thửa đất). Sàn &lt; 265 m²: <strong>4 triệu/hồ sơ</strong>.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-50/40 transition">
+                                <td class="py-4 px-6">
+                                    <p class="font-bold text-slate-900 text-[15px] md:text-sm">3. Thẩm tra thiết kế kết cấu chịu lực</p>
+                                </td>
+                                <td class="price-cell py-4 px-6 font-bold text-[#1e68a8] whitespace-nowrap" data-unit="">Liên hệ</td>
+                                <td class="desc-cell py-4 px-6 text-slate-600">
+                                    Cung cấp thuyết minh và báo cáo thẩm tra theo quy định pháp luật. Giá tối thiểu <strong>7 triệu/hồ sơ</strong>.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- PHẦN B: HỒ SƠ THIẾT KẾ KỸ THUẬT THI CÔNG (CD) -->
+            <section class="bg-white rounded-xl md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-4 sm:p-6 md:p-8 border-b border-slate-100">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-blue-50 text-[#1e68a8] border border-blue-200">
+                            <i class="fa-solid fa-layer-group mr-1.5"></i> PHẦN B • CONSTRUCTION DOCUMENTS (CD)
+                        </span>
+                        <span class="text-[11px] sm:text-xs font-medium text-slate-500">Nền tảng BIM • Tiêu chuẩn quốc tế AIA (LOD 350) & CSI</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl text-slate-900">Bảng giá thiết kế kỹ thuật thi công 2026</h2>
+                    <p class="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">Đơn giá thiết kế trước thuế (chưa bao gồm VAT 8%). Hồ sơ triển khai đồng bộ trên nền tảng kỹ thuật số BIM đạt cấp độ phát triển LOD 350.</p>
+                </div>
+
+                <!-- B1: Nhà ở gia đình -->
+                <div class="border-b border-slate-200">
+                    <div class="px-4 sm:px-6 py-3.5 sm:py-4 bg-slate-50/80 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-base md:text-lg font-bold text-slate-900">
+                            <i class="fa-solid fa-house-chimney text-[#1e68a8] mr-2"></i>B1. Nhà ở gia đình (Home Buildings)
+                        </h3>
+                        <span class="self-start sm:self-auto text-[11px] sm:text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 sm:px-3 py-1 rounded-full">
+                            Hợp đồng tối thiểu: 12.000.000 đ/hồ sơ
+                        </span>
+                    </div>
+                    <div>
+                        <table class="responsive-table w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-900 text-white text-sm">
-                                    <th class="py-4 px-6 font-semibold">Loại công trình</th>
-                                    <th class="py-4 px-6 font-semibold whitespace-nowrap">Đơn giá (đ/m²)</th>
-                                    <th class="py-4 px-6 font-semibold">Hồ sơ bàn giao</th>
+                                <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                                    <th class="py-3.5 px-6 font-semibold w-64">Gói thiết kế</th>
+                                    <th class="py-3.5 px-6 font-semibold whitespace-nowrap w-44">Đơn giá (đ/m²)</th>
+                                    <th class="py-3.5 px-6 font-semibold">Phạm vi hồ sơ & Quy định áp dụng</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
                                 <tr class="hover:bg-blue-50/40 transition">
                                     <td class="py-4 px-6">
-                                        <p class="font-bold text-slate-900"><i class="fa-solid fa-house-chimney text-[#1e68a8] mr-2"></i>Nhà phố, nhà ở riêng lẻ</p>
-                                        <p class="text-xs text-slate-500 mt-0.5 pl-6">Hiện đại, tối giản</p>
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">1. Gói Cơ Bản (Basic)</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Kiến trúc cơ sở</p>
                                     </td>
-                                    <td class="py-4 px-6 font-bold text-[#D97706] whitespace-nowrap">120.000 – 260.000</td>
-                                    <td class="py-4 px-6">Kiến trúc, Kết cấu, Điện nước, Phối cảnh 3D ngoại thất</td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">90.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc (không bao gồm 3D nội thất).</li>
+                                            <li>Hồ sơ bản vẽ kiến trúc cơ bản: mặt bằng, mặt cắt, mặt đứng (không có kết cấu & điện nước).</li>
+                                            <li>Phong cách cổ điển: đơn giá nhân hệ số <strong>1.5</strong>.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                     <td class="py-4 px-6">
-                                        <p class="font-bold text-slate-900"><i class="fa-solid fa-tree-city text-[#1e68a8] mr-2"></i>Biệt thự hiện đại, biệt thự vườn</p>
-                                        <p class="text-xs text-slate-500 mt-0.5 pl-6">Hiện đại, nhiệt đới</p>
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">2. Gói Tiêu Chuẩn (Standard)</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Hồ sơ kỹ thuật thi công</p>
                                     </td>
-                                    <td class="py-4 px-6 font-bold text-[#D97706] whitespace-nowrap">220.000 – 320.000</td>
-                                    <td class="py-4 px-6">Kiến trúc, Kết cấu, Điện nước, Phối cảnh 3D ngoại thất, bố trí sân vườn cơ bản</td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">120.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc (không bao gồm 3D nội thất).</li>
+                                            <li>Hồ sơ kỹ thuật chi tiết: <strong>Kiến trúc, Kết cấu, Điện, Cấp thoát nước</strong>.</li>
+                                            <li>Phong cách cổ điển: đơn giá nhân hệ số <strong>1.5</strong>.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr class="hover:bg-blue-50/40 transition">
                                     <td class="py-4 px-6">
-                                        <p class="font-bold text-slate-900"><i class="fa-solid fa-landmark text-[#1e68a8] mr-2"></i>Biệt thự tân cổ điển, cổ điển</p>
-                                        <p class="text-xs text-slate-500 mt-0.5 pl-6">Phào chỉ, hoa văn chi tiết</p>
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">3. Gói Cao Cấp (Premium)</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Trọn gói Kiến trúc & Nội thất</p>
                                     </td>
-                                    <td class="py-4 px-6 font-bold text-[#D97706] whitespace-nowrap">320.000 – 450.000</td>
-                                    <td class="py-4 px-6">Chi tiết phào chỉ hoa văn, Kết cấu, Điện nước, Mô hình 3D chi tiết</td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">240.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Bao gồm toàn bộ hồ sơ kỹ thuật chi tiết của gói Tiêu chuẩn.</li>
+                                            <li>Bổ sung đầy đủ <strong>hồ sơ thiết kế 3D Nội thất</strong> và triển khai chi tiết nội thất.</li>
+                                            <li>Phong cách cổ điển: đơn giá nhân hệ số <strong>1.5</strong>.</li>
+                                        </ul>
+                                    </td>
                                 </tr>
-                                <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
+                                <tr class="hover:bg-amber-50/60 transition bg-amber-50/30">
                                     <td class="py-4 px-6">
-                                        <p class="font-bold text-slate-900"><i class="fa-solid fa-building text-[#1e68a8] mr-2"></i>Văn phòng, showroom, khách sạn nhỏ</p>
-                                        <p class="text-xs text-slate-500 mt-0.5 pl-6">Công trình thương mại</p>
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm"><i class="fa-solid fa-crown text-[#D97706] mr-1.5"></i>4. Thiết Kế Độc Bản (Signature)</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Dịch vụ Bespoke đặc quyền</p>
                                     </td>
-                                    <td class="py-4 px-6 font-bold text-[#D97706] whitespace-nowrap">120.000 – 260.000</td>
-                                    <td class="py-4 px-6">Kiến trúc, Kết cấu nhịp lớn, Điện nước, Điều hòa thông gió, Hồ sơ PCCC, 3D</td>
-                                </tr>
-                                <tr class="hover:bg-blue-50/40 transition">
-                                    <td class="py-4 px-6">
-                                        <p class="font-bold text-slate-900"><i class="fa-solid fa-couch text-[#1e68a8] mr-2"></i>Thiết kế nội thất</p>
-                                        <p class="text-xs text-slate-500 mt-0.5 pl-6">Indochine, Luxury, Modern</p>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">450.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Toàn bộ nội dung gói Cao cấp kèm dịch vụ Bespoke cá nhân hóa cao cấp nhất.</li>
+                                            <li><strong>Phim kiến trúc (3D Animation)</strong> diễn họa sinh động, thiết kế vật liệu & cảnh quan chuyên sâu.</li>
+                                            <li>Giám sát tác giả định kỳ với tần suất cao hơn. Phong cách cổ điển nhân hệ số <strong>1.5</strong>.</li>
+                                        </ul>
                                     </td>
-                                    <td class="py-4 px-6 font-bold text-[#D97706] whitespace-nowrap">200.000 – 350.000</td>
-                                    <td class="py-4 px-6">Phối cảnh 3D từng phòng, bản vẽ triển khai đồ gỗ và chiếu sáng</td>
-                                </tr>
-                                <tr class="hover:bg-amber-50/60 transition bg-amber-50/40">
-                                    <td class="py-4 px-6">
-                                        <p class="font-bold text-slate-900"><i class="fa-solid fa-star text-[#D97706] mr-2"></i>Trọn gói Kiến trúc + Nội thất</p>
-                                        <p class="text-xs text-slate-500 mt-0.5 pl-6">Một đầu mối, thống nhất từ ngoài vào trong</p>
-                                    </td>
-                                    <td class="py-4 px-6 font-bold text-[#D97706] whitespace-nowrap">300.000 – 550.000</td>
-                                    <td class="py-4 px-6">Toàn bộ hồ sơ Kiến trúc và Nội thất, tùy phong cách và quy mô</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
 
-                    <div class="p-5 bg-slate-50 border-t border-slate-200 text-sm text-slate-600">
-                        <p><i class="fa-solid fa-gift text-[#D97706] mr-1.5"></i> <strong>Ưu đãi:</strong> giảm <strong>50% – 100% chi phí thiết kế</strong> khi chủ đầu tư ký hợp đồng thi công trọn gói tại PV INCONS. Nhà xưởng và công trình đặc thù được báo giá riêng theo quy mô.</p>
+                <!-- B2: Công trình công cộng -->
+                <div class="border-b border-slate-200">
+                    <div class="px-4 sm:px-6 py-3.5 sm:py-4 bg-slate-50/80 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-base md:text-lg font-bold text-slate-900">
+                            <i class="fa-solid fa-building text-[#1e68a8] mr-2"></i>B2. Công trình công cộng (Public Buildings)
+                        </h3>
+                        <span class="self-start sm:self-auto text-[11px] sm:text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 sm:px-3 py-1 rounded-full">
+                            Hợp đồng tối thiểu: 20.000.000 đ/hồ sơ
+                        </span>
+                    </div>
+                    <div>
+                        <table class="responsive-table w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                                    <th class="py-3.5 px-6 font-semibold w-64">Loại công trình</th>
+                                    <th class="py-3.5 px-6 font-semibold whitespace-nowrap w-44">Đơn giá (đ/m²)</th>
+                                    <th class="py-3.5 px-6 font-semibold">Phạm vi hồ sơ & Quy định áp dụng</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+                                <tr class="hover:bg-blue-50/40 transition">
+                                    <td class="py-4 px-6">
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">1. Khách sạn (Hotel)</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Công trình lưu trú</p>
+                                    </td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">140.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc (không bao gồm 3D nội thất).</li>
+                                            <li>Hồ sơ triển khai kỹ thuật chi tiết: <strong>Kiến trúc, Kết cấu, Điện, Cấp thoát nước</strong>.</li>
+                                            <li>Phong cách cổ điển: đơn giá nhân hệ số <strong>1.5</strong>.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
+                                    <td class="py-4 px-6">
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">2. Nhà hàng - Trung tâm hội nghị</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Restaurant & Convention Center</p>
+                                    </td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">150.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc (không bao gồm 3D nội thất).</li>
+                                            <li>Hồ sơ triển khai kỹ thuật chi tiết: <strong>Kiến trúc, Kết cấu, Điện, Cấp thoát nước</strong>.</li>
+                                            <li>Phong cách cổ điển: đơn giá nhân hệ số <strong>1.5</strong>.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/40 transition">
+                                    <td class="py-4 px-6">
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">3. Quán Cafe sân vườn, cảnh quan</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Garden Cafe & Landscape</p>
+                                    </td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">160.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc & không gian cảnh quan (không bao gồm 3D nội thất).</li>
+                                            <li>Hồ sơ triển khai kỹ thuật chi tiết: <strong>Kiến trúc, Kết cấu, Điện, Cấp thoát nước</strong>.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
+                                    <td class="py-4 px-6">
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">4. Quán Cafe phòng lạnh</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Air-Conditioned Cafe</p>
+                                    </td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">180.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc (không bao gồm 3D nội thất).</li>
+                                            <li>Hồ sơ triển khai kỹ thuật chi tiết: <strong>Kiến trúc, Kết cấu, Điện, Cấp thoát nước</strong>.</li>
+                                            <li>Phong cách cổ điển: đơn giá nhân hệ số <strong>1.5</strong>.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/40 transition">
+                                    <td class="py-4 px-6">
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">5. Tòa nhà văn phòng</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Office Building</p>
+                                    </td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">120.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc (không bao gồm 3D nội thất).</li>
+                                            <li>Hồ sơ triển khai kỹ thuật chi tiết: <strong>Kiến trúc, Kết cấu, Điện, Cấp thoát nước</strong>.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
-                <!-- Đã gồm / chưa gồm -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm">
-                        <h3 class="font-bold text-slate-900 mb-3"><i class="fa-solid fa-circle-check text-emerald-600 mr-2"></i>Đơn giá đã bao gồm</h3>
-                        <ul class="space-y-2 text-sm text-slate-600">
-                            <li>Khảo sát hiện trạng và đo đạc khu đất</li>
-                            <li>Phương án mặt bằng, phối cảnh 3D, chỉnh sửa đến khi chốt phương án</li>
-                            <li>Hồ sơ Kiến trúc, Kết cấu, Điện nước theo từng loại công trình</li>
-                            <li>Bóc tách khối lượng, dự toán và bản vẽ xin phép xây dựng</li>
-                        </ul>
+                <!-- B3: Công trình công nghiệp -->
+                <div>
+                    <div class="px-4 sm:px-6 py-3.5 sm:py-4 bg-slate-50/80 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-base md:text-lg font-bold text-slate-900">
+                            <i class="fa-solid fa-industry text-[#1e68a8] mr-2"></i>B3. Công trình công nghiệp (Industrial Buildings)
+                        </h3>
+                        <span class="self-start sm:self-auto text-[11px] sm:text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 sm:px-3 py-1 rounded-full">
+                            Hợp đồng tối thiểu: 15.000.000 đ/hồ sơ
+                        </span>
                     </div>
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm">
-                        <h3 class="font-bold text-slate-900 mb-3"><i class="fa-solid fa-circle-info text-[#1e68a8] mr-2"></i>Tính riêng khi có nhu cầu</h3>
-                        <ul class="space-y-2 text-sm text-slate-600">
-                            <li>Gói BIM/VDC (LOD 300 – 400, đồng bộ Kiến trúc – Kết cấu – MEP)</li>
-                            <li>Khảo sát địa chất và đo đạc địa hình chuyên sâu</li>
-                            <li>Giám sát tác giả, thiết kế cảnh quan sân vườn</li>
-                            <li>Phí, lệ phí nhà nước (cấp phép, thẩm duyệt PCCC)</li>
-                        </ul>
+                    <div>
+                        <table class="responsive-table w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                                    <th class="py-3.5 px-6 font-semibold w-64">Loại công trình</th>
+                                    <th class="py-3.5 px-6 font-semibold whitespace-nowrap w-44">Đơn giá (đ/m²)</th>
+                                    <th class="py-3.5 px-6 font-semibold">Phạm vi hồ sơ & Quy định áp dụng</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+                                <tr class="hover:bg-blue-50/40 transition">
+                                    <td class="py-4 px-6">
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">1. Nhà công nghiệp khung thép</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Steel Frame Industrial Building</p>
+                                    </td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">50.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc (không bao gồm 3D nội thất).</li>
+                                            <li>Hồ sơ triển khai kỹ thuật chi tiết: <strong>Kiến trúc, Kết cấu, Điện, Cấp thoát nước</strong>.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
+                                    <td class="py-4 px-6">
+                                        <p class="font-bold text-slate-900 text-[15px] md:text-sm">2. Showroom trưng bày sản phẩm</p>
+                                        <p class="text-xs text-slate-500 mt-0.5">Product Showroom</p>
+                                    </td>
+                                    <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="đ/m²">200.000</td>
+                                    <td class="desc-cell py-4 px-6">
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                            <li>Phối cảnh 3D kiến trúc <strong>kèm theo hồ sơ thiết kế 3D Nội thất</strong> trưng bày.</li>
+                                            <li>Hồ sơ triển khai kỹ thuật chi tiết: <strong>Kiến trúc, Kết cấu, Điện, Cấp thoát nước</strong>.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-              
             </section>
 
-            <!-- CTA -->
-            <section class="bg-gradient-to-r from-[#1e68a8] to-[#0f172a] rounded-2xl p-8 md:p-10 text-white shadow-xl mb-10 flex flex-col lg:flex-row items-center justify-between gap-6">
-                <div class="max-w-2xl text-center lg:text-left">
-                    <h2 class="text-2xl md:text-3xl font-bold mb-2">Nhận báo giá cho công trình của bạn</h2>
-                    <p class="text-blue-100 text-sm md:text-base">Gửi diện tích đất, số tầng và phong cách mong muốn. Kiến trúc sư PV INCONS tư vấn phương án sơ bộ và báo giá chi tiết miễn phí.</p>
+            <!-- PHẦN C: HỒ SƠ THIẾT KẾ Ý TƯỞNG CƠ SỞ / QUY HOẠCH KIẾN TRÚC (SD) -->
+            <section class="bg-white rounded-xl md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-4 sm:p-6 md:p-8 border-b border-slate-100">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                            <i class="fa-solid fa-map-location-dot mr-1.5"></i> PHẦN C • SCHEMATIC DESIGN (SD)
+                        </span>
+                        <span class="text-[11px] sm:text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 sm:px-3 py-1 rounded-full">
+                            Hợp đồng tối thiểu: 20.000.000 đ/hồ sơ
+                        </span>
+                    </div>
+                    <h2 class="text-lg sm:text-xl md:text-2xl text-slate-900">C1. Thiết kế ý tưởng quy hoạch kiến trúc (Architectural Planning)</h2>
                 </div>
-                <div class="flex flex-wrap justify-center gap-4 shrink-0">
-                    <a href="tel:+84909751194" class="px-6 py-3.5 rounded-xl bg-[#D97706] hover:bg-amber-600 text-white font-bold text-sm shadow-lg transition flex items-center">
-                        <i class="fa-solid fa-phone-volume mr-2"></i> Gọi 0909 751 194
+
+                <div>
+                    <table class="responsive-table w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                                <th class="py-3.5 px-6 font-semibold w-64">Quy mô đồ án quy hoạch</th>
+                                <th class="py-3.5 px-6 font-semibold whitespace-nowrap w-44">Đơn giá</th>
+                                <th class="py-3.5 px-6 font-semibold">Thành phần hồ sơ đồ án bàn giao</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+                            <tr class="hover:bg-blue-50/40 transition">
+                                <td class="py-4 px-6">
+                                    <p class="font-bold text-slate-900 text-[15px] md:text-sm">1. Dự án quy mô &lt; 5 ha</p>
+                                    <p class="text-xs text-slate-500 mt-0.5">Projects &lt; 5 ha</p>
+                                </td>
+                                <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="">98 Triệu/ha</td>
+                                <td class="desc-cell py-4 px-6 text-slate-600">
+                                    Bản vẽ cơ cấu sử dụng đất, phối cảnh 3D kiến trúc tổng thể dự án và các bản vẽ thiết kế đồ án quy hoạch.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
+                                <td class="py-4 px-6">
+                                    <p class="font-bold text-slate-900 text-[15px] md:text-sm">2. Dự án quy mô &gt; 5 ha</p>
+                                    <p class="text-xs text-slate-500 mt-0.5">Projects &gt; 5 ha</p>
+                                </td>
+                                <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base" data-unit="">72 Triệu/ha</td>
+                                <td class="desc-cell py-4 px-6 text-slate-600">
+                                    Bản vẽ cơ cấu sử dụng đất, phối cảnh 3D kiến trúc tổng thể dự án và các bản vẽ thiết kế đồ án quy hoạch.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+           
+            <!-- THÀNH PHẦN CHI TIẾT HỒ SƠ BẢN VẼ THEO TỪNG GÓI -->
+            <section class="bg-white rounded-xl md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-4 sm:p-6 md:p-8 border-b border-slate-100">
+                    <h2 class="text-lg sm:text-xl md:text-2xl text-slate-900">Danh mục thành phần hồ sơ bản vẽ theo từng gói</h2>
+                    <p class="text-slate-600 text-xs sm:text-sm mt-1">Đối chiếu chi tiết hạng mục bản vẽ 2D/3D BIM bàn giao tương ứng với 4 gói thiết kế nhà ở gia đình.</p>
+                    <p class="md:hidden text-[11px] text-[#1e68a8] font-medium mt-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrows-left-right"></i> Vuốt ngang bảng để xem đầy đủ 4 gói thiết kế
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto relative">
+                    <table class="w-full text-left border-collapse min-w-[640px] text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-slate-900 text-white text-[11px] sm:text-xs uppercase tracking-wider">
+                                <th class="sticky left-0 z-20 bg-slate-900 py-3 px-4 sm:px-6 font-semibold min-w-[210px] sm:min-w-[260px] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.3)]">Hạng mục hồ sơ chuyên ngành</th>
+                                <th class="py-3 px-3 sm:px-4 font-semibold text-center w-24 sm:w-28">Cơ bản<br><span class="text-[10px] font-normal text-slate-300">90k/m²</span></th>
+                                <th class="py-3 px-3 sm:px-4 font-semibold text-center w-24 sm:w-28">Tiêu chuẩn<br><span class="text-[10px] font-normal text-slate-300">120k/m²</span></th>
+                                <th class="py-3 px-3 sm:px-4 font-semibold text-center w-24 sm:w-28">Cao cấp<br><span class="text-[10px] font-normal text-slate-300">240k/m²</span></th>
+                                <th class="py-3 px-3 sm:px-4 font-semibold text-center w-28 sm:w-32 bg-amber-600">Độc bản<br><span class="text-[10px] font-normal text-amber-100">450k/m²</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50">
+                                <td class="sticky left-0 z-10 bg-white py-3.5 px-4 sm:px-6 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                                    <p class="font-semibold text-slate-900">G, S, EX • Thông tin dự án & 3D ngoại thất</p>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Bảng thông tin kỹ thuật, danh mục bản vẽ, phối cảnh 3D tổng thể</p>
+                                </td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600 bg-amber-50/30"><i class="fa-solid fa-check"></i></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 bg-slate-50/40">
+                                <td class="sticky left-0 z-10 bg-slate-50 py-3.5 px-4 sm:px-6 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                                    <p class="font-semibold text-slate-900">AR • Bản vẽ kỹ thuật Kiến trúc</p>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Mặt bằng, mặt đứng, mặt cắt, chi tiết thang, WC, cửa, gờ chỉ, bể phốt</p>
+                                </td>
+                                <td class="py-3.5 px-3 text-center text-[11px] sm:text-xs font-medium text-slate-500">Cơ bản</td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600 bg-amber-50/30"><i class="fa-solid fa-check"></i></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="sticky left-0 z-10 bg-white py-3.5 px-4 sm:px-6 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                                    <p class="font-semibold text-slate-900">ST • Bản vẽ kỹ thuật Kết cấu</p>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Cọc, móng, giằng móng, cột, dầm sàn, cầu thang, thống kê cốt thép</p>
+                                </td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600 bg-amber-50/30"><i class="fa-solid fa-check"></i></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 bg-slate-50/40">
+                                <td class="sticky left-0 z-10 bg-slate-50 py-3.5 px-4 sm:px-6 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                                    <p class="font-semibold text-slate-900">EL, PB • Hệ thống Điện & Cấp thoát nước</p>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Sơ đồ MCB, ổ cắm, chiếu sáng, cấp nước nóng lạnh, thoát nước mưa/thải</p>
+                                </td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600 bg-amber-50/30"><i class="fa-solid fa-check"></i></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="sticky left-0 z-10 bg-white py-3.5 px-4 sm:px-6 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                                    <p class="font-semibold text-slate-900">AC, SN, ES, GP • Điều hòa, Camera, Chống sét & Mối</p>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Ống gió/điều hòa, camera/Internet, kim thu sét, ngăn chặn mối mọt</p>
+                                </td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600 bg-amber-50/30"><i class="fa-solid fa-check"></i></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 bg-slate-50/40">
+                                <td class="sticky left-0 z-10 bg-slate-50 py-3.5 px-4 sm:px-6 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                                    <p class="font-semibold text-slate-900">IN • Thiết kế Nội thất & Phối cảnh 3D phòng</p>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">3D không gian các phòng, trần đèn, vách trang trí, đồ gỗ & khái toán nội thất</p>
+                                </td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600 bg-amber-50/30"><i class="fa-solid fa-check"></i></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="sticky left-0 z-10 bg-white py-3.5 px-4 sm:px-6 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                                    <p class="font-semibold text-slate-900">CE • Hồ sơ Dự toán chi phí xây dựng</p>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Tổng hợp chi phí, giá vật liệu, nhân công, ca máy & phân tích hao phí</p>
+                                </td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600"><i class="fa-solid fa-check"></i></td>
+                                <td class="py-3.5 px-3 text-center text-emerald-600 bg-amber-50/30"><i class="fa-solid fa-check"></i></td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/50 bg-amber-50/20">
+                                <td class="sticky left-0 z-10 bg-amber-50/95 py-3.5 px-4 sm:px-6 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                                    <p class="font-semibold text-slate-900">3D BIM X-Ray & Video 3D diễn họa kiến trúc</p>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Mô hình 3D X-ray phối hợp KT-KC-MEP, 3D chi tiết & phim 3D Animation</p>
+                                </td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-slate-300"><i class="fa-solid fa-minus"></i></td>
+                                <td class="py-3.5 px-3 text-center text-amber-600 font-bold bg-amber-50/40"><i class="fa-solid fa-star"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- GHI CHÚ & QUY ĐỊNH TÍNH DIỆN TÍCH -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div class="bg-white rounded-xl md:rounded-2xl p-5 md:p-6 border border-slate-200/80 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mb-3 text-base"><i class="fa-solid fa-calculator text-[#1e68a8] mr-2"></i>Hệ số quy đổi diện tích thiết kế</h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <li><i class="fa-solid fa-angle-right text-[#1e68a8] mr-2"></i><strong>Hệ số 50%:</strong> Sân hàng rào, sân thượng không mái che, mái bằng bê tông cốt thép.</li>
+                        <li><i class="fa-solid fa-angle-right text-[#1e68a8] mr-2"></i><strong>Hệ số 150%:</strong> Tầng hầm, bán hầm, mái có độ dốc phức tạp đổ bê tông cốt thép.</li>
+                        <li><i class="fa-solid fa-angle-right text-[#1e68a8] mr-2"></i><strong>Hệ số 1.5 (Phong cách cổ điển):</strong> Áp dụng cho các công trình thiết kế theo phong cách kiến trúc cổ điển.</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl md:rounded-2xl p-5 md:p-6 border border-slate-200/80 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mb-3 text-base"><i class="fa-solid fa-circle-info text-[#D97706] mr-2"></i>Lưu ý & Tùy chọn mở rộng</h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Đơn giá trên chưa bao gồm thuế GTGT <strong>8%</strong>.</li>
+                        <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Hỗ trợ xuất hồ sơ <strong>song ngữ / tiếng Anh (US)</strong> khi làm việc với tư vấn nước ngoài.</li>
+                        <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Tư vấn thiết kế công trình xanh theo tiêu chuẩn <strong>Green Mark, LEED, LOTUS</strong> theo yêu cầu.</li>
+                        <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Phí hỗ trợ cấp mới/điều chỉnh GPXD, cấp GCN sở hữu tài sản, thẩm duyệt PCCC báo giá riêng theo từng hồ sơ.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <section class="bg-gradient-to-r from-[#1e68a8] to-[#0f172a] rounded-xl md:rounded-2xl p-6 sm:p-8 md:p-10 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-5 md:gap-6">
+                <div class="max-w-2xl text-center lg:text-left">
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Nhận báo giá chi tiết cho công trình của bạn</h2>
+                    <p class="text-blue-100 text-xs sm:text-sm md:text-base leading-relaxed">Liên hệ trực tiếp đội ngũ kỹ sư & kiến trúc sư PV INCONS để được tư vấn gói hồ sơ phù hợp và khái toán chi phí chính xác nhất.</p>
+                </div>
+                <div class="w-full sm:w-auto flex justify-center shrink-0">
+                    <a href="tel:+84939751194" class="w-full sm:w-auto justify-center px-6 py-3.5 rounded-xl bg-[#D97706] hover:bg-amber-600 text-white font-bold text-sm shadow-lg transition flex items-center">
+                        <i class="fa-solid fa-phone-volume mr-2"></i> Hotline: 0939 751 194
                     </a>
                 </div>
             </section>
 
             <!-- Từ khóa -->
-            <div class="flex flex-wrap items-center gap-2 pt-6 border-t border-slate-200">
-                <span class="font-semibold text-sm text-slate-600 mr-2"><i class="fa-solid fa-tags text-[#1e68a8] mr-1"></i> Từ khóa:</span>
+            <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-slate-200">
+                <span class="font-semibold text-xs sm:text-sm text-slate-600 mr-1"><i class="fa-solid fa-tags text-[#1e68a8] mr-1"></i> Từ khóa:</span>
                 <a href="#" class="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-600 hover:border-[#1e68a8] hover:text-[#1e68a8] transition">#thietkecongtrinh</a>
                 <a href="#" class="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-600 hover:border-[#1e68a8] hover:text-[#1e68a8] transition">#baogiathietke</a>
                 <a href="#" class="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-600 hover:border-[#1e68a8] hover:text-[#1e68a8] transition">#pvincons</a>
                 <a href="#" class="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-600 hover:border-[#1e68a8] hover:text-[#1e68a8] transition">#bimvdc</a>
-                <a href="#" class="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-600 hover:border-[#1e68a8] hover:text-[#1e68a8] transition">#thietkekientruc</a>
+                <a href="#" class="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-600 hover:border-[#1e68a8] hover:text-[#1e68a8] transition">#lod350</a>
             </div>
         </div>
     </main>
@@ -289,7 +710,7 @@
 
     <script src="/layout.js"></script>
     <script>
-        loadLayout('news');
+        loadLayout('services');
     </script>
 </body>
 
