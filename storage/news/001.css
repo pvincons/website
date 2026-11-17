@@ -2,8 +2,10 @@
    PV INCONS - STYLESHEET TIN TỨC - MAIN (style_news.css)
    ========================================== */
 
-/* 1. Đưa :root và body ra NGOÀI main để biến CSS và font trang hoạt động đúng */
-:root {
+/* 1. Biến CSS của bài viết chỉ áp dụng trong <main>.
+      Không khai báo ở :root để không ghi đè biến chung (--text-main, --border-color...) của style.css,
+      tránh làm lệch giao diện header/footer so với các trang khác. */
+main {
     /* Brand Colors */
     --brand-blue: #1e68a8;
     --brand-darkblue: #0d3d6b;
@@ -31,7 +33,7 @@
 }
 
 main {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: Inter, sans-serif;
     line-height: 1.7;
     color: var(--text-main);
     background-color: var(--bg-body);
@@ -42,7 +44,7 @@ main {
 
     /* Container Bài Viết: Phẳng, không viền, không bóng */
     .article-container {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Inter, sans-serif;
         line-height: 1.7;
         color: var(--text-main);
         background-color: var(--bg-body);
@@ -115,7 +117,7 @@ main {
 
     /* ===== TIÊU ĐỀ BÀI VIẾT ===== */
     h1.article-title {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Inter, sans-serif;
         font-size: 2.25rem;
         font-weight: 700;
         color: #000000;
@@ -126,7 +128,7 @@ main {
 
     /* ===== MÔ TẢ NỘI DUNG / SAPO ===== */
     .article-subtitle {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Inter, sans-serif;
         font-size: 1.1rem;
         color: #222222;
         font-weight: 400;
@@ -138,7 +140,7 @@ main {
 
     /* ===== THÂN BÀI VIẾT ===== */
     .article-content {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Inter, sans-serif;
         font-size: 1.1rem;
         color: #202020;
         line-height: 1.7;
@@ -151,7 +153,7 @@ main {
     /* ===== ĐỀ MỤC BÀI VIẾT H2, H3 ===== */
     .article-content h2,
     h2 {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Inter, sans-serif;
         font-size: 1.3rem;
         color: #202020;
         margin-top: 32px;
@@ -162,7 +164,7 @@ main {
 
     .article-content h3,
     h3 {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Inter, sans-serif;
         font-size: 1.125rem;
         color: #202020;
         margin-top: 24px;
@@ -218,7 +220,7 @@ main {
         text-align: left;
         padding: 12px 16px;
         border: 1px solid var(--border-color);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Inter, sans-serif;
     }
 
     .data-table td {
@@ -268,7 +270,7 @@ main {
         align-items: center;
         justify-content: center;
         font-size: 0.85rem;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Inter, sans-serif;
     }
 
     /* Images & Figures */

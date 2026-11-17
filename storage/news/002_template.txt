@@ -37,6 +37,19 @@ File HTML mẫu gốc:
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Cấu hình Tailwind CDN: tắt preflight (style.css đã có sẵn) & dùng font Inter để đồng bộ header/footer -->
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            theme: { extend: { fontFamily: { sans: 'Inter, sans-serif' } } }
+        };
+    </script>
+
+    <!-- Preload Font nội bộ (đồng bộ với news.html) -->
+    <link rel="preload" href="/assets/fonts/Inter_18pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/assets/fonts/Inter_18pt-Bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/assets/fonts/Oswald-Bold.ttf" as="font" type="font/ttf" crossorigin>
+
     <!-- Thư viện Icon Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -122,7 +135,7 @@ File HTML mẫu gốc:
 </script>
 </head>
 
-<body class="selection:bg-brand-blue selection:text-white">
+<body class="font-sans selection:bg-brand-blue selection:text-white">
 
     <div id="header-placeholder"></div>
 
@@ -137,10 +150,10 @@ File HTML mẫu gốc:
                 <span>Chi tiết bài viết</span>
             </nav>
 
-            <!-- Tiêu đề bài viết (Times New Roman) -->
+            <!-- Tiêu đề bài viết (font Inter - kế thừa từ 001.css) -->
             <h1 class="article-title">Tiêu Đề Bài Viết Mẫu PV INCONS</h1>
 
-            <!-- Mô tả ngắn / Sapo (Times New Roman) -->
+            <!-- Mô tả ngắn / Sapo (font Inter - kế thừa từ 001.css) -->
             <p class="article-subtitle text-justify">Mô tả ngắn hoặc tóm tắt nội dung chính của bài viết cung cấp thông tin tổng quan
                 cho độc giả.</p>
 

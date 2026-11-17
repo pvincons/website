@@ -15,13 +15,26 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        /* Tailwind CDN chỉ bổ sung các class còn thiếu trong style.css.
+           - preflight: false -> không reset lại CSS nền (style.css đã có sẵn), tránh làm lệch header/footer
+           - font-sans = Inter -> khớp với style.css, không bị ghi đè bằng font hệ thống (Segoe UI) */
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            theme: { extend: { fontFamily: { sans: 'Inter, sans-serif' } } }
+        };
+    </script>
+
+    <!-- Preload Font nội bộ (giống news.html) -->
+    <link rel="preload" href="/assets/fonts/Inter_18pt-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/assets/fonts/Inter_18pt-Bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/assets/fonts/Oswald-Bold.ttf" as="font" type="font/ttf" crossorigin>
 
     <!-- Thư viện Icon Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- File CSS dùng chung (Giữ nguyên style chuẩn của hệ thống) -->
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/storage/news/001.css">
 
     <!-- Thẻ Canonical chuẩn SEO -->
     <link rel="canonical" href="https://pvincons.com/quy-trinh-thiet-ke-cong-trinh-bao-gia">
@@ -101,16 +114,16 @@
   ]
 }
 </script>
-    <!-- Font tiêu đề: Be Vietnam Pro (thiết kế riêng cho tiếng Việt) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
     <style>
+        /* Giữ nền trắng cho vùng nội dung (trước đây lấy từ 001.css, file này chỉ dành cho bài viết tin tức) */
+        main {
+            background-color: #fff;
+        }
+
+        /* Font chữ dùng chung hệ thống (Inter từ style.css) - đồng bộ với news.html; chỉ giữ lại định dạng tiêu đề */
         main h1,
         main h2,
         main h3 {
-            font-family: 'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif !important;
             letter-spacing: 0 !important;
             text-wrap: balance;
         }
@@ -188,7 +201,7 @@
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#1e68a8] selection:text-white">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-[#1e68a8] selection:text-white">
 
     <!-- Header chuẩn của hệ thống -->
     <div id="header-placeholder"></div>
