@@ -201,8 +201,8 @@ function renderSiteGallery(allProjects) {
         return;
     }
 
-    // Nhân đôi danh sách ảnh để tạo vòng lặp chạy ngang vô tận không bị đứt quãng
-    const loopItems = [...siteItems, ...siteItems];
+    // Nhân 4 lần danh sách ảnh để tạo vòng lặp chạy ngang vô tận mượt mà trên mọi kích thước màn hình, không hở khoảng trống bên phải
+    const loopItems = [...siteItems, ...siteItems, ...siteItems, ...siteItems];
 
     track.innerHTML = loopItems.map(item => {
         const safeTitle = (item.title || 'Hình ảnh thi công thực tế PV INCONS').replace(/'/g, "\\'");
@@ -223,8 +223,8 @@ function renderSiteGallery(allProjects) {
         `;
     }).join('');
 
-    // Điều chỉnh tốc độ chạy tự động tỷ lệ thuận với số lượng ảnh
-    const duration = Math.max(25, siteItems.length * 5);
+    // Điều chỉnh tốc độ chạy tự động mượt mà tỷ lệ thuận với số lượng ảnh
+    const duration = Math.max(35, siteItems.length * 6);
     track.style.animationDuration = `${duration}s`;
 
     // Nút bấm tua nhanh qua trái / phải
