@@ -91,6 +91,9 @@ async function initProjectsLoader() {
             renderProjectPage(categoryKey, 1);
         });
 
+        // Nạp dải ảnh chạy ngang cho Góc thực tế công trường
+        renderSiteGallery(projects);
+
     } catch (error) {
         console.error('Lỗi quá trình xử lý projects-loader.js:', error);
     }
@@ -176,4 +179,85 @@ window.changeProjectPage = function(categoryKey, page) {
     if (section) {
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+};
+
+// =========================================================
+// GÓC THỰC TẾ CÔNG TRƯỜNG - DẢI ẢNH ĐỨNG CHẠY NGANG
+// =========================================================
+function renderSiteGallery(allProjects) {
+    const track = document.getElementById('siteGalleryTrack');
+    if (!track) return;
+
+    // Ưu tiên lấy các bài viết có category là 'goc-cong-truong' trong database
+    let siteItems = allProjects.filter(p => p.category === 'goc-cong-truong' && p.image);
+
+    // Nếu database chưa nhập riêng mục 'goc-cong-truong', tự động lấy ảnh từ các dự án khác để hiển thị
+    if (siteItems.length === 0) {
+        siteItems = allProjects.filter(p => p.image).slice(0, 8);
+    }
+
+    if (siteItems.length === 0) {
+        track.innerHTML = `<p class="text-center text-slate-400 py-8 w-full">Đang cập nhật hình ảnh thực tế công trường.</p>`;
+        return;
+    }
+
+    // Nhân đôi danh sách ảnh để tạo vòng lặp chạy ngang vô tận không bị đứt quãng
+    const loopItems = [...siteItems, ...siteItems];
+
+    track.innerHTML = loopItems.map(item => {
+        const safeTitle = (item.title || 'Hình ảnh thi công thực tế PV INCONS').replace(/'/g, "\\'");
+        const safeLocation = (item.location || '').replace(/'/g, "\\'");
+        return `
+            <div class="site-photo-card group" onclick="openSiteLightbox('${item.image}', '${safeTitle}${safeLocation ? ' - ' + safeLocation : ''}')">
+                <img src="${item.image}" alt="${item.title || 'Công trường PV INCONS'}" loading="lazy">
+                <div class="site-photo-overlay">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-brand-orange mb-1">
+                        ${item.categoryLabel || 'Thi công thực tế'}
+                    </span>
+                    <h4 class="text-white text-xs sm:text-sm font-bold line-clamp-2 uppercase leading-snug">
+                        ${item.title || ''}
+                    </h4>
+                    ${item.location ? `<p class="text-slate-300 text-[11px] mt-1 truncate"><i class="fa-solid fa-location-dot mr-1 text-brand-orange"></i>${item.location}</p>` : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // Điều chỉnh tốc độ chạy tự động tỷ lệ thuận với số lượng ảnh
+    const duration = Math.max(25, siteItems.length * 5);
+    track.style.animationDuration = `${duration}s`;
+
+    // Nút bấm tua nhanh qua trái / phải
+    const prevBtn = document.getElementById('sitePrevBtn');
+    const nextBtn = document.getElementById('siteNextBtn');
+    const wrapper = track.parentElement;
+
+    if (prevBtn && nextBtn && wrapper) {
+        prevBtn.onclick = () => {
+            wrapper.scrollBy({ left: -320, behavior: 'smooth' });
+        };
+        nextBtn.onclick = () => {
+            wrapper.scrollBy({ left: 320, behavior: 'smooth' });
+        };
+    }
+}
+
+// Hàm mở/đóng xem ảnh phóng to
+window.openSiteLightbox = function (imgSrc, caption) {
+    const modal = document.getElementById('siteLightbox');
+    const img = document.getElementById('siteLightboxImg');
+    const cap = document.getElementById('siteLightboxCaption');
+    if (!modal || !img) return;
+
+    img.src = imgSrc;
+    cap.textContent = caption || '';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+};
+
+window.closeSiteLightbox = function () {
+    const modal = document.getElementById('siteLightbox');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 };
