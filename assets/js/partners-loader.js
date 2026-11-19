@@ -16,6 +16,12 @@
  * Khung HTML cần có trong index.html: <section id="partners-section" hidden> ... </section>
  * (xem phần "ĐỐI TÁC" trong index.html). Mục sẽ tự ẩn nếu chưa có dữ liệu.
  *
+ * Chuyển động: logo tự chạy chậm từ phải sang trái, lặp vô tận (không giật khi quay vòng).
+ *   - Rê chuột vào hoặc chạm vào vùng logo: tạm dừng.
+ *   - Nút mũi tên / vuốt: đẩy thêm 1 logo theo hướng tương ứng, sau đó tiếp tục chạy.
+ *   - Chỉnh tốc độ ở hằng số SPEED bên dưới (px/giây, càng nhỏ càng chậm).
+ *   - Nếu số logo ít hơn số ô hiển thị thì đứng yên, căn giữa.
+ *
  * API: window.initHomePartners()  – chạy lại khi trang được nạp kiểu AJAX.
  */
 (function (global) {
@@ -30,6 +36,9 @@
   var ACCENT = '#8c6239';
   var GRAND_BLUE = 'rgb(20,97,148)';
   var STYLE_ID = 'pv-partners-style';
+
+  // Tốc độ chạy (pixel / giây). 40 = chậm; 25 = rất chậm; 70 = vừa.
+  var SPEED = 40;
 
   var CSS = [
     '.pv-partners{display:block;background:#f6f4f1;border-top:1px solid #ece7df;padding:48px 0 56px}',
@@ -54,7 +63,8 @@
     '.pv-partners__carousel{display:flex;align-items:center;gap:12px;margin-top:32px}',
     '@media(min-width:1024px){.pv-partners__carousel{gap:24px;margin-top:44px}}',
     '.pv-partners__viewport{flex:1;min-width:0;overflow:hidden;touch-action:pan-y}',
-    '.pv-partners__track{display:flex;transition:transform .5s ease;will-change:transform}',
+    // Chuyển động do JS điều khiển (requestAnimationFrame) nên không dùng transition ở đây
+    '.pv-partners__track{display:flex;will-change:transform}',
     '.pv-partners__track.is-static{justify-content:center}',
 
     '.pv-partner{flex:0 0 calc(100% / var(--pv-per-view,5));box-sizing:border-box;display:flex;align-items:center;justify-content:center;',
@@ -72,10 +82,19 @@
     '.pv-partners__nav[disabled]{opacity:.3;cursor:default;pointer-events:none}',
     '.pv-partners__nav.is-hidden{visibility:hidden}',
 
-    '@media(prefers-reduced-motion:reduce){.pv-partners__track,.pv-partner img{transition:none}}'
+    '@media(prefers-reduced-motion:reduce){.pv-partner img{transition:none}}'
   ].join('');
 
-  var state = { groups: {}, tabs: [], active: null, index: 0, resizeBound: false, resizeTimer: null };
+  var state = {
+    groups: {}, tabs: [], active: null,
+    looping: false,          // true = đang chạy vòng lặp (số logo > số ô hiển thị)
+    offset: 0,               // vị trí hiện tại của track (px)
+    nudge: 0,                // quãng còn phải đẩy thêm do bấm mũi tên / vuốt (px)
+    setW: 0,                 // chiều rộng 1 bộ logo (px) – dùng để quay vòng liền mạch
+    raf: 0, last: 0,
+    hover: false, touch: false, visible: true,
+    resizeBound: false, resizeTimer: null
+  };
 
   // ---------------------------------------------------------------
   // Tiện ích
@@ -106,7 +125,13 @@
     return 2;
   }
 
+  function reducedMotion() {
+    return !!(global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
   function $(root, sel) { return root.querySelector(sel); }
+
+  function getRoot() { return document.getElementById('partners-section'); }
 
   // ---------------------------------------------------------------
   // Hiển thị
@@ -167,12 +192,42 @@
   function renderTrack(root) {
     var track = $(root, '[data-partners-track]');
     if (!track) return;
+    var items = state.groups[state.active] || [];
+
+    state.looping = items.length > perView();
+    state.offset = 0;
+    state.nudge = 0;
+
     track.innerHTML = '';
-    (state.groups[state.active] || []).forEach(function (it) {
-      track.appendChild(buildItem(it));
-    });
-    state.index = 0;
+    items.forEach(function (it) { track.appendChild(buildItem(it)); });
+
+    // Nhân đôi bộ logo để khi chạy hết bộ thứ nhất thì bộ thứ hai nối liền -> quay vòng vô tận
+    if (state.looping) {
+      items.forEach(function (it) {
+        var c = buildItem(it);
+        c.setAttribute('aria-hidden', 'true');
+        if (c.tagName === 'A') c.tabIndex = -1;
+        track.appendChild(c);
+      });
+    }
     updateCarousel(root);
+  }
+
+  // Đo chiều rộng 1 bộ logo (px)
+  function measure(track) {
+    var first = track.firstElementChild;
+    var total = (state.groups[state.active] || []).length;
+    state.setW = first ? first.getBoundingClientRect().width * total : 0;
+  }
+
+  function applyTransform(track) {
+    if (!state.looping || !state.setW) {
+      track.style.transform = 'none';
+      return;
+    }
+    var w = state.setW;
+    state.offset = ((state.offset % w) + w) % w;        // luôn nằm trong [0, w) -> quay vòng liền mạch
+    track.style.transform = 'translate3d(' + (-state.offset) + 'px,0,0)';
   }
 
   function updateCarousel(root) {
@@ -183,33 +238,84 @@
 
     var total = (state.groups[state.active] || []).length;
     var pv = perView();
-    var max = Math.max(0, total - pv);
-    if (state.index > max) state.index = max;
-    if (state.index < 0) state.index = 0;
+
+    // Đổi kích thước màn hình làm chuyển giữa "đứng yên" <-> "chạy vòng" -> dựng lại track
+    if ((total > pv) !== state.looping) {
+      renderTrack(root);
+      return;
+    }
 
     track.style.setProperty('--pv-per-view', pv);
-    track.classList.toggle('is-static', total <= pv);
-    track.style.transform = max === 0 ? 'none' : 'translateX(' + (-state.index * (100 / pv)) + '%)';
+    track.classList.toggle('is-static', !state.looping);
 
-    var needNav = max > 0;
-    [prev, next].forEach(function (b) { if (b) b.classList.toggle('is-hidden', !needNav); });
-    if (prev) prev.disabled = !needNav || state.index <= 0;
-    if (next) next.disabled = !needNav || state.index >= max;
+    [prev, next].forEach(function (b) {
+      if (!b) return;
+      b.classList.toggle('is-hidden', !state.looping);
+      b.disabled = false;
+    });
+
+    measure(track);
+    applyTransform(track);
+    ensureRunning();
+  }
+
+  // ---------------------------------------------------------------
+  // Chuyển động
+  // ---------------------------------------------------------------
+  function canAuto() {
+    return state.looping && state.visible && !state.hover && !state.touch && !reducedMotion();
+  }
+
+  function ensureRunning() {
+    if (state.raf || !state.looping) return;
+    if (!canAuto() && !state.nudge) return;
+    state.last = 0;
+    state.raf = global.requestAnimationFrame(tick);
+  }
+
+  function tick(now) {
+    state.raf = 0;
+    var root = getRoot();
+    var track = root && $(root, '[data-partners-track]');
+    if (!track || !state.looping) return;
+
+    var dt = state.last ? Math.min(100, now - state.last) : 0;   // chặn nhảy vọt khi tab bị treo
+    state.last = now;
+
+    if (canAuto()) state.offset += SPEED * dt / 1000;
+
+    if (state.nudge) {                                            // đẩy mượt khi bấm mũi tên / vuốt
+      var step = state.nudge * 0.12;
+      if (Math.abs(step) < 0.5) step = state.nudge;
+      state.offset += step;
+      state.nudge -= step;
+      if (Math.abs(state.nudge) < 0.01) state.nudge = 0;
+    }
+
+    applyTransform(track);
+
+    if (canAuto() || state.nudge) state.raf = global.requestAnimationFrame(tick);
   }
 
   function selectTab(key) {
-    var root = document.getElementById('partners-section');
+    var root = getRoot();
     if (!root || key === state.active) return;
     state.active = key;
     renderTabs(root);
     renderTrack(root);
   }
 
+  // delta = +1: logo chạy sang trái 1 ô; -1: quay lại 1 ô
   function move(delta) {
-    var root = document.getElementById('partners-section');
-    if (!root) return;
-    state.index += delta;
-    updateCarousel(root);
+    var root = getRoot();
+    var track = root && $(root, '[data-partners-track]');
+    if (!track || !state.looping || !track.firstElementChild) return;
+    var iw = track.firstElementChild.getBoundingClientRect().width;
+    state.nudge += delta * iw;
+    var cap = iw * 3;                                            // tránh dồn quá nhiều khi bấm liên tục
+    if (state.nudge > cap) state.nudge = cap;
+    if (state.nudge < -cap) state.nudge = -cap;
+    ensureRunning();
   }
 
   function bindControls(root) {
@@ -226,16 +332,43 @@
       next.addEventListener('click', function () { move(1); });
     }
 
-    // Vuốt trên điện thoại
     if (view && !view._pvBound) {
       view._pvBound = true;
+
+      // Rê chuột vào -> tạm dừng (chỉ với chuột thật, tránh bị "kẹt" sau khi chạm trên điện thoại)
+      view.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'mouse') state.hover = true;
+      });
+      view.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'mouse') { state.hover = false; ensureRunning(); }
+      });
+
+      // Chạm / vuốt trên điện thoại
       var x0 = 0;
-      view.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].screenX; }, { passive: true });
+      view.addEventListener('touchstart', function (e) {
+        x0 = e.changedTouches[0].screenX;
+        state.touch = true;
+      }, { passive: true });
       view.addEventListener('touchend', function (e) {
         var d = x0 - e.changedTouches[0].screenX;
+        state.touch = false;
         if (d > 50) move(1);
         else if (d < -50) move(-1);
+        ensureRunning();
       }, { passive: true });
+      view.addEventListener('touchcancel', function () {
+        state.touch = false;
+        ensureRunning();
+      }, { passive: true });
+    }
+
+    // Chỉ chạy khi mục đối tác đang nằm trong màn hình (tiết kiệm pin)
+    if (!root._pvObs && 'IntersectionObserver' in global) {
+      root._pvObs = new IntersectionObserver(function (entries) {
+        state.visible = entries[entries.length - 1].isIntersecting;
+        if (state.visible) ensureRunning();
+      });
+      root._pvObs.observe(root);
     }
 
     if (!state.resizeBound) {
@@ -243,7 +376,7 @@
       global.addEventListener('resize', function () {
         clearTimeout(state.resizeTimer);
         state.resizeTimer = setTimeout(function () {
-          var r = document.getElementById('partners-section');
+          var r = getRoot();
           if (r && !r.hidden) updateCarousel(r);
         }, 150);
       });
@@ -254,8 +387,10 @@
   // Khởi tạo
   // ---------------------------------------------------------------
   async function init() {
-    var root = document.getElementById('partners-section');
+    var root = getRoot();
     if (!root) return;
+
+    if (state.raf) { global.cancelAnimationFrame(state.raf); state.raf = 0; }
 
     if (!global.PVDB) {
       console.warn('[partners-loader] Thiếu pv-sqlite.js – hãy nạp assets/js/pv-sqlite.js trước partners-loader.js');
@@ -290,7 +425,6 @@
     injectStyle();
     root.hidden = false;
     state.active = state.tabs[0].key;
-    state.index = 0;
 
     bindControls(root);
     renderTabs(root);
