@@ -5507,7 +5507,7 @@ main {
 }
 
 /* =========================================================
-   18. GÓC THỰC TẾ CÔNG TRƯỜNG (MARQUEE ẢNH KHỔ ĐỨNG COTECCONS)
+   18. GÓC THỰC TẾ CÔNG TRƯỜNG (MARQUEE ẢNH KHỔ ĐỨNG CAO THẤP)
    ========================================================= */
 .site-marquee-wrapper {
   overflow: hidden;
@@ -5548,7 +5548,7 @@ main {
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 0px !important;
-  /* Không bo tròn góc đúng y như Coteccons */
+  /* Không bo tròn góc đúng y như */
   background-color: #e2e8f0;
   box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12);
   cursor: pointer;
@@ -5567,7 +5567,7 @@ main {
   }
 }
 
-/* Tạo hiệu ứng so le cao thấp cho các ảnh chẵn / lẻ giống mẫu Coteccons */
+/* Tạo hiệu ứng so le cao thấp cho các ảnh chẵn / lẻ giống mẫu */
 .site-photo-card:nth-child(odd) {
   transform: translateY(-18px);
 }
