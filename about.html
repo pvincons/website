@@ -672,6 +672,26 @@
                 </div>
             </div>
         </section>
+           <!-- ĐỐI TÁC: Công ty thành viên / Công ty liên kết / Đối tác chuỗi cung ứng -->
+        <section id="partners-section" class="pv-partners" aria-labelledby="partners-title" hidden>
+            <div class="pv-partners__inner">
+                <h2 id="partners-title" class="pv-partners__title">PV INCONS GROUP</h2>
+
+                <div class="pv-partners__tabs" data-partners-tabs role="tablist" aria-label="Hệ sinh thái PV INCONS"></div>
+
+                <div class="pv-partners__carousel">
+                    <button type="button" class="pv-partners__nav" data-partners-prev aria-label="Đối tác trước">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div class="pv-partners__viewport" data-partners-viewport>
+                        <div class="pv-partners__track" data-partners-track></div>
+                    </div>
+                    <button type="button" class="pv-partners__nav" data-partners-next aria-label="Đối tác tiếp theo">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div id="footer-placeholder"></div>
@@ -784,6 +804,10 @@
     <script>
         loadLayout('about');
     </script>
+    <!-- Nhúng file tự động nạp đối tác-->
+    <script src="assets/js/pv-sqlite.js"></script>
+    <script src="assets/js/partners-loader.js"></script>
+
 </body>
 
 </html>

@@ -238,6 +238,13 @@
       <nav
         class="flex items-center justify-center gap-1.5 overflow-x-auto no-scrollbar w-full lg:flex-1 order-2 lg:order-1 pt-1.5 lg:pt-0 pb-1 lg:pb-0"
         id="sidebar-nav">
+         <button data-folder="partners" data-title="Đối tác"
+          class="nav-tab flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
+          <i class="fa-solid fa-handshake text-rose-500"></i>
+          <span class="hidden md:inline">Đối tác</span>
+          <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded font-mono tab-count"
+            id="count-partners">0</span>
+        </button>
         <button data-folder="news" data-title="Tin tức"
           class="nav-tab active flex shrink-0 items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-gray-400 hover:bg-[#1a1d26] hover:text-gray-200 transition text-xs border border-transparent">
           <i class="fa-solid fa-newspaper text-rose-500"></i>
@@ -273,6 +280,7 @@
           <span class="text-[10px] bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded font-mono tab-count"
             id="count-hr">0</span>
         </button>
+       
       </nav>
 
     </header>
@@ -535,7 +543,7 @@
 
           <!-- TRƯỜNG CHUNG NEWS, PROJECTS, SERVICES, INVESTMENT -->
           <div id="standard-common-fields" class="space-y-3">
-            <div class="space-y-1.5">
+            <div id="wrapper-summary-field" class="space-y-1.5">
               <label class="block text-xs font-semibold text-gray-300">Mô tả tóm tắt (<code
                   class="text-rose-500">summary</code>)</label>
               <textarea id="input-summary" rows="3" placeholder="VD: Tóm tắt nội dung chính hoặc đơn giá tham khảo..."
@@ -544,7 +552,7 @@
 
             <!-- KÉO THẢ DÀNH CHO HÌNH ẢNH (ẨN KHI Ở TAB DỊCH VỤ & QUAN HỆ ĐẦU TƯ) -->
             <div id="wrapper-image-field" class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Đường dẫn Hình ảnh (<code
+              <label class="block text-xs font-semibold text-gray-300"><span id="image-field-label">Đường dẫn Hình ảnh</span> (<code
                   class="text-rose-500">image</code>)</label>
               <div id="drop-zone-image"
                 class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
@@ -560,7 +568,7 @@
 
             <!-- KÉO THẢ FILE HTML/PDF TỰ ĐỘNG LƯU VÀO /database -->
             <div class="space-y-1.5">
-              <label class="block text-xs font-semibold text-gray-300">Đường dẫn file HTML /file PDF/ Chi tiết (<code
+              <label class="block text-xs font-semibold text-gray-300"><span id="link-field-label">Đường dẫn file HTML /file PDF/ Chi tiết</span> (<code
                   class="text-rose-500">link</code>)</label>
               <div id="drop-zone-link"
                 class="border border-dashed border-[#2a2e3d] hover:border-rose-500/80 bg-[#0f1117] rounded-lg p-2.5 transition group cursor-pointer flex flex-col items-center justify-center gap-1.5 text-center">
@@ -666,6 +674,12 @@
       hr: [
         { value: 'tuyen-dung', label: 'Tuyển dụng' },
         { value: 'chinh-sach', label: 'Chính sách' }
+      ],
+      // Mục "PV INCONS GROUP" ở trang chủ (đọc bởi assets/js/home-loader.js)
+      partners: [
+        { value: 'thanh-vien', label: 'Công ty thành viên' },
+        { value: 'lien-ket', label: 'Công ty liên kết' },
+        { value: 'chuoi-cung-ung', label: 'Đối tác chuỗi cung ứng' }
       ]
     };
 
@@ -776,7 +790,10 @@
     // Tự động chuẩn hóa ép kiểu ID dạng số (Number) khi load
     function loadLocalDB() {
       const key = getDbStorageKey();
-      const raw = JSON.parse(localStorage.getItem(key)) || { news: [], projects: [], services: [], investment: [], hr: [] };
+      const raw = JSON.parse(localStorage.getItem(key)) || {};
+      ['news', 'projects', 'services', 'investment', 'hr', 'partners'].forEach(k => {
+        if (!Array.isArray(raw[k])) raw[k] = [];
+      });
       Object.keys(raw).forEach(k => {
         if (Array.isArray(raw[k])) {
           raw[k] = raw[k].map(item => ({
@@ -1157,6 +1174,24 @@
             </div>
           </div>
         `;
+      } else if (currentFolder === 'partners') {
+        const logoSrc = document.getElementById('input-image').value.trim();
+        const partnerLink = document.getElementById('input-link').value.trim();
+        container.innerHTML = `
+          <div class="bg-[#141722] border border-[#2a2e3d] rounded-lg p-4 space-y-3 hover:border-rose-500/40 transition shadow-md">
+            <div class="flex items-center justify-between text-[10px]">
+              <span class="bg-rose-500/10 text-rose-500 border border-rose-500/20 px-2 py-0.5 rounded font-semibold uppercase tracking-wider">${catLabel}</span>
+              <span class="text-gray-500 font-mono">ID #${escapeHtml(document.getElementById('input-id').value || '1')}</span>
+            </div>
+            <div class="h-24 bg-white rounded-md flex items-center justify-center p-3 overflow-hidden">
+              ${logoSrc
+                ? `<img src="${escapeHtml(logoSrc)}" alt="${title}" class="max-h-full max-w-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span style="display:none" class="text-[11px] text-gray-500 text-center">Không tải được logo - kiểm tra lại URL</span>`
+                : `<span class="text-[11px] text-gray-400">Chưa có logo</span>`}
+            </div>
+            <div class="text-center text-xs font-bold text-gray-100 leading-snug">${title}</div>
+            ${partnerLink ? `<div class="text-center text-[10px] text-gray-500 font-mono truncate"><i class="fa-solid fa-link text-[9px] mr-1"></i>${escapeHtml(partnerLink)}</div>` : ''}
+          </div>
+        `;
       } else if (currentFolder === 'investment') {
         container.innerHTML = `
           <div class="bg-[#141722] border border-[#2a2e3d] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-rose-500/40 transition shadow-md group">
@@ -1299,10 +1334,20 @@
         wrapperEyelink.classList.toggle('hidden', currentFolder !== 'services');
       }
 
+      // Tab Đối tác: chỉ cần tên, logo (URL ảnh) và website; không có mô tả tóm tắt
+      const isPartners = currentFolder === 'partners';
+      const wrapperSummary = document.getElementById('wrapper-summary-field');
+      if (wrapperSummary) wrapperSummary.classList.toggle('hidden', isPartners);
+
       const titleLabel = document.getElementById('title-field-label');
       if (titleLabel) {
-        titleLabel.innerText = isHr ? 'Tiêu đề vị trí tuyển dụng' : 'Tiêu đề bài viết / Tên dịch vụ';
+        titleLabel.innerText = isHr ? 'Tiêu đề vị trí tuyển dụng'
+          : (isPartners ? 'Tên công ty / đối tác' : 'Tiêu đề bài viết / Tên dịch vụ');
       }
+      const imageLabel = document.getElementById('image-field-label');
+      if (imageLabel) imageLabel.innerText = isPartners ? 'Logo đối tác - URL ảnh' : 'Đường dẫn Hình ảnh';
+      const linkLabel = document.getElementById('link-field-label');
+      if (linkLabel) linkLabel.innerText = isPartners ? 'Website đối tác (không bắt buộc)' : 'Đường dẫn file HTML /file PDF/ Chi tiết';
 
       updateLivePreview();
     }
@@ -1365,7 +1410,7 @@
           return (Number(b.id) || 0) - (Number(a.id) || 0);
         }
         if (sortVal === 'id-asc') {
-          return (Number(a.id) || 0) - (Number(a.id) || 0);
+          return (Number(a.id) || 0) - (Number(b.id) || 0);
         }
         const timeA = parseDateToTimestamp(a.date);
         const timeB = parseDateToTimestamp(b.date);

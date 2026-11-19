@@ -6,7 +6,8 @@
  * Trình duyệt đọc/ghi file này bằng sql.js (SQLite biên dịch sang WebAssembly).
  *
  * Bảng trong website.db:
- *     posts_news, posts_projects, posts_services, posts_investment, posts_hr
+ *     posts_news, posts_projects, posts_services, posts_investment, posts_hr,
+ *     posts_partners (công ty thành viên / liên kết / đối tác chuỗi cung ứng – trang chủ)
  *     settings (key/value), meta (thông tin phiên bản)
  *
  * API chính (window.PVDB):
@@ -35,6 +36,10 @@
   // 1. KHAI BÁO CẤU TRÚC BẢNG (phải khớp tools/json_to_sqlite.py)
   // ---------------------------------------------------------------
   var MODULES = {
+    partners: {
+      table: 'posts_partners',                                                              //   title = tên công ty, image = URL logo, link = website (không bắt buộc)
+      cols: ['category', 'categoryLabel', 'date', 'title', 'summary', 'link', 'image']      // Đối tác trang chủ: category = thanh-vien | lien-ket | chuoi-cung-ung
+    },
     news: {
       table: 'posts_news',
       cols: ['category', 'categoryLabel', 'date', 'title', 'summary', 'link', 'image']
