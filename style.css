@@ -5522,22 +5522,7 @@ main {
   gap: 20px;
   width: max-content;
   will-change: transform;
-  animation: siteGalleryMarquee 38s linear infinite;
-}
-
-/* Tạm dừng chạy khi di chuột vào */
-.site-marquee-wrapper:hover .site-marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes siteGalleryMarquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
+  /* Việc chạy ngang & tạm dừng khi hover do projects-loader.js (initSiteMarquee) điều khiển */
 }
 
 /* Khung ảnh không bo tròn góc (border-radius: 0) và so le cao thấp */

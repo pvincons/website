@@ -223,23 +223,63 @@ function renderSiteGallery(allProjects) {
         `;
     }).join('');
 
-    // Điều chỉnh tốc độ chạy tự động mượt mà tỷ lệ thuận với số lượng ảnh
-    const duration = Math.max(35, siteItems.length * 6);
-    track.style.animationDuration = `${duration}s`;
+    // Chạy marquee bằng requestAnimationFrame (thay cho CSS animation) để lặp vòng liền mạch
+    initSiteMarquee(track, siteItems.length);
+}
 
-    // Nút bấm tua nhanh qua trái / phải
+// Marquee vô tận: đo đúng 1 chu kỳ ảnh (đã tính gap) nên khi lặp lại không bị giật,
+// đồng thời nút trái/phải tua mượt mà không xung đột với animation.
+let siteMarqueeRaf = null;
+function initSiteMarquee(track, setCount) {
+    const wrapper = track.parentElement;
     const prevBtn = document.getElementById('sitePrevBtn');
     const nextBtn = document.getElementById('siteNextBtn');
-    const wrapper = track.parentElement;
 
-    if (prevBtn && nextBtn && wrapper) {
-        prevBtn.onclick = () => {
-            wrapper.scrollBy({ left: -320, behavior: 'smooth' });
-        };
-        nextBtn.onclick = () => {
-            wrapper.scrollBy({ left: 320, behavior: 'smooth' });
-        };
-    }
+    if (siteMarqueeRaf) cancelAnimationFrame(siteMarqueeRaf);
+    track.style.animation = 'none'; // tắt animation CSS cũ nếu còn
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SPEED = reduceMotion ? 0 : 60; // px/giây, chỉnh số này để chạy nhanh/chậm
+    const STEP = 320;                    // px mỗi lần bấm nút trái/phải
+
+    let offset = 0;      // quãng đã dịch sang trái (px)
+    let boost = 0;       // quãng còn lại cần tua khi bấm nút
+    let loopWidth = 0;   // chiều dài đúng 1 chu kỳ ảnh (gồm cả gap)
+    let paused = false;
+    let last = performance.now();
+
+    const measure = () => {
+        const first = track.children[0];
+        const nextSet = track.children[setCount];
+        if (first && nextSet) loopWidth = nextSet.offsetLeft - first.offsetLeft;
+    };
+    measure();
+    window.addEventListener('resize', measure);
+
+    const frame = (now) => {
+        const dt = Math.min((now - last) / 1000, 0.05); // chặn nhảy vọt khi quay lại tab
+        last = now;
+
+        if (loopWidth > 0) {
+            if (!paused) offset += SPEED * dt;
+            if (boost !== 0) {
+                const move = Math.abs(boost) < 0.5 ? boost : boost * 0.12;
+                offset += move;
+                boost -= move;
+            }
+            offset = ((offset % loopWidth) + loopWidth) % loopWidth; // quay vòng liền mạch
+            track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+        }
+        siteMarqueeRaf = requestAnimationFrame(frame);
+    };
+    siteMarqueeRaf = requestAnimationFrame(frame);
+
+    // Tạm dừng khi rê chuột vào dải ảnh
+    wrapper.onmouseenter = () => { paused = true; };
+    wrapper.onmouseleave = () => { paused = false; };
+
+    if (prevBtn) prevBtn.onclick = () => { boost -= STEP; };
+    if (nextBtn) nextBtn.onclick = () => { boost += STEP; };
 }
 
 // Hàm mở/đóng xem ảnh phóng to
