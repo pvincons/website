@@ -4,26 +4,98 @@
 const FORMSPREE_URL = "https://formspree.io/f/xzdnldga"; 
 
 // ==========================================
+// TIỆN ÍCH COOKIE + ĐỒNG Ý COOKIE (COOKIE CONSENT)
+// ==========================================
+// Cookie ghi nhớ lựa chọn: pv_cookie_consent = 'accepted' | 'necessary' (sống 180 ngày)
+//  - 'necessary': chỉ dùng cookie cần thiết (vd: googtrans ghi nhớ ngôn ngữ)
+//  - 'accepted' : cho phép thêm cookie không bắt buộc (thống kê, quảng cáo...)
+// Khi sau này thêm Google Analytics/Pixel: chỉ nạp script khi PVCookie.allowsOptional() === true
+// hoặc lắng nghe sự kiện 'pv:cookie-consent' (xem ví dụ ở cuối khối này).
+const PVCookie = (function () {
+    const CONSENT_NAME = 'pv_cookie_consent';
+    const CONSENT_DAYS = 180;
+
+    function set(name, value, opts) {
+        opts = opts || {};
+        let c = name + '=' + (opts.raw ? value : encodeURIComponent(value)) + '; path=/; SameSite=Lax';
+        if (typeof opts.days === 'number') c += '; max-age=' + Math.round(opts.days * 86400);
+        if (opts.domain) c += '; domain=' + opts.domain;
+        if (location.protocol === 'https:') c += '; Secure';
+        document.cookie = c;
+    }
+
+    function get(name) {
+        const prefix = name + '=';
+        const part = document.cookie.split('; ').find(function (row) { return row.indexOf(prefix) === 0; });
+        if (!part) return null;
+        const raw = part.slice(prefix.length);
+        try { return decodeURIComponent(raw); } catch (e) { return raw; }
+    }
+
+    function remove(name, domain) {
+        document.cookie = name + '=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT' +
+            (domain ? '; domain=' + domain : '');
+    }
+
+    function getConsent() {
+        const v = get(CONSENT_NAME);
+        return (v === 'accepted' || v === 'necessary') ? v : null;
+    }
+
+    function setConsent(status) {
+        set(CONSENT_NAME, status, { days: CONSENT_DAYS });
+        document.dispatchEvent(new CustomEvent('pv:cookie-consent', { detail: { status: status } }));
+    }
+
+    function allowsOptional() {
+        return getConsent() === 'accepted';
+    }
+
+    return { set: set, get: get, remove: remove, getConsent: getConsent, setConsent: setConsent, allowsOptional: allowsOptional };
+})();
+window.PVCookie = PVCookie;
+
+/* Ví dụ nạp Google Analytics SAU KHI người dùng đồng ý (bỏ comment và thay ID khi cần):
+function loadAnalytics() {
+    if (window._gaLoaded) return;
+    window._gaLoaded = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+}
+if (PVCookie.allowsOptional()) loadAnalytics();
+document.addEventListener('pv:cookie-consent', function (e) {
+    if (e.detail.status === 'accepted') loadAnalytics();
+});
+*/
+
+// ==========================================
 // CHỨC NĂNG ĐỔI NGÔN NGỮ (GLOBAL LANGUAGE SWITCHER)
 // ==========================================
+// Trang đang ở chế độ dịch sang tiếng Anh? (cookie googtrans do Google Translate đọc)
+function isTranslatedToEn() {
+    return /(?:^|;\s*)googtrans=\/[\w-]+\/en(?:;|$)/.test(document.cookie);
+}
+
 window.toggleLanguage = function () {
-    const isEn = document.cookie.indexOf('googtrans=/vi/en') !== -1 || document.cookie.indexOf('/en') !== -1;
     const host = location.hostname;
     const rootDomain = host.replace(/^www\./, '');
-    const pastDate = "expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
-    
-    // Kiểm tra nếu là localhost hoặc IP thì không gán domain trong cookie
-    const isLocal = host === 'localhost' || /^\d+\.\d+\.\d+\.\d+$/.test(host);
-    const domainStr = isLocal ? "" : " domain=." + rootDomain + ";";
 
-    if (isEn) {
-        document.cookie = "googtrans=; " + pastDate;
-        document.cookie = "googtrans=; path=/;" + domainStr + " " + pastDate;
+    // localhost hoặc IP thì không gán domain trong cookie
+    const isLocal = host === 'localhost' || /^\d+\.\d+\.\d+\.\d+$/.test(host);
+    const domains = isLocal ? [null] : [null, '.' + rootDomain];
+
+    if (isTranslatedToEn()) {
+        domains.forEach(function (d) { PVCookie.remove('googtrans', d); });
     } else {
-        document.cookie = "googtrans=/vi/en; path=/;";
-        if (!isLocal) {
-            document.cookie = "googtrans=/vi/en; path=/; domain=." + rootDomain + ";";
-        }
+        // googtrans là cookie chức năng (người dùng chủ động bấm đổi ngôn ngữ) nên không cần chờ đồng ý.
+        // Giữ nguyên giá trị thô "/vi/en" để Google Translate đọc được.
+        domains.forEach(function (d) { PVCookie.set('googtrans', '/vi/en', { raw: true, domain: d }); });
     }
     location.reload();
 };
@@ -338,10 +410,108 @@ function initVisitorCounter() {
 }
 
 // ==========================================
+// BANNER ĐỒNG Ý COOKIE
+// ==========================================
+function injectCookieStyles() {
+    if (document.getElementById('pvCookieStyles')) return;
+    // CSS tự chứa: style.css là bản Tailwind đã biên dịch nên không có sẵn các class mới.
+    const css = `
+    #pvCookieBanner{position:fixed;left:16px;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:99990;
+        max-width:920px;margin:0 auto;box-sizing:border-box;background:#fff;color:#334155;
+        border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 12px 40px rgba(15,23,42,.22);
+        padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;
+        font-size:14px;line-height:1.55;opacity:0;transform:translateY(16px);
+        transition:opacity .25s ease,transform .25s ease}
+    #pvCookieBanner.pvck-visible{opacity:1;transform:none}
+    #pvCookieBanner .pvck-text{flex:1 1 360px;min-width:0}
+    #pvCookieBanner .pvck-title{display:block;color:#0f172a;font-weight:700;margin-bottom:2px}
+    #pvCookieBanner .pvck-text p{margin:0}
+    #pvCookieBanner .pvck-text a{color:var(--brand-blue,#1e68a8);text-decoration:underline;text-underline-offset:2px}
+    #pvCookieBanner .pvck-status{display:block;margin-top:4px;font-size:12px;color:#64748b}
+    #pvCookieBanner .pvck-actions{display:flex;flex:0 0 auto;gap:8px}
+    #pvCookieBanner .pvck-btn{font:inherit;font-weight:600;line-height:1.2;cursor:pointer;border-radius:12px;
+        padding:11px 18px;border:1px solid transparent;white-space:nowrap;transition:background-color .15s,border-color .15s}
+    #pvCookieBanner .pvck-btn:focus-visible,#pvCookieBanner .pvck-text a:focus-visible{outline:2px solid var(--brand-blue,#1e68a8);outline-offset:2px}
+    #pvCookieBanner .pvck-btn-ghost{background:#fff;color:#334155;border-color:#cbd5e1}
+    #pvCookieBanner .pvck-btn-ghost:hover{background:#f1f5f9}
+    #pvCookieBanner .pvck-btn-primary{background:var(--brand-blue,#1e68a8);color:#fff}
+    #pvCookieBanner .pvck-btn-primary:hover{background:var(--brand-darkblue,#0d3d6b)}
+    @media (max-width:640px){
+        #pvCookieBanner{left:10px;right:10px;padding:14px 16px;border-radius:16px}
+        #pvCookieBanner .pvck-actions{width:100%}
+        #pvCookieBanner .pvck-btn{flex:1 1 0;white-space:normal;padding:11px 10px}
+    }
+    @media (prefers-reduced-motion:reduce){#pvCookieBanner{transition:none;transform:none}}`;
+    const style = document.createElement('style');
+    style.id = 'pvCookieStyles';
+    style.textContent = css;
+    document.head.appendChild(style);
+}
+
+function closeCookieBanner() {
+    const el = document.getElementById('pvCookieBanner');
+    if (!el) return;
+    document.removeEventListener('keydown', closeCookieBanner._onKey);
+    el.classList.remove('pvck-visible');
+    setTimeout(function () { el.remove(); }, 250);
+}
+
+// fromUser = true khi người dùng chủ động mở lại từ liên kết "Cài đặt cookie" ở footer
+function initCookieBanner(fromUser) {
+    const current = PVCookie.getConsent();
+    if (current && !fromUser) return;
+    if (document.getElementById('pvCookieBanner')) return;
+
+    injectCookieStyles();
+
+    const statusText = current === 'accepted' ? 'Lựa chọn hiện tại: Chấp nhận tất cả'
+        : current === 'necessary' ? 'Lựa chọn hiện tại: Chỉ cookie cần thiết' : '';
+
+    const el = document.createElement('div');
+    el.id = 'pvCookieBanner';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-labelledby', 'pvckTitle');
+    el.setAttribute('aria-describedby', 'pvckDesc');
+    el.innerHTML = `
+        <div class="pvck-text">
+            <strong class="pvck-title" id="pvckTitle">Website sử dụng cookie</strong>
+            <p id="pvckDesc">> để đảm bảo trải nghiệm tốt nhất. Xem thêm <a href="/content/policy/chinh_sach_bao_mat.html">Chính sách quyền riêng tư</a>.</p>
+            ${statusText ? '<span class="pvck-status">' + statusText + '</span>' : ''}
+        </div>
+        <div class="pvck-actions">
+            <button type="button" class="pvck-btn pvck-btn-ghost" data-pvck="necessary">Chỉ cookie cần thiết</button>
+            <button type="button" class="pvck-btn pvck-btn-primary" data-pvck="accepted">Chấp nhận tất cả</button>
+        </div>`;
+
+    el.querySelectorAll('[data-pvck]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            PVCookie.setConsent(btn.getAttribute('data-pvck'));
+            closeCookieBanner();
+        });
+    });
+
+    document.body.appendChild(el);
+    requestAnimationFrame(function () { el.classList.add('pvck-visible'); });
+
+    if (fromUser) {
+        // Mở lại theo yêu cầu: đưa focus vào banner và cho phép đóng bằng phím Esc
+        const primary = el.querySelector('.pvck-btn-primary');
+        if (primary) primary.focus();
+        closeCookieBanner._onKey = function (e) { if (e.key === 'Escape') closeCookieBanner(); };
+        document.addEventListener('keydown', closeCookieBanner._onKey);
+    }
+}
+
+// Gọi từ footer: <button onclick="openCookieSettings()">Cài đặt cookie</button>
+window.openCookieSettings = function () { initCookieBanner(true); };
+
+// ==========================================
 // KHỞI TẠO TỰ ĐỘNG KHI TẢI TRANG
 // ==========================================
 document.addEventListener('DOMContentLoaded', function () {
-    if (!document.getElementById('google_translate_element')) {
+    // Chỉ nạp Google Translate khi trang đang ở chế độ dịch (cookie googtrans).
+    // Khách xem tiếng Việt sẽ không phải tải script của bên thứ ba.
+    if (isTranslatedToEn() && !document.getElementById('google_translate_element')) {
         const translateDiv = document.createElement('div');
         translateDiv.id = 'google_translate_element';
         translateDiv.style.display = 'none';
@@ -353,4 +523,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initSmoothScroll();
+    initCookieBanner();
 });
