@@ -465,7 +465,7 @@ function initCookieBanner(fromUser) {
     injectCookieStyles();
 
     const statusText = current === 'accepted' ? 'Lựa chọn hiện tại: Chấp nhận tất cả'
-        : current === 'necessary' ? 'Lựa chọn hiện tại: Chỉ cookie cần thiết' : '';
+        : current === 'necessary' ? 'Lựa chọn hiện tại: Bỏ qua tất cả' : '';
 
     const el = document.createElement('div');
     el.id = 'pvCookieBanner';
@@ -479,7 +479,7 @@ function initCookieBanner(fromUser) {
             ${statusText ? '<span class="pvck-status">' + statusText + '</span>' : ''}
         </div>
         <div class="pvck-actions">
-            <button type="button" class="pvck-btn pvck-btn-ghost" data-pvck="necessary">Chỉ cookie cần thiết</button>
+            <button type="button" class="pvck-btn pvck-btn-ghost" data-pvck="necessary">Bỏ qua tất cả</button>
             <button type="button" class="pvck-btn pvck-btn-primary" data-pvck="accepted">Chấp nhận tất cả</button>
         </div>`;
 
