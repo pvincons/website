@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- ===== TRANG CHÍNH ===== -->
   <url>
@@ -13,87 +12,87 @@
     <loc>https://pvincons.com/services.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pvincons.com/projects.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://pvincons.com/about.html</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pvincons.com/news.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/about.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pvincons.com/investment.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pvincons.com/hr.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.6</priority>
   </url>
 
-  <!-- ===== DỊCH VỤ (chi tiết) ===== -->
-  <url>
-    <loc>https://pvincons.com/storage/services/cap_phep_xay_dung.html</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://pvincons.com/storage/services/hoan_cong_xay_dung.html</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://pvincons.com/storage/services/lap_du_an_dau_tu.html</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://pvincons.com/storage/services/phap_ly_bds.html</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://pvincons.com/storage/services/quy_trinh_thiet_ke.html</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://pvincons.com/storage/services/quy_trinh_giam_sat.html</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- ===== DỊCH VỤ (CHI TIẾT) ===== -->
   <url>
     <loc>https://pvincons.com/storage/services/thi_cong_xay_dung.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pvincons.com/storage/services/thi_cong_nha_khung_thep.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/cap_phep_xay_dung.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/hoan_cong_xay_dung.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/lap_du_an_dau_tu.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/phap_ly_bds.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/quy_trinh_thiet_ke.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/quy_trinh_giam_sat.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- ===== TIN TỨC / BÀI VIẾT ===== -->
@@ -113,7 +112,7 @@
     <loc>https://pvincons.com/storage/news/hoan_cong_xay_dung.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pvincons.com/storage/news/xay_dung_khong_gpxd_co_duoc_hoan_cong_khong.html</loc>
@@ -136,34 +135,34 @@
   <url>
     <loc>https://pvincons.com/storage/news/dao_tao_noi_bo.html</loc>
     <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://pvincons.com/storage/news/nghi_le_2_9.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.2</priority>
   </url>
 
-  <!-- ===== QUAN HỆ NHÀ ĐẦU TƯ (PDF công bố thông tin) ===== -->
+  <!-- ===== QUAN HỆ NHÀ ĐẦU TƯ (PDF) ===== -->
   <url>
     <loc>https://pvincons.com/storage/investment/Quy_Che_Cong_Bo_Thong_Tin.pdf</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://pvincons.com/storage/investment/Quy_Che_Hoat_Dong.pdf</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://pvincons.com/storage/investment/Quy_Che_Quan_Tri_Cong_Ty.pdf</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.3</priority>
   </url>
 
   <!-- ===== CHÍNH SÁCH ===== -->
@@ -171,36 +170,145 @@
     <loc>https://pvincons.com/content/policy/chinh_sach_bao_mat.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://pvincons.com/content/policy/chinh_sach_thanh_toan.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://pvincons.com/content/policy/dieu_khoan_su_dung.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://pvincons.com/content/policy/phuong_thuc_tiep_nhan_khieu_nai.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://pvincons.com/content/policy/nhan_hieu.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://pvincons.com/content/policy/than_thien_moi_truong.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
+
+  <!-- ===== DỊCH VỤ (CHI TIẾT HTML) ===== -->
+  <url>
+    <loc>https://pvincons.com/storage/services/cap_phep_xay_dung.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/hoan_cong_xay_dung.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/lap_du_an_dau_tu.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/phap_ly_bds.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/quy_trinh_thiet_ke.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/quy_trinh_giam_sat.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/thi_cong_xay_dung.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/thi_cong_nha_khung_thep.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ===== BẢNG BÁO GIÁ DỊCH VỤ (PDF) ===== -->
+  <url>
+    <loc>https://pvincons.com/storage/services/thiet_ke_Sdigital.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/BG_GPXD_0626_Sign.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/BG_HCXD_0626_Sign.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/giam_sat_Sdigital.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ===== BIỂU MẪU & HỢP ĐỒNG MẪU (PDF) ===== -->
+  <url>
+    <loc>https://pvincons.com/storage/services/ser_mau-hd-khoan-viec.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/ser_mau-hd-phap-ly.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/ser_mau-hd-tk.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/ser_mau-tt-dich-vu.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://pvincons.com/storage/services/ser_qt-ranh-moc.pdf</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
 </urlset>
