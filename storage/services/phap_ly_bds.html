@@ -147,7 +147,6 @@
             line-height: 1.4 !important;
         }
 
-        /* Tối ưu giao diện bảng trên điện thoại (< 768px): chuyển thành thẻ xếp dọc, loại bỏ cuộn ngang */
         @media screen and (max-width: 767px) {
             .responsive-table {
                 min-width: 100% !important;
@@ -203,10 +202,6 @@
             }
         }
 
-        /* ===== In / Xuất PDF khổ A4 (chỉ in phần nội dung trong <main>) =====
-           Mục tiêu: bản in giống giao diện máy tính.
-           Cách làm: bố cục main được dàn như trên màn hình rộng (~1240px) rồi thu nhỏ
-           bằng zoom để vừa khổ A4 (210mm = 794px). */
         @page {
             size: A4 portrait;
             margin: 12mm 0;
@@ -225,14 +220,12 @@
                 margin: 0 !important;
             }
 
-            /* Giữ nguyên màu nền / gradient khi in */
             main,
             main * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
 
-            /* Ẩn header, footer, chat widget và mọi thứ nằm ngoài <main> */
             body>*:not(main) {
                 display: none !important;
             }
@@ -241,20 +234,17 @@
                 display: none !important;
             }
 
-            /* Dàn trang như màn hình desktop rồi thu nhỏ vừa A4 */
             main {
                 zoom: 0.64;
                 padding-bottom: 0 !important;
             }
 
-            /* Khoảng đệm hai bên giống bản desktop (lg:px-8) */
             main>section:first-of-type>.relative,
             main>div {
                 padding-left: 2rem !important;
                 padding-right: 2rem !important;
             }
 
-            /* Khối CTA cuối trang: bố cục ngang như desktop */
             main>div>section:last-of-type {
                 flex-direction: row !important;
             }
@@ -263,7 +253,6 @@
                 text-align: left !important;
             }
 
-            /* Bỏ đổ bóng, cho nội dung chảy sang trang kế tiếp */
             main section,
             main .shadow-sm,
             main .shadow-xl {
@@ -279,7 +268,6 @@
                 width: 100% !important;
             }
 
-            /* Không cắt đôi hàng / mục, lặp lại tiêu đề bảng ở trang mới */
             main thead {
                 display: table-header-group;
             }
@@ -299,7 +287,6 @@
                 page-break-after: avoid;
             }
 
-            /* Cột đầu cố định (sticky) không cần khi in */
             main .sticky {
                 position: static !important;
                 box-shadow: none !important;
@@ -379,7 +366,7 @@
             <!-- PHẦN A: DỊCH VỤ ĐĂNG KÝ BIẾN ĐỘNG & CẤP ĐỔI GIẤY CHỨNG NHẬN -->
             <section class="bg-white rounded-xl md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="p-4 sm:p-6 md:p-8 border-b border-slate-100">
-                    <h2 class="text-xl sm:text-2xl md:text-3xl text-slate-900">1. Bảng giá dịch vụ Đăng ký biến động &amp; Cấp đổi Giấy chứng nhận</h2>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl text-slate-900">A. Bảng giá dịch vụ Đăng ký biến động &amp; Cấp đổi Giấy chứng nhận</h2>
                     <p class="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">Phí dịch vụ đại diện trọn gói theo ủy quyền: Rà soát pháp lý trước giao dịch, soạn thảo hồ sơ, đặt lịch công chứng, kê khai nghĩa vụ tài chính (thuế TNCN, lệ phí trước bạ) và nhận kết quả tại Chi nhánh Văn phòng Đăng ký Đất đai (VPĐKĐĐ) / Trung tâm Phục vụ Hành chính công.</p>
                 </div>
 
@@ -396,6 +383,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">1. Sang tên chuyển nhượng, tặng cho (Chỉnh lý trang 3–4)</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A011.013831</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">4.000.000 - 5.000.000</td>
@@ -410,6 +398,7 @@
                             <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">2. Sang tên chuyển nhượng kết hợp cấp đổi phôi sổ mới</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A021.012783</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">8.000.000 - 12.000.000</td>
@@ -424,6 +413,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">3. Khai nhận &amp; Sang tên di sản thừa kế</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A031.013831</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">5.500.000 - 8.000.000</td>
@@ -438,6 +428,7 @@
                             <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">4. Sang tên kết hợp Xóa đăng ký thế chấp (Giải chấp)</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A041.013831</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">6.000.000 - 8.000.000</td>
@@ -452,6 +443,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">5. Cấp đổi Giấy chứng nhận mẫu mới (Không đo vẽ lại)</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A051.012783</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">4.000.000 - 5.000.000</td>
@@ -465,6 +457,7 @@
                             <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">6. Cấp đổi Giấy chứng nhận mẫu mới (Có đo đạc xác định lại diện tích)</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A061.012783</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">8.000.000 - 12.000.000</td>
@@ -479,6 +472,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">7. Cấp lại Giấy chứng nhận bị mất</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A071.012786</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">15.000.000 - 25.000.000</td>
@@ -492,6 +486,7 @@
                             <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">8. Đổi sổ đứng tên một người sang sổ chung vợ &amp; chồng</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A081.012783</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">4.500.000 - 6.000.000</td>
@@ -505,6 +500,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">9. Cập nhật CCCD, địa chỉ thường trú, tên đơn vị hành chính mới</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A091.012768</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">3.500.000 - 4.500.000</td>
@@ -518,6 +514,7 @@
                             <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">10. Đăng ký cấp số nhà &amp; chuẩn hóa địa chỉ</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A101.012768</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">4.000.000 - 5.500.000</td>
@@ -531,6 +528,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">11. Đính chính sai sót thông tin trên Giấy chứng nhận</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A111.012790</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">4.000.000 - 6.000.000</td>
@@ -544,6 +542,7 @@
                             <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">12. Xác nhận tiếp tục / Gia hạn thời hạn sử dụng đất</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: A121.013949</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">4.000.000 - 5.500.000</td>
@@ -562,7 +561,7 @@
             <!-- PHẦN B: DỊCH VỤ PHÁP LÝ ĐẤT ĐAI & XÂY DỰNG CHUYÊN SÂU -->
             <section class="bg-white rounded-xl md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="p-4 sm:p-6 md:p-8 border-b border-slate-100">
-                    <h2 class="text-xl sm:text-2xl md:text-3xl text-slate-900">2. Bảng giá dịch vụ Pháp lý Đất đai &amp; Hoàn công chuyên sâu</h2>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl text-slate-900">B. Bảng giá dịch vụ Pháp lý Đất đai &amp; Hoàn công chuyên sâu</h2>
                     <p class="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">Tư vấn phương án pháp lý, đối chiếu quy hoạch sử dụng đất – quy hoạch xây dựng, lập hồ sơ kỹ thuật và đại diện làm việc với cơ quan Nông nghiệp &amp; Môi trường, Xây dựng, Thuế và UBND các cấp tại Cần Thơ &amp; Vĩnh Long.</p>
                 </div>
 
@@ -579,6 +578,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">1. Tách thửa / Hợp thửa đất ở &amp; đất nông nghiệp</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: B011.012784</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">10.000.000 - 15.000.000</td>
@@ -593,6 +593,7 @@
                             <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">2. Chuẩn hóa dữ liệu bản đồ địa chính &amp; Cập nhật lối đi hợp pháp</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: B021.012789</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">15.000.000 - 35.000.000</td>
@@ -607,6 +608,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">3. Chuyển mục đích sử dụng đất (Đất vườn, CLN sang Đất ở)</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: B031.013949</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">15.000.000 - 25.000.000</td>
@@ -621,6 +623,7 @@
                             <tr class="hover:bg-blue-50/40 transition bg-slate-50/50">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">4. Đăng ký cấp Giấy chứng nhận lần đầu (Đất chưa có sổ)</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: B041.012756</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">15.000.000 - 35.000.000</td>
@@ -635,6 +638,7 @@
                             <tr class="hover:bg-blue-50/40 transition">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">5. Cập nhật tài sản gắn liền với đất (Hoàn công nhà ở &amp; công trình)</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: B051.013995</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/hồ sơ">12.000.000 - 45.000.000</td>
@@ -649,6 +653,7 @@
                             <tr class="hover:bg-amber-50/60 transition bg-amber-50/30">
                                 <td class="py-4 px-6">
                                     <p class="font-bold text-slate-900 text-[15px] md:text-sm">6. Kiểm tra quy hoạch &amp; Thẩm định pháp lý BĐS trước giao dịch</p>
+                                    <p class="service-code mt-1.5 text-xs text-slate-500">Mã dịch vụ: B061.012789</p>
                                 </td>
                                 <td class="price-cell py-4 px-6 font-bold text-[#D97706] whitespace-nowrap text-base"
                                     data-unit="/thửa">3.000.000 - 5.000.000</td>
@@ -863,11 +868,9 @@
     <script>
         loadLayout('services');
 
-        // In / xuất PDF A4 phần nội dung <main>
         (function () {
             var originalTitle = document.title;
             window.addEventListener('beforeprint', function () {
-                // Tên file PDF mặc định khi lưu
                 document.title = 'Bang-gia-dich-vu-phap-ly-BDS-PV-INCONS';
             });
             window.addEventListener('afterprint', function () {
